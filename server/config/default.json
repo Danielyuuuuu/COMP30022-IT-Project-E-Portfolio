@@ -1,3 +1,3 @@
 {
-  "mongoURI": "mongodb+srv://admin:6uSy1QGsM7AeD3Xc@eportfoliosystem.7nsb3.mongodb.net/EportfolioSystem?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://admin:6uSy1QGsM7AeD3Xc@eportfoliosystem.7nsb3.mongodb.net/server?retryWrites=true&w=majority"
 }
