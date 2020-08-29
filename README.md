@@ -4,6 +4,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npx prettier --write .`
+
+Use Prettier to format everything, except the files specified in `.prettierignore`.<br />
+Or you may use `prettier --write app/` to format a certain directory,<br />
+or `prettier --write app/components/Button.js` to format a certain file.<br />
+Or use a glob like `prettier --write "app/**/*.test.js` to format all tests in a directory.
+
 ### `npm start`
 
 Runs the app in the development mode.<br />
