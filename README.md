@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## *!!! Add a `.env` file under `server` directory, put the following code in:*  `MONGO_PASSWORD=6uSy1QGsM7AeD3Xc`
+
 ## Available Scripts
 
 In the project directory, you can run:
@@ -10,6 +12,10 @@ Use Prettier to format everything, except the files specified in `.prettierignor
 Or you may use `prettier --write app/` to format a certain directory,<br />
 or `prettier --write app/components/Button.js` to format a certain file.<br />
 Or use a glob like `prettier --write "app/**/*.test.js` to format all tests in a directory.
+
+##
+
+Under `server`, you can run:
 
 ### `npm start`
 
