@@ -4,7 +4,7 @@
 const express = require("express");
 const router = express.Router();
 
-const bookRouter = require("./books");
+const bookRouter = require("./book");
 
 router.use("/books", bookRouter);
 
