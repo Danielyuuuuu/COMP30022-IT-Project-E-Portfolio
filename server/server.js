@@ -1,17 +1,26 @@
-const express = require("express");
-const connectDB = require("./config/db");
+require("dotenv").config();
 
+// Load dependencies
+const express = require("express");
+const router = require("./routes/main");
+// const connectDB = require("./config/db");
+
+// Start express
 const app = express();
 
-// routes
-const books = require('./routes/api/books')
-
 // Connect Database
-connectDB();
+// connectDB();
+require("./models/db");
 
-app.get("/", (req, res) => res.send("Hello World!"));
-app.use('/api/books', books);
+// Setup middlewares
+app.use(express.json());
 
-const port = process.env.PORT || 8000;
+// Setup routes
+app.use("/api", router);
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+// app.get("/", (req, res) => res.send("Hello World!"));
+// app.use("/api/books", books);
+
+app.listen((port = process.env.PORT || 8000), () =>
+  console.log(`Server running on port ${port}`)
+);
