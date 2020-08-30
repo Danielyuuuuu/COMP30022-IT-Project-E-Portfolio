@@ -1,6 +1,6 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## *!!! Add a `.env` file under `server` directory, put the following code in:*  `MONGO_PASSWORD=6uSy1QGsM7AeD3Xc`
+## _!!! Add a `.env` file under `server` directory, put the following code in:_ `MONGO_PASSWORD=6uSy1QGsM7AeD3Xc`
 
 ## Available Scripts
 
