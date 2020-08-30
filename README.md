@@ -29,9 +29,9 @@ You will also see any lint errors in the console.
 
 Similar to `npm start` but any changes in code will reflect the changes on the website in runtime.
 
-### `mpm run dev`
+### `npm run dev`
 
-Equals to running `npm run server` in the `server` directory and running `npm start` in the client directory.  
+Equals to running `npm run server` in the `server` directory and running `npm start` in the `client` directory.  
 It runs both the server and client within a single terminal.
 
 ## Learn More
