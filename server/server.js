@@ -4,12 +4,17 @@ require("dotenv").config();
 const express = require("express");
 const router = require("./routes/main");
 const cors = require("cors");
+const expressLayouts = require("express-ejs-layouts");
 
 // Start express
 const app = express();
 
 // Connect Database
 require("./models/db");
+
+// EJS
+app.use(expressLayouts);
+app.set("view engine", "ejs");
 
 // Allow cors
 app.use(cors({ origin: true, credentials: true }));
@@ -18,7 +23,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 
 // Setup routes
-app.use("/api", router);
+app.use("/", router);
 
 // Server listener
 app.listen((port = process.env.PORT || 8000), () =>

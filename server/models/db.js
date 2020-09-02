@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 CONNECTION_STRING =
-  "mongodb+srv://admin:<password>@eportfoliosystem.7nsb3.mongodb.net/test?retryWrites=true&w=majority";
+  "mongodb+srv://admin:<password>@eportfoliosystem.7nsb3.mongodb.net/authentication?retryWrites=true&w=majority";
 MONGO_URL = CONNECTION_STRING.replace("<password>", process.env.MONGO_PASSWORD);
 
 mongoose.connect(MONGO_URL || "mongodb://localhost/COMP30022", {
