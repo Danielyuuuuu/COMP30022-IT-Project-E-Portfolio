@@ -70,7 +70,7 @@ userRouter.post("/register", (req, res) => {
             newUser
               .save()
               .then((user) => {
-                req.flash("success_flash", "You have registered successfully");
+                req.flash("flash_success", "You have registered successfully");
                 res.redirect("/user/login");
               })
               .catch((err) => console.log(err));

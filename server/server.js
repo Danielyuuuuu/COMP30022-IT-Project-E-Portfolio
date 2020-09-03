@@ -35,8 +35,9 @@ app.use(flash());
 
 // Global variables
 app.use((req, res, next) => {
-  res.locals.success_flash = req.flash("success_flash");
-  res.locals.fail_flash = req.flash("fail_flash");
+  res.locals.flash_success = req.flash("flash_success");
+  res.locals.flash_fail = req.flash("flash_fail");
+  next();
 });
 
 // Allow cors

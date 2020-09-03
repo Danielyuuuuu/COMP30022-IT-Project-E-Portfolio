@@ -13,7 +13,7 @@ errorMessages.forEach(function(error) { %>
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<% } %> <% if(flash_success != "") { %>
+<% } %> <% if(flash_fail != "") { %>
 <div class="alert alert-warning alert-dismissible fade show" role="alert">
   <%= flash_fail %>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
