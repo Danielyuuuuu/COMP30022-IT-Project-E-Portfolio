@@ -7,9 +7,13 @@ const cors = require("cors");
 const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
 const session = require("express-session");
+const passport = require("passport");
 
 // Start express
 const app = express();
+
+// Passport config
+require("./config/passport")(passport);
 
 // Connect Database
 require("./models/db");
@@ -30,6 +34,10 @@ app.use(
   })
 );
 
+// Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Connect flash
 app.use(flash());
 
@@ -37,6 +45,7 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.flash_success = req.flash("flash_success");
   res.locals.flash_fail = req.flash("flash_fail");
+  res.locals.error = req.flash("error");
   next();
 });
 
