@@ -92,4 +92,11 @@ userRouter.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+// Handle Logout
+userRouter.get("/logout", (req, res) => {
+  req.logOut();
+  req.flash("flash_success", "Logged out successfuly");
+  res.redirect("/user/login");
+});
+
 module.exports = userRouter;
