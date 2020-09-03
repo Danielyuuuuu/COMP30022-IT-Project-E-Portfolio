@@ -10,6 +10,4 @@ router.use("/books", bookRouter);
 
 router.use("/user", require("./user"));
 
-router.use("/", require("./index"));
-
 module.exports = router;
