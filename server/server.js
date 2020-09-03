@@ -5,8 +5,6 @@ const express = require("express");
 const router = require("./routes/main");
 const cors = require("cors");
 const expressLayouts = require("express-ejs-layouts");
-const flash = require("connect-flash");
-const session = require("express-session");
 
 // Start express
 const app = express();
@@ -20,24 +18,6 @@ app.set("view engine", "ejs");
 
 //Bodyparser
 app.use(express.urlencoded({ extended: false }));
-
-// Express body middleware
-app.use(
-  session({
-    secret: "keyboard cat",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
-
-// Connect flash
-app.use(flash());
-
-// Global variables
-app.use((req, res, next) => {
-  res.locals.success_flash = req.flash("success_flash");
-  res.locals.fail_flash = req.flash("fail_flash");
-});
 
 // Allow cors
 app.use(cors({ origin: true, credentials: true }));
