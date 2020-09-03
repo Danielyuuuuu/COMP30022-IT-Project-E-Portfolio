@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## _!!! Add a `.env` file under `server` directory, put the following code in:_ `MONGO_PASSWORD=6uSy1QGsM7AeD3Xc`
+### GOTO `https://app.slack.com/client/T0187HJ1YNN/C01A7AA2FS8` To download the `.env` file, put it under `server` directory.
 
 ## Available Scripts
 
