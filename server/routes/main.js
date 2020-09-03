@@ -8,6 +8,7 @@ const bookRouter = require("./book");
 
 router.use("/books", bookRouter);
 
+// User login route
 router.use("/user", require("./user"));
 
 module.exports = router;
