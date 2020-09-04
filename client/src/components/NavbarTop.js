@@ -19,7 +19,9 @@ class NavbarTop extends Component {
     render(){
         return(
             <div>
-                <Navbar color="light" light expand="md">
+                
+                <Navbar fixed="top" expand="lg" color="light" light expand="md">
+                    
                     <Nav className="m-auto" navbar>
                     <NavItem>
                         <NavLink href="/eportfolio">Portfolio</NavLink>
@@ -48,9 +50,8 @@ class NavbarTop extends Component {
                         </DropdownMenu>
                     </UncontrolledDropdown>
 
-                   
-
                     </Nav>
+
                 </Navbar>
             </div>
         );
