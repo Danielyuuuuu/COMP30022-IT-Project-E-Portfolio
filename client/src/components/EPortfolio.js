@@ -12,6 +12,9 @@ class EPortfolio extends Component {
                 <br />
                 <br />
                 <Category />
+                <br />
+                <br />
+                <Category />
                 
             </div>
         );
