@@ -13,7 +13,7 @@ const items = [
     src: 'https://i.redd.it/wc2vtyzlnmw41.jpg',
     altText: 'Slide 2',
     caption: 'Slide 2',
-    header: 'Photography & Imaging',
+    header: 'Photography & Images',
     key: '2'
   },
   {

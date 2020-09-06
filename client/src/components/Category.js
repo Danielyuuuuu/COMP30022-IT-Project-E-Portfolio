@@ -11,21 +11,21 @@ const Example = (props) => {
   return (
     <div>
     <Row>
-      <Col sm="3">
+      <Col sm="4">
         <Card body>
             <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
             <CardFooter className="text-center">Graphic Design</CardFooter>
         </Card>
       </Col>
 
-      <Col sm="3">
+      <Col sm="4">
         <Card body>
         <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
         <CardFooter className="text-center">Photography</CardFooter>
         </Card>
       </Col>
 
-      <Col sm="3">
+      <Col sm="4">
         <Card body>
         <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
         <CardFooter className="text-center">Art Product</CardFooter>
@@ -37,21 +37,21 @@ const Example = (props) => {
     <br />
     <br />
     <Row>
-    <Col sm="3">
+    <Col sm="4">
       <Card body>
           <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
           <CardFooter className="text-center">Painting</CardFooter>
       </Card>
     </Col>
 
-    <Col sm="3">
+    <Col sm="4">
       <Card body>
       <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
       <CardFooter className="text-center">Films</CardFooter>
       </Card>
     </Col>
 
-    <Col sm="3">
+    <Col sm="4">
       <Card body>
       <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
       <CardFooter className="text-center">Architecture</CardFooter>
