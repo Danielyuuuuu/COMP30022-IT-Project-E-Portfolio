@@ -54,6 +54,12 @@ class Store extends Component{
                 <div style={divStyle}>
                     <Example />
                 </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
             </div>
         );
     }
