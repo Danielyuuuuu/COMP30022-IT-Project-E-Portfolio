@@ -41,7 +41,7 @@ class NavbarTop extends Component {
                             <DropdownItem href="/aboutme">
                                 Me
                             </DropdownItem>
-                            <DropdownItem>
+                            <DropdownItem href="/aboutruntimeterror">
                                 Runtime Terror
                             </DropdownItem>
                             <DropdownItem>

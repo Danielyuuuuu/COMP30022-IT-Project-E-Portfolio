@@ -9,7 +9,8 @@ class Blog extends Component{
                 <NavbarTop />
                 <br />
                 <br />
-                <h1>This is the blog.</h1>
+                <br />
+                <h5>This is the blog.</h5>
             </div>
         );
     }

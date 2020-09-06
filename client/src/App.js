@@ -11,6 +11,7 @@ import EPortfolio from "./components/EPortfolio";
 import Store from "./components/Store";
 import Blog from "./components/Blog";
 import AboutMe from "./components/AboutMe";
+import AboutRuntimeTerror from "./components/AboutRuntimeTerror";
 
 
 
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/store" component={Store} />
           <Route path="/blog" component={Blog} />
           <Route path="/aboutme" component={AboutMe} />
+          <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
 
         </div>
       </Router>

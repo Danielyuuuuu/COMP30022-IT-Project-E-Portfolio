@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import "../App.css";
 
-class AboutMe extends Component{
+class AboutRuntimeTerror extends Component{
     render(){
         return(
             <div>
@@ -10,10 +10,11 @@ class AboutMe extends Component{
                 <br />
                 <br />
                 <br />
-                <h5>This is the About Me.</h5>
+                <h5>This is the About Runtime Terror.</h5>
+                <p>We can put our reports here.</p>
             </div>
         );
     }
 }
 
-export default AboutMe;
+export default AboutRuntimeTerror;

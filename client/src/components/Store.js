@@ -9,7 +9,8 @@ class Store extends Component{
                 <NavbarTop />
                 <br />
                 <br />
-                <h1>This is the store.</h1>
+                <br />
+                <h5>This is the store.</h5>
             </div>
         );
     }
