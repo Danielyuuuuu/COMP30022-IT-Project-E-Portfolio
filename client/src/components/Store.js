@@ -1,6 +1,8 @@
 
 import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
+import StoreCategoryList from "./StoreCategoryList";
+
 import "../App.css";
 
 
@@ -46,6 +48,8 @@ class Store extends Component{
                 <NavbarTop />
                 <br />
                 <br />
+                <br />
+                <StoreCategoryList />
                 <br />
                 <div style={divStyle}>
                     <Example />
