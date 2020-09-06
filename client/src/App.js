@@ -8,6 +8,7 @@ import ShowBookList from "./components/ShowBookList";
 import ShowBookDetails from "./components/ShowBookDetails";
 import UpdateBookInfo from "./components/UpdateBookInfo";
 import EPortfolio from "./components/EPortfolio";
+import Store from "./components/Store";
 
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path="/edit-book/:id" component={UpdateBookInfo} />
           <Route path="/show-book/:id" component={ShowBookDetails} />
           <Route path="/eportfolio" component={EPortfolio} />
+          <Route path="/store" component={Store} />
         </div>
       </Router>
     );

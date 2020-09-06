@@ -30,7 +30,7 @@ class NavbarTop extends Component {
                         <NavLink href="/eportfolio">Blog</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/eportfolio">Shop</NavLink>
+                        <NavLink href="/store">Store</NavLink>
                     </NavItem>
 
                     <UncontrolledDropdown nav inNavbar>
