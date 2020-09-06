@@ -27,7 +27,7 @@ class NavbarTop extends Component {
                         <NavLink href="/eportfolio">Portfolio</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/eportfolio">Blog</NavLink>
+                        <NavLink href="/blog">Blog</NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink href="/store">Store</NavLink>
