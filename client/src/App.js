@@ -12,6 +12,7 @@ import Store from "./components/Store";
 import Blog from "./components/Blog";
 import AboutMe from "./components/AboutMe";
 import AboutRuntimeTerror from "./components/AboutRuntimeTerror";
+import ContactMe from "./components/ContactMe";
 
 
 
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/blog" component={Blog} />
           <Route path="/aboutme" component={AboutMe} />
           <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
+          <Route path="/contactme" component={ContactMe} />
 
         </div>
       </Router>
