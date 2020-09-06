@@ -38,7 +38,7 @@ class NavbarTop extends Component {
                             About
                         </DropdownToggle>
                         <DropdownMenu right>
-                            <DropdownItem>
+                            <DropdownItem href="/aboutme">
                                 Me
                             </DropdownItem>
                             <DropdownItem>
