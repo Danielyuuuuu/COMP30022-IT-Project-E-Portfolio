@@ -1,30 +1,90 @@
-import React from 'react';
-import { UncontrolledCarousel } from 'reactstrap';
 
-const items = [
-  {
-    src: 'https://i.pinimg.com/originals/db/1c/1a/db1c1ad07b38e8feab26ab31c2961b75.jpg',
-    altText: 'Slide 1',
-    caption: 'Slide 1',
-    header: 'Product Design',
-    key: '1'
-  },
-  {
-    src: 'https://i.redd.it/wc2vtyzlnmw41.jpg',
-    altText: 'Slide 2',
-    caption: 'Slide 2',
-    header: 'Photography & Imaging',
-    key: '2'
-  },
-  {
-    src: 'http://sf.co.ua/16/08/wallpaper-3b352.jpg',
-    altText: 'Slide 3',
-    caption: 'Slide 3',
-    header: 'Graphic Design',
-    key: '3'
-  }
-];
+import React, { Component } from "react";
+import NavbarTop from "./NavbarTop";
+import "../App.css";
 
-const Category = () => <UncontrolledCarousel items={items} />;
+
+
+import { Card, Button, CardTitle, CardText, CardImg, Row, Col, CardFooter } from 'reactstrap';
+
+const Example = (props) => {
+  return (
+    <div>
+    <Row>
+      <Col sm="3">
+        <Card body>
+            <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
+            <CardFooter className="text-center">Graphic Design</CardFooter>
+        </Card>
+      </Col>
+
+      <Col sm="3">
+        <Card body>
+        <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
+        <CardFooter className="text-center">Photography</CardFooter>
+        </Card>
+      </Col>
+
+      <Col sm="3">
+        <Card body>
+        <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
+        <CardFooter className="text-center">Art Product</CardFooter>
+        </Card>
+      </Col>
+
+    </Row>
+    <br />
+    <br />
+    <br />
+    <Row>
+    <Col sm="3">
+      <Card body>
+          <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
+          <CardFooter className="text-center">Painting</CardFooter>
+      </Card>
+    </Col>
+
+    <Col sm="3">
+      <Card body>
+      <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
+      <CardFooter className="text-center">Films</CardFooter>
+      </Card>
+    </Col>
+
+    <Col sm="3">
+      <Card body>
+      <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
+      <CardFooter className="text-center">Architecture</CardFooter>
+      </Card>
+    </Col>
+
+    </Row>
+
+  </div>
+
+  );
+};
+
+const divStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+
+
+class Category extends Component{
+    render(){
+        return(
+            <div>
+                <br />
+                <br />
+                <br />
+                <div style={divStyle}>
+                    <Example />
+                </div>
+            </div>
+        );
+    }
+}
 
 export default Category;

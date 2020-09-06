@@ -21,8 +21,8 @@ const Example = (props) => {
 
       <Col sm="3">
         <Card body>
-        <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
-          <CardTitle>Art product  $5.00</CardTitle>
+        <CardImg width="100%" src="https://www.fineartbyhelenreimer.com/images/intercessory-worship-high-res.jpg" alt="Card image cap" />
+          <CardTitle>Painting  $7.00</CardTitle>
           <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
           <Button>Buy now</Button>
         </Card>

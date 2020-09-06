@@ -13,7 +13,7 @@ class EPortfolio extends Component {
                 <HomeSlide />
                 <br />
                 <br />
-                
+                <Category />
                 
             </div>
         );
