@@ -11,17 +11,28 @@ import { Card, Button, CardTitle, CardText, CardImg, Row, Col } from 'reactstrap
 
 const Example = (props) => {
   return (
-    <Row>
-      <Col sm="3">
+    <div>
         <Card body>
             <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
           <CardTitle>Art product  $5.00</CardTitle>
           <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
           <Button>Buy now</Button>
         </Card>
-      </Col>
 
-      <Col sm="3">
+        <Card body>
+        <CardImg width="100%" src="https://www.fineartbyhelenreimer.com/images/intercessory-worship-high-res.jpg" alt="Card image cap" />
+          <CardTitle>Painting  $7.00</CardTitle>
+          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+          <Button>Buy now</Button>
+        </Card>
+
+        <Card body>
+            <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
+          <CardTitle>Art product  $5.00</CardTitle>
+          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+          <Button>Buy now</Button>
+        </Card>
+
         <Card body>
         <CardImg width="100%" src="https://www.fineartbyhelenreimer.com/images/intercessory-worship-high-res.jpg" alt="Card image cap" />
           <CardTitle>Painting  $7.00</CardTitle>
@@ -29,8 +40,7 @@ const Example = (props) => {
           <Button>Buy now</Button>
         </Card>
         
-      </Col>
-    </Row>
+    </div> 
 
         
 
@@ -43,9 +53,13 @@ class Store extends Component{
             <div>
                 <NavbarTop />
                 
-                <div>
-                  <StoreCategoryList />
-                  <Example />
+                <div className="store">
+                  <div className="store-menu">
+                    <StoreCategoryList />
+                  </div>
+                  <div className="store-items">
+                    <Example />
+                  </div>
                 </div>
                 <Footer />
             </div>
