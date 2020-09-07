@@ -21,7 +21,7 @@ class NavbarTop extends Component {
             <div>
                 
                 <Navbar className="header" fixed="top" expand="lg" color="light" light expand="md">
-                    <NavbarBrand>Runtime Terror</NavbarBrand>
+                    <NavbarBrand className="navbarBand">Runtime Terror</NavbarBrand>
 
                     <Nav className="m-auto" navbar>
                     <NavItem>

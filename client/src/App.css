@@ -155,3 +155,7 @@ p {
   margin-bottom: 4rem;
 
 }
+
+.navbarBand{
+  position: fixed;
+}
