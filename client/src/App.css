@@ -136,7 +136,7 @@ p {
 }
 
 .store > .store-menu {
-  flex: 1 0 200px;
+  flex: 1 0 100px;
 }
 
 .store > .store-items {
