@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import StoreCategoryList from "./StoreCategoryList";
-
+import Footer from "./Footer";
 import "../App.css";
 
 
@@ -60,6 +60,7 @@ class Store extends Component{
                 <br />
                 <br />
                 <br />
+                <Footer />
             </div>
         );
     }

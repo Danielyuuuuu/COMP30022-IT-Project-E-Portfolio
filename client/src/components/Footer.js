@@ -3,7 +3,7 @@ import "../App.css";
 
 const Footer = () => (
   <div className="footer">
-    <p>This is some content in sticky footer</p>
+    <p>This is our footer</p>
   </div>
 );
 
