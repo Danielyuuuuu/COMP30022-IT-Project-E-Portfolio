@@ -12,7 +12,6 @@ class Blog extends Component{
                 <br />
                 <br />
                 <h5>This is the blog.</h5>
-                <Footer/>
             </div>
         );
     }
