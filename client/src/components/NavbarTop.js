@@ -20,7 +20,7 @@ class NavbarTop extends Component {
         return(
             <div>
                 
-                <Navbar fixed="top" expand="lg" color="light" light expand="md">
+                <Navbar className="header" fixed="top" expand="lg" color="light" light expand="md">
                     
                     <Nav className="m-auto" navbar>
                     <NavItem>
