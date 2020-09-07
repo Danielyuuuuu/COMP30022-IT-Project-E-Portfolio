@@ -3,6 +3,7 @@ import NavbarTop from "./NavbarTop";
 import Category from "./Category";
 import HomeSlide from "./HomeSlide";
 import "../App.css";
+import Footer from "./Footer";
 
 
 class EPortfolio extends Component {
@@ -22,6 +23,7 @@ class EPortfolio extends Component {
                 <br />
                 <br />
                 <br />
+                <Footer />
             </div>
         );
     };

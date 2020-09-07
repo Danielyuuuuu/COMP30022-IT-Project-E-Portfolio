@@ -96,3 +96,14 @@ p {
   font-size: 1em;
   padding: 10px 0 10px 0;
 }
+
+.footer{
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: lightblue;
+  position: fixed;
+  bottom: 0;
+  align-items: center;
+  left: 0;
+  width: 100%;
+}
