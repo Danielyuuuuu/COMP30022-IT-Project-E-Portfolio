@@ -112,3 +112,15 @@ p {
   opacity: 0.8;
   
 }
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1000px;
+}
+
+.categories > .card {
+  max-width: 300px;
+  margin-bottom: 3rem;
+}

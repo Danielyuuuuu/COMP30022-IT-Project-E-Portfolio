@@ -37,29 +37,16 @@ const Example = (props) => {
   );
 };
 
-const divStyle = {
-  };
-
-
 class Store extends Component{
     render(){
         return(
             <div>
                 <NavbarTop />
-                <br />
-                <br />
-                <br />
-                <StoreCategoryList />
-                <br />
-                <div style={divStyle}>
-                    <Example />
+                
+                <div>
+                  <StoreCategoryList />
+                  <Example />
                 </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
-                <br />
                 <Footer />
             </div>
         );
