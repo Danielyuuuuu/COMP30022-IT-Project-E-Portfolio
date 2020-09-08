@@ -172,8 +172,8 @@ p {
 }
 
 .blogText {
-  background: black;
-  float: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .blogPost {
