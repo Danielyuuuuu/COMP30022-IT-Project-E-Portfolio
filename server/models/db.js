@@ -1,15 +1,12 @@
 const mongoose = require("mongoose");
 
-CONNECTION_STRING =
-  "mongodb+srv://admin:<password>@eportfoliosystem.7nsb3.mongodb.net/authentication?retryWrites=true&w=majority";
-MONGO_URL = CONNECTION_STRING.replace("<password>", process.env.MONGO_PASSWORD);
+MONGO_URL =
+  `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_TABLE}?${process.env.DB_OPTIONS}`;
 
 mongoose.connect(MONGO_URL || "mongodb://localhost/COMP30022", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
-  // useFindAndModify: false,
-  // dbName: "test",
 });
 
 const db = mongoose.connection;
