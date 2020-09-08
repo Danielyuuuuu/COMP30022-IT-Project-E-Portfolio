@@ -172,10 +172,30 @@ p {
 }
 
 .blogText {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  margin-left: 210px;
+}
+
+.blogTitle {
+  font-weight: bold;
+  font-size: 200%;
 }
 
 .blogPost {
   margin-top: 70px;
+  border: 2px solid rgb(51, 29, 29);
+  overflow: auto;
+}
+
+.postImage {
+  float: left;
+  height: 50%;
+  width: 50%;
+}
+
+.postImage img {
+  display: block;
+  height: 50%;
+  width: 50%;
 }
