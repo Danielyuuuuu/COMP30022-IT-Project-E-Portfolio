@@ -97,7 +97,7 @@ p {
   padding: 10px 0 10px 0;
 }
 
-.footer{
+.footer {
   margin-top: 1rem;
   padding: 1rem;
   background-color: lightblue;
@@ -105,13 +105,10 @@ p {
   bottom: 0;
   left: 0;
   width: 100%;
-  
 }
 
-.header{
-  
+.header {
   opacity: 0.8;
-  
 }
 
 .categories {
@@ -154,9 +151,8 @@ p {
 .store > .store-items > div > .card {
   max-width: 300px;
   margin-bottom: 4rem;
-
 }
 
-.navbarBand{
+.navbarBand {
   position: fixed;
 }
