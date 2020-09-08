@@ -16,6 +16,7 @@ class Blog extends Component {
         <h5>This is the blog.</h5>
         <SearchBar />
         <BlogPost />
+        <Footer />
       </div>
     );
   }
