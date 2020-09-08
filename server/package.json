@@ -7,7 +7,8 @@
     "start": "node server.js",
     "dev": "concurrently --kill-others \"nodemon server.js\" \"cd ../client && npm start\"",
     "server": "node_modules/.bin/nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand tests",
+    "test:watch": "jest tests --watch"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,18 @@
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
+    "jest": "^26.4.2",
+    "lsb-release": "^0.1.0",
+    "mongodb-memory-server": "^6.6.7",
+    "node-mocks-http": "^1.9.0",
     "nodemon": "^2.0.4"
+  },
+  "config": {
+    "mongodbMemoryServer": {
+      "version": "latest"
+    }
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }

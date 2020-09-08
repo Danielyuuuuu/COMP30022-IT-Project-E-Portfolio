@@ -8,8 +8,8 @@ mongoose.connect(MONGO_URL || "mongodb://localhost/COMP30022", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
-  useFindAndModify: false,
-  dbName: "test",
+  // useFindAndModify: false,
+  // dbName: "test",
 });
 
 const db = mongoose.connection;
