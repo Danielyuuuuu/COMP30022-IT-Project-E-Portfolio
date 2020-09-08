@@ -14,13 +14,33 @@ import {
 class BlogPost extends Component {
   render() {
     return (
-      <div className="blogPost">
-        <div className="postImage">
-          <img src="https://petapixel.com/assets/uploads/2019/11/Geert-Weggen_squirrel-wishes_00003677.jpg" />
+      <div className="blog">
+        <div className="blogPost">
+          <div className="postImage">
+            <img src="https://petapixel.com/assets/uploads/2019/11/Geert-Weggen_squirrel-wishes_00003677.jpg" />
+          </div>
+          <div className="blogText">
+            <h1 className="blogTitle">Blog Title</h1>
+            <h2>Blog Text</h2>
+          </div>
         </div>
-        <div className="blogText">
-          <h1 className="blogTitle">Blog Title</h1>
-          <h2>Blog Text</h2>
+        <div className="blogPost">
+          <div className="postImage">
+            <img src="https://petapixel.com/assets/uploads/2019/11/Geert-Weggen_squirrel-wishes_00003677.jpg" />
+          </div>
+          <div className="blogText">
+            <h1 className="blogTitle">Blog Title</h1>
+            <h2>Blog Text</h2>
+          </div>
+        </div>
+        <div className="blogPost">
+          <div className="postImage">
+            <img src="https://petapixel.com/assets/uploads/2019/11/Geert-Weggen_squirrel-wishes_00003677.jpg" />
+          </div>
+          <div className="blogText">
+            <h1 className="blogTitle">Blog Title</h1>
+            <h2>Blog Text</h2>
+          </div>
         </div>
       </div>
     );
