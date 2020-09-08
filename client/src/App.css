@@ -96,3 +96,63 @@ p {
   font-size: 1em;
   padding: 10px 0 10px 0;
 }
+
+.footer {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: lightblue;
+  opacity: 0.35;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.header {
+  opacity: 0.8;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1000px;
+}
+
+.categories > .card {
+  max-width: 300px;
+  margin-bottom: 3rem;
+}
+
+.store {
+  display: flex;
+  max-width: 1000px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8rem;
+}
+
+.store > .store-menu {
+  flex: 1 0 100px;
+}
+
+.store > .store-items {
+  flex: 1 0 800px;
+  /*max-width: 500px;*/
+}
+
+.store > .store-items > div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: space-evenly;
+}
+
+.store > .store-items > div > .card {
+  max-width: 300px;
+  margin-bottom: 4rem;
+}
+
+.navbarBand {
+  position: fixed;
+}
