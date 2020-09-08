@@ -164,8 +164,18 @@ p {
   font-size: 22px;
   cursor: pointer;
   margin-right: 20px;
+  border: 1px solid white;
 }
 
 .searchBar {
   float: right;
+}
+
+.blogText {
+  background: black;
+  float: left;
+}
+
+.blogPost {
+  margin-top: 70px;
 }

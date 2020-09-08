@@ -13,7 +13,6 @@ class Blog extends Component {
         <br />
         <br />
         <br />
-        <h5>This is the blog.</h5>
         <SearchBar />
         <BlogPost />
         <Footer />
