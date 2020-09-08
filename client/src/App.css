@@ -156,3 +156,16 @@ p {
 .navbarBand {
   position: fixed;
 }
+
+.searchButton {
+  float: right;
+  color: black;
+  background: white;
+  font-size: 22px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.searchBar {
+  float: right;
+}
