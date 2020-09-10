@@ -249,15 +249,13 @@ p {
 }
 
 .ContactMeForm {
-  height: 60%;
-  width: 60%;
+  width: 400px;
   margin-left: auto;
   margin-right: auto;
-  display: inline-block;
 }
 
-.contactInfo {
+.contactMeInfo {
+  width: 200px;
   float: left;
-  margin-left: 20px;
-  margin-right: 60px;
+  margin: 50px;
 }
