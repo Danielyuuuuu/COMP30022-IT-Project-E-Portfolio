@@ -108,6 +108,12 @@ import {
 } from "reactstrap";
 
 class BlogPost extends Component {
+  state = { clicked: false };
+
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+
   render() {
     return (
       <div className="posts">
@@ -122,6 +128,13 @@ class BlogPost extends Component {
           </Card>
           <Card>
             <CardBody>
+              <div className="blogEllipsis-v" onClick={this.handleClick}>
+                <i
+                  className={
+                    this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
+                  }
+                ></i>
+              </div>
               <CardTitle>Card title</CardTitle>
               <CardSubtitle>Card subtitle</CardSubtitle>
               <CardText>
@@ -143,6 +156,13 @@ class BlogPost extends Component {
           </Card>
           <Card>
             <CardBody>
+              <div className="blogEllipsis-v" onClick={this.handleClick}>
+                <i
+                  className={
+                    this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
+                  }
+                ></i>
+              </div>
               <CardTitle>Card title</CardTitle>
               <CardSubtitle>Card subtitle</CardSubtitle>
               <CardText>
@@ -164,6 +184,13 @@ class BlogPost extends Component {
           </Card>
           <Card>
             <CardBody>
+              <div className="blogEllipsis-v" onClick={this.handleClick}>
+                <i
+                  className={
+                    this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
+                  }
+                ></i>
+              </div>
               <CardTitle>Card title</CardTitle>
               <CardSubtitle>Card subtitle</CardSubtitle>
               <CardText>
