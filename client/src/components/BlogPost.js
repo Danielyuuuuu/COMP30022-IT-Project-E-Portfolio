@@ -41,6 +41,13 @@ class BlogPost extends Component {
           </div>
         </div>
         <div className="blogPost">
+          <div className="blogEllipsis-v" onClick={this.handleClick}>
+            <i
+              className={
+                this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
+              }
+            ></i>
+          </div>
           <div className="postImage">
             <img src="https://filmdaily.co/wp-content/uploads/2020/04/funny-animals-lede.jpg" />
           </div>
@@ -50,6 +57,13 @@ class BlogPost extends Component {
           </div>
         </div>
         <div className="blogPost">
+          <div className="blogEllipsis-v" onClick={this.handleClick}>
+            <i
+              className={
+                this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
+              }
+            ></i>
+          </div>
           <div className="postImage">
             <img src="https://www.nikon.com.au/tmp/Asia/2419865273/3760176746/2586568015/286546384/152549275/210978916/542011102/2974987658/1834978357/200150890/2821987493.jpg" />
           </div>
@@ -59,6 +73,13 @@ class BlogPost extends Component {
           </div>
         </div>
         <div className="blogPost">
+          <div className="blogEllipsis-v" onClick={this.handleClick}>
+            <i
+              className={
+                this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
+              }
+            ></i>
+          </div>
           <div className="postImage">
             <img src="https://ih1.redbubble.net/image.1105996056.5179/flat,750x1000,075,f.jpg" />
           </div>
