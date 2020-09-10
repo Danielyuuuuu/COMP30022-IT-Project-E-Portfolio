@@ -257,6 +257,7 @@ p {
 }
 
 .contactInfo {
-  display: inline-block;
-  margin-top: auto;
+  float: left;
+  margin-left: 20px;
+  margin-right: 60px;
 }
