@@ -12,7 +12,6 @@ class ContactMe extends Component {
         <br />
         <br />
         <br />
-        <h5>This is the "Contact Me" page.</h5>
         <ContactMeForm />
         <Footer />
       </div>

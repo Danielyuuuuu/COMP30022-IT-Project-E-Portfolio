@@ -6,43 +6,40 @@ class ContactMeForm extends React.Component {
     return (
       <Form className="ContactMeForm">
         <FormGroup>
-          <Label for="exampleEmail">Email</Label>
+          <Label for="name">Name</Label>
+          <Input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Enter your name"
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label for="email">Email</Label>
           <Input
             type="email"
             name="email"
-            id="exampleEmail"
-            placeholder="with a placeholder"
+            id="email"
+            placeholder="Enter your email"
           />
         </FormGroup>
         <FormGroup>
-          <Label for="examplePassword">Password</Label>
+          <Label for="subject">Subject</Label>
           <Input
-            type="password"
-            name="password"
-            id="examplePassword"
-            placeholder="password placeholder"
+            type="text"
+            name="subject"
+            id="subject"
+            placeholder="Enter the subject"
           />
         </FormGroup>
         <FormGroup>
-          <Label for="exampleSelect">Select</Label>
-          <Input type="select" name="select" id="exampleSelect">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-          </Input>
-        </FormGroup>
-
-        <FormGroup>
-          <Label for="exampleText">Text Area</Label>
-          <Input type="textarea" name="text" id="exampleText" />
-        </FormGroup>
-
-        <FormGroup check>
-          <Label check>
-            <Input type="checkbox" /> Check me out
-          </Label>
+          <Label for="message">Leave me a message</Label>
+          <Input
+            type="textarea"
+            name="message"
+            id="message"
+            placeholder="Enter the message"
+          />
         </FormGroup>
         <Button>Submit</Button>
       </Form>
