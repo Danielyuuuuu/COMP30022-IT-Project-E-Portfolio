@@ -4,7 +4,7 @@ import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 class ContactMeForm extends React.Component {
   render() {
     return (
-      <Form>
+      <Form className="ContactMeForm">
         <FormGroup>
           <Label for="exampleEmail">Email</Label>
           <Input
