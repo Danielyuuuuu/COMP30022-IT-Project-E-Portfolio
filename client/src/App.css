@@ -171,57 +171,6 @@ p {
   float: right;
 }
 
-/* .blogText {
-  display: flex;
-  flex-direction: column;
-  font-size: 15px;
-} */
-
-/* .blogBody {
-  font-size: 15px;
-}
-
-.blogTitle {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.blogPost {
-  margin-bottom: 30px;
-  border: 1px solid rgb(51, 29, 29);
-  overflow: auto;
-  height: 70%;
-  width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.blog {
-  margin-top: 70px;
-}
-
-.postImage {
-  float: left;
-  height: 60%;
-  width: 60%;
-}
-
-.postImage img {
-  display: block;
-  height: 60%;
-  width: 60%;
-}
-
-.blogEllipsis-v {
-  float: right;
-  margin-top: 3px;
-  margin-right: 5px;
-}
-
-.userIcon {
-  float: left;
-} */
-
 .posts {
   margin-top: 70px;
   height: 70%;
