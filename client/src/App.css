@@ -191,8 +191,8 @@ p {
   margin-bottom: 30px;
   border: 2px solid rgb(51, 29, 29);
   overflow: auto;
-  height: 50%;
-  width: 50%;
+  height: 70%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
@@ -203,12 +203,22 @@ p {
 
 .postImage {
   float: left;
-  height: 50%;
-  width: 50%;
+  height: 60%;
+  width: 60%;
 }
 
 .postImage img {
   display: block;
-  height: 50%;
-  width: 50%;
+  height: 60%;
+  width: 60%;
+}
+
+.blogEllipsis-v {
+  float: right;
+  margin-top: 3px;
+  margin-right: 5px;
+}
+
+.userIcon {
+  float: left;
 }

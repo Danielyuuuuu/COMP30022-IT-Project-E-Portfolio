@@ -12,12 +12,28 @@ import {
 } from "reactstrap";
 
 class BlogPost extends Component {
+  state = { clicked: false };
+
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+
   render() {
     return (
       <div className="blog">
         <div className="blogPost">
+          <div className="blogEllipsis-v" onClick={this.handleClick}>
+            <i
+              className={
+                this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
+              }
+            ></i>
+          </div>
           <div className="postImage">
             <img src="https://petapixel.com/assets/uploads/2019/11/Geert-Weggen_squirrel-wishes_00003677.jpg" />
+          </div>
+          <div className="userIcon">
+            <i class="far fa-laugh-wink" />
           </div>
           <div className="blogText">
             <h1 className="blogTitle">Blog Title</h1>
