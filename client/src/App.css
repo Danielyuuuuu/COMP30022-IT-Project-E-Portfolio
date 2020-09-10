@@ -259,3 +259,9 @@ p {
   float: left;
   margin: 50px;
 }
+
+.aboutMe {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
