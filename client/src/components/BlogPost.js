@@ -135,13 +135,20 @@ class BlogPost extends Component {
                   }
                 ></i>
               </div>
-              <CardTitle>Card title</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
+              <CardTitle>Post title</CardTitle>
+              <CardSubtitle>Post subtitle</CardSubtitle>
               <CardText>
-                This card has supporting text below as a natural lead-in to
+                This Post has supporting text below as a natural lead-in to
                 additional content.
               </CardText>
-              <Button>Button</Button>
+              <Button>Click to read more ...</Button>
+              <div className="blogHeart" onClick={this.handleClick}>
+                <i
+                  className={
+                    this.state.clicked ? "fas fa-heart" : "far fa-heart"
+                  }
+                ></i>
+              </div>
             </CardBody>
           </Card>
         </CardGroup>
@@ -163,13 +170,20 @@ class BlogPost extends Component {
                   }
                 ></i>
               </div>
-              <CardTitle>Card title</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
+              <CardTitle>Post title</CardTitle>
+              <CardSubtitle>Post subtitle</CardSubtitle>
               <CardText>
-                This card has supporting text below as a natural lead-in to
+                This Post has supporting text below as a natural lead-in to
                 additional content.
               </CardText>
-              <Button>Button</Button>
+              <Button>Click to read more ...</Button>
+              <div className="blogHeart" onClick={this.handleClick}>
+                <i
+                  className={
+                    this.state.clicked ? "fas fa-heart" : "far fa-heart"
+                  }
+                ></i>
+              </div>
             </CardBody>
           </Card>
         </CardGroup>
@@ -191,13 +205,20 @@ class BlogPost extends Component {
                   }
                 ></i>
               </div>
-              <CardTitle>Card title</CardTitle>
-              <CardSubtitle>Card subtitle</CardSubtitle>
+              <CardTitle>Post title</CardTitle>
+              <CardSubtitle>Post subtitle</CardSubtitle>
               <CardText>
-                This card has supporting text below as a natural lead-in to
+                This Post has supporting text below as a natural lead-in to
                 additional content.
               </CardText>
-              <Button>Button</Button>
+              <Button>Click to read more ...</Button>
+              <div className="blogHeart" onClick={this.handleClick}>
+                <i
+                  className={
+                    this.state.clicked ? "fas fa-heart" : "far fa-heart"
+                  }
+                ></i>
+              </div>
             </CardBody>
           </Card>
         </CardGroup>
