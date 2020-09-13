@@ -8,6 +8,8 @@ const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
 const session = require("express-session");
 const passport = require("passport");
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 // Start express
 const app = express();
@@ -54,6 +56,8 @@ app.use(cors({ origin: true, credentials: true }));
 
 // Setup middlewares
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 // Setup routes
 app.use("/", router);
