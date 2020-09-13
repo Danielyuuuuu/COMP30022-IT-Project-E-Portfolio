@@ -16,7 +16,7 @@
     "start": "concurrently \"cd client && npm start\" \"cd server && npm start\"",
     "client": "cd client && npm start",
     "server": "cd server && npm start",
-    "build": "concurrently \"cd client && npm install\" \"cd server && npm install\" "
+    "build": "concurrently \"npm install\" \"cd client && npm install\" \"cd server && npm install\" "
   },
   "repository": {
     "type": "git",
