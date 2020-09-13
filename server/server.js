@@ -3,6 +3,7 @@ require("dotenv").config();
 // Load dependencies
 const express = require("express");
 const router = require("./routes/main");
+const path = require("path");
 const cors = require("cors");
 const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
@@ -62,7 +63,7 @@ app.use(methodOverride('_method'));
 // Setup routes
 app.use("/", router);
 
-// server static asets if in production
+// server static assets if in production
 if (process.env.NODE_ENV === "production") {
   // set static folder
   app.use(express.static('client/build'));
