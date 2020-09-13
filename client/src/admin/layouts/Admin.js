@@ -16,7 +16,6 @@ import routes from "../routes.js";
 
 import styles from "./adminStyle.js";
 
-import bgImage from "../assets/img/sidebar-2.jpg";
 import logo from "../assets/img/reactlogo.png";
 
 // let ps;
@@ -57,7 +56,6 @@ export default function Admin({ ...rest }) {
         routes={routes}
         logoText={"RunTime Terror"}
         logo={logo}
-        image={bgImage}
         color={"blue"}
         {...rest}
       />
