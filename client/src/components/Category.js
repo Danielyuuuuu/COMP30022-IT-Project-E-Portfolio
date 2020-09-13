@@ -1,6 +1,4 @@
-
 import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
 import "../App.css";
 
 
@@ -16,7 +14,7 @@ const Example = (props) => {
       </Card>
 
       <Card body>
-        <CardImg width="80%" src="https://www.business.com/images/content/5ca/3d01e5a215e8a458b690f/0-800-" alt="Card image cap" />
+        <CardImg width="100%" src="https://www.business.com/images/content/5ca/3d01e5a215e8a458b690f/0-800-" alt="Card image cap" />
         <CardFooter className="text-center">Photography</CardFooter>
       </Card>
 
