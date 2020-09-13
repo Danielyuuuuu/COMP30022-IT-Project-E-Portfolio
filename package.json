@@ -1,7 +1,9 @@
 {
   "name": "comp30022-it-project",
   "version": "1.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  },
   "devDependencies": {
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -14,7 +16,7 @@
     "start": "cd server && npm start",
     "client": "cd client && npm start",
     "server": "cd server && npm start",
-    "build": "cd client && npm install"
+    "build": "concurrently \"cd client && npm install\" \"cd server && npm install\" "
   },
   "repository": {
     "type": "git",
