@@ -13,11 +13,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm install --prefix server && npm start --prefix server",
+    "start": "npm start --prefix server",
     "client": "npm start --prefix client",
     "server": "npm run server --prefix server",
     "build": "concurrently \"cd client && npm install\" \"cd server && npm install\" ",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix server && npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 
 // Load dependencies
 const express = require("express");
@@ -61,6 +61,16 @@ app.use(methodOverride('_method'));
 
 // Setup routes
 app.use("/", router);
+
+// server static asets if in production
+if (process.env.NODE_ENV === "production") {
+  // set static folder
+  app.use(express.static('client/build'));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  })
+}
+
 
 // Server listener
 app.listen((port = process.env.PORT || 8000), () =>
