@@ -17,7 +17,7 @@ import ContactMe from "./components/ContactMe";
 
 import Admin from "./admin/layouts/Admin.js";
 
-import "./admin/assets/css/global.css";
+// import "./admin/assets/css/global.css";
 
 class App extends Component {
   render() {

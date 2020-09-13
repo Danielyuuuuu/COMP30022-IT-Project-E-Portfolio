@@ -41,7 +41,13 @@ const dashboardRoutes = [
     component: Setting,
     layout: "/admin"
   },
-
+  {
+    path: "/settings",
+    name: "Settings",
+    icon: Settings,
+    component: Setting,
+    layout: "/admin"
+  },
   
 
 ];
