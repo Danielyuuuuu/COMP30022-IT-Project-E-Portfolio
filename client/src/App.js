@@ -15,6 +15,9 @@ import AboutRuntimeTerror from "./components/AboutRuntimeTerror";
 import ContactMe from "./components/ContactMe";
 
 
+import Admin from "./admin/layouts/Admin.js";
+
+import "./admin/assets/css/global.css";
 
 class App extends Component {
   render() {
@@ -32,6 +35,8 @@ class App extends Component {
           <Route path="/aboutme" component={AboutMe} />
           <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
           <Route path="/contactme" component={ContactMe} />
+
+          <Route path="/admin" component={Admin} />
 
         </div>
       </Router>
