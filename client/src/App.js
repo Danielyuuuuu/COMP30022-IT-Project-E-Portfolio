@@ -17,6 +17,7 @@ import ContactMe from "./components/ContactMe";
 import Admin from "./admin/layouts/Admin.js";
 
 import Login from "./components/Login";
+import Register from "./components/Register";
 
 class App extends Component {
   render() {
@@ -38,6 +39,7 @@ class App extends Component {
           <Route path="/admin" component={Admin} />
 
           <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
         </div>
       </Router>
     );
