@@ -1,5 +1,13 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import {
+  Button,
+  ButtonToggle,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+} from "reactstrap";
 
 class Login extends React.Component {
   render() {
@@ -24,7 +32,9 @@ class Login extends React.Component {
         </FormGroup>
         <p>No Account</p>
         <p>Click Here to Register</p>
-        <Button>Login</Button>
+        <Button color="primary" block>
+          Login
+        </Button>
       </Form>
     );
   }
