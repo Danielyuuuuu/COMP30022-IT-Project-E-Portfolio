@@ -6,7 +6,6 @@ body {
   font-weight: 300;
 }
 
-
 .App {
   text-align: center;
 }
@@ -222,4 +221,11 @@ p {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.loginPage {
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
 }

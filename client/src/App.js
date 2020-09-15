@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import CreateBook from "./components/CreateBook";
 import ShowBookList from "./components/ShowBookList";
@@ -14,10 +14,9 @@ import AboutMe from "./components/AboutMe";
 import AboutRuntimeTerror from "./components/AboutRuntimeTerror";
 import ContactMe from "./components/ContactMe";
 
-
 import Admin from "./admin/layouts/Admin.js";
 
-// import "./admin/assets/css/global.css";
+import Login from "./components/Login";
 
 class App extends Component {
   render() {
@@ -28,7 +27,7 @@ class App extends Component {
           <Route path="/create-book" component={CreateBook} />
           <Route path="/edit-book/:id" component={UpdateBookInfo} />
           <Route path="/show-book/:id" component={ShowBookDetails} />
-          
+
           <Route path="/eportfolio" component={EPortfolio} />
           <Route path="/store" component={Store} />
           <Route path="/blog" component={Blog} />
@@ -38,6 +37,7 @@ class App extends Component {
 
           <Route path="/admin" component={Admin} />
 
+          <Route path="/login" component={Login} />
         </div>
       </Router>
     );
