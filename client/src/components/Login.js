@@ -13,7 +13,7 @@ class Login extends React.Component {
   render() {
     return (
       <Form className="loginRegisterPage">
-        <h1
+        <h2
           style={{
             display: "flex",
             justifyContent: "center",
@@ -21,7 +21,7 @@ class Login extends React.Component {
           }}
         >
           E-Portfolio Login
-        </h1>
+        </h2>
         <FormGroup>
           <Label for="email">Email</Label>
           <Input type="email" name="email" id="email" />
@@ -30,11 +30,15 @@ class Login extends React.Component {
           <Label for="password">Password</Label>
           <Input type="password" name="password" id="password" />
         </FormGroup>
-        <p>No Account</p>
-        <p>Click Here to Register</p>
         <Button color="primary" block>
           Login
         </Button>
+        <div className="inlineText">
+          <p>No Account?</p>
+          <p>
+            <a href="/Register">&nbsp; Click Here to Register</a>
+          </p>
+        </div>
       </Form>
     );
   }

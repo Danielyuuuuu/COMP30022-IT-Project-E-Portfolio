@@ -232,7 +232,8 @@ p {
   padding: 20px;
 }
 
-.textCenter {
-  margin-left: auto;
-  margin-right: auto;
+.inlineText {
+  display: flex;
+  margin-top: 10px;
+  font-weight: bold;
 }

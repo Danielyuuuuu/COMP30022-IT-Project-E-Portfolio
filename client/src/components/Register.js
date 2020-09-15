@@ -9,11 +9,21 @@ import {
   FormText,
 } from "reactstrap";
 
+import { Link } from "react-router";
+
 class Register extends React.Component {
   render() {
     return (
       <Form className="loginRegisterPage">
-        <h1 className="textCenter">E-Portfolio Register</h1>
+        <h2
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          E-Portfolio Register
+        </h2>
         <FormGroup>
           <Label for="email">Email</Label>
           <Input
@@ -45,11 +55,15 @@ class Register extends React.Component {
             placeholder="Confirm Password"
           />
         </FormGroup>
-        <p>Already have an account?</p>
-        <p>Click Here to Login</p>
         <Button color="primary" block>
           Register
         </Button>
+        <div className="inlineText">
+          <p>Already have an account?</p>
+          <p>
+            <a href="/Login">&nbsp; Click Here to Login</a>
+          </p>
+        </div>
       </Form>
     );
   }
