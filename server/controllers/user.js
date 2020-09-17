@@ -83,7 +83,7 @@ const postUserRegister = async (req, res) => {
 // Handle Login
 const postUserLogin = async (req, res, next) => {
   passport.authenticate("local", {
-    successRedirect: "/user/dashboard",
+    successRedirect: "http://localhost:3000/admin/dashboard",
     failureRedirect: "/user/login",
     failureFlash: true,
   })(req, res, next);
