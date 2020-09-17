@@ -1,5 +1,6 @@
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
 // User model
 const User = require("../models/User");
@@ -44,6 +45,7 @@ const postUserRegister = async (req, res) => {
       // Email address already exist
       if (user) {
         errorMessages.push({ msg: "Email address is already registered" });
+        res.send("User Already Exists");
         res.render("register", {
           errorMessages,
           name,
@@ -92,7 +94,7 @@ const postUserLogin = async (req, res, next) => {
 // Handle Logout
 const getUserLogout = async (req, res) => {
   req.logOut();
-  req.flash("flash_success", "Logged out successfuly");
+  req.flash("flash_success", "Logged out successfully");
   res.redirect("/user/login");
 };
 
