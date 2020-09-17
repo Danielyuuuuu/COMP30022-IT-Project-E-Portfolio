@@ -9,20 +9,25 @@ import {
   FormText,
 } from "reactstrap";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const history = useHistory();
+
   const submit = () => {
     // e.preventDefault();
-
-    axios({
-      method: "GET",
-      data: { email, password },
-      withCredentials: true,
-      url: "http://localhost:8000/user/login",
-    }).then((res) => console.log(res));
+    try {
+      axios({
+        method: "POST",
+        data: { email, password },
+        withCredentials: true,
+        url: "http://localhost:8000/user/login",
+      }).then((res) => console.log(res));
+      history.push("/admin/dashboard");
+    } catch (err) {}
   };
 
   return (
