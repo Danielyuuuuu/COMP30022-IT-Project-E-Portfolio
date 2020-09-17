@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import axios from "axios";
 import { Link } from "react-router";
-import userContext from "../context/userContext";
+import userContext from "../context/UserContext";
 
 export default function Register() {
   // constructor(props) {

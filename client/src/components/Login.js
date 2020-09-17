@@ -8,26 +8,35 @@ import {
   Input,
   FormText,
 } from "reactstrap";
-import axios from "axios";
+import Axios from "axios";
 import { useHistory } from "react-router-dom";
+import UserContext from "../context/UserContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const history = useHistory();
+  // const { setUserData } = useContext(UserContext);
 
-  const submit = () => {
-    // e.preventDefault();
+  const submit = async (e) => {
+    e.preventDefault();
     try {
-      axios({
-        method: "POST",
-        data: { email, password },
-        withCredentials: true,
-        url: "http://localhost:8000/user/login",
-      }).then((res) => console.log(res));
+      const loginUser = { email, password };
+      const loginRes = await Axios.post(
+        "http://localhost:8000/user/login",
+        loginUser
+      );
+      // setUserData({
+      //   token: loginRes.data.token,
+      //   user: loginRes.data.user,
+      // });
+      localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/admin/dashboard");
-    } catch (err) {}
+    } catch (err) {
+      err.response.data.msg && setError(err.response.data.msg);
+    }
   };
 
   return (
