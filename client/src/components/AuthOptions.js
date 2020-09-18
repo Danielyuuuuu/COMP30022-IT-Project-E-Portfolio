@@ -16,17 +16,5 @@ export default function AuthOptions() {
     });
     localStorage.setItem("auth-token", "");
   };
-
-  return (
-    <nav className="auth-options">
-      {userData.user ? (
-        <button onClick={logout}>Log out</button>
-      ) : (
-        <>
-          <button onClick={register}>Register</button>
-          <button onClick={login}>Log in</button>
-        </>
-      )}
-    </nav>
-  );
+  return <div></div>;
 }

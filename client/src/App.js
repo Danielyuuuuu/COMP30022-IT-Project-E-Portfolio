@@ -22,6 +22,8 @@ import Register from "./components/Register";
 import Axios from "axios";
 import UserContext from "./context/UserContext";
 
+import AuthOptions from "./components/AuthOptions";
+
 export default function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -57,6 +59,7 @@ export default function App() {
   return (
     <Router>
       <UserContext.Provider value={{ userData, setUserData }}>
+        <AuthOptions />
         <div>
           <Route exact path="/" component={ShowBookList} />
           <Route path="/create-book" component={CreateBook} />

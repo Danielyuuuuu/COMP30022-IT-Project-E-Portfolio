@@ -98,14 +98,18 @@ const getUserLogout = async (req, res) => {
 
 // User Login or Register page
 const getUserLoginRegister = async (req, res) => {
-  res.render("welcome");
+  const user = await User.findById(req.user);
+  res.json({
+    name: user.name,
+    id: user._id,
+  });
 };
 
 // User dashboard
 const getUserDashboard = async (req, res) => {
   const user = await User.findById(req.user);
   res.json({
-    displayName: user.displayName,
+    name: user.name,
     id: user._id,
   });
 };
