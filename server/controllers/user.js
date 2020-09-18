@@ -81,7 +81,7 @@ const postUserLogin = async (req, res) => {
       token,
       user: {
         id: user._id,
-        displayName: user.displayName,
+        name: user.name,
       },
     });
   } catch (err) {

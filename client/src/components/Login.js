@@ -29,10 +29,10 @@ export default function Login() {
         "http://localhost:8000/user/login",
         loginUser
       );
-      setUserData({
-        token: loginRes.data.token,
-        user: loginRes.data.user,
-      });
+      // setUserData({
+      //   token: loginRes.data.token,
+      //   user: loginRes.data.user,
+      // });
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/admin/dashboard");
     } catch (err) {
