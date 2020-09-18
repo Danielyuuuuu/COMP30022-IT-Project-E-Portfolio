@@ -1,6 +1,6 @@
 const express = require("express");
 const userRouter = express.Router();
-const { ensureAuthenticated } = require("../config/auth");
+const auth = require("../config/auth");
 const userController = require("../controllers/user");
 
 // @route GET user/login
@@ -37,10 +37,8 @@ userRouter.get("/", userController.getUserLoginRegister);
 // @route GET use/dashboard
 // @description Access User Dashboard
 // @access Private
-userRouter.get(
-  "/dashboard",
-  ensureAuthenticated,
-  userController.getUserDashboard
-);
+userRouter.get("/dashboard", auth, userController.getUserDashboard);
+
+userRouter.post("/tokenIsValid", userController.postTokenIsValid);
 
 module.exports = userRouter;

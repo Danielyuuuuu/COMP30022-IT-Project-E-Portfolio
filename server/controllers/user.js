@@ -1,5 +1,4 @@
 const bcrypt = require("bcryptjs");
-const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
 // User model
@@ -47,8 +46,10 @@ const postUserRegister = async (req, res) => {
 
           // Store the hashed password
           newUser.password = hash;
+
           // Save the user
           const savedUser = newUser.save();
+          res.json(savedUser);
         })
       );
     });
@@ -58,7 +59,7 @@ const postUserRegister = async (req, res) => {
 };
 
 // Handle Login
-const postUserLogin = async (req, res, next) => {
+const postUserLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -102,9 +103,28 @@ const getUserLoginRegister = async (req, res) => {
 
 // User dashboard
 const getUserDashboard = async (req, res) => {
-  res.render("dashboard", {
-    name: req.user.name,
+  const user = await User.findById(req.user);
+  res.json({
+    displayName: user.displayName,
+    id: user._id,
   });
+};
+
+const postTokenIsValid = async (req, res) => {
+  try {
+    const token = req.header("x-auth-token");
+    if (!token) return res.json(false);
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.json(false);
+
+    const user = await User.findById(verified.id);
+    if (!user) return res.json(false);
+
+    return res.json(true);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 };
 
 module.exports = {
@@ -115,4 +135,5 @@ module.exports = {
   getUserLogout,
   getUserLoginRegister,
   getUserDashboard,
+  postTokenIsValid,
 };

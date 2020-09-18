@@ -8,16 +8,12 @@ const cors = require("cors");
 const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
 const session = require("express-session");
-const passport = require("passport");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
 
 // Start express
 const app = express();
-
-// Passport config
-require("./config/passport")(passport);
 
 // Connect Database
 require("./models/db");
@@ -39,10 +35,6 @@ app.use(
 );
 
 app.use(cookieParser("keyboard cat"));
-
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
 
 // Connect flash
 app.use(flash());
