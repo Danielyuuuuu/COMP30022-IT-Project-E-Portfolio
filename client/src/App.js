@@ -36,12 +36,12 @@ export default function App() {
         token = "";
       }
       const tokenRes = await Axios.post(
-        "http://localhost:5000/user/tokenIsValid",
+        "http://localhost:58000/user/tokenIsValid",
         null,
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:5000/user/", {
+        const userRes = await Axios.get("http://localhost:8000/user/", {
           headers: { "x-auth-token": token },
         });
         setUserData({
