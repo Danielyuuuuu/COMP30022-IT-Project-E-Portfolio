@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,31 +19,63 @@ import Admin from "./admin/layouts/Admin.js";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div>
-          <Route exact path="/" component={ShowBookList} />
-          <Route path="/create-book" component={CreateBook} />
-          <Route path="/edit-book/:id" component={UpdateBookInfo} />
-          <Route path="/show-book/:id" component={ShowBookDetails} />
+import Axios from "axios";
+import UserContext from "./context/UserContext";
 
-          <Route path="/eportfolio" component={EPortfolio} />
-          <Route path="/store" component={Store} />
-          <Route path="/blog" component={Blog} />
-          <Route path="/aboutme" component={AboutMe} />
-          <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
-          <Route path="/contactme" component={ContactMe} />
+export default function App() {
+  const [userData, setUserData] = useState({
+    token: undefined,
+    user: undefined,
+  });
 
-          <Route path="/admin" component={Admin} />
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      let token = localStorage.getItem("auth-token");
+      if (token === null) {
+        localStorage.setItem("auth-token", "");
+        token = "";
+      }
+      const tokenRes = await Axios.post(
+        "http://localhost:5000/user/tokenIsValid",
+        null,
+        { headers: { "x-auth-token": token } }
+      );
+      if (tokenRes.data) {
+        const userRes = await Axios.get("http://localhost:5000/user/", {
+          headers: { "x-auth-token": token },
+        });
+        setUserData({
+          token,
+          user: userRes.data,
+        });
+      }
+    };
 
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </div>
-      </Router>
-    );
-  }
+    checkLoggedIn();
+  }, []);
+
+  return (
+    <Router>
+      <div>
+        <Route exact path="/" component={ShowBookList} />
+        <Route path="/create-book" component={CreateBook} />
+        <Route path="/edit-book/:id" component={UpdateBookInfo} />
+        <Route path="/show-book/:id" component={ShowBookDetails} />
+
+        <Route path="/eportfolio" component={EPortfolio} />
+        <Route path="/store" component={Store} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/aboutme" component={AboutMe} />
+        <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
+        <Route path="/contactme" component={ContactMe} />
+
+        <Route path="/admin" component={Admin} />
+
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </div>
+    </Router>
+  );
 }
 
-export default App;
+// export default App;
