@@ -41,50 +41,47 @@ export default function Login() {
   };
 
   return (
-    <div className="loginPage">
+    <Form className="loginRegisterPage" onSubmit={submit}>
       {error && (
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
       )}
-      <Form className="loginRegisterPage" onSubmit={submit}>
-        <h2
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          E-Portfolio Login
-        </h2>
-        <FormGroup>
-          <Label for="email">Email</Label>
-          <Input
-            type="email"
-            name="email"
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <Input
-            type="password"
-            name="password"
-            id="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </FormGroup>
-        <Button onClick={submit} color="primary" block>
+      <h2
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        E-Portfolio Login
+      </h2>
+      <FormGroup>
+        <Label for="email">Email</Label>
+        <Input
+          type="email"
+          name="email"
+          id="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </FormGroup>
+      <FormGroup>
+        <Label for="password">Password</Label>
+        <Input
+          type="password"
+          name="password"
+          id="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </FormGroup>
+      {/* <Button onClick={submit} color="primary" block>
           Login
-        </Button>
-        <div className="inlineText">
-          <p>No Account?</p>
-          <p>
-            <a href="/Register">&nbsp; Click Here to Register</a>
-          </p>
-        </div>
-      </Form>
-    </div>
+        </Button> */}
+      <input type="submit" value="Log in" />
+      <div className="inlineText">
+        <p>No Account?</p>
+        <p>
+          <a href="/Register">&nbsp; Click Here to Register</a>
+        </p>
+      </div>
+    </Form>
   );
 }
-
-// export default Login;
