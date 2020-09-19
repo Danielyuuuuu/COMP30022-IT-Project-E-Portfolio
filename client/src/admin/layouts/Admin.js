@@ -44,6 +44,7 @@ const useStyles = makeStyles(styles);
 
 export default function Admin({ ...rest }) {
   const { userData } = useContext(UserContext);
+  let token = localStorage.getItem("auth-token");
 
   // styles
   const classes = useStyles();
@@ -56,7 +57,7 @@ export default function Admin({ ...rest }) {
 
   return (
     <div className={classes.wrapper}>
-      {userData.user ? (
+      {token ? (
         <div>
           <Sidebar
             routes={routes}
