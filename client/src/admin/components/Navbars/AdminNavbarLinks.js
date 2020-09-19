@@ -81,7 +81,7 @@ export default function AdminNavbarLinks() {
                 <ClickAwayListener onClickAway={handleCloseProfile}>
                   <MenuList role="menu">
                     <MenuItem
-                      onClick={handleCloseProfile}
+                      onClick={(handleCloseProfile, logout)}
                       className={classes.dropdownItem}
                     >
                       Logout
