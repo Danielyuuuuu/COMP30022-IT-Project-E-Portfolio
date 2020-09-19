@@ -87,6 +87,7 @@ export default function Admin({ ...rest }) {
           <h2>You are not logged in</h2>
           <Link to="/login">Log in</Link>
         </>
+        // <Redirect to="/login" />
       )}
     </div>
   );

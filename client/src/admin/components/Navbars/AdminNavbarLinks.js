@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -6,7 +6,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
-import {Button} from '@material-ui/core';
+import { Button } from "@material-ui/core";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 import Poppers from "@material-ui/core/Popper";
@@ -16,14 +16,27 @@ import Person from "@material-ui/icons/Person";
 
 import styles from "../../assets/jss/dropdownStyle.js";
 
+import UserContext from "../../../context/UserContext";
+import { useHistory } from "react-router-dom";
+
 const useStyles = makeStyles(styles);
 
 export default function AdminNavbarLinks() {
+  const { userData, setUserData } = useContext(UserContext);
+
+  const logout = () => {
+    setUserData({
+      token: undefined,
+      user: undefined,
+    });
+    localStorage.setItem("auth-token", "");
+  };
+
   const classes = useStyles();
 
   const [openProfile, setOpenProfile] = React.useState(null);
 
-  const handleClickProfile = event => {
+  const handleClickProfile = (event) => {
     if (openProfile && openProfile.contains(event.target)) {
       setOpenProfile(null);
     } else {
@@ -35,7 +48,6 @@ export default function AdminNavbarLinks() {
   };
   return (
     <div>
-      
       <div className={classes.manager}>
         <Button
           color="transparent"
@@ -53,14 +65,16 @@ export default function AdminNavbarLinks() {
           disablePortal
           className={
             classNames({ [classes.popperClose]: !openProfile }) +
-            " " +classes.popperNav}
+            " " +
+            classes.popperNav
+          }
         >
           {({ TransitionProps }) => (
             <Grow
               {...TransitionProps}
               id="profile-menu-list-grow"
               style={{
-                transformOrigin: "center bottom"
+                transformOrigin: "center bottom",
               }}
             >
               <Paper>
