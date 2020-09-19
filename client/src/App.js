@@ -24,6 +24,8 @@ import UserContext from "./context/UserContext";
 
 import AuthOptions from "./components/AuthOptions";
 
+import PrivateRoute from "./routers/PrivateRoute";
+
 export default function App() {
   const [userData, setUserData] = useState({
     token: undefined,
@@ -73,7 +75,7 @@ export default function App() {
           <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
           <Route path="/contactme" component={ContactMe} />
 
-          <Route path="/admin" component={Admin} />
+          <PrivateRoute path="/admin" component={Admin} />
 
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
