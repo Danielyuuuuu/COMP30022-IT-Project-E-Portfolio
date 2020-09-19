@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React, { useState, useEffect, Component } from "react";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -24,13 +24,15 @@ import UserContext from "./context/UserContext";
 
 import AuthOptions from "./components/AuthOptions";
 
-import PrivateRoute from "./routers/PrivateRoute";
+// import PrivateRoute from "./routers/PrivateRoute";
 
 export default function App() {
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined,
   });
+
+  const [auth, setAuth] = useState(false);
 
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -52,11 +54,23 @@ export default function App() {
           token,
           user: userRes.data,
         });
+        setAuth(true);
       }
     };
 
     checkLoggedIn();
   }, []);
+
+  const PrivateRoute = ({ auth, component: Component, ...rest }) => {
+    return (
+      <Route
+        {...rest}
+        render={(props) =>
+          auth ? <Component {...props} /> : <Redirect to="/login" />
+        }
+      />
+    );
+  };
 
   return (
     <Router>
@@ -75,7 +89,7 @@ export default function App() {
           <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
           <Route path="/contactme" component={ContactMe} />
 
-          <PrivateRoute path="/admin" component={Admin} />
+          <PrivateRoute path="/admin" component={Admin} auth={auth} />
 
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
