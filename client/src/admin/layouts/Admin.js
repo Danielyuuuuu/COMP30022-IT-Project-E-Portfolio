@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Switch, Route, Redirect, Link } from "react-router-dom";
 // creates a beautiful scrollbar
 // import PerfectScrollbar from "perfect-scrollbar";
@@ -17,8 +17,6 @@ import routes from "../routes.js";
 import styles from "./adminStyle.js";
 
 import logo from "../assets/img/reactlogo.png";
-
-import UserContext from "../../context/UserContext";
 
 // let ps;
 
@@ -43,7 +41,6 @@ const switchRoutes = (
 const useStyles = makeStyles(styles);
 
 export default function Admin({ ...rest }) {
-  const { userData } = useContext(UserContext);
   let token = localStorage.getItem("auth-token");
 
   // styles
@@ -84,11 +81,7 @@ export default function Admin({ ...rest }) {
           </div>
         </div>
       ) : (
-        <>
-          <h2>You are not logged in</h2>
-          <Link to="/login">Log in</Link>
-        </>
-        // <Redirect to="/login" />
+        <Redirect to="/login" />
       )}
     </div>
   );
