@@ -1,119 +1,122 @@
 const bcrypt = require("bcryptjs");
-const passport = require("passport");
+const jwt = require("jsonwebtoken");
 
 // User model
 const User = require("../models/User");
 
-// Login Page
-const getUserLogin = async (req, res) => {
-  res.render("login");
-};
-
-// Register Page
-const getUserRegister = async (req, res) => {
-  res.render("register");
-};
-
 // Handle Register
 const postUserRegister = async (req, res) => {
-  const { name, email, password, password2 } = req.body;
-  const errorMessages = [];
+  try {
+    let { name, email, password1, password2 } = req.body;
 
-  // Check if all of the fields are filled
-  if (!name || !email || !password || !password2) {
-    errorMessages.push({ msg: "All fields are required" });
-  }
-  // Check if both passwords match
-  if (password !== password2) {
-    errorMessages.push({ msg: "Passwords do not match" });
-  }
+    // Check if all of the fields are filled
+    if (!name || !email || !password1 || !password2) {
+      return res.status(400).json({ msg: "Need to fill in all fields" });
+    }
+    // Check if both passwords match
+    if (password1 !== password2) {
+      return res.status(400).json({ msg: "Please enter the same password" });
+    }
 
-  // Check if there is any errors been detected
-  if (errorMessages.length > 0) {
-    res.render("register", {
-      errorMessages,
-      name,
-      email,
-      password,
-      password2,
-    });
-  }
-  // No errors
-  else {
     User.findOne({ email: email }).then((user) => {
       // Email address already exist
       if (user) {
-        errorMessages.push({ msg: "Email address is already registered" });
-        res.render("register", {
-          errorMessages,
-          name,
-          email,
-          password,
-          password2,
-        });
-      } else {
-        const newUser = new User({
-          name,
-          email,
-          password,
-        });
-
-        // Hash the password
-        bcrypt.genSalt(10, (err, salt) =>
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-
-            // Store the hashed password
-            newUser.password = hash;
-            // Save the user
-            newUser
-              .save()
-              .then((user) => {
-                req.flash("flash_success", "You have registered successfully");
-                res.redirect("/user/login");
-              })
-              .catch((err) => console.log(err));
-          })
-        );
+        return res.status(400).json({ msg: "User Already Exists" });
       }
+
+      // Hash the password
+      bcrypt.genSalt(10, (err, salt) =>
+        bcrypt.hash(password1, salt, (err, hash) => {
+          if (err) throw err;
+
+          // Store the hashed password
+          const newUser = new User({
+            name,
+            email,
+            password: hash,
+          });
+
+          // Save the user
+          const savedUser = newUser.save();
+          res.json(savedUser);
+        })
+      );
     });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 };
 
 // Handle Login
-const postUserLogin = async (req, res, next) => {
-  passport.authenticate("local", {
-    successRedirect: "/user/dashboard",
-    failureRedirect: "/user/login",
-    failureFlash: true,
-  })(req, res, next);
+const postUserLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // validate
+    if (!email || !password)
+      return res.status(400).json({ msg: "Not all fields have been entered." });
+
+    const user = await User.findOne({ email: email });
+    if (!user)
+      return res
+        .status(400)
+        .json({ msg: "No account with this email has been registered." });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+
+    res.json({
+      token,
+      user: {
+        name: user.name,
+        id: user._id,
+      },
+    });
+  } catch (err) {
+    res.status(501).json({ error: err.message });
+  }
 };
 
 // Handle Logout
 const getUserLogout = async (req, res) => {
   req.logOut();
-  req.flash("flash_success", "Logged out successfuly");
+  req.flash("flash_success", "Logged out successfully");
   res.redirect("/user/login");
 };
 
-// User Login or Register page
+// Get the user name and id
 const getUserLoginRegister = async (req, res) => {
-  res.render("welcome");
-};
-
-// User dashboard
-const getUserDashboard = async (req, res) => {
-  res.render("dashboard", {
-    name: req.user.name,
+  const user = await User.findById(req.user);
+  res.json({
+    name: user.name,
+    id: user._id,
   });
 };
 
+// Check if the user token is valid
+const postTokenIsValid = async (req, res) => {
+  try {
+    const token = req.header("x-auth-token");
+    if (!token) return res.json(false);
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.json(false);
+
+    const user = await User.findById(verified.id);
+    if (!user) return res.json(false);
+
+    return res.json(true);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
-  getUserLogin,
-  getUserRegister,
   postUserRegister,
   postUserLogin,
   getUserLogout,
   getUserLoginRegister,
-  getUserDashboard,
+  postTokenIsValid,
 };

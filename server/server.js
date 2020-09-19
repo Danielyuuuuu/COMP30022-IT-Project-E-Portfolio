@@ -8,15 +8,12 @@ const cors = require("cors");
 const expressLayouts = require("express-ejs-layouts");
 const flash = require("connect-flash");
 const session = require("express-session");
-const passport = require("passport");
-const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
+const bodyParser = require("body-parser");
+const methodOverride = require("method-override");
+const cookieParser = require("cookie-parser");
 
 // Start express
 const app = express();
-
-// Passport config
-require("./config/passport")(passport);
 
 // Connect Database
 require("./models/db");
@@ -37,9 +34,7 @@ app.use(
   })
 );
 
-// Passport middleware
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(cookieParser("keyboard cat"));
 
 // Connect flash
 app.use(flash());
@@ -58,21 +53,20 @@ app.use(cors({ origin: true, credentials: true }));
 // Setup middlewares
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(methodOverride('_method'));
+app.use(methodOverride("_method"));
 
 // Setup routes
 app.use("/", router);
 
 // server static assets if in production
-const build = path.join(__dirname, "../client/build/")
+const build = path.join(__dirname, "../client/build/");
 if (process.env.NODE_ENV === "production") {
   // set static folder
   app.use(express.static(build));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(build, 'index.html'));
-  })
+    res.sendFile(path.join(build, "index.html"));
+  });
 }
-
 
 // Server listener
 app.listen((port = process.env.PORT || 8000), () =>
