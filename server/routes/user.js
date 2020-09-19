@@ -32,7 +32,7 @@ userRouter.get("/logout", userController.getUserLogout);
 // @route GET user
 // @description User Login or Register Home Page
 // @access Public
-userRouter.get("/", userController.getUserLoginRegister);
+userRouter.get("/", auth, userController.getUserLoginRegister);
 
 // @route GET use/dashboard
 // @description Access User Dashboard

@@ -17,14 +17,14 @@ const getUserRegister = async (req, res) => {
 // Handle Register
 const postUserRegister = async (req, res) => {
   try {
-    let { name, email, password, password2 } = req.body;
+    let { name, email, password1, password2 } = req.body;
 
     // Check if all of the fields are filled
-    if (!name || !email || !password || !password2) {
+    if (!name || !email || !password1 || !password2) {
       return res.status(400).json({ msg: "Need to fill in all fields" });
     }
     // Check if both passwords match
-    if (password !== password2) {
+    if (password1 !== password2) {
       return res.status(400).json({ msg: "Please enter the same password" });
     }
 
@@ -34,24 +34,31 @@ const postUserRegister = async (req, res) => {
         return res.status(400).json({ msg: "User Already Exists" });
       }
 
+      const salt = bcrypt.genSalt();
+      const passwordHash = bcrypt.hash(password1, salt);
+
       const newUser = new User({
         name,
         email,
         password: passwordHash,
       });
-      // Hash the password
-      bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
 
-          // Store the hashed password
-          newUser.password = hash;
+      const savedUser = newUser.save();
+      res.json(savedUser);
 
-          // Save the user
-          const savedUser = newUser.save();
-          res.json(savedUser);
-        })
-      );
+      // // Hash the password
+      // bcrypt.genSalt(10, (err, salt) =>
+      //   bcrypt.hash(newUser.password, salt, (err, hash) => {
+      //     if (err) throw err;
+
+      //     // Store the hashed password
+      //     newUser.password = hash;
+
+      //     // Save the user
+      //     const savedUser = newUser.save();
+      //     res.json(savedUser);
+      //   })
+      // );
     });
   } catch (err) {
     res.status(500).json({ error: err.message });

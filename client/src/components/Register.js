@@ -8,67 +8,55 @@ import {
   Input,
   FormText,
 } from "reactstrap";
-import axios from "axios";
+import Axios from "axios";
 import { Link } from "react-router";
-import userContext from "../context/UserContext";
+import UserContext from "../context/UserContext";
+import { useHistory } from "react-router-dom";
+import ErrorNotice from "../misc/ErrorNotice";
 
 export default function Register() {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     email: "",
-  //     names: "",
-  //     password1: "",
-  //     password2: "",
-  //   };
-
-  //   this.handleInputChange = this.handleInputChange.bind(this);
-  // }
-
-  // handleSubmit(event) {
-  //   event.preventDefault();
-
-  //   const user = {
-  //     email: this.state.email,
-  //     names: this.state.names,
-  //     password1: this.state.password1,
-  //     password2: this.state.password2,
-  //   };
-
-  //   axios.post("http://localhost:8000/register", { user }).then((res) => {
-  //     console.log(res);
-  //     console.log(res.data);
-  //   });
-  // }
-
-  // handleInputChange(event) {
-  //   const target = event.target;
-  //   const value = target.type === "checkbox" ? target.checked : target.value;
-  //   const name = target.name;
-
-  //   this.setState({
-  //     [name]: value,
-  //   });
-  // }
-
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
+  const [error, setError] = useState();
 
-  const submit = () => {
-    // e.preventDefault();
+  const { setUserData } = useContext(UserContext);
+  const history = useHistory();
 
-    axios({
-      method: "POST",
-      data: { email, name, password1, password2 },
-      withCredentials: true,
-      url: "http://localhost:8000/user/register",
-    }).then((res) => console.log(res));
+  const submit = async (e) => {
+    e.preventDefault();
+
+    // axios({
+    //   method: "POST",
+    //   data: { email, name, password1, password2 },
+    //   withCredentials: true,
+    //   url: "http://localhost:8000/user/register",
+    // }).then((res) => console.log(res));
+
+    try {
+      const newUser = { name, email, password1, password2 };
+      await Axios.post("http://localhost:8000/user/register", newUser);
+      // const loginRes = await Axios.post("http://localhost:8000/user/login", {
+      //   email,
+      //   password1,
+      // });
+      // setUserData({
+      //   token: loginRes.data.token,
+      //   user: loginRes.data.user,
+      // });
+      // localStorage.setItem("auth-token", loginRes.data.token);
+      history.push("/login");
+    } catch (err) {
+      err.response.data.msg && setError(err.response.data.msg);
+    }
   };
 
   return (
-    <Form className="loginRegisterPage">
+    <Form className="loginRegisterPage" onSubmit={submit}>
+      {error && (
+        <ErrorNotice message={error} clearError={() => setError(undefined)} />
+      )}
       <h2
         style={{
           display: "flex",
@@ -118,7 +106,7 @@ export default function Register() {
           onChange={(e) => setPassword2(e.target.value)}
         />
       </FormGroup>
-      <Button onClick={submit} color="primary" block>
+      <Button color="primary" block>
         Register
       </Button>
       <div className="inlineText">

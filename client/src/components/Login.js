@@ -76,10 +76,9 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
       </FormGroup>
-      {/* <Button onClick={submit} color="primary" block>
-          Login
-        </Button> */}
-      <input type="submit" value="Log in" />
+      <Button onClick={submit} color="primary" block>
+        Login
+      </Button>
       <div className="inlineText">
         <p>No Account?</p>
         <p>
