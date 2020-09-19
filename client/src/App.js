@@ -26,13 +26,16 @@ import AuthOptions from "./components/AuthOptions";
 
 // import PrivateRoute from "./routers/PrivateRoute";
 
+import AuthApi from "./AuthApi";
+
 export default function App() {
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined,
   });
 
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = React.useState(false);
+  const Auth = React.useContext(AuthApi);
 
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -54,6 +57,7 @@ export default function App() {
           token,
           user: userRes.data,
         });
+
         setAuth(true);
       }
     };
@@ -74,27 +78,33 @@ export default function App() {
 
   return (
     <Router>
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <AuthOptions />
-        <div>
-          <Route exact path="/" component={ShowBookList} />
-          <Route path="/create-book" component={CreateBook} />
-          <Route path="/edit-book/:id" component={UpdateBookInfo} />
-          <Route path="/show-book/:id" component={ShowBookDetails} />
+      <AuthApi.Provider value={{ auth, setAuth }}>
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <AuthOptions />
+          <div>
+            <Route exact path="/" component={ShowBookList} />
+            <Route path="/create-book" component={CreateBook} />
+            <Route path="/edit-book/:id" component={UpdateBookInfo} />
+            <Route path="/show-book/:id" component={ShowBookDetails} />
 
-          <Route path="/eportfolio" component={EPortfolio} />
-          <Route path="/store" component={Store} />
-          <Route path="/blog" component={Blog} />
-          <Route path="/aboutme" component={AboutMe} />
-          <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
-          <Route path="/contactme" component={ContactMe} />
+            <Route path="/eportfolio" component={EPortfolio} />
+            <Route path="/store" component={Store} />
+            <Route path="/blog" component={Blog} />
+            <Route path="/aboutme" component={AboutMe} />
+            <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
+            <Route path="/contactme" component={ContactMe} />
 
-          <PrivateRoute path="/admin" component={Admin} auth={auth} />
-
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </div>
-      </UserContext.Provider>
+            {/* <PrivateRoute
+              path="/admin/dashboard"
+              component={Admin}
+              auth={auth}
+            /> */}
+            <Route path="/admin" component={Admin} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </div>
+        </UserContext.Provider>
+      </AuthApi.Provider>
     </Router>
   );
 }
