@@ -1,14 +1,3 @@
-// module.exports = {
-//   auth: function (req, res, next) {
-//     if (req.isAuthenticated()) {
-//       return next();
-//     }
-
-//     req.flash("error", "Please login via this login page");
-//     res.redirect("/user/login");
-//   },
-// };
-
 const jwt = require("jsonwebtoken");
 
 const auth = (req, res, next) => {

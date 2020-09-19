@@ -4,16 +4,6 @@ const jwt = require("jsonwebtoken");
 // User model
 const User = require("../models/User");
 
-// Login Page
-const getUserLogin = async (req, res) => {
-  res.render("login");
-};
-
-// Register Page
-const getUserRegister = async (req, res) => {
-  res.render("register");
-};
-
 // Handle Register
 const postUserRegister = async (req, res) => {
   try {
@@ -34,18 +24,6 @@ const postUserRegister = async (req, res) => {
         return res.status(400).json({ msg: "User Already Exists" });
       }
 
-      // const salt = bcrypt.genSalt();
-      // const passwordHash = bcrypt.hash(password1, salt);
-
-      // const newUser = new User({
-      //   name,
-      //   email,
-      //   password: passwordHash,
-      // });
-
-      // const savedUser = newUser.save();
-      // res.json(savedUser);
-
       // Hash the password
       bcrypt.genSalt(10, (err, salt) =>
         bcrypt.hash(password1, salt, (err, hash) => {
@@ -57,7 +35,6 @@ const postUserRegister = async (req, res) => {
             email,
             password: hash,
           });
-          // newUser.password = hash;
 
           // Save the user
           const savedUser = newUser.save();
@@ -109,7 +86,7 @@ const getUserLogout = async (req, res) => {
   res.redirect("/user/login");
 };
 
-// User Login or Register page
+// Get the user name and id
 const getUserLoginRegister = async (req, res) => {
   const user = await User.findById(req.user);
   res.json({
@@ -118,15 +95,7 @@ const getUserLoginRegister = async (req, res) => {
   });
 };
 
-// User dashboard
-const getUserDashboard = async (req, res) => {
-  const user = await User.findById(req.user);
-  res.json({
-    name: user.name,
-    id: user._id,
-  });
-};
-
+// Check if the user token is valid
 const postTokenIsValid = async (req, res) => {
   try {
     const token = req.header("x-auth-token");
@@ -145,12 +114,9 @@ const postTokenIsValid = async (req, res) => {
 };
 
 module.exports = {
-  getUserLogin,
-  getUserRegister,
   postUserRegister,
   postUserLogin,
   getUserLogout,
   getUserLoginRegister,
-  getUserDashboard,
   postTokenIsValid,
 };
