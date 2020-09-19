@@ -34,31 +34,36 @@ const postUserRegister = async (req, res) => {
         return res.status(400).json({ msg: "User Already Exists" });
       }
 
-      const salt = bcrypt.genSalt();
-      const passwordHash = bcrypt.hash(password1, salt);
+      // const salt = bcrypt.genSalt();
+      // const passwordHash = bcrypt.hash(password1, salt);
 
-      const newUser = new User({
-        name,
-        email,
-        password: passwordHash,
-      });
+      // const newUser = new User({
+      //   name,
+      //   email,
+      //   password: passwordHash,
+      // });
 
-      const savedUser = newUser.save();
-      res.json(savedUser);
+      // const savedUser = newUser.save();
+      // res.json(savedUser);
 
-      // // Hash the password
-      // bcrypt.genSalt(10, (err, salt) =>
-      //   bcrypt.hash(newUser.password, salt, (err, hash) => {
-      //     if (err) throw err;
+      // Hash the password
+      bcrypt.genSalt(10, (err, salt) =>
+        bcrypt.hash(password1, salt, (err, hash) => {
+          if (err) throw err;
 
-      //     // Store the hashed password
-      //     newUser.password = hash;
+          // Store the hashed password
+          const newUser = new User({
+            name,
+            email,
+            password: hash,
+          });
+          // newUser.password = hash;
 
-      //     // Save the user
-      //     const savedUser = newUser.save();
-      //     res.json(savedUser);
-      //   })
-      // );
+          // Save the user
+          const savedUser = newUser.save();
+          res.json(savedUser);
+        })
+      );
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
