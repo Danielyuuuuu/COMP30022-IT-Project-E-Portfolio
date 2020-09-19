@@ -1,13 +1,5 @@
 import React, { useState, useContext } from "react";
-import {
-  Button,
-  ButtonToggle,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-} from "reactstrap";
+import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext";
@@ -33,10 +25,6 @@ export default function Login() {
         token: loginRes.data.token,
         user: loginRes.data.user,
       });
-      // setUserData({
-      //   token: "111",
-      //   user: { id: 111, name: "ddd" },
-      // });
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/admin/dashboard");
     } catch (err) {
@@ -46,9 +34,6 @@ export default function Login() {
 
   return (
     <Form className="loginRegisterPage" onSubmit={submit}>
-      {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
       <h2
         style={{
           display: "flex",
@@ -58,6 +43,9 @@ export default function Login() {
       >
         E-Portfolio Login
       </h2>
+      {error && (
+        <ErrorNotice message={error} clearError={() => setError(undefined)} />
+      )}
       <FormGroup>
         <Label for="email">Email</Label>
         <Input
@@ -81,8 +69,9 @@ export default function Login() {
       </Button>
       <div className="inlineText">
         <p>No Account?</p>
+        <p>&nbsp; &nbsp;</p>
         <p>
-          <a href="/Register">&nbsp; Click Here to Register</a>
+          <a href="/Register">Click Here to Register</a>
         </p>
       </div>
     </Form>

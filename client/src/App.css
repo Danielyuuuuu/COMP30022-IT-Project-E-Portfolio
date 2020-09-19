@@ -237,3 +237,22 @@ p {
   margin-top: 10px;
   font-weight: bold;
 }
+
+.errorNotice {
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid #e07c7c;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8d6d6;
+}
+.errorNotice button {
+  /* width: 20px;
+  height: 20px; */
+  /* border-radius: 50%; */
+  background-color: #f8d6d6;
+  color: black;
+  border: 1px solid #f8d6d6;
+}
