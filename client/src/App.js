@@ -13,6 +13,7 @@ import Blog from "./components/Blog";
 import AboutMe from "./components/AboutMe";
 import AboutRuntimeTerror from "./components/AboutRuntimeTerror";
 import ContactMe from "./components/ContactMe";
+import ArtWorkGallery from "./components/ArtWorkGallery";
 
 
 
@@ -32,6 +33,7 @@ class App extends Component {
           <Route path="/aboutme" component={AboutMe} />
           <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
           <Route path="/contactme" component={ContactMe} />
+          <Route path="/artworkgallery" component={ArtWorkGallery} />
 
         </div>
       </Router>

@@ -9,9 +9,9 @@ const Example = (props) => {
   return (
     <div className="categories">
       <Card body>
-        <CardLink href="https://en.wikipedia.org/wiki/Architecture">
+        <CardLink href="/artworkgallery">
           <CardImg width="100%" src="https://static.dezeen.com/uploads/2019/12/logo-house-adidas-karina-wiciak_dezeen_2364_col_2.jpg" alt="Card image cap" />
-          <CardFooter className="text-center">Architecture</CardFooter>
+          <CardFooter className="text-center">ArtWorkGallery</CardFooter>
         </CardLink>
       </Card>
 
