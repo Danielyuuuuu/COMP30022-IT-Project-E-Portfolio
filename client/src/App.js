@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Component } from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,7 +20,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 import Axios from "axios";
-//import UserContext from "./context/UserContext";
 
 export default function App() {
   const [userData, setUserData] = useState({
@@ -44,10 +43,6 @@ export default function App() {
         const userRes = await Axios.get("http://localhost:8000/user/", {
           headers: { "x-auth-token": token },
         });
-        // setUserData({
-        //   token,
-        //   user: userRes.data,
-        // });
       }
     };
 
@@ -56,7 +51,6 @@ export default function App() {
 
   return (
     <Router>
-      {/* <UserContext.Provider value={{ userData, setUserData }}> */}
       <div>
         <Route exact path="/" component={ShowBookList} />
         <Route path="/create-book" component={CreateBook} />
@@ -74,7 +68,6 @@ export default function App() {
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
       </div>
-      {/* </UserContext.Provider> */}
     </Router>
   );
 }
