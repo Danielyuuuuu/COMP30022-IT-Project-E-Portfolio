@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Axios from "axios";
 import { useHistory } from "react-router-dom";
-//import UserContext from "../context/UserContext";
 import ErrorNotice from "../misc/ErrorNotice";
 
 export default function Login() {
@@ -10,7 +9,6 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  //const { setUserData } = useContext(UserContext);
   const history = useHistory();
 
   const submit = async (e) => {
@@ -21,10 +19,6 @@ export default function Login() {
         "http://localhost:8000/user/login",
         loginUser
       );
-      // setUserData({
-      //   token: loginRes.data.token,
-      //   user: loginRes.data.user,
-      // });
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/admin/dashboard");
     } catch (err) {
