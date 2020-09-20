@@ -8,6 +8,7 @@ const Example = () => {
       <div>
         <img
           src="https://static.im-a-puzzle.com/gallery/Animals/Dogs/Will_you_take_me_home.jpg"
+          alt=""
           height={400}
           width={400}
           style={{ float: "left", margin: 8 }}

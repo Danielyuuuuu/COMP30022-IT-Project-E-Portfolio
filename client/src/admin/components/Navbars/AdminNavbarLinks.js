@@ -17,12 +17,11 @@ import Person from "@material-ui/icons/Person";
 import styles from "../../assets/jss/dropdownStyle.js";
 
 import UserContext from "../../../context/UserContext";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
 export default function AdminNavbarLinks() {
-  const { userData, setUserData } = useContext(UserContext);
+  const { setUserData } = useContext(UserContext);
 
   const logout = () => {
     setUserData({
