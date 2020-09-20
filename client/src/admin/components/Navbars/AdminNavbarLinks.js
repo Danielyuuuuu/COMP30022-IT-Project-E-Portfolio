@@ -15,20 +15,23 @@ import Poppers from "@material-ui/core/Popper";
 import Person from "@material-ui/icons/Person";
 
 import styles from "../../assets/jss/dropdownStyle.js";
+import { useHistory } from "react-router-dom";
 
-import UserContext from "../../../context/UserContext";
+// import UserContext from "../../../context/UserContext";
 
 const useStyles = makeStyles(styles);
 
 export default function AdminNavbarLinks() {
-  const { setUserData } = useContext(UserContext);
+  // const { setUserData } = useContext(UserContext);
+  const history = useHistory();
 
   const logout = () => {
-    setUserData({
-      token: undefined,
-      user: undefined,
-    });
+    // setUserData({
+    //   token: undefined,
+    //   user: undefined,
+    // });
     localStorage.setItem("auth-token", "");
+    history.push("/login");
   };
 
   const classes = useStyles();

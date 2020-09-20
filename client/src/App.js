@@ -20,15 +20,13 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 import Axios from "axios";
-import UserContext from "./context/UserContext";
+//import UserContext from "./context/UserContext";
 
 export default function App() {
   const [userData, setUserData] = useState({
     token: undefined,
     user: undefined,
   });
-
-  const [auth, setAuth] = React.useState(false);
 
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -46,12 +44,10 @@ export default function App() {
         const userRes = await Axios.get("http://localhost:8000/user/", {
           headers: { "x-auth-token": token },
         });
-        setUserData({
-          token,
-          user: userRes.data,
-        });
-
-        setAuth(true);
+        // setUserData({
+        //   token,
+        //   user: userRes.data,
+        // });
       }
     };
 
@@ -60,25 +56,25 @@ export default function App() {
 
   return (
     <Router>
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <div>
-          <Route exact path="/" component={ShowBookList} />
-          <Route path="/create-book" component={CreateBook} />
-          <Route path="/edit-book/:id" component={UpdateBookInfo} />
-          <Route path="/show-book/:id" component={ShowBookDetails} />
+      {/* <UserContext.Provider value={{ userData, setUserData }}> */}
+      <div>
+        <Route exact path="/" component={ShowBookList} />
+        <Route path="/create-book" component={CreateBook} />
+        <Route path="/edit-book/:id" component={UpdateBookInfo} />
+        <Route path="/show-book/:id" component={ShowBookDetails} />
 
-          <Route path="/eportfolio" component={EPortfolio} />
-          <Route path="/store" component={Store} />
-          <Route path="/blog" component={Blog} />
-          <Route path="/aboutme" component={AboutMe} />
-          <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
-          <Route path="/contactme" component={ContactMe} />
+        <Route path="/eportfolio" component={EPortfolio} />
+        <Route path="/store" component={Store} />
+        <Route path="/blog" component={Blog} />
+        <Route path="/aboutme" component={AboutMe} />
+        <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
+        <Route path="/contactme" component={ContactMe} />
 
-          <Route path="/admin" component={Admin} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </div>
-      </UserContext.Provider>
+        <Route path="/admin" component={Admin} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+      </div>
+      {/* </UserContext.Provider> */}
     </Router>
   );
 }
