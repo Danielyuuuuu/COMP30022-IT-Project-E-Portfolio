@@ -2,26 +2,6 @@ import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import "../App.css";
 
-/*
-class ArtWorkGallery extends Component {
-  render() {
-    return (
-      <div>
-        <NavbarTop />
-        <br />
-        <br />
-        <br />
-        <h1>ArtWorkGallery</h1>
-        <br />
-        <br />
-        <br />
-      </div>
-    );
-  }
-}
-
-export default ArtWorkGallery;
-*/
 
 //const app = document.getElementById('app');
 const data = [{
@@ -67,6 +47,12 @@ class ArtWorkGallery extends React.Component{
         return(
             <div>
                 <NavbarTop />
+                <br />
+                <br />
+                <br />
+                <h1 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    Painting
+                </h1>
                 <App data={data} />
             </div>
         );
