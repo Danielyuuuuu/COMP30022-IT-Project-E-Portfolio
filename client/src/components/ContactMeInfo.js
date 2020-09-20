@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardText, CardBody, CardTitle, CardSubtitle } from "reactstrap";
+import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap";
 
 class ContactMeInfo extends React.Component {
   render() {
