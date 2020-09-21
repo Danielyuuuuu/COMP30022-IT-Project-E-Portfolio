@@ -6,14 +6,14 @@ const mongo_url = require("../models/db").mongo_url;
 const connect = mongoose.createConnection(mongo_url, {
   useNewUrlParser: true,
   useCreateIndex: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 });
 
 let gfs;
 connect.once("open", () => {
   // initialize stream
   gfs = new mongoose.mongo.GridFSBucket(connect.db, {
-    bucketName: "storeitems", // must be identical to the GridFsStorage bucketName in db.js
+    bucketName: "storeitems" // must be identical to the GridFsStorage bucketName in db.js
   });
 });
 
@@ -22,7 +22,7 @@ const getItems = async (req, res) => {
     .then((wares) => {
       res.status(200).json({
         success: true,
-        item: wares,
+        item: wares
       });
     })
     .catch((err) => res.status(400).json({ nowaresfound: "No items found" }));
@@ -38,14 +38,14 @@ const addItem = async (req, res) => {
       imageId: req.file.id,
       price: req.body.price,
       tag: req.body.tag,
-      views: 0,
+      views: 0
     });
     ware
       .save()
       .then((ware) => {
         res.status(200).json({
           success: true,
-          ware,
+          ware
         });
       })
       .catch((err) => res.status(400).json(err));
@@ -78,7 +78,7 @@ const deleteItem = async (req, res) => {
 
           res.status(200).json({
             success: true,
-            message: `File with ID ${req.params.id} is deleted`,
+            message: `File with ID ${req.params.id} is deleted`
           });
         });
       }
@@ -93,7 +93,7 @@ const renderImg = async (req, res) => {
     if (!files[0] || files.length === 0) {
       return res.status(200).json({
         success: false,
-        message: "No files available",
+        message: "No files available"
       });
     }
     if (
@@ -105,7 +105,7 @@ const renderImg = async (req, res) => {
       gfs.openDownloadStreamByName(req.params.filename).pipe(res);
     } else {
       res.status(404).json({
-        err: "Not an image",
+        err: "Not an image"
       });
     }
   });
@@ -116,13 +116,13 @@ const renderImg = async (req, res) => {
 // maybe solved when implement react side, not sure ...
 const updateItem = async (req, res) => {
   console.log(req.body);
-  Item.findByIdAndUpdate(req.params.id, { $set:req.body }, { new: true })
+  Item.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
     .then((item) => res.json({ msg: "Updated successfully" }))
     .catch((err) => res.status(400).json(err));
-}
+};
 
 const updateViews = async (req, res) => {
-  Item.findByIdAndUpdate(req.params.id, { $inc: {views:1} })
+  Item.findByIdAndUpdate(req.params.id, { $inc: { views: 1 } })
     .then(() => res.json({ msg: "Increment viewer count by 1" }))
     .catch((err) => res.status(400).json(err));
 };
@@ -133,5 +133,5 @@ module.exports = {
   deleteItem,
   renderImg,
   updateItem,
-  updateViews,
+  updateViews
 };
