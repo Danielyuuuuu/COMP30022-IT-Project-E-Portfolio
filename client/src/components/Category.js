@@ -9,18 +9,21 @@ const Example = (props) => {
   return (
     <div className="categories">
       <Card body>
-        <CardLink href="https://en.wikipedia.org/wiki/Architecture">
+        <CardLink href="/artworkgallery">
+          <CardImg width="100%" src="https://www.business.com/images/content/5ca/3d01e5a215e8a458b690f/0-800-" alt="Card image cap" />
+          <CardFooter className="text-center">Photography</CardFooter>
+        </CardLink>
+      </Card>
+
+
+      <Card body>
+        <CardLink href="/artworkgallery">
           <CardImg width="100%" src="https://static.dezeen.com/uploads/2019/12/logo-house-adidas-karina-wiciak_dezeen_2364_col_2.jpg" alt="Card image cap" />
           <CardFooter className="text-center">Architecture</CardFooter>
         </CardLink>
       </Card>
 
-      <Card body>
-        <CardLink href="https://en.wikipedia.org/wiki/Photography">
-          <CardImg width="100%" src="https://www.business.com/images/content/5ca/3d01e5a215e8a458b690f/0-800-" alt="Card image cap" />
-          <CardFooter className="text-center">Photography</CardFooter>
-        </CardLink>
-      </Card>
+      
 
       <Card body>
         <CardLink href="https://en.wikipedia.org/wiki/Art">
