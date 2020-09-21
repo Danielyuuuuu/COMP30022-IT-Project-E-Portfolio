@@ -7,14 +7,6 @@ import AwgNavbar from "./AwgNavbar";
 
 //const app = document.getElementById('app');
 const data = [{
-	id: 1,
-	name: "Island",
-	image: "https://images.unsplash.com/photo-1442530792250-81629236fe54?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=980&h=980&fit=crop&s=9631adb2d2f752e3a0734f393fef634b"
-}, {
-	id: 2,
-	name: "Forest",
-	image: "https://images.unsplash.com/photo-1468851508491-4f854ec88aa0?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=900&h=900&fit=crop&s=b1222b6a1d3694cac76d2a23c3a02254"
-}, {
 	id: 3,
 	name: "Whale",
 	image: "https://images.unsplash.com/photo-1454991727061-be514eae86f7?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=900&h=900&fit=crop&s=3c55430f01fe9ac9a9ccb3383d1416ff"
@@ -84,7 +76,7 @@ const data = [{
 
 ];
 
-class ArtWorkGallery extends React.Component{
+class ArtWorkGallery3 extends React.Component{
     render(){
         return(
             <div>
@@ -117,7 +109,7 @@ class Tiles extends React.Component {
 		// Create tile for each item in data array
 		// Pass data to each tile and assign a key
 		return (
-			<div className="tiles">
+			<div className="tiles2">
 				{this.props.data.map((data) => {
 					return <Tile data={data} key={data.id} />
 				})}
@@ -179,7 +171,7 @@ class Tile extends React.Component {
 			tileStyle = {
 				width: '62vw',
 				height: '62vw',
-				position: 'fixed',
+				position: 'absolute',
 				top: '50%',
 				left: '50%',
 				margin: '0',
@@ -196,7 +188,7 @@ class Tile extends React.Component {
 		}
 
 		return (
-			<div className="tile">
+			<div className="tile2">
 				<img
 					onMouseEnter={this._mouseEnter}
 					onMouseLeave={this._mouseLeave}
@@ -210,7 +202,7 @@ class Tile extends React.Component {
 	}
 }
 
-export default ArtWorkGallery;
+export default ArtWorkGallery3;
 export {App, Tiles, Tile};
 
 /*
@@ -219,5 +211,3 @@ ReactDOM.render(
 	app
 );
 */
-
-

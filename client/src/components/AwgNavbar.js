@@ -204,18 +204,22 @@ const Example = (props) => {
 
   return (
     <div>
+        <h1 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    Photography
+                </h1>
+
       <Nav tabs>
       <NavItem>
           <NavLink href="/artworkgallery">All</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/artworkgallery2">Wildlife</NavLink>
+          <NavLink href="/artworkgallery1">Wildlife</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/artworkgallery2">Fashion</NavLink>
+          <NavLink href="/artworkgallery2">Documentary</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="/artworkgallery2">Architectural</NavLink>
+          <NavLink href="/artworkgallery3">Architectural</NavLink>
         </NavItem>
         
         

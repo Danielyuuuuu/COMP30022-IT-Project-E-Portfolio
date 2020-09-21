@@ -240,8 +240,24 @@ body {
 	cursor: pointer;
 	overflow: hidden;
 	width: 18vw;
-	height: 18vw;
-	
+	height: 18vw;	
+}
+
+.tiles2 {
+	padding: 6vh 20vw;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	justify-content: center;
+  position: relative;
+}
+
+.tile2 {
+	margin: 20px;
+	cursor: pointer;
+	overflow: hidden;
+	width: 18vw;
+	height: 18vw;	
 }
 
 /*
