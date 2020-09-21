@@ -16,7 +16,6 @@ import routes from "../routes.js";
 
 import styles from "./adminStyle.js";
 
-import bgImage from "../assets/img/sidebar-2.jpg";
 import logo from "../assets/img/reactlogo.png";
 
 // let ps;
@@ -42,6 +41,8 @@ const switchRoutes = (
 const useStyles = makeStyles(styles);
 
 export default function Admin({ ...rest }) {
+  let token = localStorage.getItem("auth-token");
+
   // styles
   const classes = useStyles();
   // ref to help us initialize PerfectScrollbar on windows devices
@@ -53,30 +54,35 @@ export default function Admin({ ...rest }) {
 
   return (
     <div className={classes.wrapper}>
-      <Sidebar
-        routes={routes}
-        logoText={"RunTime Terror"}
-        logo={logo}
-        image={bgImage}
-        color={"blue"}
-        {...rest}
-      />
-      <div className={classes.mainPanel} ref={mainPanel}>
-        <Navbar
-          routes={routes}
-          // handleDrawerToggle={handleDrawerToggle}
-          {...rest}
-        />
-        {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
-        {getRoute() ? (
-          <div className={classes.content}>
-            <div className={classes.container}>{switchRoutes}</div>
+      {token ? (
+        <div>
+          <Sidebar
+            routes={routes}
+            logoText={"RunTime Terror"}
+            logo={logo}
+            color={"blue"}
+            {...rest}
+          />
+          <div className={classes.mainPanel} ref={mainPanel}>
+            <Navbar
+              routes={routes}
+              // handleDrawerToggle={handleDrawerToggle}
+              {...rest}
+            />
+            {/* On the /maps route we want the map to be on full screen - this is not possible if the content and conatiner classes are present because they have some paddings which would make the map smaller */}
+            {getRoute() ? (
+              <div className={classes.content}>
+                <div className={classes.container}>{switchRoutes}</div>
+              </div>
+            ) : (
+              <div className={classes.map}>{switchRoutes}</div>
+            )}
+            <Footer />
           </div>
-        ) : (
-          <div className={classes.map}>{switchRoutes}</div>
-        )}
-        <Footer />
-      </div>
+        </div>
+      ) : (
+        <Redirect to="/login" />
+      )}
     </div>
   );
 }
