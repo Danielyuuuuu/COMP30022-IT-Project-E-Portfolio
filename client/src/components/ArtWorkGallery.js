@@ -2,6 +2,7 @@
 import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import "../App.css";
+import AwgNavbar from "./AwgNavbar";
 
 
 //const app = document.getElementById('app');
@@ -52,8 +53,13 @@ class ArtWorkGallery extends React.Component{
                 <br />
                 <br />
                 <h1 style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    Painting
+                    Photography
                 </h1>
+				<br />
+                <br />
+				<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+					<AwgNavbar />
+				</div>
                 <App data={data} />
             </div>
         );
