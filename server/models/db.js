@@ -50,11 +50,12 @@ const storeStorage = new GridFsStorage({
         if (err) {
           return reject(err);
         }
-        file.name = req.body.name;
-        const name = file.originalname;
+        // file.name = req.body.name;
+        // const name = file.originalname;
         const filename = buf.toString("hex") + path.extname(file.originalname);
         const fileInfo = {
-          filename: file.name,
+          // filename: file.name,
+          filename: filename,
           bucketName: "storeitems",
         };
         resolve(fileInfo);

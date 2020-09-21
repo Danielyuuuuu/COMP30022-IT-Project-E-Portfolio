@@ -22,7 +22,7 @@ const getItems = async (req, res) => {
     .then((wares) => {
       res.status(200).json({
         success: true,
-        wares,
+        item: wares,
       });
     })
     .catch((err) => res.status(400).json({ nowaresfound: "No items found" }));
@@ -96,7 +96,6 @@ const renderImg = async (req, res) => {
         message: "No files available",
       });
     }
-
     if (
       files[0].contentType === "image/jpeg" ||
       files[0].contentType === "image/png" ||
@@ -112,9 +111,14 @@ const renderImg = async (req, res) => {
   });
 };
 
+const updateViews = async (req, res) => {
+
+};
+
 module.exports = {
   getItems,
   addItem,
   deleteItem,
   renderImg,
+  updateViews,
 };
