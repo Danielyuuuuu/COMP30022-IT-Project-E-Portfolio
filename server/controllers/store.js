@@ -111,6 +111,16 @@ const renderImg = async (req, res) => {
   });
 };
 
+// currently only work when req.body is in x-www-form-uelencoded format
+// rather than form-data like post new item.
+// maybe solved when implement react side, not sure ...
+const updateItem = async (req, res) => {
+  console.log(req.body);
+  Item.findByIdAndUpdate(req.params.id, { $set:req.body }, { new: true })
+    .then((item) => res.json({ msg: "Updated successfully" }))
+    .catch((err) => res.status(400).json(err));
+}
+
 const updateViews = async (req, res) => {
   Item.findByIdAndUpdate(req.params.id, { $inc: {views:1} })
     .then(() => res.json({ msg: "Increment viewer count by 1" }))
@@ -122,5 +132,6 @@ module.exports = {
   addItem,
   deleteItem,
   renderImg,
+  updateItem,
   updateViews,
 };
