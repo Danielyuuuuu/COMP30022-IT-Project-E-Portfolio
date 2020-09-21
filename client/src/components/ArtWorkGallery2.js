@@ -84,7 +84,7 @@ const data = [{
 
 ];
 
-class ArtWorkGallery extends React.Component{
+class ArtWorkGallery2 extends React.Component{
     render(){
         return(
             <div>
@@ -213,7 +213,7 @@ class Tile extends React.Component {
 	}
 }
 
-export default ArtWorkGallery;
+export default ArtWorkGallery2;
 export {App, Tiles, Tile};
 
 /*
@@ -222,5 +222,3 @@ ReactDOM.render(
 	app
 );
 */
-
-

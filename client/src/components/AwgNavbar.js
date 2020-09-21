@@ -206,16 +206,16 @@ const Example = (props) => {
     <div>
       <Nav tabs>
       <NavItem>
-          <NavLink href="#">All</NavLink>
+          <NavLink href="/artworkgallery">All</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Wildlife</NavLink>
+          <NavLink href="/artworkgallery2">Wildlife</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Fashion</NavLink>
+          <NavLink href="/artworkgallery2">Fashion</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Architectural</NavLink>
+          <NavLink href="/artworkgallery2">Architectural</NavLink>
         </NavItem>
         
         

@@ -14,7 +14,7 @@ import AboutMe from "./components/AboutMe";
 import AboutRuntimeTerror from "./components/AboutRuntimeTerror";
 import ContactMe from "./components/ContactMe";
 import ArtWorkGallery from "./components/ArtWorkGallery";
-
+import ArtWorkGallery2 from "./components/ArtWorkGallery2";
 
 
 class App extends Component {
@@ -34,6 +34,7 @@ class App extends Component {
           <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
           <Route path="/contactme" component={ContactMe} />
           <Route path="/artworkgallery" component={ArtWorkGallery} />
+          <Route path="/artworkgallery2" component={ArtWorkGallery2} />
 
         </div>
       </Router>
