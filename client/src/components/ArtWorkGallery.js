@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import "../App.css";
@@ -23,7 +24,7 @@ const data = [{
 }, {
 	id: 5,
 	name: "Boat",
-	image: "https://images.unsplash.com/photo-1443302382600-0bfacc473376?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=980&h=980&fit=crop&s=0c0f26518c1001f67b6c2e4480a8d3e0"
+	image: "https://i.ytimg.com/vi/ineZXLbL7s8/maxresdefault.jpg"
 }, {
 	id: 6,
 	name: "Flowers",
@@ -176,6 +177,5 @@ ReactDOM.render(
 	app
 );
 */
-
 
 

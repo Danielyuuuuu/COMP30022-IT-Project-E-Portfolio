@@ -215,7 +215,8 @@ p {
   margin-right: auto;
 }
 
-
+/*ArtWorkGallery*/
+/*
 body {
 	margin: 0;
 	padding: 0;
@@ -224,14 +225,26 @@ body {
 	font-family: 'PT Sans';
 	font-size: 18px;
 }
+*/
 .tiles {
 	padding: 6vh 16vw;
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
 	justify-content: center;
-	position: relative;
+  position: relative;
 }
+
+.tile {
+	margin: 20px;
+	cursor: pointer;
+	overflow: hidden;
+	width: 18vw;
+	height: 18vw;
+	
+}
+
+/*
 .tile {
 	margin: 15px;
 	cursor: pointer;
@@ -246,3 +259,5 @@ body {
 		}
 	}
 }
+*/
+
