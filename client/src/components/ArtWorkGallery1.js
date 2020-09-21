@@ -83,8 +83,6 @@ class ArtWorkGallery1 extends React.Component{
                 <NavbarTop />
                 <br />
                 <br />
-                <br />
-				<br />
 				<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 					<AwgNavbar />
 				</div>
