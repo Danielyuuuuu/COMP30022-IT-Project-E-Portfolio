@@ -112,7 +112,9 @@ const renderImg = async (req, res) => {
 };
 
 const updateViews = async (req, res) => {
-
+  Item.findByIdAndUpdate(req.params.id, { $inc: {views:1} })
+    .then(() => res.json({ msg: "Increment viewer count by 1" }))
+    .catch((err) => res.status(400).json(err));
 };
 
 module.exports = {

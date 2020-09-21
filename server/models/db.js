@@ -10,6 +10,7 @@ mongoose.connect(MONGO_URL || "mongodb://localhost/COMP30022", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 
 const db = mongoose.connection;
