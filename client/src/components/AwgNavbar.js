@@ -1,3 +1,47 @@
+import React, { useState } from 'react';
+import { Nav, NavItem, NavLink } from 'reactstrap';
+
+const Example = (props) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggle = () => setDropdownOpen(!dropdownOpen);
+
+  return (
+    <div>
+        <br />
+        <h1 style={{display: 'flex', alignItems: 'center', justifyContent: 'center', margin:"25px 400px 15px 400px"}}>
+            Photography
+        </h1>
+
+        <p style={{margin:"30px 400px 10px 400px"}}>
+        Hi, it’s nice to meet you! My name is Amy Touchette. I’m a fine-art photographer based in Brooklyn, 
+        and I’ve been photographing for almost 20 years. 
+        I specialize in making portraits of strangers on the street both digitally and with film. 
+        </p>
+
+      <br/>
+      <Nav tabs style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+      <NavItem>
+          <NavLink href="/artworkgallery">All</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/artworkgallery1">Wildlife</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/artworkgallery2">Documentary</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="/artworkgallery3">Architectural</NavLink>
+        </NavItem>
+        
+        
+      </Nav>
+    </div>
+  );
+}
+
+export default Example;
+
 /*
 import React, { Component, useState } from "react";
 import "../App.css";
@@ -194,46 +238,3 @@ export default function FloatingActionButtonZoom() {
 }
 */
 
-import React, { useState } from 'react';
-import { Nav, NavItem, NavLink } from 'reactstrap';
-
-const Example = (props) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  const toggle = () => setDropdownOpen(!dropdownOpen);
-
-  return (
-    <div>
-        <br />
-        <h1 style={{display: 'flex', alignItems: 'center', justifyContent: 'center', margin:"25px 400px 15px 400px"}}>
-            Photography
-        </h1>
-
-        <p style={{margin:"30px 400px 10px 400px"}}>
-        Hi, it’s nice to meet you! My name is Amy Touchette. I’m a fine-art photographer based in Brooklyn, 
-        and I’ve been photographing for almost 20 years. 
-        I specialize in making portraits of strangers on the street both digitally and with film. 
-        </p>
-
-      <br/>
-      <Nav tabs style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-      <NavItem>
-          <NavLink href="/artworkgallery">All</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/artworkgallery1">Wildlife</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/artworkgallery2">Documentary</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/artworkgallery3">Architectural</NavLink>
-        </NavItem>
-        
-        
-      </Nav>
-    </div>
-  );
-}
-
-export default Example;
