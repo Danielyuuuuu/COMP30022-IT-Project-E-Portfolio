@@ -163,7 +163,7 @@ class Tile extends React.Component {
 			tileStyle = {
 				width: '62vw',
 				height: '62vw',
-				position: 'absolute',
+				position: 'fixed',
 				top: '50%',
 				left: '50%',
 				margin: '0',
