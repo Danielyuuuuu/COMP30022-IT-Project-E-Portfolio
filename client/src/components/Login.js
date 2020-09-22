@@ -15,10 +15,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const loginUser = { email, password };
-      const loginRes = await Axios.post(
-        "http://localhost:8000/api/user/login",
-        loginUser
-      );
+      const loginRes = await Axios.post("api/user/login", loginUser);
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/admin/dashboard");
     } catch (err) {
