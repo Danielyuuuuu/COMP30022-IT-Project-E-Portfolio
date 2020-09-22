@@ -14,7 +14,7 @@ const Example = (props) => {
     <div>
         <Card body
         >
-            <CardImg width="100%" src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg" alt="Card image cap" />
+            <CardImg width="100%" src="http://localhost:8000/store/image/95cfca7eca5b211f965658de9244165a.png" alt="Card image cap" />
           <CardTitle>Art product  $5.00</CardTitle>
           <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
           <Button>Buy now</Button>
