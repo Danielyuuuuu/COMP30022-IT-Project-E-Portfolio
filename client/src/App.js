@@ -66,7 +66,7 @@ export default function App() {
         <Route path="/show-book/:id" component={ShowBookDetails} />
 
         <Route path="/eportfolio" component={EPortfolio} />
-        <Route path="/store" component={Store} />
+        <Route path="/store-frontend" component={Store} />
         <Route path="/blog" component={Blog} />
         <Route path="/aboutme" component={AboutMe} />
         <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />

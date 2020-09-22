@@ -31,7 +31,7 @@ class NavbarTop extends Component {
                         <NavLink href="/blog">Blog</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="/store">Store</NavLink>
+                        <NavLink href="/store-frontend">Store</NavLink>
                     </NavItem>
 
                     <UncontrolledDropdown nav inNavbar>
