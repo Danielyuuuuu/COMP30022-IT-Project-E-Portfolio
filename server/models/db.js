@@ -75,6 +75,6 @@ require("./User");
 
 // exports the var
 exports.upload = upload;
-exports.uploadStore = uploadStore;
+// exports.uploadStore = uploadStore;
 exports.db = db;
 exports.mongo_url = MONGO_URL;

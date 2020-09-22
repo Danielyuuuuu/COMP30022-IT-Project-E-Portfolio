@@ -97,6 +97,7 @@ const renderImg = async (req, res) => {
       });
     }
     if (
+      files[0].contentType === "image/jpg" ||
       files[0].contentType === "image/jpeg" ||
       files[0].contentType === "image/png" ||
       files[0].contentType === "image/svg+xml"
