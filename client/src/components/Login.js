@@ -16,7 +16,7 @@ export default function Login() {
     try {
       const loginUser = { email, password };
       const loginRes = await Axios.post(
-        "https://e-portfolio-website.herokuapp.com/user/login",
+        "http://localhost:8000/api/user/login",
         loginUser
       );
       localStorage.setItem("auth-token", loginRes.data.token);

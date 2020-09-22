@@ -18,10 +18,7 @@ export default function Register() {
 
     try {
       const newUser = { name, email, password1, password2 };
-      await Axios.post(
-        "https://e-portfolio-website.herokuapp.com/user/register",
-        newUser
-      );
+      await Axios.post("http://localhost:8000/api/user/register", newUser);
       history.push("/login");
     } catch (err) {
       err.response.data.msg && setError(err.response.data.msg);
