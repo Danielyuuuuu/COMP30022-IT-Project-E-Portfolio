@@ -13,7 +13,7 @@ let gfs;
 connect.once("open", () => {
   // initialize stream
   gfs = new mongoose.mongo.GridFSBucket(connect.db, {
-    bucketName: "storeitems" // must be identical to the GridFsStorage bucketName in db.js
+    bucketName: "uploads" // must be identical to the GridFsStorage bucketName in db.js
   });
 });
 
@@ -97,6 +97,7 @@ const renderImg = async (req, res) => {
       });
     }
     if (
+      files[0].contentType === "image/jpg" ||
       files[0].contentType === "image/jpeg" ||
       files[0].contentType === "image/png" ||
       files[0].contentType === "image/svg+xml"
