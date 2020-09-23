@@ -7,7 +7,6 @@ import {
   PermMedia
 } from "@material-ui/icons"
 
-// core components/views for Admin layout
 import DashboardPage from "./views/Dashboard/Dashboard";
 import UserProfile from "./views/UserProfile/UserProfile";
 import Media from "./views/Media/Media"

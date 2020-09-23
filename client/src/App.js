@@ -20,7 +20,7 @@ import ArtWorkGallery2 from "./components/ArtWorkGallery2";
 import ArtWorkGallery3 from "./components/ArtWorkGallery3";
 
 
-import Admin from "./admin/layouts/Admin.js";
+import Admin from "./admin/layouts/Admin";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
