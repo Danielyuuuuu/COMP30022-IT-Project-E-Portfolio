@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import {
   Card,
   Button,
@@ -38,20 +39,13 @@ class BlogPost extends Component {
                   }
                 ></i>
               </div>
-              <CardTitle>Post title</CardTitle>
-              <CardSubtitle>Post subtitle</CardSubtitle>
+              <CardTitle>
+                <a href="/individualpost">Post title</a>
+              </CardTitle>
               <CardText>
                 This Post has supporting text below as a natural lead-in to
                 additional content.
               </CardText>
-              <Button>Click to read more ...</Button>
-              <div className="blogHeart" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-heart" : "far fa-heart"
-                  }
-                ></i>
-              </div>
             </CardBody>
           </Card>
         </CardGroup>
@@ -73,20 +67,13 @@ class BlogPost extends Component {
                   }
                 ></i>
               </div>
-              <CardTitle>Post title</CardTitle>
-              <CardSubtitle>Post subtitle</CardSubtitle>
+              <CardTitle>
+                <a href="/individualpost">Post title</a>
+              </CardTitle>
               <CardText>
                 This Post has supporting text below as a natural lead-in to
                 additional content.
               </CardText>
-              <Button>Click to read more ...</Button>
-              <div className="blogHeart" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-heart" : "far fa-heart"
-                  }
-                ></i>
-              </div>
             </CardBody>
           </Card>
         </CardGroup>
@@ -108,20 +95,13 @@ class BlogPost extends Component {
                   }
                 ></i>
               </div>
-              <CardTitle>Post title</CardTitle>
-              <CardSubtitle>Post subtitle</CardSubtitle>
+              <CardTitle>
+                <a href="/individualpost">Post title</a>
+              </CardTitle>
               <CardText>
                 This Post has supporting text below as a natural lead-in to
                 additional content.
               </CardText>
-              <Button>Click to read more ...</Button>
-              <div className="blogHeart" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-heart" : "far fa-heart"
-                  }
-                ></i>
-              </div>
             </CardBody>
           </Card>
         </CardGroup>
