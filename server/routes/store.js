@@ -3,8 +3,7 @@ const storeRouter = express.Router();
 const storeController = require("../controllers/store");
 
 // upload middleware
-const upload = require('../models/db').upload;
-
+const upload = require("../models/db").upload;
 
 // @route       GET store/
 // @description get all store items

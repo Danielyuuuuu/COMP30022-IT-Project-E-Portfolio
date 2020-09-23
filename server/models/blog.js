@@ -9,16 +9,18 @@ const blogSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  images: [{
-    imagename: {
-      type: String,
-      required: true,
+  images: [
+    {
+      imagename: {
+        type: String,
+        required: true,
+      },
+      imageId: {
+        type: String,
+        required: true,
+      },
     },
-    imageId: {
-      type: String,
-      required: true,
-    }
-  }],
+  ],
   upload_date: {
     type: Date,
     default: Date.now,
@@ -27,16 +29,18 @@ const blogSchema = mongoose.Schema({
   // reference to the Comment Schema
   commentblock: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Comment',
+    ref: "Comment",
   },
   // template for comments block
   // comments: [{
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'Comment',
   // }],
-  hashtags: [{
-    type: String,
-  }],
+  hashtags: [
+    {
+      type: String,
+    },
+  ],
 });
 
 module.exports = Blog = mongoose.model("Blog", blogSchema);
