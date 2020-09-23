@@ -12,7 +12,12 @@ import {
 } from "reactstrap";
 
 class BlogPost extends Component {
-  state = { clicked: false };
+  constructor(props) {
+    super(props);
+    this.state = {
+      clicked: false,
+    };
+  }
 
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
