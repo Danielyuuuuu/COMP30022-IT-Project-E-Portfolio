@@ -28,6 +28,41 @@ const getItems = async (req, res) => {
     .catch((err) => res.status(400).json({ nowaresfound: "No items found" }));
 };
 
+// the request body will have the form of:
+// {
+//   "tags" :["painting","fruit",...], //ensure tags must have something
+//   "filter": "popular" (/ latest)
+// }
+// return the items with at least 1 match with the query.
+// this basically handles category and filter as well.
+const getSpecificItems = async (req, res) => {
+  const tags = req.body.tags;
+  const filter = req.body.filter;
+  var sortkey;
+  if (filter == "popular"){
+    sortkey = "views";
+  } else if (filter == "latest"){
+    sortkey = "upload_date";
+  } else {
+    res.status(400).json({ error: "Invalid filter / filter does not exist"});
+  }
+  console.log(tags);
+  Item.find({ tag: {$in: tags} }).sort( {[sortkey]: -1} ) // -1 means most recent
+    .then((wares) => {
+      res.status(200).json({
+        success: true,
+        specific_items: wares
+      });
+    })
+    .catch((err) => res.status(400).json(err));
+};
+
+// given a field isLatest
+// return the items ordered by date from earliest to latest or vice versa.
+const getItemsByDate = async (req, res) => {
+  const isLatest = req.body.isLatest;
+}
+
 const addItem = async (req, res) => {
   console.log(req.body);
   try {
@@ -130,6 +165,7 @@ const updateViews = async (req, res) => {
 
 module.exports = {
   getItems,
+  getSpecificItems,
   addItem,
   deleteItem,
   renderImg,

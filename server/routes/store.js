@@ -16,6 +16,11 @@ storeRouter.get("/", storeController.getItems);
 // @access      Private
 storeRouter.post("/", upload.single("file"), storeController.addItem);
 
+// @route       GET store/filter
+// @description get specific store items with matching categories
+// @access      Public
+storeRouter.post("/filter", storeController.getSpecificItems);
+
 // @route       Delete store/delete/:id
 // @description given the item._id,
 //              delete a store item and the correspond gridfs file(image)
