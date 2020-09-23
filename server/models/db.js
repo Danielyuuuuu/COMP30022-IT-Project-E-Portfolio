@@ -72,6 +72,9 @@ const upload = multer({ storage });
 require("./book");
 require("./item");
 require("./User");
+require("./artwork");
+require("./blog");
+require("./comment");
 
 // exports the var
 exports.upload = upload;
