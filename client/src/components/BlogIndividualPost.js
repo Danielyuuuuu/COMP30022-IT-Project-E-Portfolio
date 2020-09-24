@@ -149,6 +149,14 @@ class PostContent extends Component {
           <Form style={{ marginTop: 20 }}>
             <FormGroup>
               <Input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Enter your name..."
+              />
+            </FormGroup>
+            <FormGroup>
+              <Input
                 type="textarea"
                 name="text"
                 id="comment"
