@@ -12,17 +12,6 @@ import {
 } from "reactstrap";
 
 class BlogPost extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clicked: false,
-    };
-  }
-
-  handleClick = () => {
-    this.setState({ clicked: !this.state.clicked });
-  };
-
   render() {
     return (
       <div className="posts">
@@ -37,13 +26,7 @@ class BlogPost extends Component {
           </Card>
           <Card>
             <CardBody>
-              <div className="blogEllipsis-v" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
-                  }
-                ></i>
-              </div>
+              <EllipsisButton />
               <CardTitle>
                 <a href="/individualpost">Post title</a>
               </CardTitle>
@@ -51,6 +34,7 @@ class BlogPost extends Component {
                 This Post has supporting text below as a natural lead-in to
                 additional content.
               </CardText>
+              <LikeButton />
             </CardBody>
           </Card>
         </CardGroup>
@@ -65,13 +49,7 @@ class BlogPost extends Component {
           </Card>
           <Card>
             <CardBody>
-              <div className="blogEllipsis-v" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
-                  }
-                ></i>
-              </div>
+              <EllipsisButton />
               <CardTitle>
                 <a href="/individualpost">Post title</a>
               </CardTitle>
@@ -79,6 +57,7 @@ class BlogPost extends Component {
                 This Post has supporting text below as a natural lead-in to
                 additional content.
               </CardText>
+              <LikeButton />
             </CardBody>
           </Card>
         </CardGroup>
@@ -93,13 +72,7 @@ class BlogPost extends Component {
           </Card>
           <Card>
             <CardBody>
-              <div className="blogEllipsis-v" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
-                  }
-                ></i>
-              </div>
+              <EllipsisButton />
               <CardTitle>
                 <a href="/individualpost">Post title</a>
               </CardTitle>
@@ -107,9 +80,54 @@ class BlogPost extends Component {
                 This Post has supporting text below as a natural lead-in to
                 additional content.
               </CardText>
+              <LikeButton />
             </CardBody>
           </Card>
         </CardGroup>
+      </div>
+    );
+  }
+}
+
+class EllipsisButton extends Component {
+  constructor(props) {
+    super();
+
+    this.state = {
+      clicked: false,
+    };
+  }
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+
+  render() {
+    return (
+      <div className="blogEllipsis-v" onClick={this.handleClick}>
+        <i
+          className={this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"}
+        ></i>
+      </div>
+    );
+  }
+}
+
+class LikeButton extends Component {
+  constructor(props) {
+    super();
+
+    this.state = {
+      clicked: false,
+    };
+  }
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+
+  render() {
+    return (
+      <div className="blogHeart" onClick={this.handleClick}>
+        <i className={this.state.clicked ? "fas fa-heart" : "far fa-heart"}></i>
       </div>
     );
   }
