@@ -18,7 +18,7 @@ import {
   FormText,
   Media,
 } from "reactstrap";
-import { Comment, Icon } from "semantic-ui-react";
+import { Comment, Icon, Header } from "semantic-ui-react";
 
 class BlogIndividualPost extends Component {
   render() {
@@ -120,7 +120,9 @@ class PostContent extends Component {
           </CardText>
         </CardBody>
         <div className="commentSection">
-          <h5
+          <Header
+            as="h3"
+            dividing
             style={{
               display: "flex",
               justifyContent: "center",
@@ -128,7 +130,7 @@ class PostContent extends Component {
             }}
           >
             Comment Section
-          </h5>
+          </Header>
           <Comment.Group>
             <Comment>
               <Comment.Avatar
