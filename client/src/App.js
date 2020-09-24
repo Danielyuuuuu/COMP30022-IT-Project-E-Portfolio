@@ -27,6 +27,8 @@ import Register from "./components/Register";
 
 import Axios from "axios";
 
+import "semantic-ui-css/semantic.min.css";
+
 export default function App() {
   const [userData, setUserData] = useState({
     token: undefined,

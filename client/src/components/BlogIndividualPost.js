@@ -18,6 +18,7 @@ import {
   FormText,
   Media,
 } from "reactstrap";
+import { Comment, Icon } from "semantic-ui-react";
 
 class BlogIndividualPost extends Component {
   render() {
@@ -128,24 +129,56 @@ class PostContent extends Component {
           >
             Comment Section
           </h5>
-          <Media className="individualComment">
-            <Media body>
-              <Media heading>Daniel</Media>
-              Nice pic!
-            </Media>
-          </Media>
-          <Media className="individualComment">
-            <Media body>
-              <Media heading>Rex</Media>
-              Fabulous!
-            </Media>
-          </Media>
-          <Media className="individualComment">
-            <Media body>
-              <Media heading>Kai</Media>
-              Keep up the good work!
-            </Media>
-          </Media>
+          <Comment.Group>
+            <Comment>
+              <Comment.Avatar
+                as="a"
+                src="https://react.semantic-ui.com/images/avatar/small/joe.jpg"
+              />
+              <Comment.Content>
+                <Comment.Author>Daniel</Comment.Author>
+                <Comment.Metadata>
+                  <div>2 days ago</div>
+                  <div>
+                    <Icon name="star" />5 Faves
+                  </div>
+                </Comment.Metadata>
+                <Comment.Text>Nice pic!</Comment.Text>
+              </Comment.Content>
+            </Comment>
+            <Comment>
+              <Comment.Avatar
+                as="a"
+                src="https://react.semantic-ui.com/images/avatar/small/elliot.jpg"
+              />
+              <Comment.Content>
+                <Comment.Author>Rex</Comment.Author>
+                <Comment.Metadata>
+                  <div>1 day ago</div>
+                  <div>
+                    <Icon name="star" />1 Faves
+                  </div>
+                </Comment.Metadata>
+                <Comment.Text>Fabulous!</Comment.Text>
+              </Comment.Content>
+            </Comment>
+            <Comment>
+              <Comment.Avatar
+                as="a"
+                src="https://react.semantic-ui.com/images/avatar/small/matt.jpg"
+              />
+              <Comment.Content>
+                <Comment.Author>Kai</Comment.Author>
+                <Comment.Metadata>
+                  <div>10 days ago</div>
+                  <div>
+                    <Icon name="star" />3 Faves
+                  </div>
+                </Comment.Metadata>
+                <Comment.Text>Keep up the good work!</Comment.Text>
+              </Comment.Content>
+            </Comment>
+          </Comment.Group>
           <Form style={{ marginTop: 20 }}>
             <FormGroup>
               <Input
