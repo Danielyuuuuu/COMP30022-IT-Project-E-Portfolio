@@ -3,8 +3,7 @@ const storeRouter = express.Router();
 const storeController = require("../controllers/store");
 
 // upload middleware
-const upload = require('../models/db').upload;
-
+const upload = require("../models/db").upload;
 
 // @route       GET store/
 // @description get all store items
@@ -15,6 +14,11 @@ storeRouter.get("/", storeController.getItems);
 // @description add a new store item
 // @access      Private
 storeRouter.post("/", upload.single("file"), storeController.addItem);
+
+// @route       GET store/filter
+// @description get specific store items with matching categories
+// @access      Public
+storeRouter.post("/filter", storeController.getSpecificItems);
 
 // @route       Delete store/delete/:id
 // @description given the item._id,

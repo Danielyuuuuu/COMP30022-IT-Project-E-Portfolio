@@ -8,7 +8,7 @@ const artworkSchema = mongoose.Schema({
       type: String,
       required: true,
     },
-  }
+  },
   // the imagename corresponds to the filename in uploads.files
   imagename: {
     type: String,
