@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Redirect } from "react-router-dom";
 import {
   Card,
@@ -9,6 +9,10 @@ import {
   CardGroup,
   CardSubtitle,
   CardBody,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
 
 class BlogPost extends Component {
@@ -31,8 +35,9 @@ class BlogPost extends Component {
                 <a href="/individualpost">Post title</a>
               </CardTitle>
               <CardText>
-                This Post has supporting text below as a natural lead-in to
-                additional content.
+                So by colonel hearted ferrars. Draw from upon here gone add one.
+                He in sportsman household otherwise it perceived instantly. Is
+                inquiry no he several excited am.
               </CardText>
               <LikeButton />
             </CardBody>
@@ -54,8 +59,9 @@ class BlogPost extends Component {
                 <a href="/individualpost">Post title</a>
               </CardTitle>
               <CardText>
-                This Post has supporting text below as a natural lead-in to
-                additional content.
+                So by colonel hearted ferrars. Draw from upon here gone add one.
+                He in sportsman household otherwise it perceived instantly. Is
+                inquiry no he several excited am.
               </CardText>
               <LikeButton />
             </CardBody>
@@ -77,8 +83,9 @@ class BlogPost extends Component {
                 <a href="/individualpost">Post title</a>
               </CardTitle>
               <CardText>
-                This Post has supporting text below as a natural lead-in to
-                additional content.
+                So by colonel hearted ferrars. Draw from upon here gone add one.
+                He in sportsman household otherwise it perceived instantly. Is
+                inquiry no he several excited am.
               </CardText>
               <LikeButton />
             </CardBody>
@@ -97,16 +104,30 @@ class EllipsisButton extends Component {
       clicked: false,
     };
   }
+
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
   };
 
   render() {
     return (
-      <div className="blogEllipsis-v" onClick={this.handleClick}>
-        <i
-          className={this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"}
-        ></i>
+      <div>
+        <Dropdown
+          isOpen={this.state.clicked}
+          toggle={this.handleClick}
+          className="blogEllipsis-v"
+        >
+          <DropdownToggle>
+            <i
+              className={
+                this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
+              }
+            ></i>
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Share</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </div>
     );
   }
