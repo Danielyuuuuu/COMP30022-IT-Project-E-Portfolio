@@ -11,6 +11,12 @@ import {
   CardGroup,
   CardSubtitle,
   CardBody,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
+  Media,
 } from "reactstrap";
 
 class BlogIndividualPost extends Component {
@@ -112,6 +118,46 @@ class PostContent extends Component {
             at first short an.
           </CardText>
         </CardBody>
+        <div className="commentSection">
+          <h5
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Comment Section
+          </h5>
+          <Media className="individualComment">
+            <Media body>
+              <Media heading>Daniel</Media>
+              Nice pic!
+            </Media>
+          </Media>
+          <Media className="individualComment">
+            <Media body>
+              <Media heading>Rex</Media>
+              Fabulous!
+            </Media>
+          </Media>
+          <Media className="individualComment">
+            <Media body>
+              <Media heading>Kai</Media>
+              Keep up the good work!
+            </Media>
+          </Media>
+          <Form style={{ marginTop: 20 }}>
+            <FormGroup>
+              <Input
+                type="textarea"
+                name="text"
+                id="comment"
+                placeholder="Leave a Comment..."
+              />
+            </FormGroup>
+            <Button size="sm">Submit Comment</Button>
+          </Form>
+        </div>
       </div>
     );
   }
