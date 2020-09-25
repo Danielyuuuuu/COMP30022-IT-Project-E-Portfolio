@@ -1,9 +1,7 @@
 import React, { Component, useState } from "react";
 import "../App.css";
 import {
-  Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
@@ -12,7 +10,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText
 } from 'reactstrap';
 
 class NavbarTop extends Component {
