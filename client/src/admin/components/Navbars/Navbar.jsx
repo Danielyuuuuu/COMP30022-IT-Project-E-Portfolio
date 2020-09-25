@@ -9,7 +9,7 @@ import Hidden from "@material-ui/core/Hidden";
 // @material-ui/icons
 
 // core components
-import AdminNavbarLinks from "./AdminNavbarLinks.js";
+import AdminNavbarLinks from "./AdminNavbarLinks";
 
 
 import styles from "./headerStyle.js";

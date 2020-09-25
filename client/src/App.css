@@ -223,7 +223,6 @@ p {
   margin-right: auto;
 }
 
-
 /*ArtWorkGallery*/
 /*
 body {
@@ -236,37 +235,37 @@ body {
 }
 */
 .tiles {
-	padding: 6vh 16vw;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	justify-content: center;
+  padding: 6vh 16vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
   position: relative;
 }
 
 .tile {
-	margin: 20px;
-	cursor: pointer;
-	overflow: hidden;
-	width: 18vw;
-	height: 18vw;	
+  margin: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  width: 18vw;
+  height: 18vw;
 }
 
 .tiles2 {
-	padding: 6vh 20vw;
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: row;
-	justify-content: center;
+  padding: 6vh 20vw;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
   position: relative;
 }
 
 .tile2 {
-	margin: 20px;
-	cursor: pointer;
-	overflow: hidden;
-	width: 18vw;
-	height: 18vw;	
+  margin: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  width: 18vw;
+  height: 18vw;
 }
 
 /*
@@ -285,7 +284,6 @@ body {
 	}
 }
 */
-
 
 .loginRegisterPage {
   width: 350px;
@@ -318,3 +316,19 @@ body {
   border: 1px solid #f8d6d6;
 }
 
+.postContent {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.commentSection {
+  border: 1px solid #2c3e50;
+  padding: 20px;
+}
+
+.individualComment {
+  border: 1px solid #2c3e50;
+  padding: 10px;
+  margin-top: 10px;
+}
