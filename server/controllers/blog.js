@@ -39,14 +39,14 @@ const getSingleBlog = async (req, res) => {
 
 // Get all blogs
 const getAllBlogs = async (req, res) => {
-  BlogModel.find().toArray((err, blogs) => {
+  BlogModel.find({}).then((blogs) => {
     if (!blogs || blogs.length === 0) {
       return res.status(404).json({
         err: "No blog found",
       });
     }
 
-    return res.json(files);
+    return res.json(blogs);
   });
 };
 
