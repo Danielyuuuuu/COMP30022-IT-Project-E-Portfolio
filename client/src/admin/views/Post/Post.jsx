@@ -11,9 +11,39 @@ import { Button } from "reactstrap";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 
+// for post list
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 let marked = require("marked");
 
 const options = ["Tag 1", "Tag 2", "Tag 3", "Tag 4"];
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+  
+    },
+    postList: {
+      backgroundColor: theme.palette.background.paper,
+    },
+    title: {
+      margin: theme.spacing(4, 0, 2),
+    },
+  }));
+
+function generate(element) {
+    return [0, 1, 2, 4].map((value) =>
+      React.cloneElement(element, {
+        key: value,
+      }),
+    );
+  }
 
 export default function Post() {
   const [markdown, setMarkDown] = useState("");
@@ -22,6 +52,9 @@ export default function Post() {
   const [imageUrl, setImageUrl] = useState("");
 
   const history = useHistory();
+
+  const classes = useStyles();
+  const [dense, setDense] = React.useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
@@ -42,7 +75,29 @@ export default function Post() {
 
   return (
     <div>
-      <PostList />
+      <div className={classes.root}>
+            <Grid item xs={12} md={12}>
+                <Typography variant="h6" className={classes.title}>
+                Post List
+                </Typography>
+                <div className={classes.postList}>
+                <List dense={dense}>
+                    {generate(
+                    <ListItem>
+                        <ListItemText
+                        primary="Single-line item"
+                        />
+                        <ListItemSecondaryAction>
+                        <IconButton edge="end" aria-label="delete">
+                            <DeleteIcon />
+                        </IconButton>
+                        </ListItemSecondaryAction>
+                    </ListItem>,
+                    )}
+                </List>
+                </div>
+            </Grid>
+      </div>
 
       <h3>New Post</h3>
       <div>
