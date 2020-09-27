@@ -1,33 +1,32 @@
-const express = require('express');
+const express = require("express");
 const uploadRouter = express.Router();
-const uploadController = require('../controllers/upload');
+const uploadController = require("../controllers/upload");
 
 //import the upload middleware
-const upload = require('../models/db').upload;
-
+const upload = require("../models/db").upload;
 
 //@Route GET /
 //@desc Loads form
-uploadRouter.get('/', uploadController.getUploadForm);
+uploadRouter.get("/", uploadController.getUploadForm);
 
 //@Route POST /upload
 //@desc uploads File to Db
-uploadRouter.post('/upload', upload.single('file'),uploadController.postFile);
+uploadRouter.post("/upload", upload.single("file"), uploadController.postFile);
 
 //@route GET/ FIles
 //@desc Display all files in JSON
-uploadRouter.get('/files', uploadController.getAllFiles);
+uploadRouter.get("/files", uploadController.getAllFiles);
 
 //@route GET/ FIles/:filename
 //@desc Display file in JSON
-uploadRouter.get('/files/:filename', uploadController.getSingleFile);
+uploadRouter.get("/files/:filename", uploadController.getSingleFile);
 
 //@route GET/ image/:filename
 //@desc Display single image
-uploadRouter.get('/image/:filename', uploadController.getSingleImage);
+uploadRouter.get("/image/:filename", uploadController.getSingleImage);
 
-//@route DELETE /files/:id 
+//@route DELETE /files/:id
 //@desc Delete file
-uploadRouter.delete('/files/:id', uploadController.postDeleteFile);
+uploadRouter.delete("/files/:id", uploadController.postDeleteFile);
 
 module.exports = uploadRouter;
