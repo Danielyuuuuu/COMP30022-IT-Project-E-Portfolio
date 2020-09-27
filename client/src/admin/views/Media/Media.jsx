@@ -1,23 +1,22 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-// import FormLabel from '@material-ui/core/FormLabel';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import RadioGroup from '@material-ui/core/RadioGroup';
-// import Radio from '@material-ui/core/Radio';
+
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-// import { CallMissedSharp } from '@material-ui/icons';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 // import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
+
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 
 import image from '../../assets/img/testimg.jpg';
-import DropzoneAreaExample from '../../components/DropzoneAreaExample';
+import DropzoneArea from '../../components/DropzoneArea';
+
 
 const tileData = [
     {
@@ -101,7 +100,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     
   },
-
+  icon: {
+      color: 'rgba(255, 255, 255, 0.54)'
+  },
 
   control: {
     padding: theme.spacing(2),
@@ -127,6 +128,19 @@ export default function SpacingGrid() {
     setSpacing(Number(event.target.value));
   };
 
+  const [copyOpen, setCopyOpen] = React.useState(false);
+
+  const handleCopyClick = () => {
+        setCopyOpen(true);
+  }
+
+  const handleCopyClose = (event, reason) => {
+      if (reason === 'clickaway'){
+          return;
+      }
+      setCopyOpen(false);
+  }
+
   return (
     <div>
         <Grid container spacing={2} direction="row" justify="space-around" alignItems="stretch">
@@ -135,19 +149,18 @@ export default function SpacingGrid() {
                 <Paper elevation={0} className={classes.paper}>
                     <h3>Media</h3>
                     <GridList cellHeight={180} className={classes.gridList} cols={3}>
-                        
                         {tileData.map((tile) => (
-                        <GridListTile key={tile.img}>
+                        <GridListTile key={tile.img} cols={tile.cols || 1}>
                             <img src={tile.img} alt={tile.title} />
                             <GridListTileBar
-                            title={tile.title}
-                            subtitle={<span>by: {tile.author}</span>}
-                            actionIcon={
-                                <IconButton aria-label={`info about ${tile.title}`} className={classes.icon}>
-                                <InfoIcon />
-                                </IconButton>
-                            }
-                            />
+                                // title={tile.title}
+                                // subtitle={<span>by: {tile.author}</span>}
+                                actionIcon={
+                                    <IconButton aria-label={`info about ${tile.title}`} className={classes.icon} onClick={() => {navigator.clipboard.writeText("api/uploadManager/image/"+tile.title)}}>
+                                        <FileCopyOutlinedIcon onClick={handleCopyClick}/>
+                                    </IconButton>
+                                }
+                                />
                         </GridListTile>
                         ))}
                     </GridList>
@@ -160,12 +173,16 @@ export default function SpacingGrid() {
                     <p>File Name:</p>
                     <p>Describe:</p>
                     <p>URL:</p>
-                    <DropzoneAreaExample />
+                    <DropzoneArea />
                 </Paper>
             </Grid>
 
         </Grid>
-
+        <Snackbar open={copyOpen} autoHideDuration={6000} onClose={handleCopyClose}>
+        <Alert onClose={handleCopyClose} severity="success">
+          You have already copy the url of image.
+        </Alert>
+      </Snackbar>                        
     </div>
   );
 }
