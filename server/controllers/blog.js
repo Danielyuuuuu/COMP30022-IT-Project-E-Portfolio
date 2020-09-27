@@ -52,10 +52,11 @@ const getAllBlogs = async (req, res) => {
 
 // delete the file
 const postDeleteBlog = async (req, res) => {
-  BlogModel.remove({ _id: req.params.id }, (err, gridStore) => {
+  BlogModel.remove({ _id: req.params.id }, (err, obj) => {
     if (err) {
       return res.status(404).json({ err: "Can not find such blog" });
     }
+    return res.json({ msg: "Post deleted" });
   });
 };
 

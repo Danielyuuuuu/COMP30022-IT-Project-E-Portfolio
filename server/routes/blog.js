@@ -3,24 +3,24 @@ const blogRouter = express.Router();
 const auth = require("../config/auth");
 const blogController = require("../controllers/blog");
 
-// @route POST blog/uploadblog
+// @route POST blog/uploadBlog
 // @description Upload blog post
 // @access Public
-blogRouter.post("/uploadblog", blogController.postBlog);
+blogRouter.post("/uploadBlog", blogController.postBlog);
 
-// @route GET blog/getsingleblog
+// @route GET blog/getSingleBlog
 // @description Get one specific blog post
 // @access Public
-blogRouter.get("/getsingleblog/:id", blogController.getSingleBlog);
+blogRouter.get("/getSingleBlog/:id", blogController.getSingleBlog);
 
-// @route GET blog/getallblogs
+// @route GET blog/getAllBlogs
 // @description Get every blog posts
 // @access Public
-blogRouter.get("/getallblogs", blogController.getAllBlogs);
+blogRouter.get("/getAllBlogs", blogController.getAllBlogs);
 
 // @route DELETE blog/deletepost
 // @description Delete the blog post
 // @access Public
-blogRouter.delete("/postDeleteBlog/:id", blogController.postDeleteBlog);
+blogRouter.delete("/deleteBlog/:id", blogController.postDeleteBlog);
 
 module.exports = blogRouter;
