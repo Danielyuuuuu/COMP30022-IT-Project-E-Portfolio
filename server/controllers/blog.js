@@ -18,6 +18,10 @@ const postBlog = async (req, res) => {
       thumbnails: { imagename: imageUrl },
       hashtags: hashTags,
     });
+
+    // Save the blog post
+    const savedPost = newPost.save();
+    res.json(savedPost);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -34,7 +38,7 @@ const getSingleBlog = async (req, res) => {
 };
 
 // Get all blogs
-const getAllFiles = async (req, res) => {
+const getAllBlogs = async (req, res) => {
   BlogModel.find().toArray((err, blogs) => {
     if (!blogs || blogs.length === 0) {
       return res.status(404).json({
@@ -55,4 +59,4 @@ const postDeleteBlog = async (req, res) => {
   });
 };
 
-module.exports = { postBlog, getSingleBlog, getAllFiles, postDeleteBlog };
+module.exports = { postBlog, getSingleBlog, getAllBlogs, postDeleteBlog };
