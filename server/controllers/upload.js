@@ -40,7 +40,7 @@ const getUploadForm = async (req,res) => {
 
 // upload the file
 const postFile = async(req,res) =>{
-    res.redirect('/uploadManage');
+    res.redirect('/api/uploadManage');
 }
 
 // display all files in array
@@ -100,7 +100,7 @@ const postDeleteFile = async(req,res) =>{
             return res.status(404).json({err: "Can not delete"});
         }
 
-        res.redirect('/uploadManage');
+        res.redirect('/api/uploadManage');
     })
 }
 
