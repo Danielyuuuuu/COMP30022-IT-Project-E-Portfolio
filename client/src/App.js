@@ -10,16 +10,25 @@ import UpdateBookInfo from "./components/UpdateBookInfo";
 import EPortfolio from "./components/EPortfolio";
 import Store from "./components/Store";
 import Blog from "./components/Blog";
+import IndividualPost from "./components/BlogIndividualPost";
 import AboutMe from "./components/AboutMe";
 import AboutRuntimeTerror from "./components/AboutRuntimeTerror";
 import ContactMe from "./components/ContactMe";
 
-import Admin from "./admin/layouts/Admin.js";
+import ArtWorkGallery from "./components/ArtWorkGallery";
+import ArtWorkGallery1 from "./components/ArtWorkGallery1";
+import ArtWorkGallery2 from "./components/ArtWorkGallery2";
+import ArtWorkGallery3 from "./components/ArtWorkGallery3";
+
+
+import Admin from "./admin/layouts/Admin";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
 
 import Axios from "axios";
+
+import "semantic-ui-css/semantic.min.css";
 
 export default function App() {
   const [userData, setUserData] = useState({
@@ -58,8 +67,9 @@ export default function App() {
         <Route path="/show-book/:id" component={ShowBookDetails} />
 
         <Route path="/eportfolio" component={EPortfolio} />
-        <Route path="/store" component={Store} />
+        <Route path="/store-frontend" component={Store} />
         <Route path="/blog" component={Blog} />
+        <Route path="/individualpost" component={IndividualPost} />
         <Route path="/aboutme" component={AboutMe} />
         <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
         <Route path="/contactme" component={ContactMe} />
@@ -67,6 +77,11 @@ export default function App() {
         <Route path="/admin" component={Admin} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+
+        <Route path="/artworkgallery" component={ArtWorkGallery} />
+        <Route path="/artworkgallery1" component={ArtWorkGallery1} />
+        <Route path="/artworkgallery2" component={ArtWorkGallery2} />
+        <Route path="/artworkgallery3" component={ArtWorkGallery3} />
       </div>
     </Router>
   );

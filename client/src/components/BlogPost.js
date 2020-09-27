@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import { Redirect } from "react-router-dom";
 import {
   Card,
   Button,
@@ -8,15 +9,13 @@ import {
   CardGroup,
   CardSubtitle,
   CardBody,
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
 } from "reactstrap";
 
 class BlogPost extends Component {
-  state = { clicked: false };
-
-  handleClick = () => {
-    this.setState({ clicked: !this.state.clicked });
-  };
-
   render() {
     return (
       <div className="posts">
@@ -31,27 +30,16 @@ class BlogPost extends Component {
           </Card>
           <Card>
             <CardBody>
-              <div className="blogEllipsis-v" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
-                  }
-                ></i>
-              </div>
-              <CardTitle>Post title</CardTitle>
-              <CardSubtitle>Post subtitle</CardSubtitle>
+              <EllipsisButton />
+              <CardTitle>
+                <a href="/individualpost">Post title</a>
+              </CardTitle>
               <CardText>
-                This Post has supporting text below as a natural lead-in to
-                additional content.
+                So by colonel hearted ferrars. Draw from upon here gone add one.
+                He in sportsman household otherwise it perceived instantly. Is
+                inquiry no he several excited am.
               </CardText>
-              <Button>Click to read more ...</Button>
-              <div className="blogHeart" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-heart" : "far fa-heart"
-                  }
-                ></i>
-              </div>
+              <LikeButton />
             </CardBody>
           </Card>
         </CardGroup>
@@ -66,27 +54,16 @@ class BlogPost extends Component {
           </Card>
           <Card>
             <CardBody>
-              <div className="blogEllipsis-v" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
-                  }
-                ></i>
-              </div>
-              <CardTitle>Post title</CardTitle>
-              <CardSubtitle>Post subtitle</CardSubtitle>
+              <EllipsisButton />
+              <CardTitle>
+                <a href="/individualpost">Post title</a>
+              </CardTitle>
               <CardText>
-                This Post has supporting text below as a natural lead-in to
-                additional content.
+                So by colonel hearted ferrars. Draw from upon here gone add one.
+                He in sportsman household otherwise it perceived instantly. Is
+                inquiry no he several excited am.
               </CardText>
-              <Button>Click to read more ...</Button>
-              <div className="blogHeart" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-heart" : "far fa-heart"
-                  }
-                ></i>
-              </div>
+              <LikeButton />
             </CardBody>
           </Card>
         </CardGroup>
@@ -101,30 +78,77 @@ class BlogPost extends Component {
           </Card>
           <Card>
             <CardBody>
-              <div className="blogEllipsis-v" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
-                  }
-                ></i>
-              </div>
-              <CardTitle>Post title</CardTitle>
-              <CardSubtitle>Post subtitle</CardSubtitle>
+              <EllipsisButton />
+              <CardTitle>
+                <a href="/individualpost">Post title</a>
+              </CardTitle>
               <CardText>
-                This Post has supporting text below as a natural lead-in to
-                additional content.
+                So by colonel hearted ferrars. Draw from upon here gone add one.
+                He in sportsman household otherwise it perceived instantly. Is
+                inquiry no he several excited am.
               </CardText>
-              <Button>Click to read more ...</Button>
-              <div className="blogHeart" onClick={this.handleClick}>
-                <i
-                  className={
-                    this.state.clicked ? "fas fa-heart" : "far fa-heart"
-                  }
-                ></i>
-              </div>
+              <LikeButton />
             </CardBody>
           </Card>
         </CardGroup>
+      </div>
+    );
+  }
+}
+
+class EllipsisButton extends Component {
+  constructor(props) {
+    super();
+
+    this.state = {
+      clicked: false,
+    };
+  }
+
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+
+  render() {
+    return (
+      <div>
+        <Dropdown
+          isOpen={this.state.clicked}
+          toggle={this.handleClick}
+          className="blogEllipsis-v"
+        >
+          <DropdownToggle>
+            <i
+              className={
+                this.state.clicked ? "fas fa-times" : "fas fa-ellipsis-v"
+              }
+            ></i>
+          </DropdownToggle>
+          <DropdownMenu>
+            <DropdownItem>Share</DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
+      </div>
+    );
+  }
+}
+
+class LikeButton extends Component {
+  constructor(props) {
+    super();
+
+    this.state = {
+      clicked: false,
+    };
+  }
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+
+  render() {
+    return (
+      <div className="blogHeart" onClick={this.handleClick}>
+        <i className={this.state.clicked ? "fas fa-heart" : "far fa-heart"}></i>
       </div>
     );
   }
