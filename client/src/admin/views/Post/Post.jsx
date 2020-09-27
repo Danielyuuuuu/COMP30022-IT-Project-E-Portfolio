@@ -1,35 +1,29 @@
 import React from 'react';
+import {useState} from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-
-import { Component } from 'react';
-
+import Autocomplete from '@material-ui/lab/Autocomplete';
 import PostList from "../../components/PostList/PostList"
+
 
 let marked = require("marked");
 
+const options = ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4'];
 
-class Post extends Component {
-    state = {
-        markdown:""
-    }
+export default function Post(){
 
-    updateMarkdown = function(markdown){
-        this.setState({markdown});
-    }
-    
-    
 
-    render(){
-        let {markdown} = this.state;
-        
-        return (
+    const [markdown, setMarkDown] = useState("");
+    const [tag, setTags] = React.useState([]);
+
+    return (
             <div>
                 
                 <PostList/>
+                
                 <h3>Edit the Post</h3>
                 <div>
                     <TextField required id="standard-required1" label="Post Title"/>
@@ -39,6 +33,22 @@ class Post extends Component {
                 <div>
                     <TextField required id="standard-require2" label="Image Url" />
                 </div>
+                <Autocomplete
+                    multiple
+                    value={tag}
+                    onChange={(event, newValue) => {
+                    setTags(newValue);
+                    }}
+                    id="controllable-states-demo"
+                    options={options}
+                    
+                    defaultValue={[options[0]]}
+                    renderInput={(params) => (
+                        <TextField {...params} 
+                        label="Controllable" 
+                        variant="outlined" />)
+                    }
+                />
                 <Grid 
                     
                     container spacing={2} 
@@ -56,7 +66,7 @@ class Post extends Component {
                             defaultValue="Default Value"
                             variant="filled"
                             value = {markdown}
-                            onChange = {(event)=>this.updateMarkdown(event.target.value)}
+                            onChange = {(event)=>setMarkDown(event.target.value)}
                         />
                     </Grid>
 
@@ -69,7 +79,5 @@ class Post extends Component {
                     Submit!
                 </Button>
             </div>
-        )
-    }
+    )
 }
-export default Post
