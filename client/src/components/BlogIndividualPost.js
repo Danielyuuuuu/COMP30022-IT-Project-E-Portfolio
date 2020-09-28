@@ -19,50 +19,11 @@ import {
   Media,
 } from "reactstrap";
 import { Comment, Icon, Header } from "semantic-ui-react";
-import axios from 'axios';
 
-
-class addComment extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      content: "",
-      publisher: "",
-      blogId :"5f703c3b07005138f07a2107"
-    }
-  }
-
-  writingPublisher(e){
-    this.setState({
-      publisher : e.target.value
-    });
-  }
-  writingComment(e){
-    this.setState({
-      content : e.target.value
-    })
-  }
-
-  submitComment(e){
-    const comment = {
-      content : this.state.content,
-      publisher: this.state.publisher,
-      blogId : this.state.blogId
-    }
-    axios.post("http://localhost:8000/api/comments/add", comment)
-    .then(res =>{
-
-    })
-  }
+import AddComment from './BlogAddComment' ;
 
 
 
-    
-  
-
-
-}
 
 class BlogIndividualPost extends Component {
   render() {
@@ -225,25 +186,10 @@ class PostContent extends Component {
               </Comment.Content>
             </Comment>
           </Comment.Group>
-          <Form style={{ marginTop: 20 }}>
-            <FormGroup>
-              <Input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Enter your name..."
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                type="textarea"
-                name="text"
-                id="comment"
-                placeholder="Leave a Comment..."
-              />
-            </FormGroup>
-            <Button size="sm">Submit Comment</Button>
-          </Form>
+          <div className ="container">
+            <AddComment />
+          </div>
+
         </div>
       </div>
     );
