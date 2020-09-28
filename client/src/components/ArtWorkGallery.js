@@ -96,9 +96,9 @@ class ArtWorkGallery extends React.Component{
 	}
 
 	componentDidMount() {
-		fetch('http://localhost:8000/api/store/')
+		fetch('http://localhost:8000/api/uploadManage/files/')
 		  .then(response => response.json())
-		  .then(data => this.setState({ data: data.item }));
+		  .then(data => this.setState({ data: data}));
 	}
 
     render(){
@@ -218,8 +218,8 @@ class Tile extends React.Component {
 					onMouseEnter={this._mouseEnter}
 					onMouseLeave={this._mouseLeave}
 					onClick={this._clickHandler}
-					src={url + this.props.data.imagename}
-					alt={this.props.data.itemname}
+					src={url + this.props.data.filename}
+					alt={this.props.data._id}
 					style={tileStyle}
 				/>
 			</div>
