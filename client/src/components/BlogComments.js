@@ -19,12 +19,26 @@ import {
   Media,
 } from "reactstrap";
 import { Comment, Icon, Header } from "semantic-ui-react";
-import axios from 'axios' ;
+import axios from "axios";
 
-class Comment extends Component{
-    constructor(props){
-        super(props)
+export default class BlogComments extends Component {
+  constructor(props) {
+    super(props);
+    this.getComments = this.getComments.bind(this);
+    this.state = {
+      comments: [],
+      success: false,
+    };
+  }
 
-        
-    }
+  getComments() {
+    console.log("Before axios");
+    axios
+      .get("http://localhost:8000/api/comments/blog/5f703c3b07005138f07a2107")
+      .then((res) => {
+        this.setState({ success: res.success });
+      });
+    console.log(this.comments);
+    console.log("After axios");
+  }
 }
