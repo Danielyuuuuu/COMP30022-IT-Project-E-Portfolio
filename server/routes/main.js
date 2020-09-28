@@ -10,7 +10,10 @@ const uploadRouter = require("./upload");
 const paypalRouter = require("./paypal");
 const userRouter = require("./user");
 const storeRouter = require("./store");
+
 const commentRouter = require("./comments");
+const blogRouter = require("./blog");
+
 // demo
 router.use("/books", bookRouter);
 
@@ -24,5 +27,10 @@ router.use("/comments",commentRouter);
 
 // Store route
 router.use("/store", storeRouter);
+
+
+// Blog route
+router.use("/blog", blogRouter);
+
 
 module.exports = router;

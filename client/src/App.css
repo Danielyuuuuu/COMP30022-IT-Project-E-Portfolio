@@ -247,8 +247,11 @@ body {
   margin: 20px;
   cursor: pointer;
   overflow: hidden;
-  width: 18vw;
-  height: 18vw;
+  /* width: 18vw;
+  height: 18vw; */
+  max-width: 18vw;
+  /* max-height: 18vw; */
+
 }
 
 .tiles2 {
@@ -264,8 +267,11 @@ body {
   margin: 20px;
   cursor: pointer;
   overflow: hidden;
-  width: 18vw;
-  height: 18vw;
+  /* width: 18vw;
+  height: 18vw; */
+  max-width: 18vw;
+  /* max-height: 18vw; */
+
 }
 
 /*
