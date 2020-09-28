@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import PostList from "../../components/PostList/PostList";
 import { Button } from "reactstrap";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import Axios from "axios";
 
 // for post list
@@ -72,7 +72,7 @@ export default function Post() {
     console.log("successful................");
     history.push("/admin/dashboard");
   };
-
+  const [textPost, setTextPost] = useState("New Post");
   return (
     <div>
       <div className={classes.root}>
@@ -83,7 +83,7 @@ export default function Post() {
                 <div className={classes.postList}>
                 <List dense={dense}>
                     {generate(
-                    <ListItem>
+                    <ListItem onClick={(e) => setTextPost("Edit this Post")}>
                         <ListItemText
                         primary="Single-line item"
                         />
@@ -99,7 +99,7 @@ export default function Post() {
             </Grid>
       </div>
 
-      <h3>New Post</h3>
+      <h3>{textPost}</h3>
       <div>
         <TextField
           id="Post Title"
