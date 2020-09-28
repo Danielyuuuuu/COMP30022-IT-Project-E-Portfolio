@@ -16,6 +16,8 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { Button } from '@material-ui/core';
 
+import Dialogs from "../../components/Dialogs/Dialogs"
+
 const useRowStyles = makeStyles({
   root: {
     '& > *': {
@@ -57,7 +59,7 @@ function Row(props) {
         <TableCell align="right">{row.Price}</TableCell>
         <TableCell align="right">
             {/* {row.Options}  */}
-            <Button variant="contained" color="primary">Edit</Button>
+            <Dialogs mode={"Edit"}></Dialogs>
         </TableCell>
       </TableRow>
       <TableRow>
