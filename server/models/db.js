@@ -4,6 +4,7 @@ const crypto = require("crypto");
 const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 
+
 MONGO_URL = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_TABLE}?${process.env.DB_OPTIONS}`;
 
 mongoose.connect(MONGO_URL || "mongodb://localhost/COMP30022", {
@@ -22,7 +23,7 @@ db.once("open", async () => {
   console.log("Mongo connection started on " + db.host + ":" + db.port);
 });
 
-// create storage engine
+// create storage engine for the image
 const storage = new GridFsStorage({
   url: MONGO_URL,
   file: (req, file) => {
@@ -74,7 +75,10 @@ require("./item");
 require("./User");
 require("./artwork");
 require("./blog");
-require("./comment");
+require("./comments");
+
+
+
 
 // exports the var
 exports.upload = upload;

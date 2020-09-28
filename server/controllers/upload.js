@@ -46,6 +46,7 @@ const postFile = async (req, res) => {
   return res.json({ msg: "Success from back end" });
 };
 
+
 // display all files in array
 const getAllFiles = async (req, res) => {
   gfs.files.find().toArray((err, files) => {
@@ -102,10 +103,10 @@ const postDeleteFile = async (req, res) => {
     if (err) {
       return res.status(404).json({ err: "Can not delete" });
     }
+        res.redirect('/api/uploadManage');
+    })
+}
 
-    res.redirect("/uploadManage");
-  });
-};
 
 module.exports = {
   getUploadForm,

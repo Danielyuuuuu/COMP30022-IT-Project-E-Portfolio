@@ -11,6 +11,9 @@ const session = require("express-session");
 const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const cookieParser = require("cookie-parser");
+const paypal = require('paypal-rest-sdk'); // for the paypal sdk
+const expressWs = require('express-ws'); //for the comment 
+
 
 // Start express
 const app = express();
@@ -67,6 +70,25 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(build, "index.html"));
   });
 }
+
+//set the env of the comment 
+
+const wsInstance = expressWs(app);
+
+app.ws('/comment', (ws, req) => {
+
+  ws.on('message', function incoming(message) {
+    console.log(message) ;
+    ws.broadcast(message);
+  });
+
+  ws.broadcast = function broadcast(data) {
+    wsInstance.getWss().clients.forEach(function each(client) {
+    client.send(data);
+    });
+  };
+});
+
 
 // Server listener
 app.listen((port = process.env.PORT || 8000), () =>

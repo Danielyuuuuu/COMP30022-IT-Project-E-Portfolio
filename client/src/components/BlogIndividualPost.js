@@ -20,6 +20,11 @@ import {
 } from "reactstrap";
 import { Comment, Icon, Header } from "semantic-ui-react";
 
+import AddComment from './BlogAddComment' ;
+
+
+
+
 class BlogIndividualPost extends Component {
   render() {
     return (
@@ -181,25 +186,10 @@ class PostContent extends Component {
               </Comment.Content>
             </Comment>
           </Comment.Group>
-          <Form style={{ marginTop: 20 }}>
-            <FormGroup>
-              <Input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Enter your name..."
-              />
-            </FormGroup>
-            <FormGroup>
-              <Input
-                type="textarea"
-                name="text"
-                id="comment"
-                placeholder="Leave a Comment..."
-              />
-            </FormGroup>
-            <Button size="sm">Submit Comment</Button>
-          </Form>
+          <div className ="container">
+            <AddComment />
+          </div>
+
         </div>
       </div>
     );
@@ -207,3 +197,5 @@ class PostContent extends Component {
 }
 
 export default BlogIndividualPost;
+
+

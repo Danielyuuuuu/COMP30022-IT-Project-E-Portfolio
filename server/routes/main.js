@@ -6,11 +6,13 @@ const router = express.Router();
 
 const bookRouter = require("./book");
 const uploadRouter = require("./upload");
+
+const paypalRouter = require("./paypal");
 const userRouter = require("./user");
 const storeRouter = require("./store");
 
+const commentRouter = require("./comments");
 const blogRouter = require("./blog");
-
 
 // demo
 router.use("/books", bookRouter);
@@ -20,6 +22,8 @@ router.use("/user", userRouter);
 
 // Uplaod route
 router.use("/uploadManage", uploadRouter);
+router.use("/paypal", paypalRouter);
+router.use("/comments",commentRouter);
 
 // Store route
 router.use("/store", storeRouter);
