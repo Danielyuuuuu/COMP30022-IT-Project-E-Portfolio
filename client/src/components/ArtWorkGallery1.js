@@ -180,8 +180,8 @@ class Tile extends React.Component {
 			};
 		} else {
 			tileStyle = {
-				width: '18vw',
-				height: '18vw'
+				maxWidth: '18vw',
+				//height: '18vw'
 			};
 		}
 

@@ -194,8 +194,8 @@ class Tile extends React.Component {
 		// When tile clicked
 		if (this.state.open) {
 			tileStyle = {
-				width: '62vw',
-				height: '62vw',
+				maxWidth: '62vw',
+				maxHeight: '62vw',
 				position: 'fixed',
 				top: '50%',
 				left: '50%',
