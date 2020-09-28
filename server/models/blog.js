@@ -5,22 +5,18 @@ const blogSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  text: {
+
+  content: {
     type: String,
     required: true,
   },
-  images: [
-    {
-      imagename: {
-        type: String,
-        required: true,
-      },
-      imageId: {
-        type: String,
-        required: true,
-      },
+  thumbnails: {
+    imagename: {
+      type: String,
+      required: true,
     },
-  ],
+  },
+
   upload_date: {
     type: Date,
     default: Date.now,

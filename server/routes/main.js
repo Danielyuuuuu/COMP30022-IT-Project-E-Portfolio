@@ -9,6 +9,9 @@ const uploadRouter = require("./upload");
 const userRouter = require("./user");
 const storeRouter = require("./store");
 
+const blogRouter = require("./blog");
+
+
 // demo
 router.use("/books", bookRouter);
 
@@ -20,5 +23,10 @@ router.use("/uploadManage", uploadRouter);
 
 // Store route
 router.use("/store", storeRouter);
+
+
+// Blog route
+router.use("/blog", blogRouter);
+
 
 module.exports = router;
