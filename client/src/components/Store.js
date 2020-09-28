@@ -76,7 +76,24 @@ const data = [{
 
 ];
 
+const url = "http://localhost:8000/api/store/image/";
+
 class Store extends Component{
+
+  constructor(props){
+		super(props); 
+
+		this.state = {
+			data: null,
+		};
+	}
+
+	componentDidMount() {
+		fetch('http://localhost:8000/api/store/')
+		  .then(response => response.json())
+		  .then(data => this.setState({ data: data.item}));
+  }
+  
   render(){
       return(
           <div>
@@ -87,7 +104,12 @@ class Store extends Component{
                   <StoreCategoryList />
                 </div>
                 <div className="store-items">
-                  <StoreItems data={data}/>
+                  {/* <StoreItems data={data}/> */}
+
+                  {this.state.data !== null &&
+                	<StoreItems data={this.state.data} />
+				          }
+
                 </div>
               </div>
               <Footer />
@@ -125,9 +147,9 @@ class Item extends Component{
   render(){
     return(
       <Card body className="store-itemCard">
-        <CardImg src={this.props.data.image} alt={this.props.data.name} />
+        <CardImg src={url + this.props.data.imagename} alt={this.props.data.name} />
         <br />
-    <CardTitle>{this.props.data.name}  </CardTitle>
+    <CardTitle>{this.props.data.itemname}  </CardTitle>
     <CardText>{this.props.data.description}</CardText>
     <CardTitle>${this.props.data.price}.00</CardTitle>
     
