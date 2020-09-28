@@ -4,7 +4,9 @@ import Person from "@material-ui/icons/Person";
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import BurstModeOutlinedIcon from '@material-ui/icons/BurstModeOutlined';
 import StoreMallDirectoryOutlinedIcon from '@material-ui/icons/StoreMallDirectoryOutlined';
+
 import CommentOutlinedIcon from '@material-ui/icons/CommentOutlined';
+
 import {
   Settings,
   PermMedia
@@ -17,6 +19,7 @@ import Setting from "./views/Setting/Setting"
 import Post from "./views/Post/Post"
 import Gallery from "./views/Gallery/Gallery"
 import Store from "./views/Store/Store"
+
 import Comments from "./views/Comments/Comments"
 
 const dashboardRoutes = [
@@ -48,7 +51,7 @@ const dashboardRoutes = [
     component: Post,
     layout: "/admin"
   },
-  
+
   {
     path: "/store",
     name: "Store",
@@ -64,6 +67,7 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
+
     path: "/user",
     name: "User Profile",
     icon: Person,

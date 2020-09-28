@@ -4,6 +4,7 @@ import NavbarTop from "./NavbarTop";
 import "../App.css";
 import AwgNavbar from "./AwgNavbar";
 
+const url = "http://localhost:8000/api/store/image/";
 
 //const app = document.getElementById('app');
 const data = [{
@@ -85,6 +86,21 @@ const data = [{
 ];
 
 class ArtWorkGallery extends React.Component{
+
+	constructor(props){
+		super(props); 
+
+		this.state = {
+			data: null,
+		};
+	}
+
+	componentDidMount() {
+		fetch('http://localhost:8000/api/store/')
+		  .then(response => response.json())
+		  .then(data => this.setState({ data: data.item }));
+	}
+
     render(){
         return(
             <div>
@@ -95,14 +111,15 @@ class ArtWorkGallery extends React.Component{
 				<div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
 					<AwgNavbar />
 				</div>
-				
-                <App data={data} />
+				{this.state.data !== null &&
+                	<PhotoGallery data={this.state.data} />
+				}
             </div>
         );
     }
 }
 
-class App extends React.Component {
+class PhotoGallery extends React.Component {
 	render() {
 		return (
             <div>
@@ -177,8 +194,8 @@ class Tile extends React.Component {
 		// When tile clicked
 		if (this.state.open) {
 			tileStyle = {
-				width: '62vw',
-				height: '62vw',
+				maxWidth: '62vw',
+				maxHeight: '62vw',
 				position: 'fixed',
 				top: '50%',
 				left: '50%',
@@ -190,8 +207,8 @@ class Tile extends React.Component {
 			};
 		} else {
 			tileStyle = {
-				width: '18vw',
-				height: '18vw'
+				maxWidth: '18vw',
+				maxHeight: '18vw'
 			};
 		}
 
@@ -201,8 +218,8 @@ class Tile extends React.Component {
 					onMouseEnter={this._mouseEnter}
 					onMouseLeave={this._mouseLeave}
 					onClick={this._clickHandler}
-					src={this.props.data.image}
-					alt={this.props.data.name}
+					src={url + this.props.data.imagename}
+					alt={this.props.data.itemname}
 					style={tileStyle}
 				/>
 			</div>
@@ -211,7 +228,7 @@ class Tile extends React.Component {
 }
 
 export default ArtWorkGallery;
-export {App, Tiles, Tile};
+export {PhotoGallery, Tiles, Tile};
 
 /*
 ReactDOM.render(

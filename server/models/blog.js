@@ -5,6 +5,7 @@ const blogSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+
   content: {
     type: String,
     required: true,
@@ -15,6 +16,7 @@ const blogSchema = mongoose.Schema({
       required: true,
     },
   },
+
   upload_date: {
     type: Date,
     default: Date.now,
