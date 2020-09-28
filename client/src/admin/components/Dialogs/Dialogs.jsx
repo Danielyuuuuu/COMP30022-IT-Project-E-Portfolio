@@ -9,6 +9,17 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -59,6 +70,7 @@ export default function CustomizedDialogs(props) {
     setOpen(false);
   };
 
+
   return (
     <div>
       <Button variant={props.variant} color={props.color} onClick={handleClickOpen}>
@@ -69,19 +81,40 @@ export default function CustomizedDialogs(props) {
             {props.mode+"  Item"}
         </DialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
-            in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis
-            lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel
-            scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus
-            auctor fringilla.
-          </Typography>
+            <Table aria-label="collapsible table">
+                <TableHead>
+                <TableRow>
+                    <TableCell>
+                        <TextField required id="standard-required" label="Item Name" defaultValue="None" />
+                    </TableCell>
+                    <TableCell>
+                        <TextField required id="standard-required" label="Stock" defaultValue={0} />
+                    </TableCell>
+                    <TableCell>
+                        <TextField required id="standard-required" label="Price" defaultValue={0} />
+                    </TableCell>
+                    <TableCell>
+                        <TextField required id="standard-required" label="Like" defaultValue={0} />
+                    </TableCell>
+                    
+                </TableRow>
+                </TableHead>
+            </Table>
+            <Table>
+                <TableHead>
+                    <TableCell>
+                        <TextField required id="standard-required" label="Image Url" defaultValue="https//a.b.c" />
+                    </TableCell>
+                    <TextField
+                        id="outlined-multiline-static"
+                        label="Description"
+                        multiline
+                        rows={4}
+                        
+                        variant="outlined"
+                    />
+                </TableHead>
+            </Table>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleClose} color="primary">

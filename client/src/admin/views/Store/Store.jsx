@@ -59,7 +59,7 @@ function Row(props) {
         <TableCell align="right">{row.Price}</TableCell>
         <TableCell align="right">
             {/* {row.Options}  */}
-            <Dialogs mode={"Edit"}></Dialogs>
+            <Dialogs mode={"Edit"} variant="contained" color="primary"></Dialogs>
         </TableCell>
       </TableRow>
       <TableRow>
