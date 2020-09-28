@@ -50,19 +50,27 @@ const StoreItems = (props) => {
 
 const data = [{
 	id: 2,
-	name: "Forest",
-	image: "https://images.unsplash.com/photo-1468851508491-4f854ec88aa0?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=900&h=900&fit=crop&s=b1222b6a1d3694cac76d2a23c3a02254"
+  name: "Forest",
+  price: "3",
+  description: "Amazing!!!",
+  image: "https://images.unsplash.com/photo-1468851508491-4f854ec88aa0?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=900&h=900&fit=crop&s=b1222b6a1d3694cac76d2a23c3a02254"
 }, {
-	id: 4,
+  id: 4,
+  price: "4",
+  description: "Amazing!!!",
 	name: "Mountain",
 	image: "https://images.unsplash.com/photo-1467890947394-8171244e5410?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=980&h=980&fit=crop&s=9396f0adf263b51b44626228225684d0"
 }, {
 	id: 5,
-	name: "Boat",
+  name: "Boat",
+  price: "35",
+  description: "Amazing!!!",
 	image: "https://images.unsplash.com/photo-1443302382600-0bfacc473376?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=980&h=980&fit=crop&s=0c0f26518c1001f67b6c2e4480a8d3e0"
 }, {
 	id: 6,
-	name: "Flowers",
+  name: "Flowers",
+  price: "6",
+  description: "Amazing!!!",
 	image: "https://images.unsplash.com/photo-1429091443922-e7d9ae79a837?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=900&h=900&fit=crop&s=e81cb6a60c53788559edb9bec21b80fc"
 }
 
@@ -118,8 +126,11 @@ class Item extends Component{
     return(
       <Card body className="store-itemCard">
         <CardImg src={this.props.data.image} alt={this.props.data.name} />
-          <CardTitle>Photography  $3.00</CardTitle>
-          <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
+        <br />
+    <CardTitle>{this.props.data.name}  </CardTitle>
+    <CardText>{this.props.data.description}</CardText>
+    <CardTitle>${this.props.data.price}.00</CardTitle>
+    
           <Button>Buy now</Button>
         </Card>
     );
