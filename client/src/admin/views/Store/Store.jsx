@@ -136,7 +136,7 @@ export default function Store() {
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell><Button variant="contained" color="secondary">New Item</Button></TableCell>
+            <TableCell><Dialogs mode={"New"} variant="contained" color="Secondary"></Dialogs></TableCell>
             <TableCell>Item </TableCell>
             <TableCell align="right">Stock</TableCell>
             <TableCell align="right">Price</TableCell>
