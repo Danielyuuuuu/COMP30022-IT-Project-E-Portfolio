@@ -59,7 +59,7 @@ app.use(bodyParser.json());
 app.use(methodOverride("_method"));
 
 // Setup routes
-app.use("/", router);
+app.use("/api", router);
 
 // server static assets if in production
 const build = path.join(__dirname, "../client/build/");

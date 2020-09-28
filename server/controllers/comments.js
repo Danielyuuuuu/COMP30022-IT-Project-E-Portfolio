@@ -1,47 +1,66 @@
-const Comment = require('../models/comments');
+const Comments = require('../models/comments');
 
 
 const getComments = async(req,res) => {
-    Comment.find()
-        .populate('user')
+    Comments.find()
+        .populate('blog')
         .sort({'createdAt':-1})
         .then(comments => res.json(comments))
         .catch(err => res.status(400).json('Error' + err));
 };
 
+const getBlogComments = async(req,res) =>{
+    await Comments
+    .find({blog: req.blog._id})
+    .sort({'createdAt':-1})
+    .then(comments => res.status(200).json({
+        success: true,
+        item: comments,
+    }))
+    .catch(err => res.status(400).json('Error' + err));
+};
+
+const getSingleComment = async(req,res)=>{
+    Comments.findById(req.params.id)
+    .then(comment => res.json(comment))
+    .catch(err => res.status(404).json({ nobookfound: "No comment found" }))
+};
+
 const addComment = async (req,res) => {
 
     console.log(req.user);
-    const comment = new Comment({
-
-        user : req.user._id,
-        content : req.body.content
-
+    const comment = new Comments({
+        blog : req.blog._id,
+        publisher: req.body.publisher,
+        content : req.body.content,
     });
     try {
-        const savedComment = await comment.save();
-        const savedCommentWithUserData = await Comment.findById(savedComment._id).populate('user');
-        res.send(savedCommentWithUserData); 
+        const savedComment = await comment.save()
+        .then((comm) => {
+            res.status(200).json({
+              success: true,
+              comm,
+            });
+          })
+          .catch((err) => res.status(400).json(err));
     }catch(err){
         res.status(400).send(err);
     }
 };
 
+const deleteComment = async(req,res) => {
+    Comments.findByIdAndDelete({_id: req.params.id})
+    .then(comment => res.json({mgs:"comment have been deleted successfully"}))
+    .catch(err => res.status(404).json({error :"no such comment"}))
+}
 
-const putComment = async (req,res) => {
-    
-    console.log(req.user);
-    try {
-        await Comment.findByIdAndUpdate(req.body._id, { upvotes : req.body.upvotes, downvotes: req.body.downvotes });
-        res.send({ "success": true });
-    }catch(err){
-        res.status(400).send(err);
-    }
-};
+
 
 
 module.exports = {
     getComments,
+    getBlogComments,
+    getSingleComment,
     addComment,
-    putComment,
+    deleteComment,
 }

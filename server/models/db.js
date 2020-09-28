@@ -75,7 +75,7 @@ require("./item");
 require("./User");
 require("./artwork");
 require("./blog");
-require("./comment");
+require("./comments");
 
 
 

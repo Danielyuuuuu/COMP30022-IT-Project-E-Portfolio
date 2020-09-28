@@ -1,9 +1,25 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var Schema = mongoose.Schema,
-ObjectId = Schema.ObjectId;
-var Comments = new Schema({
-comment :String,    
-postId :String
+const CommentSchema =  mongoose.Schema({
+    blog: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "blog",
+    },
+    publisher: { 
+        type: String,
+        required: true,
+    },
+    content: { 
+        type: String, 
+        required: true, 
+        trim: true,
+    },
+    favours: { 
+        type: Number, 
+        default: 0,
+    },
 });
-module.exports = mongoose.model('Comments', Comments);
+
+const Comment = mongoose.model('Comment', CommentSchema);
+
+module.exports = Comment;

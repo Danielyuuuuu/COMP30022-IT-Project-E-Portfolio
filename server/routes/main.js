@@ -20,7 +20,7 @@ router.use("/user", userRouter);
 // Uplaod route
 router.use("/uploadManage", uploadRouter);
 router.use("/paypal", paypalRouter);
-router.use("/comment",commentRouter);
+router.use("/comments",commentRouter);
 
 // Store route
 router.use("/store", storeRouter);

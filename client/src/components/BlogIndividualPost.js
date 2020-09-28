@@ -20,6 +20,9 @@ import {
 } from "reactstrap";
 import { Comment, Icon, Header } from "semantic-ui-react";
 
+
+
+
 class BlogIndividualPost extends Component {
   render() {
     return (
