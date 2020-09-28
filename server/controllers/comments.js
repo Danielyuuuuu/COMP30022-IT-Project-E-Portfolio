@@ -3,15 +3,17 @@ const Comments = require('../models/comments');
 
 const getComments = async(req,res) => {
     Comments.find()
-        .populate('blog')
+        .populate('blogId')
         .sort({'createdAt':-1})
         .then(comments => res.json(comments))
         .catch(err => res.status(400).json('Error' + err));
 };
 
+
 const getBlogComments = async(req,res) =>{
+    console.log(req.params.id);
     await Comments
-    .find({blog: req.blog._id})
+    .find({blog: req.params.id})
     .sort({'createdAt':-1})
     .then(comments => res.status(200).json({
         success: true,
@@ -21,19 +23,21 @@ const getBlogComments = async(req,res) =>{
 };
 
 const getSingleComment = async(req,res)=>{
-    Comments.findById(req.params.id)
+    console.log(req.params.id);
+    Comments.findById(req.params.id)    
     .then(comment => res.json(comment))
     .catch(err => res.status(404).json({ nobookfound: "No comment found" }))
 };
 
 const addComment = async (req,res) => {
 
-    console.log(req.user);
+    //console.log(req.body);
     const comment = new Comments({
-        blog : req.blog._id,
+        blog : req.body.blogId,
         publisher: req.body.publisher,
         content : req.body.content,
     });
+    console.log(comment);
     try {
         const savedComment = await comment.save()
         .then((comm) => {
