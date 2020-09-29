@@ -13,7 +13,8 @@ storeRouter.get("/", storeController.getItems);
 // @route       POST store/
 // @description add a new store item
 // @access      Private
-storeRouter.post("/", upload.single("file"), storeController.addItem);
+// storeRouter.post("/", upload.single("file"), storeController.addItem);
+storeRouter.post("/", storeController.addItem);
 
 // @route       GET store/filter
 // @description get specific store items with matching categories
@@ -22,7 +23,7 @@ storeRouter.post("/filter", storeController.getSpecificItems);
 
 // @route       Delete store/delete/:id
 // @description given the item._id,
-//              delete a store item and the correspond gridfs file(image)
+//              delete a store item entry (image remains in Media)
 // @access      Private
 storeRouter.delete("/delete/:id", storeController.deleteItem);
 
@@ -30,7 +31,17 @@ storeRouter.delete("/delete/:id", storeController.deleteItem);
 // @description given the item.imageid (filename in storeitems.files),
 //              fetch a particular image and render on browser
 // @access      Public
-storeRouter.get("/image/:filename", storeController.renderImg);
+// storeRouter.get("/image/:filename", storeController.renderImg);
+
+// @route       POST store/update/stocks
+// @description update the stocks count of an item **after checkout**
+// @access      Private
+storeRouter.post("/update/stocks", storeController.updateStocks);
+
+// @route       POST store/update/stocks
+// @description update the stocks count of items **after checkout**
+// @access      Private
+storeRouter.post("/update/multistocks", storeController.updateMultiStocks);
 
 // @route       PUT store/update/:id
 // @description given the item._id,
