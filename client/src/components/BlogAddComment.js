@@ -1,25 +1,8 @@
 import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
 import "../App.css";
-import Footer from "./Footer";
-import {
-  Card,
-  Button,
-  CardImg,
-  CardTitle,
-  CardText,
-  CardGroup,
-  CardSubtitle,
-  CardBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Media,
-} from "reactstrap";
-import { Comment, Icon, Header } from "semantic-ui-react";
+import { Button, Form, FormGroup, Input } from "reactstrap";
 import axios from "axios";
+import ErrorNotice from "../misc/ErrorNotice";
 
 export default class addComment extends Component {
   constructor(props) {
@@ -42,6 +25,7 @@ export default class addComment extends Component {
         "https://react.semantic-ui.com/images/avatar/small/steve.jpg",
         "https://react.semantic-ui.com/images/avatar/small/christian.jpg",
       ],
+      error: "",
     };
   }
 
@@ -75,12 +59,25 @@ export default class addComment extends Component {
           publisher: "",
         });
         window.location.reload(false);
+      })
+      .catch((err) => {
+        this.setState({ error: err.response.data.msg });
       });
   }
+
+  setError = (e) => {
+    this.setState({ error: e });
+  };
 
   render() {
     return (
       <div>
+        {this.state.error && (
+          <ErrorNotice
+            message={this.state.error}
+            clearError={() => this.setError(undefined)}
+          />
+        )}
         <Form style={{ marginTop: 20 }}>
           <FormGroup>
             <Input

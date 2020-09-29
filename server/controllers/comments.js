@@ -27,13 +27,16 @@ const getSingleComment = async (req, res) => {
 };
 
 const addComment = async (req, res) => {
-  const comment = new Comments({
-    blog: req.body.blogId,
-    publisher: req.body.publisher,
-    content: req.body.content,
-    profilePhoto: req.body.profilePhoto,
-  });
   try {
+    if (!req.body.publisher || !req.body.content) {
+      return res.status(400).json({ msg: "Need to fill in all fields" });
+    }
+    const comment = new Comments({
+      blog: req.body.blogId,
+      publisher: req.body.publisher,
+      content: req.body.content,
+      profilePhoto: req.body.profilePhoto,
+    });
     const savedComment = await comment
       .save()
       .then((comm) => {

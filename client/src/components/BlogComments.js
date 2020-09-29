@@ -98,15 +98,13 @@ class LikeButton extends Component {
         id: this.props.id,
         likes: this.props.likes,
       };
-      console.log("Before Axios");
       Axios.post(
         "http://localhost:8000/api/comments/addLike",
         commentReq
       ).catch((err) => {
-        console.log(Error);
+        console.log(err);
       });
       window.location.reload(false);
-      console.log("After Axios");
     }
     this.setState({ clicked: !this.state.clicked });
   };
