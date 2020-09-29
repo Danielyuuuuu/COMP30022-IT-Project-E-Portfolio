@@ -9,7 +9,6 @@ const getComments = async (req, res) => {
 };
 
 const getBlogComments = async (req, res) => {
-  console.log(req.params.id);
   await Comments.find({ blog: req.params.id })
     .sort({ createdAt: -1 })
     .then((comments) =>
@@ -22,20 +21,18 @@ const getBlogComments = async (req, res) => {
 };
 
 const getSingleComment = async (req, res) => {
-  console.log(req.params.id);
   Comments.findById(req.params.id)
     .then((comment) => res.json(comment))
     .catch((err) => res.status(404).json({ nobookfound: "No comment found" }));
 };
 
 const addComment = async (req, res) => {
-  //console.log(req.body);
   const comment = new Comments({
     blog: req.body.blogId,
     publisher: req.body.publisher,
     content: req.body.content,
+    profilePhoto: req.body.profilePhoto,
   });
-  console.log(comment);
   try {
     const savedComment = await comment
       .save()

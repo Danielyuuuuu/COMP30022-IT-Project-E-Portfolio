@@ -20,7 +20,6 @@ import {
 } from "reactstrap";
 import { Comment, Icon, Header } from "semantic-ui-react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 
 export default class addComment extends Component {
   constructor(props) {
@@ -34,6 +33,15 @@ export default class addComment extends Component {
       content: "",
       publisher: "",
       blogId: "5f71c425ec797250a88b4701",
+      profilePhotos: [
+        "https://react.semantic-ui.com/images/avatar/small/matt.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/jenny.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/joe.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/stevie.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/steve.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/christian.jpg",
+      ],
     };
   }
 
@@ -51,12 +59,14 @@ export default class addComment extends Component {
   submitComment(e) {
     e.preventDefault();
     const comment = {
-      content: this.state.content,
-      publisher: this.state.publisher,
       blogId: this.state.blogId,
+      publisher: this.state.publisher,
+      content: this.state.content,
+      profilePhoto: this.state.profilePhotos[
+        Math.floor(Math.random() * this.state.profilePhotos.length)
+      ],
     };
     console.log("Submit success ");
-    console.log(e);
     axios
       .post("http://localhost:8000/api/comments/add", comment)
       .then((res) => {

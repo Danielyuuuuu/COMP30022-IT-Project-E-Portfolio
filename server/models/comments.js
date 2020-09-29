@@ -18,7 +18,7 @@ const CommentSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
-  photo: {
+  profilePhoto: {
     type: String,
     default: "https://react.semantic-ui.com/images/avatar/small/joe.jpg",
   },

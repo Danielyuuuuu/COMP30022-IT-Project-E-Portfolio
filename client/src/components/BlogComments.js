@@ -35,10 +35,7 @@ export default class BlogComments extends Component {
             return (
               <div className="flexDisplay">
                 <Comment>
-                  <Comment.Avatar
-                    as="a"
-                    src="https://react.semantic-ui.com/images/avatar/small/joe.jpg"
-                  />
+                  <Comment.Avatar as="a" src={comment.profilePhoto} />
                   <Comment.Content>
                     <Comment.Author>{comment.publisher}</Comment.Author>
                     <Comment.Metadata>
@@ -46,7 +43,7 @@ export default class BlogComments extends Component {
                       <div>
                         <LikeButton id={comment._id} />
                       </div>
-                      <div>5 Faves</div>
+                      <div>{comment.favours} Faves</div>
                     </Comment.Metadata>
                     <Comment.Text>{comment.content}</Comment.Text>
                   </Comment.Content>
