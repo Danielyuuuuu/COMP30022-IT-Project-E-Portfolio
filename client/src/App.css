@@ -345,8 +345,8 @@ body {
   background-color: white;
   color: black;
   border: 1px solid white;
-  height: 40px;
-  width: 40px;
+  /* height: 40px;
+  width: 40px; */
 }
 
 .deleteButton:hover {

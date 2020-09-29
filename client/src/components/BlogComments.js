@@ -9,6 +9,7 @@ export default class BlogComments extends Component {
     this.state = {
       comments: [],
       success: false,
+      token: localStorage.getItem("auth-token"),
     };
   }
 
@@ -49,17 +50,23 @@ export default class BlogComments extends Component {
                         <LikeButton id={comment._id} likes={comment.favours} />
                       </div>
                       <div>{comment.favours} Faves</div>
+                      {this.state.token ? (
+                        <div>
+                          {/* <p>&nbsp; &nbsp;</p> */}
+                          <button
+                            className="deleteButton"
+                            onClick={() => this.handleDelete(comment._id)}
+                          >
+                            <i className="fas fa-times"></i>
+                          </button>{" "}
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
                     </Comment.Metadata>
                     <Comment.Text>{comment.content}</Comment.Text>
                   </Comment.Content>
                 </Comment>
-                <p>&nbsp; &nbsp;</p>
-                <button
-                  className="deleteButton"
-                  onClick={() => this.handleDelete(comment._id)}
-                >
-                  <i className="fas fa-times"></i>
-                </button>
               </div>
             );
           })}
