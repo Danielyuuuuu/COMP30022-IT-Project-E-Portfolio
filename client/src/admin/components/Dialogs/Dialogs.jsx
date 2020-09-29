@@ -28,6 +28,10 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import Axios from "axios";
 
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
+
+import { useHistory } from 'react-router-dom';
+
+
 const categories = ["graphic", "photography", "painting"];
 
 const styles = (theme) => ({
@@ -111,7 +115,8 @@ export default function DialogsOfStore(props) {
   };
 
  
-
+  const history = useHistory();
+  
   const handleSubmit = () => {
     console.log("before post......");
     const data = {
@@ -141,6 +146,7 @@ export default function DialogsOfStore(props) {
     }
 
     setOpen(false);
+    history.go(0);
   };
 
 
