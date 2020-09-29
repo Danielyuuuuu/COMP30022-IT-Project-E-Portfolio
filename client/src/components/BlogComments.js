@@ -31,7 +31,7 @@ export default class BlogComments extends Component {
     return (
       <div>
         <Comment.Group>
-          {this.state.comments.map((comment, index) => {
+          {this.state.comments.map((comment) => {
             return (
               <div className="flexDisplay">
                 <Comment>
@@ -54,7 +54,7 @@ export default class BlogComments extends Component {
                 <p>&nbsp; &nbsp;</p>
                 <button
                   className="deleteButton"
-                  onClick={() => this.handleDelete(index)}
+                  onClick={() => this.handleDelete(comment._id)}
                 >
                   <i className="fas fa-times"></i>
                 </button>
