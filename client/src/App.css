@@ -348,3 +348,15 @@ body {
   height: 40px;
   width: 40px;
 }
+
+.deleteButton:hover {
+  color: red;
+}
+
+.deleteButton:active {
+  color: green;
+}
+
+.likeButton {
+  cursor: pointer;
+}

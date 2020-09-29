@@ -82,7 +82,7 @@ class LikeButton extends Component {
 
   render() {
     return (
-      <div onClick={this.handleClick}>
+      <div onClick={this.handleClick} className="likeButton">
         <i className={this.state.clicked ? "fas fa-heart" : "far fa-heart"}></i>
       </div>
     );
