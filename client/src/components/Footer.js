@@ -4,11 +4,11 @@ import "../App.css";
 const Footer = () => (
   <div
     className="footer"
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-    }}
+    // style={{
+    //   display: "flex",
+    //   justifyContent: "center",
+    //   alignItems: "center",
+    // }}
   >
     <p>This is our footer&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
     <p>
