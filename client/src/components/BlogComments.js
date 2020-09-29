@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
-import { Comment, Icon, Header } from "semantic-ui-react";
-import axios from "axios";
+import { Comment } from "semantic-ui-react";
 
 export default class BlogComments extends Component {
   constructor(props) {
