@@ -182,7 +182,7 @@ p {
 .posts {
   margin-top: 70px;
   height: 70%;
-  width: 700px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -218,7 +218,7 @@ p {
 }
 
 .aboutMe {
-  width: 70%;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -321,7 +321,7 @@ body {
 }
 
 .postContent {
-  width: 700px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
