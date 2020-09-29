@@ -56,10 +56,25 @@ const deleteComment = async (req, res) => {
     .catch((err) => res.status(404).json({ error: "no such comment" }));
 };
 
+const postAddLike = async (req, res) => {
+  Comments.findByIdAndUpdate(
+    { _id: req.body.id },
+    { favours: req.body.likes + 1 },
+    function (err, result) {
+      if (err) {
+        return res.send(err);
+      } else {
+        return res.status(200);
+      }
+    }
+  );
+};
+
 module.exports = {
   getComments,
   getBlogComments,
   getSingleComment,
   addComment,
   deleteComment,
+  postAddLike,
 };

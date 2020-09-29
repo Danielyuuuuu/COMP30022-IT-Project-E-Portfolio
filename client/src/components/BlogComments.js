@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 import { Comment } from "semantic-ui-react";
+import Axios from "axios";
 
 export default class BlogComments extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class BlogComments extends Component {
                     <Comment.Metadata>
                       <div>{comment.date.slice(0, 10)}</div>
                       <div>
-                        <LikeButton id={comment._id} />
+                        <LikeButton id={comment._id} likes={comment.favours} />
                       </div>
                       <div>{comment.favours} Faves</div>
                     </Comment.Metadata>
@@ -77,9 +78,19 @@ class LikeButton extends Component {
     if (this.state.clicked) {
       console.log("un-liked");
       console.log(this.props.id);
+      console.log(this.props.likes);
     } else {
       console.log("liked");
       console.log(this.props.id);
+      console.log(this.props.likes);
+      const commentReq = {
+        id: this.props.id,
+        likes: this.props.likes,
+      };
+      console.log("Before Axios");
+      Axios.post("http://localhost:8000/api/comments/addLike", commentReq);
+      window.location.reload(false);
+      console.log("After Axios");
     }
     this.setState({ clicked: !this.state.clicked });
   };
