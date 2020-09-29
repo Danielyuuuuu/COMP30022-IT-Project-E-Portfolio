@@ -42,6 +42,7 @@ export default class BlogComments extends Component {
                     <div>
                       <LikeButton />
                     </div>
+                    <div>5 Faves</div>
                   </Comment.Metadata>
                   <Comment.Text>{comment.content}</Comment.Text>
                 </Comment.Content>
@@ -62,19 +63,15 @@ class LikeButton extends Component {
       clicked: false,
     };
   }
+
   handleClick = () => {
     this.setState({ clicked: !this.state.clicked });
   };
 
   render() {
     return (
-      <div className="flexDisplay">
-        <div onClick={this.handleClick}>
-          <i
-            className={this.state.clicked ? "fas fa-heart" : "far fa-heart"}
-          ></i>
-        </div>
-        <div>&nbsp; 5 Faves</div>
+      <div onClick={this.handleClick}>
+        <i className={this.state.clicked ? "fas fa-heart" : "far fa-heart"}></i>
       </div>
     );
   }
