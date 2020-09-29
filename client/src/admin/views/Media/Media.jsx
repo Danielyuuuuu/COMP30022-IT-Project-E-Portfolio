@@ -150,7 +150,10 @@ export default function SpacingGrid() {
 
   const handleRemoveItem = (filename) => {
     setImages(images.filter(image => image.filename !== filename));
-  }
+    axios
+      .delete(`http://localhost:8000/api/uploadManage/files/${filename}`)
+      .then((res) => console.log(res));
+  };
   
 
     useEffect(() => {
