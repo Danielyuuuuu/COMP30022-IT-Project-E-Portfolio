@@ -23,15 +23,15 @@ export default class BlogComments extends Component {
     console.log("After axios");
   }
 
-  handleDelete = () => {
-    console.log("Comment deleted");
+  handleDelete = (e) => {
+    console.log("Comment deleted: " + e);
   };
 
   render() {
     return (
       <div>
         <Comment.Group>
-          {this.state.comments.map((comment) => {
+          {this.state.comments.map((comment, index) => {
             return (
               <div className="flexDisplay">
                 <Comment>
@@ -52,8 +52,11 @@ export default class BlogComments extends Component {
                   </Comment.Content>
                 </Comment>
                 <p>&nbsp; &nbsp;</p>
-                <button className="deleteButton" onClick={this.handleDelete}>
-                  <i class="fas fa-times"></i>
+                <button
+                  className="deleteButton"
+                  onClick={() => this.handleDelete(index)}
+                >
+                  <i className="fas fa-times"></i>
                 </button>
               </div>
             );
