@@ -71,22 +71,20 @@ const deleteArtwork = async (req, res) => {
   Artwork.findOne({ _id: req.params.id })
     .then((artwork) => {
       if (artwork) {
-        // delete the ware in item model
         Artwork.deleteOne({ _id: req.params.id })
           .then(() => {
-            // return res.status(200).json({
-            //   success: true,
-            //   message: `Item with ID: ${req.params.id} deleted`,
-            // });
+            return res.status(200).json({
+              success: true,
+              message: `Artwork with ID: ${req.params.id} deleted`
+            });
           })
           .catch((err) => {
             return res.status(400).json(err);
           });
-
-          res.status(200).json({
-            success: true,
-            message: `Artwork with ID ${req.params.id} is deleted`
-          });
+      } else {
+        res.status(400).json({
+          success: false,
+          message: "Artwork not found"
         });
       }
     })
