@@ -44,7 +44,7 @@ export default class BlogComments extends Component {
                     <Comment.Metadata>
                       <div>{comment.date.slice(0, 10)}</div>
                       <div>
-                        <LikeButton />
+                        <LikeButton id={comment._id} />
                       </div>
                       <div>5 Faves</div>
                     </Comment.Metadata>
@@ -77,12 +77,19 @@ class LikeButton extends Component {
   }
 
   handleClick = () => {
+    if (this.state.clicked) {
+      console.log("un-liked");
+      console.log(this.props.id);
+    } else {
+      console.log("liked");
+      console.log(this.props.id);
+    }
     this.setState({ clicked: !this.state.clicked });
   };
 
   render() {
     return (
-      <div onClick={this.handleClick} className="likeButton">
+      <div onClick={() => this.handleClick()} className="likeButton">
         <i className={this.state.clicked ? "fas fa-heart" : "far fa-heart"}></i>
       </div>
     );
