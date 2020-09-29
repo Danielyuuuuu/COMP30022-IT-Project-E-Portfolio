@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
-
+import { Comment, Icon, Header } from "semantic-ui-react";
 import axios from "axios";
 
 export default class BlogComments extends Component {
@@ -25,6 +25,31 @@ export default class BlogComments extends Component {
   }
 
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <Comment.Group>
+          {this.state.comments.map((comment) => {
+            return (
+              <Comment>
+                <Comment.Avatar
+                  as="a"
+                  src="https://react.semantic-ui.com/images/avatar/small/joe.jpg"
+                />
+                <Comment.Content>
+                  <Comment.Author>{comment.publisher}</Comment.Author>
+                  <Comment.Metadata>
+                    <div>{comment.date}</div>
+                    <div>
+                      <Icon name="star" />5 Faves
+                    </div>
+                  </Comment.Metadata>
+                  <Comment.Text>{comment.content}</Comment.Text>
+                </Comment.Content>
+              </Comment>
+            );
+          })}
+        </Comment.Group>
+      </div>
+    );
   }
 }
