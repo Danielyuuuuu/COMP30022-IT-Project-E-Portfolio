@@ -184,24 +184,6 @@ export default function SpacingGrid() {
                 <Paper elevation={0} className={classes.paper}>
                     <h3>Media</h3>
                     <GridList cellHeight={180} className={classes.gridList} cols={3}>
-                      {/*{images.map((rule, index) -> {*/}
-                      {/*  <GridListTile>*/}
-                      {/*    <img src={"http://localhost:8000/api/uploadManage/image/"+rule.filename} />*/}
-                      {/*    <GridListTileBar*/}
-                      {/*      actionIcon={*/}
-                      {/*        <div>*/}
-                      {/*          <IconButton className={classes.icon} onClick={() => {navigator.clipboard.writeText("http://localhost:8000/api/uploadManage/image/"+rule.filename)}}>*/}
-                      {/*            <FileCopyOutlinedIcon onClick={handleCopyClick}/>*/}
-                      {/*          </IconButton>*/}
-                      {/*          <IconButton className={classes.icon} onClick={() => {axios.delete("http://localhost:8000/api/uploadManage/files/"+tile._id);history.go(0);}}>*/}
-                      {/*            <HighlightOffOutlinedIcon/>*/}
-                      {/*          </IconButton>*/}
-                      {/*        </div>*/}
-                      {/*      }*/}
-                      {/*    />*/}
-                      {/*  </GridListTile>*/}
-                      {/*})}*/}
-
                         {images.map((tile) => (
                         <GridListTile>
                             <img src={"http://localhost:8000/api/uploadManage/image/"+tile.filename} />
