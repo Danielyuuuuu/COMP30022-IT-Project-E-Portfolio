@@ -149,14 +149,16 @@ p {
   /*max-width: 500px;*/
 }
 
-.store > .store-items > div {
+/* .store > .store-items > div { */
+.store-items-flexible {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   justify-content: space-evenly;
 }
 
-.store > .store-items > div > .card {
+/* .store > .store-items > div > .card { */
+.store-itemCard {
   max-width: 300px;
   margin-bottom: 4rem;
 }
