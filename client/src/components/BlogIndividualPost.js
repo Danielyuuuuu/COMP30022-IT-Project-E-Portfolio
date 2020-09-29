@@ -20,10 +20,9 @@ import {
 } from "reactstrap";
 import { Comment, Icon, Header } from "semantic-ui-react";
 
-import AddComment from './BlogAddComment' ;
+import AddComment from "./BlogAddComment";
 
-
-
+import BlogComments from "./BlogComments";
 
 class BlogIndividualPost extends Component {
   render() {
@@ -186,16 +185,14 @@ class PostContent extends Component {
               </Comment.Content>
             </Comment>
           </Comment.Group>
-          <div className ="container">
+          <div className="container">
             <AddComment />
           </div>
-
         </div>
+        <BlogComments />
       </div>
     );
   }
 }
 
 export default BlogIndividualPost;
-
-
