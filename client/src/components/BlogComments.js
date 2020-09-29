@@ -1,44 +1,31 @@
 import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
 import "../App.css";
-import Footer from "./Footer";
-import {
-  Card,
-  Button,
-  CardImg,
-  CardTitle,
-  CardText,
-  CardGroup,
-  CardSubtitle,
-  CardBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Media,
-} from "reactstrap";
-import { Comment, Icon, Header } from "semantic-ui-react";
+
 import axios from "axios";
 
 export default class BlogComments extends Component {
   constructor(props) {
     super(props);
-    this.getComments = this.getComments.bind(this);
     this.state = {
       comments: [],
       success: false,
     };
   }
 
-  getComments() {
+  componentDidMount() {
     console.log("Before axios");
-    axios
-      .get("http://localhost:8000/api/comments/blog/5f703c3b07005138f07a2107")
+    fetch("http://localhost:8000/api/comments/blog/5f71c425ec797250a88b4701")
+      .then((response) => response.json())
       .then((res) => {
-        this.setState({ success: res.success });
+        this.setState({ comments: res });
+        this.setState({ success: res });
       });
-    console.log(this.comments);
+    console.log(this.state.comments);
+    console.log(this.state.success);
     console.log("After axios");
+  }
+
+  render() {
+    return <div></div>;
   }
 }
