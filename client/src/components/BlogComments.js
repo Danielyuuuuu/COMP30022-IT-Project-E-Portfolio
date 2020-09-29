@@ -26,6 +26,10 @@ export default class BlogComments extends Component {
 
   handleDelete = (e) => {
     console.log("Comment deleted: " + e);
+    Axios.delete("http://localhost:8000/api/comments/" + e).catch((err) => {
+      console.log(Error);
+    });
+    window.location.reload(false);
   };
 
   render() {
@@ -88,7 +92,12 @@ class LikeButton extends Component {
         likes: this.props.likes,
       };
       console.log("Before Axios");
-      Axios.post("http://localhost:8000/api/comments/addLike", commentReq);
+      Axios.post(
+        "http://localhost:8000/api/comments/addLike",
+        commentReq
+      ).catch((err) => {
+        console.log(Error);
+      });
       window.location.reload(false);
       console.log("After Axios");
     }
