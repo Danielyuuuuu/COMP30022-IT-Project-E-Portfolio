@@ -38,9 +38,9 @@ export default class BlogComments extends Component {
                 <Comment.Content>
                   <Comment.Author>{comment.publisher}</Comment.Author>
                   <Comment.Metadata>
-                    <div>{comment.date}</div>
+                    <div>{comment.date.slice(0, 10)}</div>
                     <div>
-                      <Icon name="star" />5 Faves
+                      <LikeButton />
                     </div>
                   </Comment.Metadata>
                   <Comment.Text>{comment.content}</Comment.Text>
@@ -49,6 +49,32 @@ export default class BlogComments extends Component {
             );
           })}
         </Comment.Group>
+      </div>
+    );
+  }
+}
+
+class LikeButton extends Component {
+  constructor(props) {
+    super();
+
+    this.state = {
+      clicked: false,
+    };
+  }
+  handleClick = () => {
+    this.setState({ clicked: !this.state.clicked });
+  };
+
+  render() {
+    return (
+      <div className="flexDisplay">
+        <div onClick={this.handleClick}>
+          <i
+            className={this.state.clicked ? "fas fa-heart" : "far fa-heart"}
+          ></i>
+        </div>
+        <div>&nbsp; 5 Faves</div>
       </div>
     );
   }
