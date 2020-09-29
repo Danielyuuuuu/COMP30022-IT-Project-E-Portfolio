@@ -76,7 +76,8 @@ const data = [{
 
 ];
 
-const url = "http://localhost:8000/api/store/image/";
+//const url = "http://localhost:8000/api/store/image/";
+const url = "http://localhost:8000/api/uploadManage/image/";
 
 class Store extends Component{
 
@@ -149,9 +150,9 @@ class Item extends Component{
       <Card body className="store-itemCard">
         <CardImg src={url + this.props.data.imagename} alt={this.props.data.name} />
         <br />
-    <CardTitle>{this.props.data.itemname}  </CardTitle>
-    <CardText>{this.props.data.description}</CardText>
-    <CardTitle>${this.props.data.price}.00</CardTitle>
+        <CardTitle>{this.props.data.itemname}  </CardTitle>
+        <CardText>{this.props.data.description}</CardText>
+        <CardTitle>${this.props.data.price}.00</CardTitle>
     
           <Button>Buy now</Button>
         </Card>
