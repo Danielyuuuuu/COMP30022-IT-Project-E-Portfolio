@@ -17,11 +17,10 @@ export default class BlogComments extends Component {
     fetch("http://localhost:8000/api/comments/blog/5f71c425ec797250a88b4701")
       .then((response) => response.json())
       .then((res) => {
-        this.setState({ comments: res });
-        this.setState({ success: res });
+        this.setState({ comments: res.item, success: res.success });
+        console.log(this.state.comments);
+        console.log(this.state.success);
       });
-    console.log(this.state.comments);
-    console.log(this.state.success);
     console.log("After axios");
   }
 
