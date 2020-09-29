@@ -23,29 +23,39 @@ export default class BlogComments extends Component {
     console.log("After axios");
   }
 
+  handleDelete = () => {
+    console.log("Comment deleted");
+  };
+
   render() {
     return (
       <div>
         <Comment.Group>
           {this.state.comments.map((comment) => {
             return (
-              <Comment>
-                <Comment.Avatar
-                  as="a"
-                  src="https://react.semantic-ui.com/images/avatar/small/joe.jpg"
-                />
-                <Comment.Content>
-                  <Comment.Author>{comment.publisher}</Comment.Author>
-                  <Comment.Metadata>
-                    <div>{comment.date.slice(0, 10)}</div>
-                    <div>
-                      <LikeButton />
-                    </div>
-                    <div>5 Faves</div>
-                  </Comment.Metadata>
-                  <Comment.Text>{comment.content}</Comment.Text>
-                </Comment.Content>
-              </Comment>
+              <div className="flexDisplay">
+                <Comment>
+                  <Comment.Avatar
+                    as="a"
+                    src="https://react.semantic-ui.com/images/avatar/small/joe.jpg"
+                  />
+                  <Comment.Content>
+                    <Comment.Author>{comment.publisher}</Comment.Author>
+                    <Comment.Metadata>
+                      <div>{comment.date.slice(0, 10)}</div>
+                      <div>
+                        <LikeButton />
+                      </div>
+                      <div>5 Faves</div>
+                    </Comment.Metadata>
+                    <Comment.Text>{comment.content}</Comment.Text>
+                  </Comment.Content>
+                </Comment>
+                <p>&nbsp; &nbsp;</p>
+                <button className="deleteButton" onClick={this.handleDelete}>
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
             );
           })}
         </Comment.Group>

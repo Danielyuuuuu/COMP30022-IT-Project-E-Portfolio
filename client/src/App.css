@@ -340,3 +340,11 @@ body {
 .flexDisplay {
   display: flex;
 }
+
+.deleteButton {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  height: 40px;
+  width: 40px;
+}
