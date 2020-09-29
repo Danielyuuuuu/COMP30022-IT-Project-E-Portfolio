@@ -9,12 +9,12 @@ import "../App.css";
 
 import { Card, Button, CardTitle, CardText, CardImg, Row, Col } from 'reactstrap';
 
-const Example = (props) => {
+const StoreItems = (props) => {
   return (
     <div>
         <Card body
         >
-            <CardImg width="100%" src="http://localhost:8000/api/store/image/be2fe394bf216a2e2a2df04ef1c002e9.jpg" alt="Card image cap" />
+            <CardImg width="100%" src="http://localhost:8000/api/store/image/af53b98e05f7845bd201ac73fcb3dd8f.png" alt="Card image cap" />
           <CardTitle>Art product  $5.00</CardTitle>
           <CardText>With supporting text below as a natural lead-in to additional content.</CardText>
           <Button>Buy now</Button>
@@ -48,7 +48,12 @@ const Example = (props) => {
   );
 };
 
+
+
+
 class Store extends Component{
+
+
     render(){
         return(
             <div>
@@ -59,7 +64,7 @@ class Store extends Component{
                     <StoreCategoryList />
                   </div>
                   <div className="store-items">
-                    <Example />
+                    <StoreItems />
                   </div>
                 </div>
                 <Footer />

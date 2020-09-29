@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState,useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
@@ -11,13 +12,15 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 // import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
+import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
 
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 
 import image from '../../assets/img/testimg.jpg';
 import DropzoneArea from '../../components/DropzoneArea';
 
-
+import axios from "axios"
+import { useHistory } from 'react-router-dom';
 const tileData = [
     {
         img: image,
@@ -120,6 +123,8 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+
+
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
@@ -141,6 +146,29 @@ export default function SpacingGrid() {
       setCopyOpen(false);
   }
 
+  const [images, setImages] = useState([]);
+  
+
+    useEffect(() => {
+          // Read the mutable latest value
+          console.log(`Getting files...`);
+        
+        axios
+        .get("http://localhost:8000/api/uploadManage/files")
+        .then((res) => {
+            setImages(res.data);
+        })
+        .catch((err) => {
+            console.log("Error from ShowBookList");
+        });
+      },[]);
+
+//   const images = [
+//       {
+//           author: "abc"
+//       }
+//   ]
+    const history = useHistory();
   return (
     <div>
         <Grid container spacing={2} direction="row" justify="space-around" alignItems="stretch">
@@ -149,16 +177,19 @@ export default function SpacingGrid() {
                 <Paper elevation={0} className={classes.paper}>
                     <h3>Media</h3>
                     <GridList cellHeight={180} className={classes.gridList} cols={3}>
-                        {tileData.map((tile) => (
-                        <GridListTile key={tile.img} cols={tile.cols || 1}>
-                            <img src={tile.img} alt={tile.title} />
+                        {images.map((tile) => (
+                        <GridListTile>
+                            <img src={"http://localhost:8000/api/uploadManage/image/"+tile.filename} />
                             <GridListTileBar
-                                // title={tile.title}
-                                // subtitle={<span>by: {tile.author}</span>}
                                 actionIcon={
-                                    <IconButton aria-label={`info about ${tile.title}`} className={classes.icon} onClick={() => {navigator.clipboard.writeText("api/uploadManager/image/"+tile.title)}}>
+                                    <div>
+                                    <IconButton className={classes.icon} onClick={() => {navigator.clipboard.writeText("http://localhost:8000/api/uploadManage/image/"+tile.filename)}}>
                                         <FileCopyOutlinedIcon onClick={handleCopyClick}/>
                                     </IconButton>
+                                    <IconButton className={classes.icon} onClick={() => {axios.delete("http://localhost:8000/api/uploadManage/files/"+tile._id);history.go(0);}}>
+                                        <HighlightOffOutlinedIcon/>
+                                    </IconButton>
+                                    </div>
                                 }
                                 />
                         </GridListTile>
@@ -178,11 +209,12 @@ export default function SpacingGrid() {
             </Grid>
 
         </Grid>
-        <Snackbar open={copyOpen} autoHideDuration={6000} onClose={handleCopyClose}>
+        <Snackbar open={copyOpen} autoHideDuration={2000} onClose={handleCopyClose}>
         <Alert onClose={handleCopyClose} severity="success">
           You have already copy the url of image.
         </Alert>
-      </Snackbar>                        
+      </Snackbar>     
+                         
     </div>
   );
 }
