@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import StoreCategoryList from "./StoreCategoryList";
 import Footer from "./Footer";
+import ShoppingCart from "./ShoppingCart";
 import "../App.css";
 
 
@@ -99,7 +100,7 @@ class Store extends Component{
       return(
           <div>
               <NavbarTop />
-              
+              <ShoppingCart />
               <div className="store">
                 <div className="store-menu">
                   <StoreCategoryList />
