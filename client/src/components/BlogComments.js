@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
-import { Comment, Icon, Header } from "semantic-ui-react";
-import axios from "axios";
+import { Comment } from "semantic-ui-react";
+import Axios from "axios";
 
 export default class BlogComments extends Component {
   constructor(props) {
@@ -9,6 +9,7 @@ export default class BlogComments extends Component {
     this.state = {
       comments: [],
       success: false,
+      token: localStorage.getItem("auth-token"),
     };
   }
 
@@ -24,28 +25,49 @@ export default class BlogComments extends Component {
     console.log("After axios");
   }
 
+  handleDelete = (e) => {
+    console.log("Comment deleted: " + e);
+    Axios.delete("http://localhost:8000/api/comments/" + e).catch((err) => {
+      console.log(Error);
+    });
+    window.location.reload(false);
+  };
+
   render() {
     return (
       <div>
         <Comment.Group>
           {this.state.comments.map((comment) => {
             return (
-              <Comment>
-                <Comment.Avatar
-                  as="a"
-                  src="https://react.semantic-ui.com/images/avatar/small/joe.jpg"
-                />
-                <Comment.Content>
-                  <Comment.Author>{comment.publisher}</Comment.Author>
-                  <Comment.Metadata>
-                    <div>{comment.date.slice(0, 10)}</div>
-                    <div>
-                      <LikeButton />
-                    </div>
-                  </Comment.Metadata>
-                  <Comment.Text>{comment.content}</Comment.Text>
-                </Comment.Content>
-              </Comment>
+              <div className="flexDisplay">
+                <Comment>
+                  <Comment.Avatar as="a" src={comment.profilePhoto} />
+                  <Comment.Content>
+                    <Comment.Author>{comment.publisher}</Comment.Author>
+                    <Comment.Metadata>
+                      <div>{comment.date.slice(0, 10)}</div>
+                      <div>
+                        <LikeButton id={comment._id} likes={comment.favours} />
+                      </div>
+                      <div>{comment.favours} Faves</div>
+                      {this.state.token ? (
+                        <div>
+                          {/* <p>&nbsp; &nbsp;</p> */}
+                          <button
+                            className="deleteButton"
+                            onClick={() => this.handleDelete(comment._id)}
+                          >
+                            <i className="fas fa-times"></i>
+                          </button>{" "}
+                        </div>
+                      ) : (
+                        <div></div>
+                      )}
+                    </Comment.Metadata>
+                    <Comment.Text>{comment.content}</Comment.Text>
+                  </Comment.Content>
+                </Comment>
+              </div>
             );
           })}
         </Comment.Group>
@@ -62,19 +84,35 @@ class LikeButton extends Component {
       clicked: false,
     };
   }
+
   handleClick = () => {
+    if (this.state.clicked) {
+      console.log("un-liked");
+      console.log(this.props.id);
+      console.log(this.props.likes);
+    } else {
+      console.log("liked");
+      console.log(this.props.id);
+      console.log(this.props.likes);
+      const commentReq = {
+        id: this.props.id,
+        likes: this.props.likes,
+      };
+      Axios.post(
+        "http://localhost:8000/api/comments/addLike",
+        commentReq
+      ).catch((err) => {
+        console.log(err);
+      });
+      window.location.reload(false);
+    }
     this.setState({ clicked: !this.state.clicked });
   };
 
   render() {
     return (
-      <div className="flexDisplay">
-        <div onClick={this.handleClick}>
-          <i
-            className={this.state.clicked ? "fas fa-heart" : "far fa-heart"}
-          ></i>
-        </div>
-        <div>&nbsp; 5 Faves</div>
+      <div onClick={() => this.handleClick()} className="likeButton">
+        <i className={this.state.clicked ? "fas fa-heart" : "far fa-heart"}></i>
       </div>
     );
   }
