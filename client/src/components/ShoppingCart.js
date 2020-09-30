@@ -27,18 +27,22 @@ import {
   Button,
 } from "reactstrap";
 
-const dropDownButtonStyle = {
+const shoppingCartStyle = {
   position: "absolute",
   right: "30px",
+};
+
+const dropDownButtonStyle = {
+  margin: "3% 6% 3% 6%",
 };
 
 class ShoppingCart extends React.Component {
   render() {
     return (
-      <UncontrolledDropdown style={dropDownButtonStyle}>
+      <UncontrolledDropdown style={shoppingCartStyle}>
         <DropdownToggle>ShoppingCart</DropdownToggle>
-        <DropdownMenu>
-          <FormGroup>
+        <DropdownMenu size="lg">
+          <FormGroup style={dropDownButtonStyle} color="success">
             <div>
               <CustomInput
                 type="checkbox"
