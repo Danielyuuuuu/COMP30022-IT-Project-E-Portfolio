@@ -180,7 +180,7 @@ const CheckOutModal = (props) => {
             onClick={toggle}
             href="https://www.paypal.com/signin"
           >
-            Pay Now
+            PayPal Now
           </Button>{" "}
         </ModalFooter>
       </Modal>
