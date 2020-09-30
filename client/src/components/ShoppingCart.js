@@ -28,7 +28,7 @@ import {
 } from "reactstrap";
 
 import { useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalHeader, ModalBody, ModalFooter, Table } from "reactstrap";
 
 const shoppingCartStyle = {
   position: "absolute",
@@ -37,6 +37,10 @@ const shoppingCartStyle = {
 
 const dropDownButtonStyle = {
   margin: "3% 6% 3% 6%",
+};
+
+const checkOutButtonStyle = {
+  margin: "3% 20% 3% 20%",
 };
 
 class ShoppingCart extends React.Component {
@@ -50,25 +54,25 @@ class ShoppingCart extends React.Component {
               <CustomInput
                 type="checkbox"
                 id="exampleCustomCheckbox"
-                label="painting1"
+                label="Camera"
               />
               <br />
               <CustomInput
                 type="checkbox"
                 id="exampleCustomCheckbox2"
-                label="photography2"
+                label="Old Grandpa"
               />
               <br />
               <CustomInput
                 type="checkbox"
                 id="exampleCustomCheckbox3"
-                label="art product3"
+                label="Colorful Forest"
               />
               <br />
               <CustomInput
                 type="checkbox"
                 id="exampleCustomCheckbox4"
-                label="photography4"
+                label="Painting"
               />
             </div>
           </FormGroup>
@@ -101,7 +105,7 @@ const CheckOutModal = (props) => {
 
   return (
     <div>
-      <Button color="success" onClick={toggle}>
+      <Button color="success" onClick={toggle} style={checkOutButtonStyle}>
         {buttonLabel}
       </Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
@@ -109,7 +113,7 @@ const CheckOutModal = (props) => {
           Check Out List:
         </ModalHeader>
         <ModalBody>
-          <FormGroup style={dropDownButtonStyle} color="success">
+          {/* <FormGroup style={dropDownButtonStyle} color="success">
             <div>
               <CustomInput
                 type="checkbox"
@@ -138,15 +142,46 @@ const CheckOutModal = (props) => {
               <br />
               In Total: $12.00
             </div>
-          </FormGroup>
+          </FormGroup> */}
+          <Table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Item Name</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Colorful Forest</td>
+                <td>$55.00</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Camera</td>
+                <td>$12.00</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Old Grandpa</td>
+                <td>$200.00</td>
+              </tr>
+              {/* <tr>
+                <th>In Total: $267.00</th>
+              </tr> */}
+            </tbody>
+          </Table>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary" onClick={toggle}>
+          In Total: $267.00
+          <Button
+            color="primary"
+            onClick={toggle}
+            href="https://www.paypal.com/signin"
+          >
             Pay Now
           </Button>{" "}
-          <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
         </ModalFooter>
       </Modal>
     </div>
