@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import StoreCategoryList from "./StoreCategoryList";
@@ -6,9 +5,15 @@ import Footer from "./Footer";
 import ShoppingCart from "./ShoppingCart";
 import "../App.css";
 
-
-
-import { Card, Button, CardTitle, CardText, CardImg, Row, Col } from 'reactstrap';
+import {
+  Card,
+  Button,
+  CardTitle,
+  CardText,
+  CardImg,
+  Row,
+  Col,
+} from "reactstrap";
 
 /*
 const StoreItems = (props) => {
@@ -49,118 +54,125 @@ const StoreItems = (props) => {
 };
 */
 
-const data = [{
-	id: 2,
-  name: "Forest",
-  price: "3",
-  description: "Amazing!!!",
-  image: "https://images.unsplash.com/photo-1468851508491-4f854ec88aa0?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=900&h=900&fit=crop&s=b1222b6a1d3694cac76d2a23c3a02254"
-}, {
-  id: 4,
-  price: "4",
-  description: "Amazing!!!",
-	name: "Mountain",
-	image: "https://images.unsplash.com/photo-1467890947394-8171244e5410?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=980&h=980&fit=crop&s=9396f0adf263b51b44626228225684d0"
-}, {
-	id: 5,
-  name: "Boat",
-  price: "35",
-  description: "Amazing!!!",
-	image: "https://images.unsplash.com/photo-1443302382600-0bfacc473376?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=980&h=980&fit=crop&s=0c0f26518c1001f67b6c2e4480a8d3e0"
-}, {
-	id: 6,
-  name: "Flowers",
-  price: "6",
-  description: "Amazing!!!",
-	image: "https://images.unsplash.com/photo-1429091443922-e7d9ae79a837?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=900&h=900&fit=crop&s=e81cb6a60c53788559edb9bec21b80fc"
-}
-
+const data = [
+  {
+    id: 2,
+    name: "Forest",
+    price: "3",
+    description: "Amazing!!!",
+    image:
+      "https://images.unsplash.com/photo-1468851508491-4f854ec88aa0?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=900&h=900&fit=crop&s=b1222b6a1d3694cac76d2a23c3a02254",
+  },
+  {
+    id: 4,
+    price: "4",
+    description: "Amazing!!!",
+    name: "Mountain",
+    image:
+      "https://images.unsplash.com/photo-1467890947394-8171244e5410?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=980&h=980&fit=crop&s=9396f0adf263b51b44626228225684d0",
+  },
+  {
+    id: 5,
+    name: "Boat",
+    price: "35",
+    description: "Amazing!!!",
+    image:
+      "https://images.unsplash.com/photo-1443302382600-0bfacc473376?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=980&h=980&fit=crop&s=0c0f26518c1001f67b6c2e4480a8d3e0",
+  },
+  {
+    id: 6,
+    name: "Flowers",
+    price: "6",
+    description: "Amazing!!!",
+    image:
+      "https://images.unsplash.com/photo-1429091443922-e7d9ae79a837?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=900&h=900&fit=crop&s=e81cb6a60c53788559edb9bec21b80fc",
+  },
 ];
 
 //const url = "http://localhost:8000/api/store/image/";
 const url = "http://localhost:8000/api/uploadManage/image/";
 
-class Store extends Component{
+class Store extends Component {
+  constructor(props) {
+    super(props);
 
-  constructor(props){
-		super(props); 
-
-		this.state = {
-			data: null,
-		};
-	}
-
-	componentDidMount() {
-		fetch('http://localhost:8000/api/store/')
-		  .then(response => response.json())
-		  .then(data => this.setState({ data: data.item}));
+    this.state = {
+      data: null,
+    };
   }
-  
-  render(){
-      return(
-          <div>
-              <NavbarTop />
-              <ShoppingCart />
-              <div className="store">
-                <div className="store-menu">
-                  <StoreCategoryList />
-                </div>
-                <div className="store-items">
-                  {/* <StoreItems data={data}/> */}
 
-                  {this.state.data !== null &&
-                	<StoreItems data={this.state.data} />
-				          }
+  componentDidMount() {
+    fetch("http://localhost:8000/api/store/")
+      .then((response) => response.json())
+      .then((data) => this.setState({ data: data.item }));
+  }
 
-                </div>
-              </div>
-              <Footer />
+  render() {
+    return (
+      <div>
+        <NavbarTop />
+        <br />
+        <br />
+        <br />
+        <ShoppingCart />
+        <div className="store">
+          <div className="store-menu">
+            <StoreCategoryList />
           </div>
-      );
+          <div className="store-items">
+            {/* <StoreItems data={data}/> */}
+
+            {this.state.data !== null && <StoreItems data={this.state.data} />}
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
   }
 }
 
 class StoreItems extends React.Component {
-	render() {
-		return (
-            <div>
-			    <Items data={this.props.data} />
-            </div>
-		);
-	}
-}
-
-class Items extends Component{
-  render(){
-    return(
-      <div className="store-items-flexible">
-				{this.props.data.map((data) => {
-					return <Item data={data} key={data.id} />
-				})}
-			</div>
+  render() {
+    return (
+      <div>
+        <Items data={this.props.data} />
+      </div>
     );
   }
 }
 
-class Item extends Component{
-  constructor(props){
+class Items extends Component {
+  render() {
+    return (
+      <div className="store-items-flexible">
+        {this.props.data.map((data) => {
+          return <Item data={data} key={data.id} />;
+        })}
+      </div>
+    );
+  }
+}
+
+class Item extends Component {
+  constructor(props) {
     super(props);
   }
-  render(){
-    return(
+  render() {
+    return (
       <Card body className="store-itemCard">
-        <CardImg src={url + this.props.data.imagename} alt={this.props.data.name} />
+        <CardImg
+          src={url + this.props.data.imagename}
+          alt={this.props.data.name}
+        />
         <br />
-        <CardTitle>{this.props.data.itemname}  </CardTitle>
+        <CardTitle>{this.props.data.itemname} </CardTitle>
         <CardText>{this.props.data.description}</CardText>
         <CardTitle>${this.props.data.price}.00</CardTitle>
-    
-          <Button>Buy now</Button>
-        </Card>
+
+        <Button>Buy now</Button>
+      </Card>
     );
   }
 }
-
-
 
 export default Store;
