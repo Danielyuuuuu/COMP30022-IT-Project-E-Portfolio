@@ -15,7 +15,7 @@ export default class addComment extends Component {
     this.state = {
       content: "",
       publisher: "",
-      blogId: "5f71c425ec797250a88b4701",
+      blogId: this.props.blogId,
       profilePhotos: [
         "https://react.semantic-ui.com/images/avatar/small/matt.jpg",
         "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",

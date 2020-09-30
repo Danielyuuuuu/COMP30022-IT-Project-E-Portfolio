@@ -81,9 +81,9 @@ export default class PostContent extends Component {
           >
             Comment Section
           </Header>
-          <BlogComments />
+          <BlogComments blogId={this.props.blogId} />
           <div className="container">
-            <AddComment />
+            <AddComment blogId={this.props.blogId} />
           </div>
         </div>
       </div>

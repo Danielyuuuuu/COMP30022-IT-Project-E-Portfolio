@@ -15,7 +15,7 @@ export default class BlogComments extends Component {
 
   componentDidMount() {
     console.log("Before axios");
-    fetch("http://localhost:8000/api/comments/blog/5f71c425ec797250a88b4701")
+    fetch("http://localhost:8000/api/comments/blog/" + this.props.blogId)
       .then((response) => response.json())
       .then((res) => {
         this.setState({ comments: res.item, success: res.success });
