@@ -24,6 +24,7 @@ import {
   Form,
   FormGroup,
   Label,
+  Button,
 } from "reactstrap";
 
 const dropDownButtonStyle = {
@@ -35,7 +36,7 @@ class ShoppingCart extends React.Component {
   render() {
     return (
       <UncontrolledDropdown style={dropDownButtonStyle}>
-        <DropdownToggle color="success">ShoppingCart</DropdownToggle>
+        <DropdownToggle>ShoppingCart</DropdownToggle>
         <DropdownMenu>
           <FormGroup>
             <div>
@@ -66,7 +67,11 @@ class ShoppingCart extends React.Component {
           </FormGroup>
 
           <DropdownItem divider />
-          <DropdownItem>Another Action</DropdownItem>
+          <DropdownItem>
+            <Button outline color="success">
+              Check Out
+            </Button>
+          </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     );
