@@ -16,79 +16,10 @@ import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
 
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 
-import image from '../../assets/img/testimg.jpg';
 import DropzoneArea from '../../components/DropzoneArea';
 
 import axios from "axios"
 import { useHistory } from 'react-router-dom';
-const tileData = [
-    {
-        img: image,
-        title: 'image1',
-        author: 'author1',
-        colss: 2,
-    },
-    {
-        img: image,
-        title: 'image1',
-        author: 'author1',
-        colss: 3,
-    },
-    {
-        img: image,
-        title: 'image3',
-        author: 'author3',
-        colss: 4,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-]
 
 const useStyles = makeStyles((theme) => ({
   root: {
