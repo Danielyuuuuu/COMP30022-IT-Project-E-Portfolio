@@ -25,6 +25,16 @@ import AddComment from "./BlogAddComment";
 import BlogComments from "./BlogComments";
 
 class BlogIndividualPost extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    const {
+      match: { params },
+    } = this.props;
+    console.log("id is: ");
+    console.log(params.id);
+  }
   render() {
     return (
       <div>

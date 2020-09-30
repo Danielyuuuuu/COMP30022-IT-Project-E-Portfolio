@@ -20,7 +20,6 @@ import ArtWorkGallery1 from "./components/ArtWorkGallery1";
 import ArtWorkGallery2 from "./components/ArtWorkGallery2";
 import ArtWorkGallery3 from "./components/ArtWorkGallery3";
 
-
 import Admin from "./admin/layouts/Admin";
 
 import Login from "./components/Login";
@@ -69,7 +68,7 @@ export default function App() {
         <Route path="/eportfolio" component={EPortfolio} />
         <Route path="/store-frontend" component={Store} />
         <Route path="/blog" component={Blog} />
-        <Route path="/individualpost" component={IndividualPost} />
+        <Route path="/individualpost/:id" component={IndividualPost} />
         <Route path="/aboutme" component={AboutMe} />
         <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
         <Route path="/contactme" component={ContactMe} />

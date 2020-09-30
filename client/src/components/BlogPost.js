@@ -53,7 +53,9 @@ class BlogPost extends Component {
                 <CardBody>
                   <EllipsisButton />
                   <CardTitle>
-                    <a href="/individualpost">{blogPost.title}</a>
+                    <a href={"/individualpost/" + blogPost._id}>
+                      {blogPost.title}
+                    </a>
                   </CardTitle>
                   <CardText>{blogPost.content}</CardText>
                   <LikeButton />
