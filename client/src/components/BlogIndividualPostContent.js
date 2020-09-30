@@ -63,7 +63,7 @@ export default class PostContent extends Component {
             alignItems: "center",
           }}
         >
-          Post title
+          <h3>{this.state.title}</h3>
         </CardTitle>
         <CardImg top width="100%" src={this.state.image} alt="Image" />
         <CardBody>

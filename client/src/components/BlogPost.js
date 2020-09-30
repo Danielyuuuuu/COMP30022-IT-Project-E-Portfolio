@@ -54,14 +54,13 @@ class BlogPost extends Component {
                   <EllipsisButton />
                   <CardTitle>
                     <a href={"/individualpost/" + blogPost._id}>
-                      {blogPost.title}
+                      <h3>{blogPost.title}</h3>
                     </a>
                   </CardTitle>
                   <CardText>
                     {blogPost.content.split(" ").splice(0, 90).join(" ") +
                       "..."}
                   </CardText>
-                  <LikeButton />
                 </CardBody>
               </Card>
             </CardGroup>
