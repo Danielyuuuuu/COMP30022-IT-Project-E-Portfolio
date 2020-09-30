@@ -1,13 +1,10 @@
-import React, { Component, useState } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from "react";
 import {
   Card,
-  Button,
   CardImg,
   CardTitle,
   CardText,
   CardGroup,
-  CardSubtitle,
   CardBody,
   Dropdown,
   DropdownToggle,
@@ -16,81 +13,52 @@ import {
 } from "reactstrap";
 
 class BlogPost extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      blogPosts: [],
+    };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:8000/api/blog/getAllBlogs")
+      .then((response) => response.json())
+      .then((res) => {
+        this.setState({ blogPosts: res });
+      });
+  }
+
   render() {
     return (
       <div className="posts">
-        <CardGroup className="individualPost">
-          <Card>
-            <CardImg
-              top
-              width="100%"
-              src="https://petapixel.com/assets/uploads/2019/11/Geert-Weggen_squirrel-wishes_00003677.jpg"
-              alt="Card image cap"
-            />
-          </Card>
-          <Card>
-            <CardBody>
-              <EllipsisButton />
-              <CardTitle>
-                <a href="/individualpost">Post title</a>
-              </CardTitle>
-              <CardText>
-                So by colonel hearted ferrars. Draw from upon here gone add one.
-                He in sportsman household otherwise it perceived instantly. Is
-                inquiry no he several excited am.
-              </CardText>
-              <LikeButton />
-            </CardBody>
-          </Card>
-        </CardGroup>
-        <CardGroup className="individualPost">
-          <Card>
-            <CardImg
-              top
-              width="100%"
-              src="https://filmdaily.co/wp-content/uploads/2020/04/funny-animals-lede.jpg"
-              alt="Card image cap"
-            />
-          </Card>
-          <Card>
-            <CardBody>
-              <EllipsisButton />
-              <CardTitle>
-                <a href="/individualpost">Post title</a>
-              </CardTitle>
-              <CardText>
-                So by colonel hearted ferrars. Draw from upon here gone add one.
-                He in sportsman household otherwise it perceived instantly. Is
-                inquiry no he several excited am.
-              </CardText>
-              <LikeButton />
-            </CardBody>
-          </Card>
-        </CardGroup>
-        <CardGroup className="individualPost">
-          <Card>
-            <CardImg
-              top
-              width="100%"
-              src="https://www.nikon.com.au/tmp/Asia/2419865273/3760176746/2586568015/286546384/152549275/210978916/542011102/2974987658/1834978357/200150890/2821987493.jpg"
-              alt="Card image cap"
-            />
-          </Card>
-          <Card>
-            <CardBody>
-              <EllipsisButton />
-              <CardTitle>
-                <a href="/individualpost">Post title</a>
-              </CardTitle>
-              <CardText>
-                So by colonel hearted ferrars. Draw from upon here gone add one.
-                He in sportsman household otherwise it perceived instantly. Is
-                inquiry no he several excited am.
-              </CardText>
-              <LikeButton />
-            </CardBody>
-          </Card>
-        </CardGroup>
+        {this.state.blogPosts.map((blogPost) => {
+          return (
+            <CardGroup className="individualPost">
+              <Card>
+                <CardImg
+                  top
+                  width="100%"
+                  src={blogPost.thumbnails.imagename}
+                  alt="Thumbnails"
+                />
+              </Card>
+              <Card>
+                <CardBody>
+                  <EllipsisButton />
+                  <CardTitle>
+                    <a href={"/individualpost/" + blogPost._id}>
+                      <h3>{blogPost.title}</h3>
+                    </a>
+                  </CardTitle>
+                  <CardText>
+                    {blogPost.content.split(" ").splice(0, 90).join(" ") +
+                      "..."}
+                  </CardText>
+                </CardBody>
+              </Card>
+            </CardGroup>
+          );
+        })}
       </div>
     );
   }
