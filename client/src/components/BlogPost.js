@@ -57,7 +57,10 @@ class BlogPost extends Component {
                       {blogPost.title}
                     </a>
                   </CardTitle>
-                  <CardText>{blogPost.content}</CardText>
+                  <CardText>
+                    {blogPost.content.split(" ").splice(0, 90).join(" ") +
+                      "..."}
+                  </CardText>
                   <LikeButton />
                 </CardBody>
               </Card>
