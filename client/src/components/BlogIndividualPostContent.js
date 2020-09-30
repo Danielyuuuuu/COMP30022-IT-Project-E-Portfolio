@@ -1,27 +1,8 @@
 import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
 import "../App.css";
-import Footer from "./Footer";
-import {
-  Card,
-  Button,
-  CardImg,
-  CardTitle,
-  CardText,
-  CardGroup,
-  CardSubtitle,
-  CardBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  Media,
-} from "reactstrap";
-import { Comment, Icon, Header } from "semantic-ui-react";
-
+import { CardImg, CardTitle, CardText, CardBody } from "reactstrap";
+import { Header } from "semantic-ui-react";
 import AddComment from "./BlogAddComment";
-
 import BlogComments from "./BlogComments";
 
 export default class PostContent extends Component {
@@ -34,9 +15,6 @@ export default class PostContent extends Component {
     };
   }
   componentDidMount() {
-    console.log("in PostContent: " + this.props.blogId);
-
-    console.log("Before axios");
     fetch("http://localhost:8000/api/blog/getSingleBlog/" + this.props.blogId)
       .then((response) => response.json())
       .then((res) => {
@@ -45,12 +23,7 @@ export default class PostContent extends Component {
           content: res.content,
           image: res.thumbnails.imagename,
         });
-        console.log("In individual post content axios");
-        console.log(this.state.title);
-        console.log(this.state.content);
-        console.log(this.state.image);
       });
-    console.log("After axios");
   }
 
   render() {

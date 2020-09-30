@@ -1,13 +1,10 @@
-import React, { Component, useState } from "react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from "react";
 import {
   Card,
-  Button,
   CardImg,
   CardTitle,
   CardText,
   CardGroup,
-  CardSubtitle,
   CardBody,
   Dropdown,
   DropdownToggle,
@@ -24,15 +21,11 @@ class BlogPost extends Component {
   }
 
   componentDidMount() {
-    console.log("Before axios");
     fetch("http://localhost:8000/api/blog/getAllBlogs")
       .then((response) => response.json())
       .then((res) => {
         this.setState({ blogPosts: res });
-        console.log("In axios");
-        console.log(this.state.blogPosts);
       });
-    console.log("After axios");
   }
 
   render() {
