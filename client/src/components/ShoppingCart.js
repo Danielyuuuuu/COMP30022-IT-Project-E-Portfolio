@@ -77,12 +77,7 @@ class ShoppingCart extends React.Component {
           </FormGroup>
 
           <DropdownItem divider />
-          {/* <DropdownItem> */}
-          {/* <Button outline color="success">
-              Check Out
-            </Button> */}
           <CheckOutModal buttonLabel="Check Out" className="" />
-          {/* </DropdownItem> */}
         </DropdownMenu>
       </UncontrolledDropdown>
     );
@@ -170,9 +165,6 @@ const CheckOutModal = (props) => {
                 <td>Old Grandpa</td>
                 <td>$200.00</td>
               </tr>
-              {/* <tr>
-                <th>In Total: $267.00</th>
-              </tr> */}
             </tbody>
           </Table>
         </ModalBody>
@@ -184,7 +176,6 @@ const CheckOutModal = (props) => {
             onClick={toggle}
             href="https://www.paypal.com/signin"
           >
-            {/* <PaymentIcon /> */}
             PayPal
           </Button>
         </ModalFooter>
