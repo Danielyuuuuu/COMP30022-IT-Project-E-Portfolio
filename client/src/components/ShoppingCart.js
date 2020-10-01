@@ -12,7 +12,14 @@ import {
 } from "reactstrap";
 
 import { useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter, Table } from "reactstrap";
+import {
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Table,
+  Alert,
+} from "reactstrap";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import PaymentIcon from "@material-ui/icons/Payment";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
@@ -21,7 +28,7 @@ import StorefrontIcon from "@material-ui/icons/Storefront";
 
 const shoppingCartStyle = {
   position: "absolute",
-  right: "30px",
+  right: "4%",
 };
 
 const dropDownButtonStyle = {
@@ -35,7 +42,7 @@ const checkOutButtonStyle = {
 class ShoppingCart extends React.Component {
   render() {
     return (
-      <UncontrolledDropdown style={shoppingCartStyle}>
+      <UncontrolledDropdown direction="down" style={shoppingCartStyle}>
         <DropdownToggle>
           Shopping
           <ShoppingCartIcon />
@@ -170,7 +177,8 @@ const CheckOutModal = (props) => {
           </Table>
         </ModalBody>
         <ModalFooter>
-          In Total: $267.00
+          <Alert color="success">In Total: $267.00 </Alert>
+
           <Button
             color="primary"
             onClick={toggle}
