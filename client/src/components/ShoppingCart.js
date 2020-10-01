@@ -1,19 +1,3 @@
-/*
-import React, { Component } from "react";
-import "../App.css";
-
-
-class ShoppingCart extends React.Component{
-    render(){
-        return(
-            <h1>ShoppingCart</h1>
-        );
-    }
-}
-
-export default ShoppingCart;
-*/
-
 import React from "react";
 import {
   UncontrolledDropdown,
@@ -29,6 +13,11 @@ import {
 
 import { useState } from "react";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Table } from "reactstrap";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import PaymentIcon from "@material-ui/icons/Payment";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
+import StorefrontIcon from "@material-ui/icons/Storefront";
 
 const shoppingCartStyle = {
   position: "absolute",
@@ -47,7 +36,10 @@ class ShoppingCart extends React.Component {
   render() {
     return (
       <UncontrolledDropdown style={shoppingCartStyle}>
-        <DropdownToggle>ShoppingCart</DropdownToggle>
+        <DropdownToggle>
+          Shopping
+          <ShoppingCartIcon />
+        </DropdownToggle>
         <DropdownMenu size="lg">
           <FormGroup style={dropDownButtonStyle} color="success">
             <div>
@@ -146,7 +138,11 @@ const CheckOutModal = (props) => {
           <Table>
             <thead>
               <tr>
-                <th>#</th>
+                <th>
+                  {/* <AssignmentTurnedInIcon /> */}
+                  <CardGiftcardIcon />
+                  {/* <StorefrontIcon /> */}
+                </th>
                 <th>Item Name</th>
                 <th>Price</th>
               </tr>
@@ -180,8 +176,9 @@ const CheckOutModal = (props) => {
             onClick={toggle}
             href="https://www.paypal.com/signin"
           >
-            PayPal Now
-          </Button>{" "}
+            {/* <PaymentIcon /> */}
+            PayPal
+          </Button>
         </ModalFooter>
       </Modal>
     </div>
