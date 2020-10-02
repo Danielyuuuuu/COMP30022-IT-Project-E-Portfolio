@@ -252,13 +252,75 @@ class Items extends Component {
 class Item extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      open: false,
+      mouseOver: false,
+    };
+    this._clickHandler = this._clickHandler.bind(this);
+    this._mouseEnter = this._mouseEnter.bind(this);
+    this._mouseLeave = this._mouseLeave.bind(this);
   }
+
+  _clickHandler(e) {
+    e.preventDefault();
+    if (this.state.open === false) {
+      this.setState({
+        open: true,
+      });
+    } else {
+      this.setState({
+        open: false,
+      });
+    }
+  }
+  _mouseEnter(e) {
+    e.preventDefault();
+    if (this.state.mouseOver === false) {
+      console.log(this.props.data.name);
+      this.setState({
+        mouseOver: true,
+      });
+    }
+  }
+  _mouseLeave(e) {
+    e.preventDefault();
+    if (this.state.mouseOver === true) {
+      this.setState({
+        mouseOver: false,
+      });
+    }
+  }
+
   render() {
+    let itemStyle = {};
+    if (this.state.open) {
+      itemStyle = {
+        maxWidth: "70vw",
+        maxHeight: "80vw",
+        position: "fixed",
+        top: "70%",
+        left: "50%",
+        margin: "0",
+        marginTop: "-31vw",
+        marginLeft: "-31vw",
+        boxShadow: "0 0 40px 5px rgba(0, 0, 0, 0.3)",
+        transform: "none",
+      };
+    } else {
+      itemStyle = {
+        maxWidth: "18vw",
+        maxHeight: "18vw",
+      };
+    }
     return (
       <Card body className="store-itemCard">
         <CardImg
+          onMouseEnter={this._mouseEnter}
+          onMouseLeave={this._mouseLeave}
+          onClick={this._clickHandler}
           src={url + this.props.data.imagename}
           alt={this.props.data.name}
+          style={itemStyle}
         />
         <br />
         <CardTitle>{this.props.data.itemname} </CardTitle>
