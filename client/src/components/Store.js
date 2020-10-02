@@ -119,6 +119,10 @@ class Store extends Component {
     console.log(this.state.tags);
   }
 
+  updateSortFilter(filterName) {
+    this.setState({ filter: filterName });
+  }
+
   componentDidMount() {
     fetch("http://localhost:8000/api/store/")
       .then((response) => response.json())
@@ -196,12 +200,14 @@ class Store extends Component {
                     id="exampleCustomRadio"
                     name="customRadio"
                     label="Most Popular"
+                    onClick={() => this.updateSortFilter("popular")}
                   />
                   <CustomInput
                     type="radio"
                     id="exampleCustomRadio2"
                     name="customRadio"
                     label="Latest"
+                    onClick={() => this.updateSortFilter("latest")}
                   />
                 </div>
               </FormGroup>
