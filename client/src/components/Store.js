@@ -106,7 +106,16 @@ class Store extends Component {
 
   updateTags(tagName) {
     // this.state.tags = [...this.state.tags, tagName];
-    this.setState({ tags: tagName });
+    // this.setState({ tags: tagName });
+    console.log(this.state.tags);
+
+    const index = this.state.tags.indexOf(tagName);
+    if (index < 0) {
+      this.state.tags.push(tagName);
+    } else {
+      this.state.tags.splice(index, 1);
+    }
+    this.setState({ tags: this.state.tags });
     console.log(this.state.tags);
   }
 
@@ -167,7 +176,7 @@ class Store extends Component {
               </FormGroup>
               <Button onClick={(e) => this.filterStoreItems(e)}>Submit</Button>
             </Form>
-            <StoreCategoryList />
+            {/* <StoreCategoryList /> */}
           </div>
           <div className="store-items">
             {/* <StoreItems data={data}/> */}
