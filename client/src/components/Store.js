@@ -157,6 +157,15 @@ class Store extends Component {
           <div className="store-menu">
             <Form>
               <FormGroup>
+                <Label for="exampleSearch">Search</Label>
+                <Input
+                  type="search"
+                  name="search"
+                  id="exampleSearch"
+                  placeholder="search placeholder"
+                />
+              </FormGroup>
+              <FormGroup>
                 <Label for="exampleCheckbox">Category</Label>
                 <div>
                   <CustomInput
@@ -176,6 +185,23 @@ class Store extends Component {
                     id="exampleCustomCheckbox121"
                     label="art product"
                     onClick={() => this.updateTags("art product")}
+                  />
+                </div>
+              </FormGroup>
+              <FormGroup>
+                <Label for="exampleCheckbox">Sorted by</Label>
+                <div>
+                  <CustomInput
+                    type="radio"
+                    id="exampleCustomRadio"
+                    name="customRadio"
+                    label="Most Popular"
+                  />
+                  <CustomInput
+                    type="radio"
+                    id="exampleCustomRadio2"
+                    name="customRadio"
+                    label="Latest"
                   />
                 </div>
               </FormGroup>
