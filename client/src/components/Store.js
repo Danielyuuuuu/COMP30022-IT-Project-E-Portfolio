@@ -4,6 +4,7 @@ import StoreCategoryList from "./StoreCategoryList";
 import Footer from "./Footer";
 import ShoppingCart from "./ShoppingCart";
 import "../App.css";
+import { CustomInput, Form, FormGroup, Label, Input } from "reactstrap";
 
 import {
   Card,
@@ -98,13 +99,36 @@ class Store extends Component {
 
     this.state = {
       data: null,
+      tags: [],
+      filter: "latest",
     };
+  }
+
+  updateTags(tagName) {
+    // this.state.tags = [...this.state.tags, tagName];
+    this.setState({ tags: tagName });
+    console.log(this.state.tags);
   }
 
   componentDidMount() {
     fetch("http://localhost:8000/api/store/")
       .then((response) => response.json())
       .then((data) => this.setState({ data: data.item }));
+  }
+
+  filterStoreItems(e) {
+    e.preventDefault();
+    const req = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        tags: this.state.tags,
+        filter: this.state.filter,
+      }),
+    };
+    fetch("http://localhost:8000/api/store/filter", req)
+      .then((res) => res.json())
+      .then((data) => this.setState({ data: data.specific_items }));
   }
 
   render() {
@@ -117,6 +141,32 @@ class Store extends Component {
         <ShoppingCart />
         <div className="store">
           <div className="store-menu">
+            <Form>
+              <FormGroup>
+                <Label for="exampleCheckbox">Category</Label>
+                <div>
+                  <CustomInput
+                    type="checkbox"
+                    id="exampleCustomCheckbox11"
+                    label="painting"
+                    onClick={() => this.updateTags("painting")}
+                  />
+                  <CustomInput
+                    type="checkbox"
+                    id="exampleCustomCheckbox12"
+                    label="photography"
+                    onClick={() => this.updateTags("photography")}
+                  />
+                  <CustomInput
+                    type="checkbox"
+                    id="exampleCustomCheckbox121"
+                    label="art product"
+                    onClick={() => this.updateTags("art product")}
+                  />
+                </div>
+              </FormGroup>
+              <Button onClick={(e) => this.filterStoreItems(e)}>Submit</Button>
+            </Form>
             <StoreCategoryList />
           </div>
           <div className="store-items">
