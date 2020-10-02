@@ -315,12 +315,12 @@ class Item extends Component {
     return (
       <Card body className="store-itemCard">
         <CardImg
+          style={itemStyle}
           onMouseEnter={this._mouseEnter}
           onMouseLeave={this._mouseLeave}
           onClick={this._clickHandler}
           src={url + this.props.data.imagename}
           alt={this.props.data.name}
-          style={itemStyle}
         />
         <br />
         <CardTitle>{this.props.data.itemname} </CardTitle>
