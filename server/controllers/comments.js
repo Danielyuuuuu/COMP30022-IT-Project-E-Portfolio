@@ -8,6 +8,7 @@ const getComments = async (req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 };
 
+
 const getBlogComments = async (req, res) => {
   await Comments.find({ blog: req.params.id })
     .sort({ createdAt: -1 })
@@ -19,6 +20,7 @@ const getBlogComments = async (req, res) => {
     )
     .catch((err) => res.status(400).json("Error" + err));
 };
+
 
 const getSingleComment = async (req, res) => {
   Comments.findById(req.params.id)
