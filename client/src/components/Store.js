@@ -127,11 +127,16 @@ class Store extends Component {
 
   filterStoreItems(e) {
     e.preventDefault();
+    let tagsArray = this.state.tags;
+    if (tagsArray.length < 1) {
+      tagsArray = ["photography", "painting", "art product"];
+    }
     const req = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        tags: this.state.tags,
+        // tags: this.state.tags,
+        tags: tagsArray,
         filter: this.state.filter,
       }),
     };
