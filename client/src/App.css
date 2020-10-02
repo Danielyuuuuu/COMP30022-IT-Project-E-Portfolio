@@ -113,6 +113,8 @@ p {
   bottom: 0;
   left: 0;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .header {
@@ -149,14 +151,16 @@ p {
   /*max-width: 500px;*/
 }
 
-.store > .store-items > div {
+/* .store > .store-items > div { */
+.store-items-flexible {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   justify-content: space-evenly;
 }
 
-.store > .store-items > div > .card {
+/* .store > .store-items > div > .card { */
+.store-itemCard {
   max-width: 300px;
   margin-bottom: 4rem;
 }
@@ -182,7 +186,7 @@ p {
 .posts {
   margin-top: 70px;
   height: 70%;
-  width: 70%;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -218,7 +222,7 @@ p {
 }
 
 .aboutMe {
-  width: 70%;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -251,7 +255,6 @@ body {
   height: 18vw; */
   max-width: 18vw;
   /* max-height: 18vw; */
-
 }
 
 .tiles2 {
@@ -271,7 +274,6 @@ body {
   height: 18vw; */
   max-width: 18vw;
   /* max-height: 18vw; */
-
 }
 
 /*
@@ -323,7 +325,7 @@ body {
 }
 
 .postContent {
-  width: 70%;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -337,4 +339,28 @@ body {
   border: 1px solid #2c3e50;
   padding: 10px;
   margin-top: 10px;
+}
+
+.flexDisplay {
+  display: flex;
+}
+
+.deleteButton {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  /* height: 40px;
+  width: 40px; */
+}
+
+.deleteButton:hover {
+  color: red;
+}
+
+.deleteButton:active {
+  color: green;
+}
+
+.likeButton {
+  cursor: pointer;
 }

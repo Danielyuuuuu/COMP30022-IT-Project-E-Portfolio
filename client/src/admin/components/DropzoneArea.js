@@ -21,7 +21,7 @@ export default function DropZone() {
 
     for (var i = 0; i < files.length; i++) {
       let imageFile = new FormData();
-      imageFile.append("file", files[0]);
+      imageFile.append("file", files[i]);
 
       const postRes = await Axios.post(
         "http://localhost:8000/api/uploadManage/upload",
@@ -30,7 +30,7 @@ export default function DropZone() {
     }
 
     console.log("successful................");
-    history.push("/admin/dashboard");
+    history.go(0);
   };
 
   const handleOpen = async () => {
@@ -41,7 +41,9 @@ export default function DropZone() {
 
   return (
     <div>
-      <Button onClick={() => handleOpen()}>Add Image</Button>
+      <Button variant="contained" color="primary" onClick={() => handleOpen()}>
+        Add Image
+      </Button>
       <DropzoneDialog
         open={open}
         onSave={(e) => handleSave(e)}

@@ -4,7 +4,7 @@ import NavbarTop from "./NavbarTop";
 import "../App.css";
 import AwgNavbar from "./AwgNavbar";
 
-const url = "http://localhost:8000/api/store/image/";
+const url = "http://localhost:8000/api/uploadManage/image/";
 
 //const app = document.getElementById('app');
 const data = [{
