@@ -11,7 +11,6 @@ const getComments = async(req,res) => {
 
 
 const getBlogComments = async(req,res) =>{
-    console.log(req.params.id);
     await Comments
     .find({blog: req.params.id})
     .sort({'createdAt':-1})
@@ -23,7 +22,6 @@ const getBlogComments = async(req,res) =>{
 };
 
 const getSingleComment = async(req,res)=>{
-    console.log(req.params.id);
     Comments.findById(req.params.id)    
     .then(comment => res.json(comment))
     .catch(err => res.status(404).json({ nobookfound: "No comment found" }))

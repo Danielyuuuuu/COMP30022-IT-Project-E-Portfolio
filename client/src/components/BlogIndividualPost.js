@@ -24,7 +24,6 @@ import AddComment from './BlogAddComment' ;
 
 
 
-
 class BlogIndividualPost extends Component {
   render() {
     return (
@@ -189,7 +188,6 @@ class PostContent extends Component {
           <div className ="container">
             <AddComment />
           </div>
-
         </div>
       </div>
     );
