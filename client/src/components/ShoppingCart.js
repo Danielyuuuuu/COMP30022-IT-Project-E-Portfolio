@@ -174,7 +174,7 @@ const CheckOutModal = (props) => {
           <Button
             color="primary"
             onClick={toggle}
-            href="https://www.paypal.com/signin"
+            href="/checkout"
           >
             PayPal
           </Button>

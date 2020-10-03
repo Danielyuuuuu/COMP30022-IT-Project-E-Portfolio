@@ -25,6 +25,8 @@ import Admin from "./admin/layouts/Admin";
 import Login from "./components/Login";
 import Register from "./components/Register";
 
+import CheckOut from "./components/ShoppingCheckOut";
+
 import Axios from "axios";
 
 import "semantic-ui-css/semantic.min.css";
@@ -81,6 +83,8 @@ export default function App() {
         <Route path="/artworkgallery1" component={ArtWorkGallery1} />
         <Route path="/artworkgallery2" component={ArtWorkGallery2} />
         <Route path="/artworkgallery3" component={ArtWorkGallery3} />
+
+        <Route path="/checkout" component ={CheckOut} />
       </div>
     </Router>
   );

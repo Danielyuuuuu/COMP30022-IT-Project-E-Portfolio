@@ -17,16 +17,16 @@ import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { Button, Container } from "@material-ui/core";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import Dialogs from "../../components/Dialogs/Dialogs";
 
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from "@material-ui/icons/Delete";
 
 import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -52,14 +52,14 @@ function Row(props) {
 
   const [openDeleteAlert, setDeleteAlert] = React.useState(false);
 
-
   const handleDelete = (id) => {
-    axios.delete("http://localhost:8000/api/store/delete/"+id)
-        .then(console.log("delete item......"))
-        .then((res) => {
-          console.log(res);
-          history.go(0);
-        });
+    axios
+      .delete("http://localhost:8000/api/store/delete/" + id)
+      .then(console.log("delete item......"))
+      .then((res) => {
+        console.log(res);
+        history.go(0);
+      });
     handleCloseDeleteAlert();
   };
   const handleClickDeleteAlert = () => {
@@ -71,14 +71,15 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      
       <Dialog
         open={openDeleteAlert}
         onClose={handleCloseDeleteAlert}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">Are you trying to delete this item?</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          Are you trying to delete this item?
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Once you agree, you cant make it back!
@@ -88,13 +89,18 @@ function Row(props) {
           <Button onClick={handleCloseDeleteAlert} color="primary">
             Disagree
           </Button>
-          <Button onClick={(e)=>{handleDelete(row._id)}} color="primary" autoFocus>
+          <Button
+            onClick={(e) => {
+              handleDelete(row._id);
+            }}
+            color="primary"
+            autoFocus
+          >
             Agree
           </Button>
         </DialogActions>
       </Dialog>
 
-      
       <TableRow className={classes.root}>
         <TableCell>
           <IconButton
@@ -113,15 +119,15 @@ function Row(props) {
         <TableCell align="right">{row.price}</TableCell>
         <TableCell align="right">{row.views}</TableCell>
         <TableCell align="right">
-        <Button
-        variant="contained"
-        color="secondary"
-        className={classes.button}
-        startIcon={<DeleteIcon />}
-        onClick={handleClickDeleteAlert}
-      >
-        Delete
-      </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.button}
+            startIcon={<DeleteIcon />}
+            onClick={handleClickDeleteAlert}
+          >
+            Delete
+          </Button>
         </TableCell>
         <TableCell align="right">
           {/* {row.Options}  */}
@@ -176,7 +182,6 @@ function Row(props) {
 
 export default function Store() {
   const [items, setItems] = useState([]);
-  
 
   useEffect(() => {
     // Read the mutable latest value
@@ -231,8 +236,6 @@ export default function Store() {
           </TableBody>
         </Table>
       </TableContainer>
-
-      
     </div>
   );
 }
