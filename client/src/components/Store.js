@@ -295,12 +295,21 @@ class Item extends Component {
     this._mouseLeave = this._mouseLeave.bind(this);
   }
 
-  _clickHandler(e) {
-    e.preventDefault();
+  _clickHandler(itemId) {
+    // e.preventDefault();
+    console.log(itemId);
     if (this.state.open === false) {
       this.setState({
         open: true,
       });
+
+      const url_prefix = "http://localhost:8000/api/store/update/";
+      const url_suffix = "/views";
+      const url_view = url_prefix + itemId + url_suffix;
+      console.log(url_view);
+      fetch(url_view, { method: "PUT" })
+        .then((res) => res.json())
+        .then((a) => console.log(a));
     } else {
       this.setState({
         open: false,
@@ -356,7 +365,7 @@ class Item extends Component {
           style={itemStyle}
           onMouseEnter={this._mouseEnter}
           onMouseLeave={this._mouseLeave}
-          onClick={this._clickHandler}
+          onClick={() => this._clickHandler(this.props.data._id)}
           src={url + this.props.data.imagename}
           alt={this.props.data.name}
         />
