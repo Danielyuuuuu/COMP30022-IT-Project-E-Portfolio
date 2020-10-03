@@ -29,7 +29,7 @@ export default function AdminNavbarLinks() {
   };
 
   const toEportfolioPage = () => {
-    history.push("/eportfolio");
+    history.push("/");
   };
 
   const classes = useStyles();

@@ -4,7 +4,6 @@
 const express = require("express");
 const router = express.Router();
 
-const bookRouter = require("./book");
 const uploadRouter = require("./upload");
 
 const paypalRouter = require("./paypal");
@@ -14,9 +13,6 @@ const galleryRouter = require("./gallery");
 const commentRouter = require("./comments");
 const blogRouter = require("./blog");
 const contactMeRouter = require("./contactMe");
-
-// demo
-router.use("/books", bookRouter);
 
 // User login route
 router.use("/user", userRouter);
