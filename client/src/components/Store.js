@@ -344,7 +344,7 @@ class Item extends Component {
         top: "0",
         left: "0",
         objectFit: "contain",
-        backgroundColor: "rgba(0, 0, 0, 0.7)",
+        backgroundColor: "rgba(0, 0, 0, 0.8)",
         transform: "none",
         zIndex: 50,
         boxSizing: "border-box",
