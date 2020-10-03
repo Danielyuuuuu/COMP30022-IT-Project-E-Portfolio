@@ -329,16 +329,18 @@ class Item extends Component {
     let itemStyle = {};
     if (this.state.open) {
       itemStyle = {
-        maxWidth: "70vw",
-        maxHeight: "80vw",
+        width: "100vw",
+        height: "100vh",
         position: "fixed",
-        top: "70%",
-        left: "50%",
-        margin: "0",
-        marginTop: "-31vw",
-        marginLeft: "-31vw",
-        boxShadow: "0 0 40px 5px rgba(0, 0, 0, 0.3)",
+        top: "0",
+        left: "0",
+        objectFit: "contain",
+        backgroundColor: "rgba(0, 0, 0, 0.7)",
         transform: "none",
+        zIndex: 50,
+        boxSizing: "border-box",
+        margin: 0,
+        padding: "10vh 10vw",
       };
     } else {
       itemStyle = {
