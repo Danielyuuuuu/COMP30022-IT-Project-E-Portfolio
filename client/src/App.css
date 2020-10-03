@@ -367,3 +367,8 @@ body {
 .likeButton {
   cursor: pointer;
 }
+
+.floatRight {
+  float: right;
+  margin-top: 3px;
+}
