@@ -341,11 +341,13 @@ class Item extends Component {
         boxSizing: "border-box",
         margin: 0,
         padding: "10vh 10vw",
+        cursor: "pointer",
       };
     } else {
       itemStyle = {
         maxWidth: "18vw",
         maxHeight: "18vw",
+        cursor: "zoom-in",
       };
     }
     return (
