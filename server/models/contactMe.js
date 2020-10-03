@@ -10,14 +10,12 @@ const ContactMeSchema = mongoose.Schema({
     required: true,
   },
   subject: {
-    type: Number,
+    type: String,
     required: true,
-    trim: true,
   },
   message: {
     type: String,
     required: true,
-    trim: true,
   },
   date: {
     type: Date,

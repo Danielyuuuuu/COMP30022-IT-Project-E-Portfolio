@@ -13,6 +13,7 @@ const storeRouter = require("./store");
 const galleryRouter = require("./gallery");
 const commentRouter = require("./comments");
 const blogRouter = require("./blog");
+const contactMeRouter = require("./contactMe");
 
 // demo
 router.use("/books", bookRouter);
@@ -23,7 +24,7 @@ router.use("/user", userRouter);
 // Uplaod route
 router.use("/uploadManage", uploadRouter);
 router.use("/paypal", paypalRouter);
-router.use("/comments",commentRouter);
+router.use("/comments", commentRouter);
 
 // Gallery route
 router.use("/gallery", galleryRouter);
@@ -31,9 +32,10 @@ router.use("/gallery", galleryRouter);
 // Store route
 router.use("/store", storeRouter);
 
-
 // Blog route
 router.use("/blog", blogRouter);
 
+// Contact Me route
+router.use("/contactMe", contactMeRouter);
 
 module.exports = router;
