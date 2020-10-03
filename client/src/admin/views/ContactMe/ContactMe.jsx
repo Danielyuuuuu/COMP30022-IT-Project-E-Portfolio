@@ -58,6 +58,7 @@ export default class ContactMe extends Component {
                       <div>{contactMe.date.slice(0, 10)}</div>
                     </Comment.Metadata>
                     <Comment.Text>
+                      <div>Email: {contactMe.email}</div>
                       <div>Subject: {contactMe.subject}</div>
                       <div>Message: {contactMe.message}</div>
                     </Comment.Text>
