@@ -37,10 +37,7 @@ export default class ContactMe extends Component {
             return (
               <div className="flexDisplay">
                 <Comment>
-                  <Comment.Avatar
-                    as="a"
-                    src="https://react.semantic-ui.com/images/avatar/small/matt.jpg"
-                  />
+                  <Comment.Avatar as="a" src={contactMe.profilePhoto} />
                   <Comment.Content>
                     <Comment.Author as="a">{contactMe.name}</Comment.Author>
                     <Comment.Metadata className="floatRight">

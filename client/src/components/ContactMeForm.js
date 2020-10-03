@@ -35,6 +35,9 @@ class ContactMeForm extends React.Component {
         email: this.state.email,
         subject: this.state.subject,
         message: this.state.message,
+        profilePhoto: this.state.profilePhotos[
+          Math.floor(Math.random() * this.state.profilePhotos.length)
+        ],
       };
       await Axios.post("api/contactMe/addContactMe", newContactMe);
       this.setState({ error: "Submit successful" });

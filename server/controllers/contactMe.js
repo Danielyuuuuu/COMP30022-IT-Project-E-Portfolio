@@ -9,8 +9,8 @@ const getContactMe = async (req, res) => {
 
 const addContactMe = async (req, res) => {
   try {
-    let { name, email, subject, message } = req.body;
-    if (!name || !email || !subject || !message) {
+    let { name, email, subject, message, profilePhoto } = req.body;
+    if (!name || !email || !subject || !message || !profilePhoto) {
       return res.status(400).json({ msg: "Need to fill in all fields..." });
     }
     const contactMe = new ContactMe({
@@ -18,6 +18,7 @@ const addContactMe = async (req, res) => {
       email: email,
       subject: subject,
       message: message,
+      profilePhoto: profilePhoto,
     });
     const savedContactMe = await contactMe.save();
     return res.json(savedContactMe);

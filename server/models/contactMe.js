@@ -17,6 +17,10 @@ const ContactMeSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  profilePhoto: {
+    type: String,
+    default: "https://react.semantic-ui.com/images/avatar/small/joe.jpg",
+  },
   date: {
     type: Date,
     default: Date.now,
