@@ -117,10 +117,44 @@ class Store extends Component {
     }
     this.setState({ tags: this.state.tags });
     console.log(this.state.tags);
+
+    let tagsArray = this.state.tags;
+    if (tagsArray.length < 1) {
+      tagsArray = ["photography", "painting", "art product"];
+    }
+    const req = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        // tags: this.state.tags,
+        tags: tagsArray,
+        filter: this.state.filter,
+      }),
+    };
+    fetch("http://localhost:8000/api/store/filter", req)
+      .then((res) => res.json())
+      .then((data) => this.setState({ data: data.specific_items }));
   }
 
   updateSortFilter(filterName) {
     this.setState({ filter: filterName });
+    console.log(this.state.filter);
+    let tagsArray = this.state.tags;
+    if (tagsArray.length < 1) {
+      tagsArray = ["photography", "painting", "art product"];
+    }
+    const req = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        // tags: this.state.tags,
+        tags: tagsArray,
+        filter: this.state.filter,
+      }),
+    };
+    fetch("http://localhost:8000/api/store/filter", req)
+      .then((res) => res.json())
+      .then((data) => this.setState({ data: data.specific_items }));
   }
 
   componentDidMount() {
