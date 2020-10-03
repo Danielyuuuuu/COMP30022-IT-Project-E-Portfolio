@@ -65,6 +65,19 @@ const useRowStyles = makeStyles({
   },
 });
 
+const categories = [
+  {
+    name: "Photography",
+    coverImage: "http://localhost:8000/api/uploadManage/image/890c444028e88bc04522cdee2e9be0bd.jpg",
+    subCategories: ["animel", "people", "city"],
+  },
+  {
+    name: "ArtWorks",
+    coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    subCategories: ["1", "2", "3"],
+  },
+]
+
 function Row(props) {
   const history = useHistory();
   const { row } = props;
@@ -83,6 +96,7 @@ function Row(props) {
       });
     handleCloseDeleteAlert();
   };
+
   const handleClickDeleteAlert = () => {
     setDeleteAlert(true);
   };
@@ -111,9 +125,9 @@ function Row(props) {
             Disagree
           </Button>
           <Button
-            onClick={(e) => {
-              handleDelete(row._id);
-            }}
+            // onClick={(e) => {
+            //   handleDelete(row._id);
+            // }}
             color="primary"
             autoFocus
           >
@@ -133,12 +147,20 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          <h4>{row.itemname}</h4>
+          <h4>{row.name}</h4>
         </TableCell>
-        <TableCell align="right">{row.tag}</TableCell>
-        <TableCell align="right">{row.stocks}</TableCell>
-        <TableCell align="right">{row.price}</TableCell>
-        <TableCell align="right">{row.views}</TableCell>
+        <TableCell align="right">
+          <Card className={classes.img}>
+            <CardActionArea>
+              <CardMedia
+                className={classes.img}
+                image={
+                  row.coverImage
+                }
+              />
+            </CardActionArea>
+          </Card>
+        </TableCell>
         <TableCell align="right">
           <Button
             variant="contained"
@@ -165,32 +187,27 @@ function Row(props) {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
-                Details
+                Sub-Category
               </Typography>
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Image</TableCell>
+                    <TableCell>Name</TableCell>
                     <TableCell align="right">Description</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow key={row.imagename}>
-                    <TableCell component="th" scope="row">
-                      <Card className={classes.img}>
-                        <CardActionArea>
-                          <CardMedia
-                            className={classes.img}
-                            image={
-                              "http://localhost:8000/api/uploadManage/image/" +
-                              row.imagename
-                            }
-                          />
-                        </CardActionArea>
-                      </Card>
-                    </TableCell>
-                    <TableCell align="right">{row.description}</TableCell>
-                  </TableRow>
+
+                  {row.subCategories.map((sub) => (
+                    <TableRow key={row.imagename}>
+                      <TableCell component="th" scope="row">
+                        {sub}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+
+                  <TableCell align="right">{row.description}</TableCell>
+
                 </TableBody>
               </Table>
             </Box>
@@ -240,19 +257,17 @@ export default function Store() {
                   }}
                 ></Dialogs>
               </TableCell>
-              <TableCell>Item </TableCell>
-              <TableCell align="right">Category</TableCell>
-              <TableCell align="right">Stock</TableCell>
-              <TableCell align="right">Price</TableCell>
-              <TableCell align="right">Views</TableCell>
+              <TableCell>Category </TableCell>
+              <TableCell>Cover Image</TableCell>
+              <TableCell>Description?</TableCell>
               <TableCell align="center" colSpan={2}>
-                Options
+                Options?
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {items.map((row) => (
-              <Row key={row.itemname} row={row} />
+            {categories.map((category) => (
+              <Row key={category.name} row={category} />
             ))}
           </TableBody>
         </Table>

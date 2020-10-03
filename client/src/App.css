@@ -156,13 +156,16 @@ p {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  margin: 20px;
 }
 
 /* .store > .store-items > div > .card { */
 .store-itemCard {
-  max-width: 300px;
+  max-width: 40%;
+  /* max-height: 50%; */
   margin-bottom: 4rem;
+  margin-left: 10%;
 }
 
 .navbarBand {

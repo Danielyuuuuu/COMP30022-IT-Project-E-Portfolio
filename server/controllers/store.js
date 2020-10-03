@@ -22,7 +22,7 @@ const getItems = async (req, res) => {
     .then((wares) => {
       res.status(200).json({
         success: true,
-        item: wares
+        item: wares,
       });
     })
     .catch((err) => res.status(400).json({ nowaresfound: "No items found" }));
@@ -52,7 +52,7 @@ const getSpecificItems = async (req, res) => {
     .then((wares) => {
       res.status(200).json({
         success: true,
-        specific_items: wares
+        specific_items: wares,
       });
     })
     .catch((err) => res.status(400).json(err));
@@ -67,14 +67,14 @@ const addItem = async (req, res) => {
       imagename: req.body.filename,
       stocks: req.body.stocks,
       price: req.body.price,
-      tag: req.body.tag
+      tag: req.body.tag,
     });
     ware
       .save()
       .then((ware) => {
         res.status(200).json({
           success: true,
-          ware
+          ware,
         });
       })
       .catch((err) => res.status(400).json(err));
@@ -91,7 +91,7 @@ const deleteItem = async (req, res) => {
           .then(() => {
             return res.status(200).json({
               success: true,
-              message: `Item with ID: ${req.params.id} deleted`
+              message: `Item with ID: ${req.params.id} deleted`,
             });
           })
           .catch((err) => {
@@ -100,7 +100,7 @@ const deleteItem = async (req, res) => {
       } else {
         res.status(400).json({
           success: false,
-          message: "Item not found"
+          message: "Item not found",
         });
       }
     })
@@ -108,7 +108,6 @@ const deleteItem = async (req, res) => {
       return res.status(400).json(err);
     });
 };
-
 
 // const renderImg = async (req, res) => {
 //   gfs.find({ filename: req.params.filename }).toArray((err, files) => {
@@ -154,7 +153,9 @@ const updateViews = async (req, res) => {
 const updateStocks = async (req, res) => {
   var id = req.body.id;
   var artwork_bought = req.body.nbought;
-  Item.findByIdAndUpdate(req.params.id, { $subtract: ["stocks", [artwork_bought]] })
+  Item.findByIdAndUpdate(req.params.id, {
+    $subtract: ["stocks", [artwork_bought]],
+  })
     .then(() => res.json({ msg: "Updated artwork stock" }))
     .catch((err) => res.status(400).json(err));
 };
@@ -180,7 +181,7 @@ const updateMultiStocks = async (req, res) => {
   console.log(itemList);
   var bulkUpdateCallback = (err, r) => {
     if (err) {
-      res.status(400).json(err)
+      res.status(400).json(err);
     } else {
       res.status(200).json({
         matchedCount: r.matchedCount,
@@ -190,13 +191,17 @@ const updateMultiStocks = async (req, res) => {
   };
   var bulkOps = itemList.map((item) => {
     return {
-      "updateOne": {
-        "filter": { "_id": mongoose.Types.ObjectId(item._id) },
-        "update": { $inc: { "stocks": -item.quantity} }
-      }
+      updateOne: {
+        filter: { _id: mongoose.Types.ObjectId(item._id) },
+        update: { $inc: { stocks: -item.quantity } },
+      },
     };
   });
-  Item.collection.bulkWrite(bulkOps, { ordered: true, w: 1 }, bulkUpdateCallback);
+  Item.collection.bulkWrite(
+    bulkOps,
+    { ordered: true, w: 1 },
+    bulkUpdateCallback
+  );
 };
 
 module.exports = {
@@ -207,5 +212,5 @@ module.exports = {
   updateItem,
   updateViews,
   updateStocks,
-  updateMultiStocks
+  updateMultiStocks,
 };
