@@ -139,22 +139,22 @@ class Store extends Component {
   updateSortFilter(filterName) {
     this.setState({ filter: filterName });
     console.log(this.state.filter);
-    let tagsArray = this.state.tags;
-    if (tagsArray.length < 1) {
-      tagsArray = ["photography", "painting", "art product"];
-    }
-    const req = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        // tags: this.state.tags,
-        tags: tagsArray,
-        filter: this.state.filter,
-      }),
-    };
-    fetch("http://localhost:8000/api/store/filter", req)
-      .then((res) => res.json())
-      .then((data) => this.setState({ data: data.specific_items }));
+    // let tagsArray = this.state.tags;
+    // if (tagsArray.length < 1) {
+    //   tagsArray = ["photography", "painting", "art product"];
+    // }
+    // const req = {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     // tags: this.state.tags,
+    //     tags: tagsArray,
+    //     filter: this.state.filter,
+    //   }),
+    // };
+    // fetch("http://localhost:8000/api/store/filter", req)
+    //   .then((res) => res.json())
+    //   .then((data) => this.setState({ data: data.specific_items }));
   }
 
   componentDidMount() {
@@ -245,7 +245,7 @@ class Store extends Component {
                   />
                 </div>
               </FormGroup>
-              <Button onClick={(e) => this.filterStoreItems(e)}>Submit</Button>
+              <Button onClick={(e) => this.filterStoreItems(e)}>Sort Me</Button>
             </Form>
             {/* <StoreCategoryList /> */}
           </div>
@@ -373,7 +373,6 @@ class Item extends Component {
         <CardTitle>{this.props.data.itemname} </CardTitle>
         <CardText>{this.props.data.description}</CardText>
         <CardTitle>${this.props.data.price}.00</CardTitle>
-
         <Button>Buy now</Button>
       </Card>
     );
