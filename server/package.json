@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "concurrently --kill-others \"nodemon server.js\" \"cd ../client && npm start\"",
     "server": "node_modules/.bin/nodemon server.js",
-    "test": "jest --runInBand tests",
+    "test": "jest",
     "test:watch": "jest tests --watch"
   },
   "repository": {
@@ -46,19 +46,18 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.2.3",
     "concurrently": "^5.3.0",
-    "jest": "^26.4.2",
+    "jest": "^26.5.0",
     "lsb-release": "^0.1.0",
     "mongodb-memory-server": "^6.6.7",
     "node-mocks-http": "^1.9.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "supertest": "^5.0.0"
   },
   "config": {
     "mongodbMemoryServer": {
-      "version": "latest"
+      "version": "4.2.3"
     }
-  },
-  "jest": {
-    "testEnvironment": "node"
   }
 }

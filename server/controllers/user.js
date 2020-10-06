@@ -18,30 +18,53 @@ const postUserRegister = async (req, res) => {
       return res.status(400).json({ msg: "Please enter the same password" });
     }
 
-    User.findOne({ email: email }).then((user) => {
-      // Email address already exist
-      if (user) {
-        return res.status(400).json({ msg: "User Already Exists" });
-      }
+    const user = await User.findOne({ email: email }).exec();
+    if (user !== null) {
+      return res.status(400).json({ msg: "User Already Exists" });
+    }
 
-      // Hash the password
-      bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(password1, salt, (err, hash) => {
-          if (err) throw err;
+    // User.findOne({ email: email }).then((user) => {
+    //   // Email address already exist
+    //   if (user) {
+    //     res.status(400).json({ msg: "User Already Exists" });
+    //   }
+    //
+    //   // Hash the password
+    //   // bcrypt.genSalt(10, async (err, salt) =>
+    //   //   bcrypt.hash(password1, salt, async (err, hash) => {
+    //   //     if (err) throw err;
+    //   //
+    //   //     // Store the hashed password
+    //   //     const newUser = new User({
+    //   //       name,
+    //   //       email,
+    //   //       password: hash,
+    //   //     });
+    //   //
+    //   //     // Save the user
+    //   //     await newUser.save();
+    //   //     res.status(201).send({
+    //   //       user: newUser.toObject(),
+    //   //     });
+    //   //   })
+    //   // );
+    //
+    // });
 
-          // Store the hashed password
-          const newUser = new User({
-            name,
-            email,
-            password: hash,
-          });
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password1, salt);
 
-          // Save the user
-          const savedUser = newUser.save();
-          res.json(savedUser);
-        })
-      );
+    const newUser = new User({
+      name,
+      email,
+      password: hash,
     });
+
+    await newUser.save();
+    res.status(200).send({
+      user: newUser.toObject(),
+    });
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -56,7 +79,7 @@ const postUserLogin = async (req, res) => {
     if (!email || !password)
       return res.status(400).json({ msg: "Not all fields have been entered." });
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: email }).exec();
     if (!user)
       return res
         .status(400)
@@ -65,7 +88,7 @@ const postUserLogin = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     res.json({
       token,
