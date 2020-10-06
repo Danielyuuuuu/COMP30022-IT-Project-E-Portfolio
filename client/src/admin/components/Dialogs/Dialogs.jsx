@@ -32,7 +32,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { useHistory } from 'react-router-dom';
 
 
-const categories = ["graphic", "photography", "painting"];
+const categories = ["Art Product", "Photography", "Painting"];
 
 const styles = (theme) => ({
   root: {
