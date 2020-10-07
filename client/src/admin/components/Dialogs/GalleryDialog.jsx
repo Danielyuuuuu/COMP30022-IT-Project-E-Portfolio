@@ -2,7 +2,6 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from '@material-ui/core/DialogContentText';
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
@@ -10,21 +9,8 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-
-import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Autocomplete from "@material-ui/lab/Autocomplete";
-
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import Axios from "axios";
 
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -33,8 +19,14 @@ import { useHistory } from 'react-router-dom';
 import { SelectedPictures } from "../../components/MediaOptionBar/SharedVar";
 import MediaOptionBar from "../../components/MediaOptionBar/MediaOptionBar";
 
-const categories = ["graphic", "photography", "painting"];
-
+const testData = [
+  {
+    filename: "cc33d33dc1c350d8a8e19d05bf8b4918.jpg",
+  },
+  {
+    filename: "cc33d33dc1c350d8a8e19d05bf8b4918.jpg",
+  }
+];
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -91,7 +83,7 @@ export default function DialogsOfStore(props) {
   const [open, setOpen] = React.useState(false);
   const [openJ, setOpenJ] = React.useState(false);
   const classes = imgStyles();
-  const [selectedPictures, setPictures] = React.useState([]);
+  const [selectedPictures, setPictures] = React.useState(testData);
   const [itemname, setItemName] = React.useState(props.item.itemname);
   const [category, setCategory] = React.useState(props.item.tag);
   const [categoryInput, setCategoryInput] = React.useState(props.item.tag);
