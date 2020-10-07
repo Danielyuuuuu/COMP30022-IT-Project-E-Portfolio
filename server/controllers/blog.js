@@ -4,6 +4,7 @@ const Item = require("../models/item");
 
 // Blog Model
 const BlogModel = require("../models/blog");
+const User = require("../models/User");
 
 const postBlog = async (req, res) => {
   try {
@@ -60,4 +61,30 @@ const postDeleteBlog = async (req, res) => {
   });
 };
 
-module.exports = { postBlog, getSingleBlog, getAllBlogs, postDeleteBlog };
+const postEditBlog = async (req, res) => {
+  try {
+    let { postID, postTitle, imageUrl, postBody, hashTags } = req.body;
+    console.log("before updatedBlog id: " + postID);
+    const updatedBlog = await BlogModel.findOneAndUpdate(
+      { _id: postID },
+      {
+        title: postTitle,
+        content: postBody,
+        thumbnails: { imagename: imageUrl },
+        hashtags: hashTags,
+      }
+    );
+    console.log("after updatedBlog");
+    return res.json(updatedBlog);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports = {
+  postBlog,
+  getSingleBlog,
+  getAllBlogs,
+  postDeleteBlog,
+  postEditBlog,
+};
