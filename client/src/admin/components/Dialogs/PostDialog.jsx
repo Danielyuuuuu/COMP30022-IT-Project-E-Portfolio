@@ -114,10 +114,10 @@ export default function DialogsOfStore(props) {
     const [imagename, setImageName] = React.useState(1);
     const [description, setDescription] = React.useState(1);
 
-    const [markdown, setMarkDown] = React.useState("");
-    const [tag, setTags] = React.useState([]);
-    const [title, setTitle] = React.useState("");
-    const [imageUrl, setImageUrl] = React.useState("");
+    const [markdown, setMarkDown] = React.useState(props.blog.content);
+    const [tag, setTags] = React.useState(props.blog.hashTags);
+    const [title, setTitle] = React.useState(props.blog.title);
+    const [imageUrl, setImageUrl] = React.useState(props.blog.thumbnails.imagename);
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -136,6 +136,13 @@ export default function DialogsOfStore(props) {
             postBody: markdown,
             hashTags: tag,
         };
+        const editData = {
+            postID: props.blog._id,
+            postTitle: title,
+            imageUrl: imageUrl,
+            postBody: markdown,
+            hashTags: tag,
+        }
         if (props.mode == "New") {
             Axios.post("http://localhost:8000/api/blog/uploadblog", data)
                 .then(console.log("adding new post......"))
@@ -143,9 +150,9 @@ export default function DialogsOfStore(props) {
                     console.log(res);
                 });
         } else {
-            Axios.put(
-                "http://localhost:8000/api/store/update/" + props.item._id,
-                data
+            Axios.post(
+                "http://localhost:8000/api/blog/editBlog",
+                editData
             )
                 .then(console.log("edit item......"))
                 .then((res) => {
@@ -198,6 +205,7 @@ export default function DialogsOfStore(props) {
                     {props.mode + " Post"}
                 </DialogTitle>
                 <DialogContent dividers>
+                    {/* <div>{props.blog.title}</div> */}
                     {/* <Paper elevation={1} classes={classes.background}> */}
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
@@ -205,6 +213,7 @@ export default function DialogsOfStore(props) {
                                 id="Post Title"
                                 name="Post Title"
                                 label="Post Title"
+                                value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 fullWidth
                             />
@@ -214,6 +223,7 @@ export default function DialogsOfStore(props) {
                                 id="Image Url"
                                 name="Image Url"
                                 label="Image Url"
+                                value={imageUrl}
                                 onChange={(e) => setImageUrl(e.target.value)}
                                 fullWidth
                             />

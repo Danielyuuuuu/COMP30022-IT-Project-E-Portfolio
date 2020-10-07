@@ -127,7 +127,7 @@ function Row(props) {
             mode={"Edit"}
             variant="contained"
             color="primary"
-            item={row}
+            blog={row}
           ></Dialogs>
         </TableCell>
         <TableCell align="right">
@@ -210,13 +210,13 @@ export default function Store() {
                   mode={"New"}
                   variant="contained"
                   color="Secondary"
-                  item={{
-                    itemname: "",
-                    stock: 0,
-                    price: 0,
-                    views: 0,
-                    imagename: "",
-                    description: "",
+                  blog={{
+                    title: "",
+                    hashtags: [],
+                    thumbnails:{
+                      imagename: "",
+                    },
+                    content:"",
                   }}
                 ></Dialogs>
               </TableCell>
