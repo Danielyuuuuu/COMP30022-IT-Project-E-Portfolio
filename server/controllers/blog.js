@@ -64,7 +64,12 @@ const postDeleteBlog = async (req, res) => {
 const postEditBlog = async (req, res) => {
   try {
     let { postID, postTitle, imageUrl, postBody, hashTags } = req.body;
-    console.log("before updatedBlog id: " + postID);
+    if (!postID || !postTitle || !imageUrl || !postBody || !hashTags) {
+      return res.status(400).json({
+        msg:
+          "Require all of the fields, which includes postID, postTitle, imageUrl, postBody and hashTags",
+      });
+    }
     const updatedBlog = await BlogModel.findOneAndUpdate(
       { _id: postID },
       {
@@ -74,7 +79,6 @@ const postEditBlog = async (req, res) => {
         hashtags: hashTags,
       }
     );
-    console.log("after updatedBlog");
     return res.json(updatedBlog);
   } catch (err) {
     res.status(500).json({ error: err.message });
