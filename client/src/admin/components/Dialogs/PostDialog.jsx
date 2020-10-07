@@ -57,8 +57,8 @@ const imgStyles = makeStyles({
         maxWidth: 400,
     },
     tag: {
-        marginTop:10,
-        marginBottom:10,
+        marginTop: 10,
+        marginBottom: 10,
     },
 });
 
@@ -131,17 +131,14 @@ export default function DialogsOfStore(props) {
     const handleSubmit = () => {
         console.log("before post......");
         const data = {
-            name: itemname,
-            description: description,
-            filename: imagename,
-            stocks: stocks,
-            price: price,
-            tag: category,
-            views: views,
+            postTitle: title,
+            imageUrl: imageUrl,
+            postBody: markdown,
+            hashTags: tag,
         };
         if (props.mode == "New") {
-            Axios.post("http://localhost:8000/api/store/", data)
-                .then(console.log("add new......"))
+            Axios.post("http://localhost:8000/api/blog/uploadblog", data)
+                .then(console.log("adding new post......"))
                 .then((res) => {
                     console.log(res);
                 });
@@ -165,7 +162,7 @@ export default function DialogsOfStore(props) {
 
     // const submit = async (e) => {
     //     e.preventDefault();
-    
+
     //     const newPost = {
     //       postTitle: title,
     //       imageUrl: imageUrl,
@@ -198,73 +195,73 @@ export default function DialogsOfStore(props) {
                 maxWidth={"lg"}
             >
                 <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-                    {props.mode + "Post"}
+                    {props.mode + " Post"}
                 </DialogTitle>
                 <DialogContent dividers>
                     {/* <Paper elevation={1} classes={classes.background}> */}
-                        <Grid container spacing={2}>
-                            <Grid item xs={6}>
-                                <TextField
-                                    id="Post Title"
-                                    name="Post Title"
-                                    label="Post Title"
-                                    onChange={(e) => setTitle(e.target.value)}
-                                    fullWidth
-                                />
-                            </Grid>
-                            <Grid item xs={6}>
-                                <TextField
-                                    id="Image Url"
-                                    name="Image Url"
-                                    label="Image Url"
-                                    onChange={(e) => setImageUrl(e.target.value)}
-                                    fullWidth
-                                />
-                            </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            <TextField
+                                id="Post Title"
+                                name="Post Title"
+                                label="Post Title"
+                                onChange={(e) => setTitle(e.target.value)}
+                                fullWidth
+                            />
+                        </Grid>
+                        <Grid item xs={6}>
+                            <TextField
+                                id="Image Url"
+                                name="Image Url"
+                                label="Image Url"
+                                onChange={(e) => setImageUrl(e.target.value)}
+                                fullWidth
+                            />
+                        </Grid>
+                    </Grid>
+
+                    <Autocomplete
+                        multiple
+                        className={classes.tag}
+                        value={tag}
+                        onChange={(event, newValue) => {
+                            setTags(newValue);
+                        }}
+                        id="controllable-states-demo"
+                        options={options}
+                        defaultValue={[options[0]]}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Tags" variant="outlined" />
+                        )}
+                    />
+
+                    <Grid
+                        container
+                        spacing={2}
+                        wrap="nowrap"
+                    >
+                        <Grid item xs={6}>
+                            <TextField
+                                id="filled-multiline-static"
+                                label="Post Content"
+                                multiline
+                                fullWidth
+
+                                rows={40}
+                                defaultValue="Default Value"
+                                variant="filled"
+                                value={markdown}
+                                onChange={(event) => setMarkDown(event.target.value)}
+                            />
                         </Grid>
 
-                        <Autocomplete
-                            multiple
-                            className={classes.tag}
-                            value={tag}
-                            onChange={(event, newValue) => {
-                                setTags(newValue);
-                            }}
-                            id="controllable-states-demo"
-                            options={options}
-                            defaultValue={[options[0]]}
-                            renderInput={(params) => (
-                                <TextField {...params} label="Tags" variant="outlined" />
-                            )}
-                        />
-
-                        <Grid
-                            container
-                            spacing={2}
-                            wrap="nowrap"
-                        >
-                            <Grid item xs={6}>
-                                <TextField
-                                    id="filled-multiline-static"
-                                    label="Post Content"
-                                    multiline
-                                    fullWidth
-
-                                    rows={40}
-                                    defaultValue="Default Value"
-                                    variant="filled"
-                                    value={markdown}
-                                    onChange={(event) => setMarkDown(event.target.value)}
-                                />
-                            </Grid>
-
-                            <Grid item xs={6} >
-                                <Typography>Actual translate:</Typography>
-                                <Typography >
-                                    <div dangerouslySetInnerHTML={{ __html: marked(markdown) }}></div>
-                                </Typography>
-                            </Grid>
+                        <Grid item xs={6} >
+                            <Typography>Actual translate:</Typography>
+                            <Typography >
+                                <div dangerouslySetInnerHTML={{ __html: marked(markdown) }}></div>
+                            </Typography>
                         </Grid>
+                    </Grid>
 
                     {/* </Paper> */}
                 </DialogContent>

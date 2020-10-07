@@ -18,7 +18,7 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { Button, Container } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import Dialogs from "../../components/Dialogs/Dialogs";
+import Dialogs from "../../components/Dialogs/PostDialog";
 
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -54,7 +54,7 @@ function Row(props) {
 
   const handleDelete = (id) => {
     axios
-      .delete("http://localhost:8000/api/store/delete/" + id)
+      .delete("http://localhost:8000/api/blog/deleteBlog/" + id)
       .then(console.log("delete item......"))
       .then((res) => {
         console.log(res);
@@ -152,26 +152,24 @@ function Row(props) {
               <Table size="small" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Image</TableCell>
-                    <TableCell align="Center">Description</TableCell>
+                    <TableCell>Cover Image</TableCell>
+                    <TableCell align="Center">Content</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow key={row.imagename}>
+                  <TableRow key={row.thumbnails.imagename}>
                     <TableCell component="th" scope="row">
                       <Card className={classes.img}>
                         <CardActionArea>
                           <CardMedia
                             className={classes.img}
-                            image={
-                              "http://localhost:8000/api/uploadManage/image/" +
-                              row.imagename
+                            image={row.thumbnails.imagename
                             }
                           />
                         </CardActionArea>
                       </Card>
                     </TableCell>
-                    <TableCell align="right">{row.description}</TableCell>
+                    <TableCell align="left">{row.content}</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
