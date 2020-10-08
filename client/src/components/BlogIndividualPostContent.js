@@ -43,16 +43,17 @@ export default class PostContent extends Component {
         <CardImg top width="100%" src={this.state.image} alt="Image" />
         <CardBody>
           <CardText>{this.state.content}</CardText>
-
-          {this.state.hashtags.map((hashtag) => {
-            return (
-              <div style={{ marginRight: 3 }}>
-                <h3>
-                  <Badge color="primary">{hashtag}</Badge>
-                </h3>
-              </div>
-            );
-          })}
+          <div className="flexDisplay ">
+            {this.state.hashtags.map((hashtag) => {
+              return (
+                <div style={{ marginRight: 3 }}>
+                  <h3>
+                    <Badge color="primary">{hashtag}</Badge>
+                  </h3>
+                </div>
+              );
+            })}
+          </div>
         </CardBody>
         <div className="commentSection">
           <Header
