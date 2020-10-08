@@ -336,6 +336,8 @@ body {
 .commentSection {
   border: 1px solid #2c3e50;
   padding: 20px;
+  margin-left: 120px;
+  margin-right: 120px;
 }
 
 .individualComment {

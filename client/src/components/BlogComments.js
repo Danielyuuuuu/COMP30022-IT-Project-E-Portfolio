@@ -35,7 +35,7 @@ export default class BlogComments extends Component {
         <Comment.Group>
           {this.state.comments.map((comment) => {
             return (
-              <div className="flexDisplay">
+              <div>
                 <Comment>
                   <Comment.Avatar as="a" src={comment.profilePhoto} />
                   <Comment.Content>
