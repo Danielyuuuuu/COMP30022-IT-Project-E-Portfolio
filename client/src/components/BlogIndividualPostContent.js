@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../App.css";
-import { CardImg, CardTitle, CardText, CardBody } from "reactstrap";
+import { CardImg, CardTitle, CardText, CardBody, Badge } from "reactstrap";
 import { Header } from "semantic-ui-react";
 import AddComment from "./BlogAddComment";
 import BlogComments from "./BlogComments";
@@ -12,6 +12,7 @@ export default class PostContent extends Component {
       title: "",
       content: "",
       image: "",
+      hashtags: [],
     };
   }
   componentDidMount() {
@@ -22,6 +23,7 @@ export default class PostContent extends Component {
           title: res.title,
           content: res.content,
           image: res.thumbnails.imagename,
+          hashtags: res.hashtags,
         });
       });
   }
@@ -41,6 +43,16 @@ export default class PostContent extends Component {
         <CardImg top width="100%" src={this.state.image} alt="Image" />
         <CardBody>
           <CardText>{this.state.content}</CardText>
+
+          {this.state.hashtags.map((hashtag) => {
+            return (
+              <div style={{ marginRight: 3 }}>
+                <h3>
+                  <Badge color="primary">{hashtag}</Badge>
+                </h3>
+              </div>
+            );
+          })}
         </CardBody>
         <div className="commentSection">
           <Header
