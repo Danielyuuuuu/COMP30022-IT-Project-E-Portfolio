@@ -52,7 +52,7 @@ class BlogPost extends Component {
                     </a>
                   </CardTitle>
                   <CardText>
-                    {blogPost.content.split(" ").splice(0, 90).join(" ") +
+                    {blogPost.content.split(" ").splice(0, 40).join(" ") +
                       "..."}
                   </CardText>
                   <div className="flexDisplay">
