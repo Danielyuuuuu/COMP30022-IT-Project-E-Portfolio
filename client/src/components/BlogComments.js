@@ -47,10 +47,15 @@ export default class BlogComments extends Component {
 
   handleDelete = (e) => {
     console.log("Comment deleted: " + e);
-    Axios.delete("http://localhost:8000/api/comments/" + e).catch((err) => {
-      console.log(Error);
-    });
-    window.location.reload(false);
+    Axios.delete("http://localhost:8000/api/comments/" + e)
+      .then((res) => {
+        this.setState({
+          comments: this.state.comments.filter((comment) => comment._id !== e),
+        });
+      })
+      .catch((err) => {
+        console.log(Error);
+      });
   };
 
   writingPublisher(e) {
@@ -86,7 +91,6 @@ export default class BlogComments extends Component {
           content: "",
           publisher: "",
         });
-        //window.location.reload(false);
         this.getAllComments();
       })
       .catch((err) => {
