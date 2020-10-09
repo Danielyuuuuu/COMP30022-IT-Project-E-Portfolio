@@ -58,7 +58,7 @@ function Row(props) {
       .then(console.log("delete item......"))
       .then((res) => {
         console.log(res);
-        history.go(0);
+        props.callBackRefresh();
       });
     handleCloseDeleteAlert();
   };
@@ -128,6 +128,7 @@ function Row(props) {
             variant="contained"
             color="primary"
             blog={row}
+            
           ></Dialogs>
         </TableCell>
         <TableCell align="right">
@@ -184,10 +185,8 @@ function Row(props) {
 export default function Store() {
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    // Read the mutable latest value
+  const getPost= async ()=>{
     console.log(`Getting Posts...`);
-
     axios
       .get("http://localhost:8000/api/blog/getAllBlogs")
       .then((res) => {
@@ -197,6 +196,10 @@ export default function Store() {
       .catch((err) => {
         console.log("Error from get all post");
       });
+  }
+
+  useEffect(() => {
+    getPost();
   }, []);
 
   return (
@@ -209,7 +212,8 @@ export default function Store() {
                 <Dialogs
                   mode={"New"}
                   variant="contained"
-                  color="Secondary"
+                  color="secondary"
+                  callBackRefresh={getPost}
                   blog={{
                     title: "",
                     hashtags: [],
@@ -228,7 +232,7 @@ export default function Store() {
           </TableHead>
           <TableBody>
             {items.map((row) => (
-              <Row key={row.title} row={row} />
+              <Row key={row.title} row={row} callBackRefresh={getPost}/>
             ))}
           </TableBody>
         </Table>
