@@ -4,6 +4,7 @@ const Item = require("../models/item");
 
 // Blog Model
 const BlogModel = require("../models/blog");
+const User = require("../models/User");
 
 const postBlog = async (req, res) => {
   try {
@@ -60,4 +61,34 @@ const postDeleteBlog = async (req, res) => {
   });
 };
 
-module.exports = { postBlog, getSingleBlog, getAllBlogs, postDeleteBlog };
+const postEditBlog = async (req, res) => {
+  try {
+    let { postID, postTitle, imageUrl, postBody, hashTags } = req.body;
+    if (!postID || !postTitle || !imageUrl || !postBody || !hashTags) {
+      return res.status(400).json({
+        msg:
+          "Require all of the fields, which includes postID, postTitle, imageUrl, postBody and hashTags",
+      });
+    }
+    const updatedBlog = await BlogModel.findOneAndUpdate(
+      { _id: postID },
+      {
+        title: postTitle,
+        content: postBody,
+        thumbnails: { imagename: imageUrl },
+        hashtags: hashTags,
+      }
+    );
+    return res.json(updatedBlog);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports = {
+  postBlog,
+  getSingleBlog,
+  getAllBlogs,
+  postDeleteBlog,
+  postEditBlog,
+};

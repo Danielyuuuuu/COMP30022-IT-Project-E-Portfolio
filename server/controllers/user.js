@@ -136,10 +136,39 @@ const postTokenIsValid = async (req, res) => {
   }
 };
 
+// Change user password
+const postChangePassword = async (req, res) => {
+  try {
+    let { email, newPassword, repeatNewPassword } = req.body;
+    if (!email || !newPassword || !repeatNewPassword) {
+      return res.status(400).json({ msg: "Not all fields have been entered." });
+    }
+    if (newPassword != repeatNewPassword) {
+      return res.status(400).json({ msg: "Please enter the same password" });
+    }
+
+    // Hash the password
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(newPassword, salt);
+
+    const savedPassword = await User.findOneAndUpdate(
+      {
+        email: email,
+      },
+      { password: passwordHash }
+    );
+
+    return res.json(savedPassword);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   postUserRegister,
   postUserLogin,
   getUserLogout,
   getUserLoginRegister,
   postTokenIsValid,
+  postChangePassword,
 };
