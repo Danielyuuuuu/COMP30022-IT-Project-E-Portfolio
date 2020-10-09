@@ -58,11 +58,13 @@ export default class addComment extends Component {
           content: "",
           publisher: "",
         });
-        window.location.reload(false);
+        //window.location.reload(false);
       })
       .catch((err) => {
         this.setState({ error: err.response.data.msg });
       });
+
+    this.props.callBack();
   }
 
   setError = (e) => {
