@@ -12,21 +12,27 @@ export default class ContactMe extends Component {
   }
 
   componentDidMount() {
+    this.fetchAllTheContactMeMessages();
+  }
+
+  fetchAllTheContactMeMessages = async () => {
     fetch("http://localhost:8000/api/contactMe/getContactMe")
       .then((response) => response.json())
       .then((res) => {
         this.setState({ contactMes: res });
       });
-  }
+  };
 
   handleDelete = (e) => {
     console.log("ContactMe deleted: " + e);
-    Axios.delete(
-      "http://localhost:8000/api/contactMe/deleteContactMe/" + e
-    ).catch((err) => {
-      console.log(Error);
-    });
-    window.location.reload(false);
+    Axios.delete("http://localhost:8000/api/contactMe/deleteContactMe/" + e)
+      .then((res) => {
+        this.fetchAllTheContactMeMessages();
+        console.log("fetchAllTheContactMeMessages");
+      })
+      .catch((err) => {
+        console.log(Error);
+      });
   };
 
   render() {

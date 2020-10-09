@@ -39,8 +39,15 @@ class ContactMeForm extends React.Component {
           Math.floor(Math.random() * this.state.profilePhotos.length)
         ],
       };
-      await Axios.post("api/contactMe/addContactMe", newContactMe);
-      this.setState({ error: "Submit successful" });
+      Axios.post("api/contactMe/addContactMe", newContactMe).then((res) => {
+        this.setState({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          error: "Submit successful",
+        });
+      });
     } catch (err) {
       this.setState({ error: err.response.data.msg });
     }
@@ -58,6 +65,8 @@ class ContactMeForm extends React.Component {
         <FormGroup>
           <Label for="name">Name</Label>
           <Input
+            required
+            value={this.state.name}
             type="text"
             name="name"
             id="name"
@@ -68,6 +77,8 @@ class ContactMeForm extends React.Component {
         <FormGroup>
           <Label for="email">Email</Label>
           <Input
+            required
+            value={this.state.email}
             type="email"
             name="email"
             id="email"
@@ -78,6 +89,8 @@ class ContactMeForm extends React.Component {
         <FormGroup>
           <Label for="subject">Subject</Label>
           <Input
+            required
+            value={this.state.subject}
             type="text"
             name="subject"
             id="subject"
@@ -88,6 +101,8 @@ class ContactMeForm extends React.Component {
         <FormGroup>
           <Label for="message">Leave me a message</Label>
           <Input
+            required
+            value={this.state.message}
             type="textarea"
             name="message"
             id="message"

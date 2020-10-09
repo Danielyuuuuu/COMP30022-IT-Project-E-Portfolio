@@ -91,8 +91,6 @@ export default class PostContent extends Component {
           content: "",
           publisher: "",
         });
-        //window.location.reload(false);
-        this.forceUpdate();
       })
       .catch((err) => {
         this.setState({ error: err.response.data.msg });
