@@ -33,7 +33,10 @@ class Store extends Component {
   }
 
   updateCart(itemName) {
-    this.state.cart.push(itemName);
+    const index = this.state.cart.indexOf(itemName);
+    if (index < 0) {
+      this.state.cart.push(itemName);
+    }
     this.setState({ cart: this.state.cart });
     console.log(this.state.cart);
     localStorage.setItem("cart", JSON.stringify(this.state.cart));
