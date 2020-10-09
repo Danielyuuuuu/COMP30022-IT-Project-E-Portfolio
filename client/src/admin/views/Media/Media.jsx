@@ -1,94 +1,25 @@
-import React from 'react';
-import {useState,useEffect} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import React from "react";
+import { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 
-import Paper from '@material-ui/core/Paper';
-import Snackbar from '@material-ui/core/Snackbar';
-import Alert from '@material-ui/lab/Alert';
+import Paper from "@material-ui/core/Paper";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
+import GridList from "@material-ui/core/GridList";
+import GridListTile from "@material-ui/core/GridListTile";
+import GridListTileBar from "@material-ui/core/GridListTileBar";
 // import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
+import IconButton from "@material-ui/core/IconButton";
+import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
 
-import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
+import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
 
-import image from '../../assets/img/testimg.jpg';
-import DropzoneArea from '../../components/DropzoneArea';
+import DropzoneArea from "../../components/DropzoneArea";
 
-import axios from "axios"
-import { useHistory } from 'react-router-dom';
-const tileData = [
-    {
-        img: image,
-        title: 'image1',
-        author: 'author1',
-        colss: 2,
-    },
-    {
-        img: image,
-        title: 'image1',
-        author: 'author1',
-        colss: 3,
-    },
-    {
-        img: image,
-        title: 'image3',
-        author: 'author3',
-        colss: 4,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-    {
-        img: image,
-        title: 'image2',
-        author: 'author2',
-        colss: 6,
-    },
-]
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,15 +27,14 @@ const useStyles = makeStyles((theme) => ({
   },
 
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    overflow: "hidden",
     backgroundColor: theme.palette.background.paper,
-    
   },
   icon: {
-      color: 'rgba(255, 255, 255, 0.54)'
+    color: "rgba(255, 255, 255, 0.54)",
   },
 
   control: {
@@ -112,18 +42,15 @@ const useStyles = makeStyles((theme) => ({
   },
 
   gridList: {
-    height: '800px',
-    width: '100%',
+    height: "800px",
+    width: "100%",
   },
 
   paper: {
-    height: '100%',
-    width: '100%',
-  }
-
+    height: "100%",
+    width: "100%",
+  },
 }));
-
-
 
 export default function SpacingGrid() {
   const [spacing, setSpacing] = React.useState(2);
@@ -136,39 +63,58 @@ export default function SpacingGrid() {
   const [copyOpen, setCopyOpen] = React.useState(false);
 
   const handleCopyClick = () => {
-        setCopyOpen(true);
-  }
+    setCopyOpen(true);
+  };
 
   const handleCopyClose = (event, reason) => {
-      if (reason === 'clickaway'){
-          return;
-      }
-      setCopyOpen(false);
-  }
+    if (reason === "clickaway") {
+      return;
+    }
+    setCopyOpen(false);
+  };
 
   const [images, setImages] = useState([]);
-  
 
-    useEffect(() => {
-          // Read the mutable latest value
-          console.log(`Getting files...`);
-        
-        axios
-        .get("http://localhost:8000/api/uploadManage/files")
-        .then((res) => {
-            setImages(res.data);
-        })
-        .catch((err) => {
-            console.log("Error from ShowBookList");
-        });
-      },[]);
+  const handleRemoveItem = (filename) => {
+    axios
+      .delete(`http://localhost:8000/api/uploadManage/files/${filename}`)
+      .then((res) => {
+        console.log(res);
+        setImages(images.filter(image => image.filename !== filename));
+      });
+  };
 
-//   const images = [
-//       {
-//           author: "abc"
-//       }
-//   ]
-    const history = useHistory();
+  const fetchAllImages = async () => {
+    axios
+      .get("http://localhost:8000/api/uploadManage/files")
+      .then((res) => setImages(res.data))
+      .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    fetchAllImages();
+  })
+
+  // useEffect(() => {
+  //     // Read the mutable latest value
+  //     console.log(`Getting files...`);
+  //
+  //     axios
+  //     .get("http://localhost:8000/api/uploadManage/files")
+  //     .then((res) => {
+  //         setImages(res.data);
+  //     })
+  //     .catch((err) => {
+  //         console.log("Error from ShowBookList");
+  //     });
+  //   },[]);
+
+  //   const images = [
+  //       {
+  //           author: "abc"
+  //       }
+  //   ]
+  const history = useHistory();
   return (
     <div>
         <Grid container spacing={2} direction="row" justify="space-around" alignItems="stretch">
@@ -186,7 +132,7 @@ export default function SpacingGrid() {
                                     <IconButton className={classes.icon} onClick={() => {navigator.clipboard.writeText("http://localhost:8000/api/uploadManage/image/"+tile.filename)}}>
                                         <FileCopyOutlinedIcon onClick={handleCopyClick}/>
                                     </IconButton>
-                                    <IconButton className={classes.icon} onClick={() => {axios.delete("http://localhost:8000/api/uploadManage/files/"+tile._id);history.go(0);}}>
+                                    <IconButton className={classes.icon} onClick={()=>handleRemoveItem(tile.filename)}>
                                         <HighlightOffOutlinedIcon/>
                                     </IconButton>
                                     </div>
@@ -204,7 +150,7 @@ export default function SpacingGrid() {
                     <p>File Name:</p>
                     <p>Describe:</p>
                     <p>URL:</p>
-                    <DropzoneArea />
+                    <DropzoneArea callBack={fetchAllImages}/>
                 </Paper>
             </Grid>
 
@@ -213,8 +159,7 @@ export default function SpacingGrid() {
         <Alert onClose={handleCopyClose} severity="success">
           You have already copy the url of image.
         </Alert>
-      </Snackbar>     
-                         
+      </Snackbar>
     </div>
   );
 }

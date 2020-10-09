@@ -16,39 +16,56 @@ const getPayPage = async(req,res) =>{
 }
 
 const getPay = async(req,res) => {
+    
+    //const productName = req.body.name;
+    const price = req.body.price;
+    //const currency = req.body.currency;
+    //const total = req.body.total;
+    //const description = req.body.description;
+    
     const create_payment_json = {
         "intent": "sale",
         "payer": {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:8000/paypal/success",
-            "cancel_url": "http://localhost:8000/paypal/cancel"
+            "return_url": "http://localhost:8000/api/paypal/success",
+            "cancel_url": "http://localhost:8000/api/paypal/cancel"
         },
         "transactions": [{
             "item_list": {
                 "items": [{
                     "name": "Mona Lisa's smile",
                     "sku": "item",
-                    "price": "10.00",
+                    "price": price,
                     "currency": "AUD",
                     "quantity": 1
-                }]
+                },
+                {
+                    "name": "Anom Lisa's smile",
+                    "sku": "item",
+                    "price": price,
+                    "currency": "AUD",
+                    "quantity": 1
+                },
+                ]
             },
             "amount": {
                 "currency": "AUD",
-                "total": "10.00"
+                "total": 2*price
             },
             "description": "Maybe the best chance for you to get this artcraft"
         }]
     };
+
     paypal.payment.create(create_payment_json, function (error, payment) {
         if (error) {
             throw error;
         } else {
             for(let i = 0; i < payment.links.length;i++){
                 if(payment.links[i].rel === 'approval_url'){
-                    res.redirect(payment.links[i].href);
+                    res.json({ link:payment.links[i].href});
+                    //res.redirect(payment.links[i].href);
                 }
             }
         }
@@ -56,17 +73,13 @@ const getPay = async(req,res) => {
 }
 
 const getSuccessPage = async(req,res) => {
+
+    console.log(req.header);
     const payerId = req.query.PayerID;
     const paymentId = req.query.paymentId;
 
     const execute_payment_json = {
         "payer_id": payerId,
-        "transactions": [{
-            "amount": {
-                "currency": "AUD",
-                "total": "10.00"
-            }
-        }]
     };
 
     paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
@@ -75,7 +88,7 @@ const getSuccessPage = async(req,res) => {
             throw error;
         } else {
             console.log("Get Payment Response");
-            console.log(JSON.stringify(payment));
+            //console.log(JSON.stringify(payment));
             res.send('Success');
         }
     });

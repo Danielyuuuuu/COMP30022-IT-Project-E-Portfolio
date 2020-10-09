@@ -4,25 +4,13 @@ const artworkSchema = mongoose.Schema({
   category: {
     type: String,
     required: true,
-    subcategory: {
-      type: String,
-      required: true,
-    },
+  },
+  subcategory: {
+    type: String,
+    required: true,
   },
   // the imagename corresponds to the filename in uploads.files
-  imagename: {
-    type: String,
-    required: true,
-  },
-  // the imageId corresponds to the ObjectId in uploads.files
-  imageId: {
-    type: String,
-    required: true,
-  },
-  upload_date: {
-    type: Date,
-    default: Date.now,
-  },
+  imagenames:[],
 });
 
 module.exports = Artwork = mongoose.model("Artwork", artworkSchema);

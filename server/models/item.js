@@ -17,10 +17,9 @@ const itemSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  // the imageId corresponds to the ObjectId in uploads.files
-  imageId: {
-    type: String,
-    required: true,
+  stocks: {
+    type: Number,
+    default: 1,
   },
   price: {
     type: Number,
@@ -28,6 +27,7 @@ const itemSchema = mongoose.Schema({
   },
   tag: {
     type: String,
+    required: true,
   },
   upload_date: {
     type: Date,
@@ -35,6 +35,7 @@ const itemSchema = mongoose.Schema({
   },
   views: {
     type: Number,
+    default: 0,
   },
 });
 

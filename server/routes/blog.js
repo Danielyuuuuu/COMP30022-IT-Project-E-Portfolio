@@ -23,4 +23,9 @@ blogRouter.get("/getAllBlogs", blogController.getAllBlogs);
 // @access Public
 blogRouter.delete("/deleteBlog/:id", blogController.postDeleteBlog);
 
+// @route POST blog/editBlog
+// @description Edit blog post
+// @access Public
+blogRouter.post("/editBlog", blogController.postEditBlog);
+
 module.exports = blogRouter;

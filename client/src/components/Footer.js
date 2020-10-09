@@ -12,7 +12,7 @@ const Footer = () => (
   >
     <p>This is our footer&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
     <p>
-      <a href="/login">Admin Login</a>
+      <a href="/admin">Admin</a>
     </p>
   </div>
 );

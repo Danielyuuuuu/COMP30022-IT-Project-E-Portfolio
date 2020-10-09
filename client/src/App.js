@@ -20,11 +20,12 @@ import ArtWorkGallery1 from "./components/ArtWorkGallery1";
 import ArtWorkGallery2 from "./components/ArtWorkGallery2";
 import ArtWorkGallery3 from "./components/ArtWorkGallery3";
 
-
 import Admin from "./admin/layouts/Admin";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
+
+import CheckOut from "./components/ShoppingCheckOut";
 
 import Axios from "axios";
 
@@ -61,15 +62,14 @@ export default function App() {
   return (
     <Router>
       <div>
-        <Route exact path="/" component={ShowBookList} />
+        <Route exact path="/" component={EPortfolio} />
         <Route path="/create-book" component={CreateBook} />
         <Route path="/edit-book/:id" component={UpdateBookInfo} />
         <Route path="/show-book/:id" component={ShowBookDetails} />
 
-        <Route path="/eportfolio" component={EPortfolio} />
         <Route path="/store-frontend" component={Store} />
         <Route path="/blog" component={Blog} />
-        <Route path="/individualpost" component={IndividualPost} />
+        <Route path="/individualpost/:id" component={IndividualPost} />
         <Route path="/aboutme" component={AboutMe} />
         <Route path="/aboutruntimeterror" component={AboutRuntimeTerror} />
         <Route path="/contactme" component={ContactMe} />
@@ -82,6 +82,8 @@ export default function App() {
         <Route path="/artworkgallery1" component={ArtWorkGallery1} />
         <Route path="/artworkgallery2" component={ArtWorkGallery2} />
         <Route path="/artworkgallery3" component={ArtWorkGallery3} />
+
+        <Route path="/checkout" component={CheckOut} />
       </div>
     </Router>
   );
