@@ -105,17 +105,8 @@ export default function DialogsOfStore(props) {
     const [openJ, setOpenJ] = React.useState(false);
     const classes = imgStyles();
 
-    const [itemname, setItemName] = React.useState(1);
-    const [category, setCategory] = React.useState(1);
-    const [categoryInput, setCategoryInput] = React.useState(1);
-    const [stocks, setStocks] = React.useState(1);
-    const [price, setPrice] = React.useState(1);
-    const [views, setViews] = React.useState(1);
-    const [imagename, setImageName] = React.useState(1);
-    const [description, setDescription] = React.useState(1);
-
     const [markdown, setMarkDown] = React.useState(props.blog.content);
-    const [tag, setTags] = React.useState(props.blog.hashTags);
+    const [tag, setTags] = React.useState(props.blog.hashtags);
     const [title, setTitle] = React.useState(props.blog.title);
     const [imageUrl, setImageUrl] = React.useState(props.blog.thumbnails.imagename);
 
@@ -126,7 +117,12 @@ export default function DialogsOfStore(props) {
         setOpen(false);
     };
 
-    const history = useHistory();
+    const cleanData = ()=>{
+        setMarkDown("");
+        setTags([]);
+        setTitle("");
+        setImageUrl("");
+    }
 
     const handleSubmit = () => {
         console.log("before post......");
@@ -148,6 +144,8 @@ export default function DialogsOfStore(props) {
                 .then(console.log("adding new post......"))
                 .then((res) => {
                     console.log(res);
+                    cleanData();
+                    props.callBackRefresh();
                 });
         } else {
             Axios.post(
@@ -161,7 +159,8 @@ export default function DialogsOfStore(props) {
         }
 
         setOpen(false);
-        history.go(0);
+
+        // history.go(0);
     };
 
 
@@ -239,7 +238,6 @@ export default function DialogsOfStore(props) {
                         }}
                         id="controllable-states-demo"
                         options={options}
-                        defaultValue={[options[0]]}
                         renderInput={(params) => (
                             <TextField {...params} label="Tags" variant="outlined" />
                         )}
