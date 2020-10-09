@@ -39,8 +39,15 @@ class ContactMeForm extends React.Component {
           Math.floor(Math.random() * this.state.profilePhotos.length)
         ],
       };
-      await Axios.post("api/contactMe/addContactMe", newContactMe);
-      this.setState({ error: "Submit successful" });
+      Axios.post("api/contactMe/addContactMe", newContactMe).then((res) => {
+        this.setState({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          error: "Submit successful",
+        });
+      });
     } catch (err) {
       this.setState({ error: err.response.data.msg });
     }
@@ -58,41 +65,55 @@ class ContactMeForm extends React.Component {
         <FormGroup>
           <Label for="name">Name</Label>
           <Input
+            required
+            value={this.state.name}
             type="text"
             name="name"
             id="name"
             placeholder="Enter your name"
-            onChange={(e) => this.setState({ name: e.target.value })}
+            onChange={(e) => this.setState({ name: e.target.value, error: "" })}
           />
         </FormGroup>
         <FormGroup>
           <Label for="email">Email</Label>
           <Input
+            required
+            value={this.state.email}
             type="email"
             name="email"
             id="email"
             placeholder="Enter your email"
-            onChange={(e) => this.setState({ email: e.target.value })}
+            onChange={(e) =>
+              this.setState({ email: e.target.value, error: "" })
+            }
           />
         </FormGroup>
         <FormGroup>
           <Label for="subject">Subject</Label>
           <Input
+            required
+            value={this.state.subject}
             type="text"
             name="subject"
             id="subject"
             placeholder="Enter the subject"
-            onChange={(e) => this.setState({ subject: e.target.value })}
+            onChange={(e) =>
+              this.setState({ subject: e.target.value, error: "" })
+            }
           />
         </FormGroup>
         <FormGroup>
           <Label for="message">Leave me a message</Label>
           <Input
+            required
+            value={this.state.message}
             type="textarea"
             name="message"
             id="message"
             placeholder="Enter the message"
-            onChange={(e) => this.setState({ message: e.target.value })}
+            onChange={(e) =>
+              this.setState({ message: e.target.value, error: "" })
+            }
           />
         </FormGroup>
         <Button>Submit</Button>

@@ -1,21 +1,51 @@
 import React, { Component } from "react";
 import "../App.css";
-import { CardImg, CardTitle, CardText, CardBody, Badge } from "reactstrap";
+import {
+  CardImg,
+  CardTitle,
+  CardText,
+  CardBody,
+  Badge,
+  Button,
+  Form,
+  FormGroup,
+  Input,
+} from "reactstrap";
 import { Header } from "semantic-ui-react";
-import AddComment from "./BlogAddComment";
 import BlogComments from "./BlogComments";
+import axios from "axios";
+import ErrorNotice from "../misc/ErrorNotice";
 
 export default class PostContent extends Component {
   constructor(props) {
     super(props);
+
+    this.writingComment = this.writingComment.bind(this);
+    this.writingPublisher = this.writingPublisher.bind(this);
+    this.submitComment = this.submitComment.bind(this);
+
     this.state = {
       title: "",
       content: "",
       image: "",
       hashtags: [],
+      content: "",
+      publisher: "",
+      blogId: this.props.blogId,
+      profilePhotos: [
+        "https://react.semantic-ui.com/images/avatar/small/matt.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/jenny.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/joe.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/stevie.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/steve.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/christian.jpg",
+      ],
+      error: "",
     };
   }
-  componentDidMount() {
+
+  fetchIndividualPostContent = async () => {
     fetch("http://localhost:8000/api/blog/getSingleBlog/" + this.props.blogId)
       .then((response) => response.json())
       .then((res) => {
@@ -26,7 +56,50 @@ export default class PostContent extends Component {
           hashtags: res.hashtags,
         });
       });
+  };
+
+  componentDidMount() {
+    this.fetchIndividualPostContent();
   }
+
+  writingPublisher(e) {
+    this.setState({
+      publisher: e.target.value,
+    });
+  }
+  writingComment(e) {
+    this.setState({
+      content: e.target.value,
+    });
+  }
+
+  submitComment(e) {
+    e.preventDefault();
+    const comment = {
+      blogId: this.state.blogId,
+      publisher: this.state.publisher,
+      content: this.state.content,
+      profilePhoto: this.state.profilePhotos[
+        Math.floor(Math.random() * this.state.profilePhotos.length)
+      ],
+    };
+    console.log("Submit success ");
+    axios
+      .post("http://localhost:8000/api/comments/add", comment)
+      .then((res) => {
+        this.setState({
+          content: "",
+          publisher: "",
+        });
+      })
+      .catch((err) => {
+        this.setState({ error: err.response.data.msg });
+      });
+  }
+
+  setError = (e) => {
+    this.setState({ error: e });
+  };
 
   render() {
     return (
@@ -68,9 +141,6 @@ export default class PostContent extends Component {
             Comment Section
           </Header>
           <BlogComments blogId={this.props.blogId} />
-          <div className="container">
-            <AddComment blogId={this.props.blogId} />
-          </div>
         </div>
       </div>
     );
