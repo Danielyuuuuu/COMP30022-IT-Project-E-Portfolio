@@ -10,16 +10,7 @@ const artworkSchema = mongoose.Schema({
     required: true,
   },
   // the imagename corresponds to the filename in uploads.files
-  images:[{
-    imagename: {
-      type: String,
-      required: true,
-    },
-    upload_date: {
-      type: Date,
-      default: Date.now,
-    }
-  }],
+  imagenames:[],
 });
 
 module.exports = Artwork = mongoose.model("Artwork", artworkSchema);
