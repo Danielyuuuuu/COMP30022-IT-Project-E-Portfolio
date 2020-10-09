@@ -155,6 +155,7 @@ export default function DialogsOfStore(props) {
                 .then(console.log("edit item......"))
                 .then((res) => {
                     console.log(res);
+                    props.callBackRefresh();
                 });
         }
 

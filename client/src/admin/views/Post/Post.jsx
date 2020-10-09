@@ -68,6 +68,9 @@ function Row(props) {
   const handleCloseDeleteAlert = () => {
     setDeleteAlert(false);
   };
+  const callBack=()=>{
+    props.callBackRefresh();
+  }
 
   return (
     <React.Fragment>
@@ -128,7 +131,7 @@ function Row(props) {
             variant="contained"
             color="primary"
             blog={row}
-            
+            callBackRefresh={callBack}
           ></Dialogs>
         </TableCell>
         <TableCell align="right">
