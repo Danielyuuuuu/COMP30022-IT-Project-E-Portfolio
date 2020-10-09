@@ -71,7 +71,7 @@ class ContactMeForm extends React.Component {
             name="name"
             id="name"
             placeholder="Enter your name"
-            onChange={(e) => this.setState({ name: e.target.value })}
+            onChange={(e) => this.setState({ name: e.target.value, error: "" })}
           />
         </FormGroup>
         <FormGroup>
@@ -83,7 +83,9 @@ class ContactMeForm extends React.Component {
             name="email"
             id="email"
             placeholder="Enter your email"
-            onChange={(e) => this.setState({ email: e.target.value })}
+            onChange={(e) =>
+              this.setState({ email: e.target.value, error: "" })
+            }
           />
         </FormGroup>
         <FormGroup>
@@ -95,7 +97,9 @@ class ContactMeForm extends React.Component {
             name="subject"
             id="subject"
             placeholder="Enter the subject"
-            onChange={(e) => this.setState({ subject: e.target.value })}
+            onChange={(e) =>
+              this.setState({ subject: e.target.value, error: "" })
+            }
           />
         </FormGroup>
         <FormGroup>
@@ -107,7 +111,9 @@ class ContactMeForm extends React.Component {
             name="message"
             id="message"
             placeholder="Enter the message"
-            onChange={(e) => this.setState({ message: e.target.value })}
+            onChange={(e) =>
+              this.setState({ message: e.target.value, error: "" })
+            }
           />
         </FormGroup>
         <Button>Submit</Button>

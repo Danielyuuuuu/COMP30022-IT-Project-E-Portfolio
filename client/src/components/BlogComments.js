@@ -62,11 +62,13 @@ export default class BlogComments extends Component {
     this.setState({
       publisher: e.target.value,
     });
+    this.setState({ error: "" });
   }
   writingComment(e) {
     this.setState({
       content: e.target.value,
     });
+    this.setState({ error: "" });
   }
 
   submitComment(e) {
