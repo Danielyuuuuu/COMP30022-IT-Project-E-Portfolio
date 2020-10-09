@@ -23,34 +23,6 @@ const postUserRegister = async (req, res) => {
       return res.status(400).json({ msg: "User Already Exists" });
     }
 
-    // User.findOne({ email: email }).then((user) => {
-    //   // Email address already exist
-    //   if (user) {
-    //     res.status(400).json({ msg: "User Already Exists" });
-    //   }
-    //
-    //   // Hash the password
-    //   // bcrypt.genSalt(10, async (err, salt) =>
-    //   //   bcrypt.hash(password1, salt, async (err, hash) => {
-    //   //     if (err) throw err;
-    //   //
-    //   //     // Store the hashed password
-    //   //     const newUser = new User({
-    //   //       name,
-    //   //       email,
-    //   //       password: hash,
-    //   //     });
-    //   //
-    //   //     // Save the user
-    //   //     await newUser.save();
-    //   //     res.status(201).send({
-    //   //       user: newUser.toObject(),
-    //   //     });
-    //   //   })
-    //   // );
-    //
-    // });
-
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password1, salt);
 
@@ -61,10 +33,7 @@ const postUserRegister = async (req, res) => {
     });
 
     await newUser.save();
-    res.status(200).send({
-      user: newUser.toObject(),
-    });
-
+    res.status(200).json({ msg: "Successfully registered" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -92,10 +61,6 @@ const postUserLogin = async (req, res) => {
 
     res.json({
       token,
-      user: {
-        name: user.name,
-        id: user._id,
-      },
     });
   } catch (err) {
     res.status(501).json({ error: err.message });
