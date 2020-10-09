@@ -149,26 +149,38 @@ export default function SpacingGrid() {
   const [images, setImages] = useState([]);
 
   const handleRemoveItem = (filename) => {
-    setImages(images.filter(image => image.filename !== filename));
     axios
       .delete(`http://localhost:8000/api/uploadManage/files/${filename}`)
-      .then((res) => console.log(res));
+      .then((res) => {
+        console.log(res);
+        setImages(images.filter(image => image.filename !== filename));
+      });
   };
-  
 
-    useEffect(() => {
-          // Read the mutable latest value
-          console.log(`Getting files...`);
-        
-        axios
-        .get("http://localhost:8000/api/uploadManage/files")
-        .then((res) => {
-            setImages(res.data);
-        })
-        .catch((err) => {
-            console.log("Error from ShowBookList");
-        });
-      },[]);
+  const fetchAllImages = async () => {
+    axios
+      .get("http://localhost:8000/api/uploadManage/files")
+      .then((res) => setImages(res.data))
+      .catch((err) => console.log(err))
+  }
+
+  useEffect(() => {
+    fetchAllImages();
+  })
+
+  // useEffect(() => {
+  //     // Read the mutable latest value
+  //     console.log(`Getting files...`);
+  //
+  //     axios
+  //     .get("http://localhost:8000/api/uploadManage/files")
+  //     .then((res) => {
+  //         setImages(res.data);
+  //     })
+  //     .catch((err) => {
+  //         console.log("Error from ShowBookList");
+  //     });
+  //   },[]);
 
 //   const images = [
 //       {
@@ -211,7 +223,7 @@ export default function SpacingGrid() {
                     <p>File Name:</p>
                     <p>Describe:</p>
                     <p>URL:</p>
-                    <DropzoneArea />
+                    <DropzoneArea callBack={fetchAllImages}/>
                 </Paper>
             </Grid>
 
