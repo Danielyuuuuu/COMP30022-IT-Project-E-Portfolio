@@ -62,6 +62,15 @@ class ShoppingCart extends React.Component {
         <DropdownMenu size="lg">
           <FormGroup style={dropDownButtonStyle} color="success">
             <div>
+              {this.props.cart.map((item) => (
+                <div>
+                  <CustomInput type="checkbox" id={item} label={item} />
+                  <br />
+                </div>
+              ))}
+            </div>
+
+            {/* <div>
               <CustomInput
                 type="checkbox"
                 id="exampleCustomCheckbox"
@@ -85,7 +94,7 @@ class ShoppingCart extends React.Component {
                 id="exampleCustomCheckbox4"
                 label="Painting"
               />
-            </div>
+            </div> */}
           </FormGroup>
 
           <DropdownItem divider />
