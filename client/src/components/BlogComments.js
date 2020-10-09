@@ -34,12 +34,16 @@ export default class BlogComments extends Component {
   }
 
   componentDidMount() {
+    this.getAllComments();
+  }
+
+  getAllComments = async () => {
     fetch("http://localhost:8000/api/comments/blog/" + this.props.blogId)
       .then((response) => response.json())
       .then((res) => {
         this.setState({ comments: res.item, success: res.success });
       });
-  }
+  };
 
   handleDelete = (e) => {
     console.log("Comment deleted: " + e);
@@ -70,6 +74,11 @@ export default class BlogComments extends Component {
         Math.floor(Math.random() * this.state.profilePhotos.length)
       ],
     };
+    this.setState({
+      publisher: "",
+      content: "",
+    });
+
     console.log("Submit success ");
     Axios.post("http://localhost:8000/api/comments/add", comment)
       .then((res) => {
@@ -78,12 +87,11 @@ export default class BlogComments extends Component {
           publisher: "",
         });
         //window.location.reload(false);
+        this.getAllComments();
       })
       .catch((err) => {
         this.setState({ error: err.response.data.msg });
       });
-
-    this.props.callBack();
   }
 
   setError = (e) => {
@@ -135,9 +143,10 @@ export default class BlogComments extends Component {
               />
             )}
             <Form style={{ marginTop: 20 }}>
-              <FormGroup>
+              <FormGroup rows="3">
                 <Input
                   required
+                  value={this.state.publisher}
                   type="text"
                   placeholder="Enter your name..."
                   onChange={this.writingPublisher}
@@ -146,6 +155,7 @@ export default class BlogComments extends Component {
               <FormGroup>
                 <Input
                   required
+                  value={this.state.content}
                   type="textarea"
                   placeholder="Leave a Comment..."
                   onChange={this.writingComment}

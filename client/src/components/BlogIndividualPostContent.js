@@ -143,12 +143,6 @@ export default class PostContent extends Component {
             Comment Section
           </Header>
           <BlogComments blogId={this.props.blogId} />
-          <div className="container">
-            {/* <AddComment
-              blogId={this.props.blogId}
-              callBack={this.fetchIndividualPostContent}
-            /> */}
-          </div>
         </div>
       </div>
     );
