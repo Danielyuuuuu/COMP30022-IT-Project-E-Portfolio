@@ -64,12 +64,12 @@ const categories = [
   {
     name: "Photography",
     coverImage: "http://localhost:8000/api/uploadManage/image/890c444028e88bc04522cdee2e9be0bd.jpg",
-    subCategories: ["animel", "people", "city"],
+    subCategories: ["Nature", "people", "city"],
   },
   {
-    name: "Art Product",
+    name: "Art Products",
     coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
-    subCategories: ["1", "2", "3"],
+    subCategories: ["Sub 1", "Sub 2"],
   },
   {
     name: "Painting",
@@ -77,6 +77,8 @@ const categories = [
     subCategories: ["1", "2", "3"],
   },
 ]
+
+
 
 function Row(props) {
   const history = useHistory();
@@ -144,7 +146,8 @@ function Row(props) {
                           mode={"Edit"}
                           variant="contained"
                           color="primary"
-                          item={row}
+                          category={row.name}
+                          subcategory={sub}
                         ></Dialogs>
                       </TableCell>
                     </TableRow>
@@ -161,20 +164,20 @@ function Row(props) {
 }
 
 export default function Store() {
-  const [items, setItems] = useState([]);
+  const [gallery, setGallery] = useState([]);
 
   useEffect(() => {
     // Read the mutable latest value
     console.log(`Getting files...`);
 
     axios
-      .get("http://localhost:8000/api/store/")
+      .get("http://localhost:8000/api/gallery/")
       .then((res) => {
-        setItems(res.data.item);
-        console.log(res.data.item);
+        setGallery(res.data.artworks);
+        console.log(res.data.artworks);
       })
       .catch((err) => {
-        console.log("Error from ShowBookList");
+        console.log("Error from getting all gallery informations");
       });
   }, []);
 

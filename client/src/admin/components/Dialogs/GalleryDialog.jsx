@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Axios from "axios";
+import axios from "axios";
 
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 
@@ -21,11 +21,23 @@ import MediaOptionBar from "../../components/MediaOptionBar/MediaOptionBar";
 
 const testData = [
   {
+    chunkSize: 261120,
+    contentType: "image/jpeg",
     filename: "cc33d33dc1c350d8a8e19d05bf8b4918.jpg",
+    length: 69725,
+    md5: "acb69f673e0874cefe8fd80f4ff284fa",
+    uploadDate: "2020-09-23T08:07:06.010Z",
+    _id: "5f6b022967817e238476fad6",
   },
   {
-    filename: "cc33d33dc1c350d8a8e19d05bf8b4918.jpg",
-  }
+    chunkSize: 261120,
+    contentType: "image/png",
+    filename: "6b19db93e5940aa1bce15d564047c868.png",
+    length: 138841,
+    md5: "2d874793cea5e7825e34c26c30a98ecb",
+    uploadDate: "2020-09-27T12:36:08.109Z",
+    _id: "5f708737f697517cf02d4bc3",
+  },
 ];
 const styles = (theme) => ({
   root: {
@@ -37,13 +49,6 @@ const styles = (theme) => ({
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
-  },
-});
-
-const imgStyles = makeStyles({
-  img: {
-    width: 160,
-    height: 90,
   },
 });
 
@@ -81,22 +86,15 @@ const DialogActions = withStyles((theme) => ({
 
 export default function DialogsOfStore(props) {
   const [open, setOpen] = React.useState(false);
-  const [openJ, setOpenJ] = React.useState(false);
-  const classes = imgStyles();
-  const [selectedPictures, setPictures] = React.useState(testData);
-  const [itemname, setItemName] = React.useState(props.item.itemname);
-  const [category, setCategory] = React.useState(props.item.tag);
-  const [categoryInput, setCategoryInput] = React.useState(props.item.tag);
-  const [stocks, setStocks] = React.useState(props.item.stocks);
-  const [price, setPrice] = React.useState(props.item.price);
-  const [views, setViews] = React.useState(props.item.views);
-  const [imagename, setImageName] = React.useState(props.item.imagename);
-  const [description, setDescription] = React.useState(props.item.description);
+  const [selectedPictures, setPictures] = React.useState([]);
+
+  const [defaultImages,setDefaultImages] = React.useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
+    setPictures(defaultImages);
     setOpen(false);
   };
 
@@ -105,34 +103,41 @@ export default function DialogsOfStore(props) {
   const handleSubmit = () => {
     console.log("before post......");
     const data = {
-      name: itemname,
-      description: description,
-      filename: imagename,
-      stocks: stocks,
-      price: price,
-      tag: category,
-      views: views,
+      category:props.category,
+      subcategory:props.subcategory,
+      images:selectedPictures,
     };
-    if (props.mode == "New") {
-      Axios.post("http://localhost:8000/api/store/", data)
-        .then(console.log("add new......"))
-        .then((res) => {
-          console.log(res);
-        });
-    } else {
-      Axios.put(
-        "http://localhost:8000/api/store/update/" + props.item._id,
-        data
-      )
-        .then(console.log("edit item......"))
-        .then((res) => {
-          console.log(res);
-        });
-    }
+
+    axios.post("http://localhost:8000/api/gallery/", data)
+      .then(console.log("add/change galley......"))
+      .then((res) => {
+        console.log(res);
+      });
 
     setOpen(false);
-    history.go(0);
+
   };
+
+
+  React.useEffect(() => {
+    // Load the current subcategory
+    console.log(`Getting imagenames by subcategory...`);
+
+    const body = {
+      category: props.category,
+      subcategory: props.subcategory,
+    }
+    axios
+      .post("http://localhost:8000/api/gallery/subcategory", body)
+      .then((res) => {
+        setPictures(res.data.artworks[0].imagenames);
+        setDefaultImages(res.data.artworks[0].imagenames)
+        console.log(res.data.artworks[0].imagenames);
+      })
+      .catch((err) => {
+        console.log("Error from getting all gallery informations");
+      });
+  }, []);
 
 
   return (
@@ -159,7 +164,10 @@ export default function DialogsOfStore(props) {
           </SelectedPictures.Provider>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleSubmit} color="primary">
+          <Button
+            autoFocus
+            onClick={handleSubmit}
+            color="primary">
             {props.mode}
           </Button>
 
