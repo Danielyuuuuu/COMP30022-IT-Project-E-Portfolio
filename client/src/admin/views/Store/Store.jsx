@@ -58,7 +58,7 @@ function Row(props) {
       .then(console.log("delete item......"))
       .then((res) => {
         console.log(res);
-        history.go(0);
+        props.callBackRefresh();
       });
     handleCloseDeleteAlert();
   };
@@ -68,6 +68,10 @@ function Row(props) {
   const handleCloseDeleteAlert = () => {
     setDeleteAlert(false);
   };
+
+  const callBack=()=>{
+    props.callBackRefresh();
+  }
 
   return (
     <React.Fragment>
@@ -136,6 +140,7 @@ function Row(props) {
             variant="contained"
             color="primary"
             item={row}
+            callBackRefresh={callBack}
           ></Dialogs>
         </TableCell>
       </TableRow>
@@ -183,8 +188,7 @@ function Row(props) {
 export default function Store() {
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    // Read the mutable latest value
+  const getItems = () =>{
     console.log(`Getting files...`);
 
     axios
@@ -196,6 +200,11 @@ export default function Store() {
       .catch((err) => {
         console.log("Error from ShowBookList");
       });
+  }
+
+  useEffect(() => {
+    // Read the mutable latest value
+    getItems();
   }, []);
 
   return (
@@ -208,7 +217,8 @@ export default function Store() {
                 <Dialogs
                   mode={"New"}
                   variant="contained"
-                  color="Secondary"
+                  color="secondary"
+                  callBackRefresh={getItems}
                   item={{
                     itemname: "",
                     stock: 0,
@@ -231,7 +241,7 @@ export default function Store() {
           </TableHead>
           <TableBody>
             {items.map((row) => (
-              <Row key={row.itemname} row={row} />
+              <Row key={row.itemname} row={row} callBackRefresh={getItems}/>
             ))}
           </TableBody>
         </Table>
