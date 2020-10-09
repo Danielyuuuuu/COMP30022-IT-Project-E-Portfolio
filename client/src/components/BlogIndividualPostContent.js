@@ -148,35 +148,6 @@ export default class PostContent extends Component {
               blogId={this.props.blogId}
               callBack={this.fetchIndividualPostContent}
             /> */}
-            <div>
-              {this.state.error && (
-                <ErrorNotice
-                  message={this.state.error}
-                  clearError={() => this.setError(undefined)}
-                />
-              )}
-              <Form style={{ marginTop: 20 }}>
-                <FormGroup>
-                  <Input
-                    required
-                    type="text"
-                    placeholder="Enter your name..."
-                    onChange={this.writingPublisher}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Input
-                    required
-                    type="textarea"
-                    placeholder="Leave a Comment..."
-                    onChange={this.writingComment}
-                  />
-                </FormGroup>
-                <Button size="sm" onClick={this.submitComment}>
-                  Submit Comment
-                </Button>
-              </Form>
-            </div>
           </div>
         </div>
       </div>

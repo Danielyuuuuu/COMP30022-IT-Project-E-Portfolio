@@ -2,14 +2,34 @@ import React, { Component } from "react";
 import "../App.css";
 import { Comment } from "semantic-ui-react";
 import Axios from "axios";
+import { Button, Form, FormGroup, Input } from "reactstrap";
+import ErrorNotice from "../misc/ErrorNotice";
 
 export default class BlogComments extends Component {
   constructor(props) {
     super(props);
+
+    this.writingComment = this.writingComment.bind(this);
+    this.writingPublisher = this.writingPublisher.bind(this);
+    this.submitComment = this.submitComment.bind(this);
+
     this.state = {
       comments: [],
       success: false,
       token: localStorage.getItem("auth-token"),
+      content: "",
+      publisher: "",
+      blogId: this.props.blogId,
+      profilePhotos: [
+        "https://react.semantic-ui.com/images/avatar/small/matt.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/jenny.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/joe.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/stevie.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/steve.jpg",
+        "https://react.semantic-ui.com/images/avatar/small/christian.jpg",
+      ],
+      error: "",
     };
   }
 
@@ -29,13 +49,54 @@ export default class BlogComments extends Component {
     window.location.reload(false);
   };
 
+  writingPublisher(e) {
+    this.setState({
+      publisher: e.target.value,
+    });
+  }
+  writingComment(e) {
+    this.setState({
+      content: e.target.value,
+    });
+  }
+
+  submitComment(e) {
+    e.preventDefault();
+    const comment = {
+      blogId: this.state.blogId,
+      publisher: this.state.publisher,
+      content: this.state.content,
+      profilePhoto: this.state.profilePhotos[
+        Math.floor(Math.random() * this.state.profilePhotos.length)
+      ],
+    };
+    console.log("Submit success ");
+    Axios.post("http://localhost:8000/api/comments/add", comment)
+      .then((res) => {
+        this.setState({
+          content: "",
+          publisher: "",
+        });
+        //window.location.reload(false);
+      })
+      .catch((err) => {
+        this.setState({ error: err.response.data.msg });
+      });
+
+    this.props.callBack();
+  }
+
+  setError = (e) => {
+    this.setState({ error: e });
+  };
+
   render() {
     return (
-      <div>
+      <div style={{ marginLeft: 150 }}>
         <Comment.Group>
           {this.state.comments.map((comment) => {
             return (
-              <div className="flexDisplay">
+              <div>
                 <Comment>
                   <Comment.Avatar as="a" src={comment.profilePhoto} />
                   <Comment.Content>
@@ -66,6 +127,35 @@ export default class BlogComments extends Component {
               </div>
             );
           })}
+          <div>
+            {this.state.error && (
+              <ErrorNotice
+                message={this.state.error}
+                clearError={() => this.setError(undefined)}
+              />
+            )}
+            <Form style={{ marginTop: 20 }}>
+              <FormGroup>
+                <Input
+                  required
+                  type="text"
+                  placeholder="Enter your name..."
+                  onChange={this.writingPublisher}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Input
+                  required
+                  type="textarea"
+                  placeholder="Leave a Comment..."
+                  onChange={this.writingComment}
+                />
+              </FormGroup>
+              <Button size="sm" onClick={this.submitComment}>
+                Submit Comment
+              </Button>
+            </Form>
+          </div>
         </Comment.Group>
       </div>
     );
