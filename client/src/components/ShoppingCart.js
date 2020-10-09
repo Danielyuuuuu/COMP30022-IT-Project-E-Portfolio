@@ -40,9 +40,21 @@ const checkOutButtonStyle = {
 };
 
 class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cart: this.props.cart,
+    };
+  }
+
   render() {
     return (
       <UncontrolledDropdown direction="down" style={shoppingCartStyle}>
+        {this.props.cart.map((item) => {
+          return item;
+        })}
+
         <DropdownToggle>
           Shopping
           <ShoppingCartIcon />
@@ -171,11 +183,7 @@ const CheckOutModal = (props) => {
         <ModalFooter>
           <Alert color="success">In Total: $267.00 </Alert>
 
-          <Button
-            color="primary"
-            onClick={toggle}
-            href="/checkout"
-          >
+          <Button color="primary" onClick={toggle} href="/checkout">
             PayPal
           </Button>
         </ModalFooter>
