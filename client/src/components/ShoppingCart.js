@@ -9,6 +9,9 @@ import {
   FormGroup,
   Label,
   Button,
+  ListGroup,
+  ListGroupItem,
+  Badge,
 } from "reactstrap";
 
 import { useState } from "react";
@@ -25,6 +28,8 @@ import PaymentIcon from "@material-ui/icons/Payment";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
 import StorefrontIcon from "@material-ui/icons/Storefront";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import IconButton from "@material-ui/core/IconButton";
 
 const shoppingCartStyle = {
   position: "absolute",
@@ -60,17 +65,36 @@ class ShoppingCart extends React.Component {
           <ShoppingCartIcon />
         </DropdownToggle>
         <DropdownMenu size="lg">
-          <FormGroup style={dropDownButtonStyle} color="success">
-            <div>
-              {this.props.cart.map((item) => (
-                <div>
-                  <CustomInput type="checkbox" id={item} label={item} />
-                  <br />
-                </div>
-              ))}
-            </div>
+          <ListGroup flush>
+            {this.props.cart.map((item) => (
+              <div>
+                <ListGroupItem>
+                  {item}
+                  <IconButton
+                    // aria-label="delete"
+                    onClick={() => this.props.removeCartItem(item)}
+                  >
+                    <HighlightOffIcon color="secondary" fontSize="small" />
+                  </IconButton>
+                </ListGroupItem>
+              </div>
+            ))}
+          </ListGroup>
 
-            {/* <div>
+          {/* <FormGroup style={dropDownButtonStyle} color="success">
+            {this.props.cart.map((item) => (
+              <div>
+                <CustomInput
+                  type="checkbox"
+                  id={item}
+                  label={item}
+                  onClick={() => this.props.removeCartItem(item)}
+                />
+                <br />
+              </div>
+            ))}
+
+            <div>
               <CustomInput
                 type="checkbox"
                 id="exampleCustomCheckbox"
@@ -94,10 +118,10 @@ class ShoppingCart extends React.Component {
                 id="exampleCustomCheckbox4"
                 label="Painting"
               />
-            </div> */}
-          </FormGroup>
+            </div>
+          </FormGroup> */}
 
-          <DropdownItem divider />
+          {/* <DropdownItem divider /> */}
           <CheckOutModal buttonLabel="Check Out" className="" />
         </DropdownMenu>
       </UncontrolledDropdown>

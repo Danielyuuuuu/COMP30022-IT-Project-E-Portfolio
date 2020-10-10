@@ -30,6 +30,7 @@ class Store extends Component {
       cart: [],
     };
     this.updateCart = this.updateCart.bind(this);
+    this.removeCartItem = this.removeCartItem.bind(this);
   }
 
   updateCart(itemName) {
@@ -40,6 +41,20 @@ class Store extends Component {
     this.setState({ cart: this.state.cart });
     console.log(this.state.cart);
     localStorage.setItem("cart", JSON.stringify(this.state.cart));
+  }
+
+  removeCartItem(itemName) {
+    const index = this.state.cart.indexOf(itemName);
+    console.log(index);
+    console.log(this.state.cart);
+    console.log(itemName);
+    if (index >= 0) {
+      this.state.cart.splice(index, 1);
+    }
+    this.setState({ cart: this.state.cart });
+    console.log(this.state.cart);
+    localStorage.setItem("cart", JSON.stringify(this.state.cart));
+    console.log("You can remove!");
   }
 
   updateTags(tagName) {
@@ -77,22 +92,6 @@ class Store extends Component {
   updateSortFilter(filterName) {
     this.setState({ filter: filterName });
     console.log(this.state.filter);
-    // let tagsArray = this.state.tags;
-    // if (tagsArray.length < 1) {
-    //   tagsArray = ["photography", "painting", "art product"];
-    // }
-    // const req = {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     // tags: this.state.tags,
-    //     tags: tagsArray,
-    //     filter: this.state.filter,
-    //   }),
-    // };
-    // fetch("http://localhost:8000/api/store/filter", req)
-    //   .then((res) => res.json())
-    //   .then((data) => this.setState({ data: data.specific_items }));
   }
 
   componentDidMount() {
@@ -134,7 +133,10 @@ class Store extends Component {
         <br />
         <br />
         <br />
-        <ShoppingCart cart={this.state.cart} />
+        <ShoppingCart
+          cart={this.state.cart}
+          removeCartItem={this.removeCartItem}
+        />
         <div className="store">
           <div className="store-menu">
             <Form>
