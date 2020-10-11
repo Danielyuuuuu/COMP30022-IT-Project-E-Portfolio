@@ -132,7 +132,7 @@ const CheckOutModal = (props) => {
             <tbody>
               {cart.map((item) => (
                 <tr>
-                  <th scope="row"></th>
+                  <th scope="row">{cart.indexOf(item) + 1}</th>
                   <td>{item.name}</td>
                   <td>${item.price}</td>
                 </tr>
