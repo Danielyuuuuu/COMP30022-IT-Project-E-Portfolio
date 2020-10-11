@@ -34,11 +34,16 @@ import { List } from "@material-ui/core";
 
 const shoppingCartStyle = {
   position: "absolute",
-  right: "4%",
+  right: "8%",
 };
 
 const dropDownButtonStyle = {
   margin: "3% 6% 3% 6%",
+  padding: "10px",
+};
+
+const dropDownMenuStyle = {
+  width: "200px",
 };
 
 const checkOutButtonStyle = {
@@ -57,19 +62,15 @@ class ShoppingCart extends React.Component {
   render() {
     return (
       <UncontrolledDropdown direction="down" style={shoppingCartStyle}>
-        {this.props.cart.map((item) => {
-          return item.name;
-        })}
-
         <DropdownToggle>
           Shopping
           <ShoppingCartIcon />
         </DropdownToggle>
-        <DropdownMenu size="lg">
+        <DropdownMenu size="lg" style={dropDownMenuStyle}>
           <ListGroup flush>
             {this.props.cart.map((item) => (
               <div>
-                <ListGroupItem>
+                <ListGroupItem style={dropDownButtonStyle}>
                   {item.name}
                   <IconButton
                     // aria-label="delete"
