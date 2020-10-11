@@ -9,6 +9,9 @@ import {
   FormGroup,
   Label,
   Button,
+  ListGroup,
+  ListGroupItem,
+  Badge,
 } from "reactstrap";
 
 import { useState } from "react";
@@ -25,14 +28,22 @@ import PaymentIcon from "@material-ui/icons/Payment";
 import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
 import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
 import StorefrontIcon from "@material-ui/icons/Storefront";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import IconButton from "@material-ui/core/IconButton";
+import { List } from "@material-ui/core";
 
 const shoppingCartStyle = {
   position: "absolute",
-  right: "4%",
+  right: "8%",
 };
 
 const dropDownButtonStyle = {
   margin: "3% 6% 3% 6%",
+  padding: "10px",
+};
+
+const dropDownMenuStyle = {
+  width: "200px",
 };
 
 const checkOutButtonStyle = {
@@ -40,6 +51,14 @@ const checkOutButtonStyle = {
 };
 
 class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      cart: this.props.cart,
+    };
+  }
+
   render() {
     return (
       <UncontrolledDropdown direction="down" style={shoppingCartStyle}>
@@ -47,37 +66,29 @@ class ShoppingCart extends React.Component {
           Shopping
           <ShoppingCartIcon />
         </DropdownToggle>
-        <DropdownMenu size="lg">
-          <FormGroup style={dropDownButtonStyle} color="success">
-            <div>
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox"
-                label="Camera"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox2"
-                label="Old Grandpa"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox3"
-                label="Colorful Forest"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox4"
-                label="Painting"
-              />
-            </div>
-          </FormGroup>
+        <DropdownMenu size="lg" style={dropDownMenuStyle}>
+          <ListGroup flush>
+            {this.props.cart.map((item) => (
+              <div>
+                <ListGroupItem style={dropDownButtonStyle}>
+                  {item.name}
+                  <IconButton
+                    // aria-label="delete"
+                    onClick={() => this.props.removeCartItem(item.name)}
+                  >
+                    <HighlightOffIcon color="secondary" fontSize="small" />
+                  </IconButton>
+                  <br />
+                </ListGroupItem>
+              </div>
+            ))}
+          </ListGroup>
 
-          <DropdownItem divider />
-          <CheckOutModal buttonLabel="Check Out" className="" />
+          <CheckOutModal
+            buttonLabel="Check Out"
+            className=""
+            cart={this.props.cart}
+          />
         </DropdownMenu>
       </UncontrolledDropdown>
     );
@@ -85,7 +96,7 @@ class ShoppingCart extends React.Component {
 }
 
 const CheckOutModal = (props) => {
-  const { buttonLabel, className } = props;
+  const { buttonLabel, className, cart } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -107,36 +118,6 @@ const CheckOutModal = (props) => {
           Check Out List:
         </ModalHeader>
         <ModalBody>
-          {/* <FormGroup style={dropDownButtonStyle} color="success">
-            <div>
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox"
-                label="painting1"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox2"
-                label="photography2"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox3"
-                label="art product3"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox4"
-                label="photography4"
-              />
-              <br />
-              <br />
-              In Total: $12.00
-            </div>
-          </FormGroup> */}
           <Table>
             <thead>
               <tr>
@@ -150,32 +131,23 @@ const CheckOutModal = (props) => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Colorful Forest</td>
-                <td>$55.00</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Camera</td>
-                <td>$12.00</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Old Grandpa</td>
-                <td>$200.00</td>
-              </tr>
+              {cart.map((item) => (
+                <tr>
+                  <th scope="row">{cart.indexOf(item) + 1}</th>
+                  <td>{item.name}</td>
+                  <td>${item.price}</td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </ModalBody>
         <ModalFooter>
-          <Alert color="success">In Total: $267.00 </Alert>
+          <Alert color="success">
+            In Total: $
+            {cart.map((item) => item.price).reduce((a, b) => a + b, 0)}{" "}
+          </Alert>
 
-          <Button
-            color="primary"
-            onClick={toggle}
-            href="/checkout"
-          >
+          <Button color="primary" onClick={toggle} href="/checkout">
             PayPal
           </Button>
         </ModalFooter>
