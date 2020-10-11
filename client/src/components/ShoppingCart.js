@@ -30,6 +30,7 @@ import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import IconButton from "@material-ui/core/IconButton";
+import { List } from "@material-ui/core";
 
 const shoppingCartStyle = {
   position: "absolute",
@@ -82,48 +83,11 @@ class ShoppingCart extends React.Component {
             ))}
           </ListGroup>
 
-          {/* <FormGroup style={dropDownButtonStyle} color="success">
-            {this.props.cart.map((item) => (
-              <div>
-                <CustomInput
-                  type="checkbox"
-                  id={item}
-                  label={item}
-                  onClick={() => this.props.removeCartItem(item)}
-                />
-                <br />
-              </div>
-            ))}
-
-            <div>
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox"
-                label="Camera"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox2"
-                label="Old Grandpa"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox3"
-                label="Colorful Forest"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox4"
-                label="Painting"
-              />
-            </div>
-          </FormGroup> */}
-
-          {/* <DropdownItem divider /> */}
-          <CheckOutModal buttonLabel="Check Out" className="" />
+          <CheckOutModal
+            buttonLabel="Check Out"
+            className=""
+            cart={this.props.cart}
+          />
         </DropdownMenu>
       </UncontrolledDropdown>
     );
@@ -131,7 +95,7 @@ class ShoppingCart extends React.Component {
 }
 
 const CheckOutModal = (props) => {
-  const { buttonLabel, className } = props;
+  const { buttonLabel, className, cart } = props;
 
   const [modal, setModal] = useState(false);
 
@@ -153,36 +117,6 @@ const CheckOutModal = (props) => {
           Check Out List:
         </ModalHeader>
         <ModalBody>
-          {/* <FormGroup style={dropDownButtonStyle} color="success">
-            <div>
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox"
-                label="painting1"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox2"
-                label="photography2"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox3"
-                label="art product3"
-              />
-              <br />
-              <CustomInput
-                type="checkbox"
-                id="exampleCustomCheckbox4"
-                label="photography4"
-              />
-              <br />
-              <br />
-              In Total: $12.00
-            </div>
-          </FormGroup> */}
           <Table>
             <thead>
               <tr>
@@ -196,21 +130,13 @@ const CheckOutModal = (props) => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Colorful Forest</td>
-                <td>$55.00</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Camera</td>
-                <td>$12.00</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Old Grandpa</td>
-                <td>$200.00</td>
-              </tr>
+              {cart.map((item) => (
+                <tr>
+                  <th scope="row"></th>
+                  <td>{item.name}</td>
+                  <td>${item.price}</td>
+                </tr>
+              ))}
             </tbody>
           </Table>
         </ModalBody>
