@@ -56,12 +56,12 @@ class Store extends Component {
     //   this.state.cart.splice(index, 1);
     // }
 
-    this.setState({
-      cart: this.state.cart.filter((item) => item.name != itemName),
-    });
+    let leftItems = this.state.cart.filter((item) => item.name != itemName);
+    this.setState({ cart: leftItems });
 
     console.log(this.state.cart);
-    localStorage.setItem("cart", JSON.stringify(this.state.cart));
+
+    localStorage.setItem("cart", JSON.stringify(leftItems));
     console.log("You can remove!");
   }
 

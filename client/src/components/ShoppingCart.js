@@ -141,7 +141,10 @@ const CheckOutModal = (props) => {
           </Table>
         </ModalBody>
         <ModalFooter>
-          <Alert color="success">In Total: $267.00 </Alert>
+          <Alert color="success">
+            In Total: $
+            {cart.map((item) => item.price).reduce((a, b) => a + b, 0)}{" "}
+          </Alert>
 
           <Button color="primary" onClick={toggle} href="/checkout">
             PayPal
