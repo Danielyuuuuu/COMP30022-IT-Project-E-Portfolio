@@ -57,7 +57,7 @@ class ShoppingCart extends React.Component {
     return (
       <UncontrolledDropdown direction="down" style={shoppingCartStyle}>
         {this.props.cart.map((item) => {
-          return item;
+          return item.name;
         })}
 
         <DropdownToggle>
@@ -69,13 +69,14 @@ class ShoppingCart extends React.Component {
             {this.props.cart.map((item) => (
               <div>
                 <ListGroupItem>
-                  {item}
+                  {item.name}
                   <IconButton
                     // aria-label="delete"
-                    onClick={() => this.props.removeCartItem(item)}
+                    onClick={() => this.props.removeCartItem(item.name)}
                   >
                     <HighlightOffIcon color="secondary" fontSize="small" />
                   </IconButton>
+                  <br />
                 </ListGroupItem>
               </div>
             ))}

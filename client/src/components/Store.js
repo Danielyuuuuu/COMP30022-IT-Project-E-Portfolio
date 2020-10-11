@@ -33,10 +33,14 @@ class Store extends Component {
     this.removeCartItem = this.removeCartItem.bind(this);
   }
 
-  updateCart(itemName) {
-    const index = this.state.cart.indexOf(itemName);
-    if (index < 0) {
-      this.state.cart.push(itemName);
+  updateCart(itemName, itemPrice) {
+    // const index = this.state.cart.indexOf(itemName);
+    // if (index < 0) {
+    //   this.state.cart.push(itemName);
+    // }
+    let selectedItems = this.state.cart.filter((item) => item.name == itemName);
+    if (selectedItems.length == 0) {
+      this.state.cart.push({ name: itemName, price: itemPrice });
     }
     this.setState({ cart: this.state.cart });
     console.log(this.state.cart);
@@ -44,14 +48,18 @@ class Store extends Component {
   }
 
   removeCartItem(itemName) {
-    const index = this.state.cart.indexOf(itemName);
-    console.log(index);
-    console.log(this.state.cart);
-    console.log(itemName);
-    if (index >= 0) {
-      this.state.cart.splice(index, 1);
-    }
-    this.setState({ cart: this.state.cart });
+    // const index = this.state.cart.indexOf(itemName);
+    // console.log(index);
+    // console.log(this.state.cart);
+    // console.log(itemName);
+    // if (index >= 0) {
+    //   this.state.cart.splice(index, 1);
+    // }
+
+    this.setState({
+      cart: this.state.cart.filter((item) => item.name != itemName),
+    });
+
     console.log(this.state.cart);
     localStorage.setItem("cart", JSON.stringify(this.state.cart));
     console.log("You can remove!");
@@ -327,7 +335,14 @@ class Item extends Component {
         <CardTitle>{this.props.data.itemname} </CardTitle>
         <CardText>{this.props.data.description}</CardText>
         <CardTitle>${this.props.data.price}.00</CardTitle>
-        <Button onClick={() => this.props.updateCart(this.props.data.itemname)}>
+        <Button
+          onClick={() =>
+            this.props.updateCart(
+              this.props.data.itemname,
+              this.props.data.price
+            )
+          }
+        >
           Add to the cart
         </Button>
       </Card>
