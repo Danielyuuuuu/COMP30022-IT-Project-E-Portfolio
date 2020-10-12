@@ -28,6 +28,10 @@ export default function AdminNavbarLinks() {
     history.push("/login");
   };
 
+  const toEportfolioPage = () => {
+    history.push("/");
+  };
+
   const classes = useStyles();
 
   const [openProfile, setOpenProfile] = React.useState(null);
@@ -81,6 +85,12 @@ export default function AdminNavbarLinks() {
                       className={classes.dropdownItem}
                     >
                       Logout
+                    </MenuItem>
+                    <MenuItem
+                      onClick={toEportfolioPage}
+                      className={classes.dropdownItem}
+                    >
+                      To E-Portfolio
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

@@ -23,6 +23,16 @@ export default function Login() {
     }
   };
 
+  const setEmailAddress = async (e) => {
+    setEmail(e.target.value);
+    setError("");
+  };
+
+  const setUserPassword = async (e) => {
+    setPassword(e.target.value);
+    setError("");
+  };
+
   return (
     <Form className="loginRegisterPage" onSubmit={submit}>
       <h2
@@ -43,7 +53,7 @@ export default function Login() {
           type="email"
           name="email"
           id="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={setEmailAddress}
         />
       </FormGroup>
       <FormGroup>
@@ -52,7 +62,7 @@ export default function Login() {
           type="password"
           name="password"
           id="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={setUserPassword}
         />
       </FormGroup>
       <Button onClick={submit} color="primary" block>

@@ -18,30 +18,22 @@ const postUserRegister = async (req, res) => {
       return res.status(400).json({ msg: "Please enter the same password" });
     }
 
-    User.findOne({ email: email }).then((user) => {
-      // Email address already exist
-      if (user) {
-        return res.status(400).json({ msg: "User Already Exists" });
-      }
+    const user = await User.findOne({ email: email }).exec();
+    if (user !== null) {
+      return res.status(400).json({ msg: "User Already Exists" });
+    }
 
-      // Hash the password
-      bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(password1, salt, (err, hash) => {
-          if (err) throw err;
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password1, salt);
 
-          // Store the hashed password
-          const newUser = new User({
-            name,
-            email,
-            password: hash,
-          });
-
-          // Save the user
-          const savedUser = newUser.save();
-          res.json(savedUser);
-        })
-      );
+    const newUser = new User({
+      name,
+      email,
+      password: hash,
     });
+
+    await newUser.save();
+    res.status(200).json({ msg: "Successfully registered" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -56,7 +48,7 @@ const postUserLogin = async (req, res) => {
     if (!email || !password)
       return res.status(400).json({ msg: "Not all fields have been entered." });
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: email }).exec();
     if (!user)
       return res
         .status(400)
@@ -65,14 +57,10 @@ const postUserLogin = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     res.json({
       token,
-      user: {
-        name: user.name,
-        id: user._id,
-      },
     });
   } catch (err) {
     res.status(501).json({ error: err.message });
@@ -113,10 +101,39 @@ const postTokenIsValid = async (req, res) => {
   }
 };
 
+// Change user password
+const postChangePassword = async (req, res) => {
+  try {
+    let { email, newPassword, repeatNewPassword } = req.body;
+    if (!email || !newPassword || !repeatNewPassword) {
+      return res.status(400).json({ msg: "Not all fields have been entered." });
+    }
+    if (newPassword != repeatNewPassword) {
+      return res.status(400).json({ msg: "Please enter the same password" });
+    }
+
+    // Hash the password
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(newPassword, salt);
+
+    const savedPassword = await User.findOneAndUpdate(
+      {
+        email: email,
+      },
+      { password: passwordHash }
+    );
+
+    return res.json(savedPassword);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   postUserRegister,
   postUserLogin,
   getUserLogout,
   getUserLoginRegister,
   postTokenIsValid,
+  postChangePassword,
 };

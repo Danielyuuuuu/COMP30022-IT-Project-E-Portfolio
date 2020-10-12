@@ -62,12 +62,11 @@ export default function App() {
   return (
     <Router>
       <div>
-        <Route exact path="/" component={ShowBookList} />
+        <Route exact path="/" component={EPortfolio} />
         <Route path="/create-book" component={CreateBook} />
         <Route path="/edit-book/:id" component={UpdateBookInfo} />
         <Route path="/show-book/:id" component={ShowBookDetails} />
 
-        <Route path="/eportfolio" component={EPortfolio} />
         <Route path="/store-frontend" component={Store} />
         <Route path="/blog" component={Blog} />
         <Route path="/individualpost/:id" component={IndividualPost} />
@@ -84,7 +83,7 @@ export default function App() {
         <Route path="/artworkgallery2" component={ArtWorkGallery2} />
         <Route path="/artworkgallery3" component={ArtWorkGallery3} />
 
-        <Route path="/checkout" component ={CheckOut} />
+        <Route path="/checkout" component={CheckOut} />
       </div>
     </Router>
   );

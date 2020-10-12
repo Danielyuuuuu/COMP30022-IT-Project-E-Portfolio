@@ -24,22 +24,22 @@ const StoreCategoryList = (props) => {
           />
           <CustomInput
             type="checkbox"
-            id="exampleCustomCheckbox2"
+            id="exampleCustomCheckbox22"
             label="Photography"
           />
           <CustomInput
             type="checkbox"
-            id="exampleCustomCheckbox3"
+            id="exampleCustomCheckbox33"
             label="Graphic Desgin"
           />
           <CustomInput
             type="checkbox"
-            id="exampleCustomCheckbox4"
+            id="exampleCustomCheckbox44"
             label="Digital Design"
           />
           <CustomInput
             type="checkbox"
-            id="exampleCustomCheckbox5"
+            id="exampleCustomCheckbox55"
             label="Painting"
           />
           <CustomInput
