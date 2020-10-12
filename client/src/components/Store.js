@@ -33,14 +33,18 @@ class Store extends Component {
     this.removeCartItem = this.removeCartItem.bind(this);
   }
 
-  updateCart(itemName, itemPrice) {
+  updateCart(itemName, itemPrice, imageName) {
     // const index = this.state.cart.indexOf(itemName);
     // if (index < 0) {
     //   this.state.cart.push(itemName);
     // }
     let selectedItems = this.state.cart.filter((item) => item.name == itemName);
     if (selectedItems.length == 0) {
-      this.state.cart.push({ name: itemName, price: itemPrice });
+      this.state.cart.push({
+        name: itemName,
+        price: itemPrice,
+        filename: imageName,
+      });
     }
     this.setState({ cart: this.state.cart });
     console.log(this.state.cart);
@@ -339,7 +343,8 @@ class Item extends Component {
           onClick={() =>
             this.props.updateCart(
               this.props.data.itemname,
-              this.props.data.price
+              this.props.data.price,
+              this.props.data.imagename
             )
           }
         >
