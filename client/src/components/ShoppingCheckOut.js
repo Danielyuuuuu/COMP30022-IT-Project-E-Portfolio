@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import "../App.css";
-
+import Footer from "./Footer";
 import {
     Card,
     Button,
     Table,
     CardTitle,
+    Dropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
     CardText,
     CardImg,
     Row,
@@ -22,7 +26,19 @@ const url = "http://localhost:8000/api/uploadManage/image/";
 export default class CheckOutList extends Component {
     constructor(props){
         super(props);
+        
+        this.state = {
+            goods: 
+            [
+                { name: "testA", price: "10", quantity:"1"},
+                { name: "testB", price: "5", quantity:"1"},
+                { name: "testC", price: "8", quantity:"1"},
+            ],
+        };
+        
         this.sendPayment = this.sendPayment.bind(this);
+
+        
     }
     
 
@@ -30,11 +46,10 @@ export default class CheckOutList extends Component {
         e.preventDefault();
  
 
-        const price = {
-            price: "30"
-        };
-        console.log("require to buy ");
-        axios.post("http://localhost:8000/api/paypal/pay",price)
+        const lists = this.state.goods;
+        console.log(lists);
+
+        axios.post("http://localhost:8000/api/paypal/pay",lists)
         .then((res) =>{
             window.location.href=res.data.link;
         })
@@ -60,15 +75,17 @@ export default class CheckOutList extends Component {
                         Check and Pay
                     </Button>{' '}
                 </div>
-
-
+                <Footer />
             </div>
         )
     }
 }
 
 
+
 class ItemsTable extends Component{
+
+
     render(){
         return (
             <Table >
@@ -93,7 +110,9 @@ class ItemsTable extends Component{
                         />
                     </td>
                     <td>Mona lisa's smile</td>
-                    <td>1</td>
+                    <td>
+                        1
+                    </td>
                     <td>AUD 30.00</td>
                     <td>
                         <Button size="sm" color="danger"> Remove</Button>
