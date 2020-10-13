@@ -10,7 +10,7 @@ galleryRouter.get("/", galleryController.getAllArtworks);
 // @route       POST gallery/
 // @description add one or more artwork(s) in the subcategory
 // @access      Private
-galleryRouter.post("/", galleryController.addArtwork);
+galleryRouter.post("/", galleryController.updateArtwork);
 
 // @route       PUT gallery/:id
 // @description given the artwork._id,
@@ -35,7 +35,7 @@ galleryRouter.post("/subcategory", galleryController.getArtworksUnderSubcat);
 // @description given the artwork._id,
 //              delete an artwork entry in gallery (the image remains in Media)
 // @access      Private
-galleryRouter.delete("/subcategory", galleryController.deleteArtwork);
+// galleryRouter.delete("/subcategory", galleryController.deleteArtwork);
 
 
 module.exports = galleryRouter;
