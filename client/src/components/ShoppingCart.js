@@ -47,7 +47,7 @@ const dropDownMenuStyle = {
 };
 
 const checkOutButtonStyle = {
-  margin: "3% 20% 3% 20%",
+  margin: "3% 27% 3% 27%",
 };
 
 const removeButtonStyle = {
