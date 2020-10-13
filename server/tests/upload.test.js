@@ -12,16 +12,16 @@ const uploadController = require("../controllers/upload");
 
 
 beforeAll(async () => {
-  // await mongoose.connect(global.__MONGO_URI__, {
-  //   useNewUrlParser: true,
-  //   useCreateIndex: true,
-  //   useUnifiedTopology: true,
-  // }, (err) => {
-  //   if (err) {
-  //     console.error(err);
-  //     process.exit(1);
-  //   }
-  // });
+  await mongoose.createConnection(global.__MONGO_URI__, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useUnifiedTopology: true,
+  }, (err) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
 
   const storage = new GridFsStorage({
     url: global.__MONGO_URI__,
