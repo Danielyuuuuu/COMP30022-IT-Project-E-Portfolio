@@ -56,6 +56,7 @@ export default function Setting(){
         .catch((err) => {
             console.log(err.response.data);
         });
+        setOpen(false);
     }
 
     return (
@@ -105,29 +106,4 @@ export default function Setting(){
           </Dialog>
         </div>
       );
-
-    // return (
-    //     <div>
-    //     <Dialogs
-    //         mode={"Edit Password"}
-    //         variant="contained"
-    //         color="primary"
-    //         // callBackRefresh={getPost}
-    //         blog={{
-    //         title: "",
-    //         hashtags: [],
-    //         thumbnails:{
-    //             imagename: "",
-    //         },
-    //         content:"",
-    //         aaaa: ""
-    //         }}
-    //         // user={{
-    //         //     email: "",
-    //         //     newPassword: "",
-    //         //     repeatNewPassword: ""
-    //         // }}
-    //     ></Dialogs>
-    //     </div>
-    // );
 }
