@@ -118,7 +118,7 @@ export default class BlogComments extends Component {
                     <Comment.Metadata>
                       <div>{comment.date.slice(0, 10)}</div>
                       <div>
-                        <LikeButton id={comment._id} likes={comment.favours} />
+                        <LikeButton id={comment._id} likes={comment.favours} callBack={this.getAllComments} />
                       </div>
                       <div>{comment.favours} Faves</div>
                       {this.state.token ? (
@@ -203,10 +203,13 @@ class LikeButton extends Component {
       Axios.post(
         "http://localhost:8000/api/comments/addLike",
         commentReq
-      ).catch((err) => {
+      ).then((res) => {
+        this.props.callBack();
+      }).catch((err) => {
         console.log(err);
       });
-      window.location.reload(false);
+      
+      // window.location.reload(false);
     }
     this.setState({ clicked: !this.state.clicked });
   };
