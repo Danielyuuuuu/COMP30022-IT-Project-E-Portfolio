@@ -18,12 +18,13 @@ const getPayPage = async(req,res) =>{
 const getPay = async(req,res) => {
 
     var totalAmount = 0;
-    
+
     req.body.map((item) =>{
         item["sku"] = "item";
         item["currency"] = "AUD";
-        console.log(item["price"]);
-        totalAmount += parseFloat(item["price"]);
+        totalAmount += parseFloat(item["price"])*parseFloat(item["quantity"]);
+        console.log("in back end")
+        console.log(item);
     })
 
 
@@ -55,7 +56,6 @@ const getPay = async(req,res) => {
             for(let i = 0; i < payment.links.length;i++){
                 if(payment.links[i].rel === 'approval_url'){
                     res.json({ link:payment.links[i].href});
-                    //res.redirect(payment.links[i].href);
                 }
             }
         }

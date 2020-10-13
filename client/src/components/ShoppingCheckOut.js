@@ -6,6 +6,11 @@ import {
   Card,
   Button,
   Table,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormText,
   CardTitle,
   CardText,
   CardImg,
@@ -33,11 +38,8 @@ export default class CheckOutList extends Component {
   sendPayment(e) {
     e.preventDefault();
 
-    const price = {
-      price: "30",
-    };
     console.log("require to buy ");
-    axios.post("http://localhost:8000/api/paypal/pay", price).then((res) => {
+    axios.post("http://localhost:8000/api/paypal/pay", this.state.myCart).then((res) => {
       window.location.href = res.data.link;
     });
   }
@@ -54,10 +56,10 @@ export default class CheckOutList extends Component {
         <br />
         <br />
         <div>
-          <ItemsTable />
+          <ItemsTable body = {this.state.myCart}/>
         </div>
         <div>
-          <Button size="lg" color="primary" onClick={this.sendPayment} block>
+          <Button size="lg" color="primary" onClick={this.sendPayment} >
             Check and Pay
           </Button>{" "}
         </div>
@@ -66,81 +68,158 @@ export default class CheckOutList extends Component {
   }
 }
 
+
 class ItemsTable extends Component {
+ 
+  constructor(props){
+      super(props);
+      
+      this.state = 
+        {
+          cart: this.props.body,
+          totalPrice : 0
+        };
+  }
+  
+  componentDidMount(){
+    this.updateTotal();
+  }
+
+  updateTotal(){
+    
+    var total = 0;
+    this.state.cart.map((item) => {
+        total += item.quantity * item.price
+    })
+    this.setState({totalPrice: total})
+    
+  }
+  
+  removeCartItem(itemName) {
+
+
+    let leftItems = this.state.cart.filter((item) => item.name != itemName);
+
+    this.setState({ cart : leftItems });
+    
+    localStorage.setItem("cart", JSON.stringify(leftItems));
+
+    this.updateTotal();
+
+  }
+  
+  addQuantity(itemName) {
+
+    console.log("Click at AddQuantity");
+    
+    this.state.cart.map((item) => {
+        if (item.name == itemName){
+            {item.quantity ++}
+        }
+    })
+    this.setState({ cart : this.state.cart });
+
+    localStorage.setItem("cart", JSON.stringify(this.state.cart));
+    
+    this.updateTotal();
+
+
+
+  }
+  
+  reduceQuantity(itemName) {
+    console.log(this.state.cart);
+    
+    this.state.cart.map((item) => {
+        if (item.name == itemName && item.quantity >= 1){
+            {item.quantity --}
+        }
+    })
+    this.setState({ cart : this.state.cart });
+
+    localStorage.setItem("cart", JSON.stringify(this.state.cart));
+    
+    this.updateTotal();
+
+    console.log("Click at AddQuantity");
+    console.log(localStorage.cart);
+  }
+
+
+  renderTableData(){
+     
+      var index = 1;
+      return this.state.cart.map( (good) =>{
+        //const {name,price,quantity} = good
+
+        return (
+            <tr>
+                <td>{index++}</td>
+                <td>
+                    <img
+                    height="20%"
+                    width="20%"
+                    src="http://localhost:8000/api/uploadManage/image/cff15ed84dad8a582143ce1ada541820.png"
+                    />
+                </td>
+                <td>{good.name}</td>
+                <td>
+                    <Form >
+                        <Input 
+                            vertical-align = "top"
+                            size = "1"
+                            type ="text"
+                            placeholder={good.quantity}
+
+                        />
+                    </Form>
+                    <Button onClick={() => this.addQuantity(good.name)} color="primary" size="sm">
+                        +
+                    </Button>
+                    <Button onClick={() => this.reduceQuantity(good.name)} color="primary" size="sm">
+                        -
+                    </Button>
+                </td>
+                <td>{good.price}</td>
+                <td>{good.price*good.quantity} </td>
+                <td>
+                    <Button size="sm" color="danger" onClick={() => this.removeCartItem(good.name)}>
+                    {" "}
+                    Remove
+                    </Button>
+                </td>
+            </tr> 
+        )
+      })
+  }  
+
   render() {
-    return (
-      <Table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Amount</th>
-            <th>Price</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>
-              <img
-                height="20%"
-                width="20%"
-                src="http://localhost:8000/api/uploadManage/image/cff15ed84dad8a582143ce1ada541820.png"
-              />
-            </td>
-            <td>Mona lisa's smile</td>
-            <td>1</td>
-            <td>AUD 30.00</td>
-            <td>
-              <Button size="sm" color="danger">
-                {" "}
-                Remove
-              </Button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>
-              <img
-                height="20%"
-                width="20%"
-                src="http://localhost:8000/api/uploadManage/image/141d4e89773a48c1d4ed37ba20fb0a72.png"
-              />
-            </td>
-            <td>MAD MAX 4</td>
-            <td>1</td>
-            <td>AUD 20.00</td>
-            <td>
-              <Button size="sm" color="danger">
-                {" "}
-                Remove
-              </Button>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <th>
-              <img
-                height="20%"
-                width="20%"
-                src={url + "877845f5327f2ac4d5935ef64499befd.png"}
-              />
-            </th>
-            <td>天线得得B</td>
-            <td>1</td>
-            <td>AUD 10.00</td>
-            <td>
-              <Button size="sm" color="danger">
-                {" "}
-                Remove
-              </Button>
-            </td>
-          </tr>
-        </tbody>
-      </Table>
-    );
+      return (
+          <Table >
+              <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.renderTableData()}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{this.state.totalPrice}</td>
+                </tr>
+              </tbody>
+          </Table>
+      )
   }
 
 }
