@@ -7,6 +7,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Dialogs from "../../components/Dialogs/PostDialog";
+
+import TextField from '@material-ui/core/TextField';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles({
     root: {
@@ -16,37 +24,84 @@ const useStyles = makeStyles({
 
 export default function Setting(){
     const classes = useStyles();
+
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+  
+    const handleClose = () => {
+      setOpen(false);
+    };
+
     return (
         <div>
-        <Card className={classes.root}>
-            <CardActionArea>
-                <CardMedia
-                component="img"
-                alt="Contemplative Reptile"
-                height="140"
-                image="/static/images/cards/contemplative-reptile.jpg"
-                title="Contemplative Reptile"
-                />
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    Lizard
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                    across all continents except Antarctica
-                </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button size="small" color="primary">
-                Share
-                </Button>
-                <Button size="small" color="primary">
-                Learn More
-                </Button>
-            </CardActions>
-        </Card>
-        
+          <Button variant="contained" color="primary" onClick={handleClickOpen}>
+            Edit Password
+          </Button>
+          <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title">Edit Password</DialogTitle>
+            <DialogContent>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Email Address"
+                type="email"
+                fullWidth
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="New Password"
+                type="text"
+                fullWidth
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Confirm New Password"
+                type="text"
+                fullWidth
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={handleClose} color="primary">
+                Submit
+              </Button>
+            </DialogActions>
+          </Dialog>
         </div>
-    );
+      );
+
+    // return (
+    //     <div>
+    //     <Dialogs
+    //         mode={"Edit Password"}
+    //         variant="contained"
+    //         color="primary"
+    //         // callBackRefresh={getPost}
+    //         blog={{
+    //         title: "",
+    //         hashtags: [],
+    //         thumbnails:{
+    //             imagename: "",
+    //         },
+    //         content:"",
+    //         aaaa: ""
+    //         }}
+    //         // user={{
+    //         //     email: "",
+    //         //     newPassword: "",
+    //         //     repeatNewPassword: ""
+    //         // }}
+    //     ></Dialogs>
+    //     </div>
+    // );
 }
