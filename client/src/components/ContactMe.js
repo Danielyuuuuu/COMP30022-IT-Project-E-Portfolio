@@ -3,7 +3,6 @@ import NavbarTop from "./NavbarTop";
 import "../App.css";
 import ContactMeForm from "./ContactMeForm";
 import Footer from "./Footer";
-import ContactMeInfo from "./ContactMeInfo";
 
 class ContactMe extends Component {
   render() {
@@ -13,7 +12,6 @@ class ContactMe extends Component {
         <br />
         <br />
         <br />
-        <ContactMeInfo />
         <ContactMeForm />
         <Footer />
       </div>

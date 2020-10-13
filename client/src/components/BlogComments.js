@@ -131,8 +131,8 @@ export default class BlogComments extends Component {
                           </button>{" "}
                         </div>
                       ) : (
-                        <div></div>
-                      )}
+                          <div></div>
+                        )}
                     </Comment.Metadata>
                     <Comment.Text>{comment.content}</Comment.Text>
                   </Comment.Content>
@@ -196,7 +196,7 @@ class LikeButton extends Component {
       Axios.post(
         "http://localhost:8000/api/comments/unLike",
         commentReq
-      ).then((res) =>{
+      ).then((res) => {
         this.props.callBack();
       }).catch((err) => {
         console.log(err);
@@ -205,7 +205,7 @@ class LikeButton extends Component {
       Axios.post(
         "http://localhost:8000/api/comments/addLike",
         commentReq
-      ).then((res) =>{
+      ).then((res) => {
         this.props.callBack();
       }).catch((err) => {
         console.log(err);
