@@ -15,6 +15,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import axios from "axios";
 
 const useStyles = makeStyles({
     root: {
@@ -26,6 +27,9 @@ export default function Setting(){
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
+    const [email, setEmail] = React.useState("");
+    const [newPassword, setNewPassword] = React.useState("");
+    const [confirmNewPassword, setConfirmNewPassword] = React.useState("");
 
     const handleClickOpen = () => {
       setOpen(true);
@@ -34,6 +38,25 @@ export default function Setting(){
     const handleClose = () => {
       setOpen(false);
     };
+
+    const handleSubmit = () => {
+        console.log("From email: ");
+        console.log(email);
+        console.log(newPassword);
+        console.log(confirmNewPassword);
+
+        const token = localStorage.getItem("auth-token");
+        console.log("Token: " + token)
+        axios
+        .post("http://localhost:8000/api/user/getUserEmail", token )
+        .then((res) => {
+            console.log("In axios: ");
+            console.log(res.data.email);
+        })
+        .catch((err) => {
+            console.log(err.response.data);
+        });
+    }
 
     return (
         <div>
@@ -50,6 +73,7 @@ export default function Setting(){
                 label="Email Address"
                 type="email"
                 fullWidth
+                onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -58,6 +82,7 @@ export default function Setting(){
                 label="New Password"
                 type="text"
                 fullWidth
+                onChange={(e) => setNewPassword(e.target.value)}
               />
               <TextField
                 autoFocus
@@ -66,13 +91,14 @@ export default function Setting(){
                 label="Confirm New Password"
                 type="text"
                 fullWidth
+                onChange={(e) => setConfirmNewPassword(e.target.value)}
               />
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color="primary">
                 Cancel
               </Button>
-              <Button onClick={handleClose} color="primary">
+              <Button onClick={handleSubmit} color="primary">
                 Submit
               </Button>
             </DialogActions>

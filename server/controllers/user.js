@@ -101,6 +101,26 @@ const postTokenIsValid = async (req, res) => {
   }
 };
 
+const postFindEmailUsingToken = async (req, res) => {
+  try {
+    let {token} = req.body;
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    console.log("From back end: " + token);
+
+    if (!token) return res.status(400).json({msg: "Need to send user token"});
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.status(400).json({msg: "Token not verified"});
+
+    const user = await User.findById(verified.id);
+    if (!user) return res.status(400).json({msg: "No such user"});
+
+    return res.status(200).json({email: user.email});
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
 // Change user password
 const postChangePassword = async (req, res) => {
   try {
@@ -136,4 +156,5 @@ module.exports = {
   getUserLoginRegister,
   postTokenIsValid,
   postChangePassword,
+  postFindEmailUsingToken,
 };
