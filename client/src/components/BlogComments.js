@@ -46,7 +46,6 @@ export default class BlogComments extends Component {
   };
 
   handleDelete = (e) => {
-    console.log("Comment deleted: " + e);
     Axios.delete("http://localhost:8000/api/comments/" + e)
       .then((res) => {
         this.setState({
@@ -188,28 +187,29 @@ class LikeButton extends Component {
   }
 
   handleClick = () => {
+    const commentReq = {
+      id: this.props.id,
+      likes: this.props.likes,
+    };
+
     if (this.state.clicked) {
-      console.log("un-liked");
-      console.log(this.props.id);
-      console.log(this.props.likes);
-    } else {
-      console.log("liked");
-      console.log(this.props.id);
-      console.log(this.props.likes);
-      const commentReq = {
-        id: this.props.id,
-        likes: this.props.likes,
-      };
       Axios.post(
-        "http://localhost:8000/api/comments/addLike",
+        "http://localhost:8000/api/comments/unLike",
         commentReq
-      ).then((res) => {
+      ).then((res) =>{
         this.props.callBack();
       }).catch((err) => {
         console.log(err);
       });
-      
-      // window.location.reload(false);
+    } else {
+      Axios.post(
+        "http://localhost:8000/api/comments/addLike",
+        commentReq
+      ).then((res) =>{
+        this.props.callBack();
+      }).catch((err) => {
+        console.log(err);
+      });
     }
     this.setState({ clicked: !this.state.clicked });
   };
