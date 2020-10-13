@@ -16,16 +16,21 @@ const getPayPage = async(req,res) =>{
 }
 
 const getPay = async(req,res) => {
-    
-    //const productName = req.body.name;
-    const price = req.body.price;
-    //const currency = req.body.currency;
-    //const total = req.body.total;
-    //const description = req.body.description;
-    
+
+    var totalAmount = 0;
+
+    req.body.map((item) =>{
+        item["sku"] = "item";
+        item["currency"] = "AUD";
+        totalAmount += parseFloat(item["price"])*parseFloat(item["quantity"]);
+        console.log("in back end")
+        console.log(item);
+    })
+
+
     const create_payment_json = {
         "intent": "sale",
-        "payer": {
+        payer: {
             "payment_method": "paypal"
         },
         "redirect_urls": {
@@ -34,25 +39,11 @@ const getPay = async(req,res) => {
         },
         "transactions": [{
             "item_list": {
-                "items": [{
-                    "name": "Mona Lisa's smile",
-                    "sku": "item",
-                    "price": price,
-                    "currency": "AUD",
-                    "quantity": 1
-                },
-                {
-                    "name": "Anom Lisa's smile",
-                    "sku": "item",
-                    "price": price,
-                    "currency": "AUD",
-                    "quantity": 1
-                },
-                ]
+                "items": req.body
             },
             "amount": {
                 "currency": "AUD",
-                "total": 2*price
+                "total": totalAmount
             },
             "description": "Maybe the best chance for you to get this artcraft"
         }]
@@ -65,7 +56,6 @@ const getPay = async(req,res) => {
             for(let i = 0; i < payment.links.length;i++){
                 if(payment.links[i].rel === 'approval_url'){
                     res.json({ link:payment.links[i].href});
-                    //res.redirect(payment.links[i].href);
                 }
             }
         }

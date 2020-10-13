@@ -40,11 +40,14 @@ class Store extends Component {
     // }
     let selectedItems = this.state.cart.filter((item) => item.name == itemName);
     if (selectedItems.length == 0) {
+
       this.state.cart.push({
         name: itemName,
         price: itemPrice,
         filename: imageName,
+        quantity: 1
       });
+
     }
     this.setState({ cart: this.state.cart });
     console.log(this.state.cart);
