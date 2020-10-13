@@ -141,8 +141,8 @@ class ItemsTable extends Component {
     
     this.updateTotal();
 
-    console.log("Click at AddQuantity");
-    console.log(localStorage.cart);
+    console.log("Click at ReduceQuantity");
+    console.log(this.state.cart);
   }
 
 
@@ -159,7 +159,7 @@ class ItemsTable extends Component {
                     <img
                     height="20%"
                     width="20%"
-                    src="http://localhost:8000/api/uploadManage/image/cff15ed84dad8a582143ce1ada541820.png"
+                    src={"http://localhost:8000/api/uploadManage/image/"+good.filename}
                     />
                 </td>
                 <td>{good.name}</td>
