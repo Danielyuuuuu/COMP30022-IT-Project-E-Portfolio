@@ -2,10 +2,6 @@ require('dotenv').config();
 
 const mongoose = require("mongoose");
 const httpMocks = require("node-mocks-http");
-const path = require("path");
-const crypto = require("crypto");
-const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
 
 const User = require("../models/User");
 const userController = require("../controllers/user");
@@ -21,27 +17,6 @@ beforeAll(async () => {
       process.exit(1);
     }
   });
-
-  // const storage = new GridFsStorage({
-  //   url: global.__MONGO_URI__,
-  //   file: (req, file) => {
-  //     return new Promise((resolve, reject) => {
-  //       crypto.randomBytes(16, (err, buf) => {
-  //         if (err) {
-  //           return reject(err);
-  //         }
-  //         const filename = buf.toString("hex") + path.extname(file.originalname);
-  //         const fileInfo = {
-  //           filename: filename,
-  //           bucketName: "jest.uploads",
-  //         };
-  //         resolve(fileInfo);
-  //       });
-  //     });
-  //   },
-  // });
-  //
-  // const upload = multer({ storage });
 });
 
 afterAll(async () => {
