@@ -120,13 +120,6 @@ describe("User Controller Test", () => {
       .then(async () => {
         const body = await res._getData();
         expect(res.statusCode).toBe(200);
-        expect(body).toHaveProperty('user');
-        expect(body.user).toHaveProperty('name');
-        expect(body.user).toHaveProperty('email');
-        expect(body.user).toHaveProperty('password');
-        expect(body.user).toHaveProperty('date');
-        expect(body.user.name).toBe('dummy4');
-        expect(body.user.email).toBe('testdummy4@gmail.com');
       });
   });
 
@@ -165,11 +158,7 @@ describe("User Controller Test", () => {
       .then(async () => {
         const body = await res._getJSONData();
         expect(res.statusCode).toBe(200);
-        expect(body).toHaveProperty('user');
         expect(body).toHaveProperty('token');
-        expect(body.user).toHaveProperty('name');
-        expect(body.user).toHaveProperty('id');
-        expect(body.user.name).toBe('dummy4');
       });
   });
 
