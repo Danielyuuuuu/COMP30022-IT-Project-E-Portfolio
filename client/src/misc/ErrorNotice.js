@@ -1,12 +1,18 @@
 import React from "react";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import BackspaceIcon from '@material-ui/icons/Backspace';
 
 export default function ErrorNotice(props) {
   return (
     <div className="errorNotice">
-      <span>{props.message}</span>
-      <button onClick={props.clearError}>
-        <i class="fas fa-times"></i>
-      </button>
+        <Alert severity={props.severity}>
+          {props.message}        
+          <button onClick={props.clearError}>
+            <BackspaceIcon />
+          </button>
+        </Alert>
     </div>
   );
 }
