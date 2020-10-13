@@ -48,10 +48,10 @@ export default function Setting(){
         const token = localStorage.getItem("auth-token");
         console.log("Token: " + token)
         axios
-        .post("http://localhost:8000/api/user/getUserEmail", token )
+        .post("http://localhost:8000/api/user/changePassword", { "token": token, "email": email, "newPassword": newPassword, "repeatNewPassword": confirmNewPassword } )
         .then((res) => {
             console.log("In axios: ");
-            console.log(res.data.email);
+            console.log(res.data.msg);
         })
         .catch((err) => {
             console.log(err.response.data);
