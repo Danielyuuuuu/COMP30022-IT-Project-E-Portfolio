@@ -82,8 +82,8 @@ function Media() {
   const [deleteOpen, setDeleteOpen] = React.useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
-  const handleClickVariant = ( message, variant) => {
-    enqueueSnackbar(message, {variant})
+  const handleClickVariant = (message, variant) => {
+    enqueueSnackbar(message, { variant })
   }
 
   const handleCopyClick = () => {
@@ -101,7 +101,7 @@ function Media() {
       .then((res) => {
         console.log(res);
         setImages(images.filter(image => image.filename !== filename));
-        
+
       });
   };
 
@@ -119,53 +119,50 @@ function Media() {
   const history = useHistory();
   return (
     <React.Fragment>
-      <Grid container spacing={2} direction="row" justify="space-around" alignItems="stretch">
 
-        <Grid item xs={8} className={classes.root}>
           <Paper elevation={0} className={classes.paper}>
-            <h3>Media</h3>
-            <GridList cellHeight={180} className={classes.gridList} cols={3}>
+            <Grid container spacing={2} direction="row" justify="space-around" alignItems="stretch">
+              <Grid item xs={8}>
+                <h3>Media</h3>
+              </Grid>
+              <Grid item xs={2}>
+                <DropzoneArea callBack={fetchAllImages} />
+              </Grid>
+            </Grid>
+            <GridList cellHeight={180} className={classes.gridList} cols={5}>
               {images.map((tile) => (
                 <GridListTile>
                   <img src={"http://localhost:8000/api/uploadManage/image/" + tile.filename} />
                   <GridListTileBar
+                    title={tile.filename}
                     actionIcon={
-                      <div>
-                        <IconButton className={classes.icon} onClick={() => { navigator.clipboard.writeText("http://localhost:8000/api/uploadManage/image/" + tile.filename) }}>
-                          <FileCopyOutlinedIcon onClick={handleCopyClick} />
-                        </IconButton>
-                        <IconButton className={classes.icon} onClick={() => handleRemoveItem(tile.filename)}>
-                          <HighlightOffOutlinedIcon />
-                        </IconButton>
-                      </div>
+                      <Grid container direction="row" justify="space-around" alignItems="stretch">
+                        <Grid item xs={6}>
+                          <IconButton className={classes.icon} onClick={() => { navigator.clipboard.writeText("http://localhost:8000/api/uploadManage/image/" + tile.filename) }}>
+                            <FileCopyOutlinedIcon onClick={handleCopyClick} />
+                          </IconButton>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <IconButton className={classes.icon} onClick={() => handleRemoveItem(tile.filename)}>
+                            <HighlightOffOutlinedIcon />
+                          </IconButton>
+                        </Grid>
+                      </Grid>
                     }
                   />
                 </GridListTile>
               ))}
             </GridList>
           </Paper>
-        </Grid>
-
-        <Grid item xs={4} className={classes.root}>
-          <Paper elevation={0} className={classes.paper}>
-            <h3>Informations</h3>
-            <p>File Name:</p>
-            <p>Describe:</p>
-            <p>URL:</p>
-            <DropzoneArea callBack={fetchAllImages} />
-          </Paper>
-        </Grid>
-
-      </Grid>
     </ React.Fragment>
   )
 }
 
 export default function MediaWithSnackBar() {
 
-return (
-  <SnackbarProvider maxSnack={3}>
-    <Media />
-  </SnackbarProvider>
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <Media />
+    </SnackbarProvider>
   );
 }
