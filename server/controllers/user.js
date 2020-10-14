@@ -124,7 +124,7 @@ const postFindEmailUsingToken = async (req, res) => {
 // Change user password
 const postChangePassword = async (req, res) => {
   try {
-    let { token, email, newPassword, repeatNewPassword } = req.body;
+    let { token, email, currentPassword, newPassword, repeatNewPassword } = req.body;
 
     if (!token) return res.status(400).json({msg: "Need to send user token"});
 
@@ -133,6 +133,9 @@ const postChangePassword = async (req, res) => {
 
     const user = await User.findById(verified.id);
     if (!user) return res.status(400).json({msg: "No such user"});
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) return res.status(400).json({ msg: "Current password is not valid" });
 
     if (!email || !newPassword || !repeatNewPassword) {
       return res.status(400).json({ msg: "Not all fields have been entered." });
@@ -143,6 +146,9 @@ const postChangePassword = async (req, res) => {
     if (newPassword != repeatNewPassword) {
       return res.status(400).json({ msg: "Please enter the same password" });
     }
+
+    const newAndOldPasswordIsMatch = await bcrypt.compare(newPassword, user.password);
+    if (newAndOldPasswordIsMatch) return res.status(400).json({ msg: "The new password is the same as the current password" });
 
     // Hash the password
     const salt = await bcrypt.genSalt();
