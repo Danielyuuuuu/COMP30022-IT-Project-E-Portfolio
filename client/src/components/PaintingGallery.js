@@ -84,7 +84,6 @@ class PaintingGallery extends Component {
   }
 
   componentDidMount() {
-    let a = [];
     const req = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
