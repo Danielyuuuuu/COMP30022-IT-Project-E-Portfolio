@@ -26,13 +26,14 @@ class ArtGraftNavBar extends Component {
     return (
       <div>
         <br />
-        <h1 style={descriptionStyle}>Photography</h1>
+        <h1 style={descriptionStyle}>Art Crafts</h1>
 
         <p style={{ margin: "30px 400px 10px 400px" }}>
-          Hi, it’s nice to meet you! My name is Amy Touchette. I’m a fine-art
-          photographer based in Brooklyn, and I’ve been photographing for almost
-          20 years. I specialize in making portraits of strangers on the street
-          both digitally and with film.
+          Craft artists create handmade objects, such as pottery, glassware,
+          textiles, and other objects that are designed to be functional. Fine
+          artists, including painters, sculptors, and illustrators, create
+          original works of art for their aesthetic value, rather than for a
+          functional one.
         </p>
 
         <br />
