@@ -126,6 +126,10 @@ const postChangePassword = async (req, res) => {
   try {
     let { token, email, currentPassword, newPassword, repeatNewPassword } = req.body;
 
+    if (!email || !currentPassword || !newPassword || !repeatNewPassword) {
+      return res.status(400).json({ msg: "Not all fields have been entered." });
+    }
+
     if (!token) return res.status(400).json({msg: "Need to send user token"});
 
     const verified = jwt.verify(token, process.env.JWT_SECRET);
@@ -137,9 +141,6 @@ const postChangePassword = async (req, res) => {
     const isMatch = await bcrypt.compare(currentPassword, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Current password is not valid" });
 
-    if (!email || !newPassword || !repeatNewPassword) {
-      return res.status(400).json({ msg: "Not all fields have been entered." });
-    }
     if (user.email != email){
       return res.status(400).json({ msg: "The email address is not correct." });
     }

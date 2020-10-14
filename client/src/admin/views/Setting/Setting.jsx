@@ -53,7 +53,6 @@ function Setting(){
         console.log(email);
         console.log(newPassword);
         console.log(confirmNewPassword);
-
         const token = localStorage.getItem("auth-token");
         console.log("Token: " + token)
         axios
@@ -61,11 +60,14 @@ function Setting(){
         .then((res) => {
             console.log("In axios: ");
             console.log(res.data.msg);
+            handleClickVariant(res.data.msg, "success");
+            setOpen(false);
         })
         .catch((err) => {
-            console.log(err.response.data);
+            console.log(err.response.data.msg)
+            handleClickVariant(err.response.data.msg, "error")
         });
-        setOpen(false);
+        
     }
 
     return (
