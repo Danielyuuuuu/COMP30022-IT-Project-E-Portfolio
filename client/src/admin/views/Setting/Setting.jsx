@@ -16,6 +16,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from "axios";
+import { SnackbarProvider, useSnackbar } from "notistack"
 
 const useStyles = makeStyles({
     root: {
@@ -23,7 +24,14 @@ const useStyles = makeStyles({
     },
   });
 
-export default function Setting(){
+function Setting(){
+
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = ( message, variant) => {
+    enqueueSnackbar(message, {variant})
+  }
+
+
     const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
@@ -121,3 +129,14 @@ export default function Setting(){
         </div>
       );
 }
+
+
+export default function SettingWithSnackBar() {
+
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <Setting />
+    </SnackbarProvider>
+    );
+  }
+  
