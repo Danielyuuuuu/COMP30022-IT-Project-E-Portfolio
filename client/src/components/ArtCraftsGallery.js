@@ -41,9 +41,9 @@ class ArtGraftNavBar extends Component {
             <Button
               color="light"
               style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Architecture")}
+              onClick={() => this.props.switchToSubCatGallery("Carpentry")}
             >
-              Architecture
+              Carpentry
             </Button>
           </NavItem>
 
@@ -51,39 +51,9 @@ class ArtGraftNavBar extends Component {
             <Button
               color="light"
               style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Landscape")}
+              onClick={() => this.props.switchToSubCatGallery("Ceramics")}
             >
-              Landscape
-            </Button>
-          </NavItem>
-
-          <NavItem>
-            <Button
-              color="light"
-              style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Street")}
-            >
-              Street
-            </Button>
-          </NavItem>
-
-          <NavItem>
-            <Button
-              color="light"
-              style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Events")}
-            >
-              Events
-            </Button>
-          </NavItem>
-
-          <NavItem>
-            <Button
-              color="light"
-              style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Portrait")}
-            >
-              Portrait
+              Ceramics
             </Button>
           </NavItem>
 
@@ -117,7 +87,7 @@ class ArtGraftsGallery extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category: "Photography",
+        category: "Art Crafts",
       }),
     };
     fetch("http://localhost:8000/api/gallery/category", req)
@@ -139,7 +109,7 @@ class ArtGraftsGallery extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category: "Photography",
+        category: "Art Crafts",
       }),
     };
     fetch("http://localhost:8000/api/gallery/category", req)
@@ -152,7 +122,7 @@ class ArtGraftsGallery extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category: "Photography",
+        category: "Art Crafts",
         subcategory: subcat,
       }),
     };
