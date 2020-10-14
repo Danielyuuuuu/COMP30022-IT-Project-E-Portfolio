@@ -2,17 +2,10 @@ import React from "react";
 import "../App.css";
 
 const Footer = () => (
-  <div
-    className="footer"
-    // style={{
-    //   display: "flex",
-    //   justifyContent: "center",
-    //   alignItems: "center",
-    // }}
-  >
-    <p>This is our footer&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
+  <div className="footer">
+    <p>Copyright © 2020-2021 Runtime Terror&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
     <p>
-      <a href="/login">Admin Login</a>
+      <a href="/admin">Admin</a>
     </p>
   </div>
 );

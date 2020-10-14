@@ -32,7 +32,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { useHistory } from 'react-router-dom';
 
 
-const categories = ["graphic", "photography", "painting"];
+const categories = ["Art Product", "Photography", "Painting"];
 
 const styles = (theme) => ({
   root: {
@@ -133,6 +133,7 @@ export default function DialogsOfStore(props) {
         .then(console.log("add new......"))
         .then((res) => {
           console.log(res);
+          props.callBackRefresh();
         });
     } else {
       Axios.put(
@@ -142,11 +143,12 @@ export default function DialogsOfStore(props) {
         .then(console.log("edit item......"))
         .then((res) => {
           console.log(res);
+          props.callBackRefresh();
         });
     }
-
+    
     setOpen(false);
-    history.go(0);
+    
   };
 
 

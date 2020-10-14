@@ -39,18 +39,13 @@ import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import { Button, Container } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import Dialogs from "../../components/Dialogs/Dialogs";
+import Dialogs from "../../components/Dialogs/GalleryDialog";
 
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import DeleteIcon from "@material-ui/icons/Delete";
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
+
 
 // import Joke from "../../components/Joke"
 const useRowStyles = makeStyles({
@@ -69,14 +64,26 @@ const categories = [
   {
     name: "Photography",
     coverImage: "http://localhost:8000/api/uploadManage/image/890c444028e88bc04522cdee2e9be0bd.jpg",
-    subCategories: ["animel", "people", "city"],
+    subCategories: ["Architecture", "Landscape", "Street","Events", "Portrait"],
   },
   {
-    name: "ArtWorks",
+    name: "Art Crafts",
+    coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    subCategories: ["Carpentry", "Ceramics"],
+  },
+  {
+    name: "Painting",
+    coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    subCategories: ["Oil painting", "Sand painting", "Pencil Sketch", "Digital painting"],
+  },
+  {
+    name: "Graphic Design",
     coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
     subCategories: ["1", "2", "3"],
   },
 ]
+
+
 
 function Row(props) {
   const history = useHistory();
@@ -84,57 +91,10 @@ function Row(props) {
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
 
-  const [openDeleteAlert, setDeleteAlert] = React.useState(false);
 
-  const handleDelete = (id) => {
-    axios
-      .delete("http://localhost:8000/api/store/delete/" + id)
-      .then(console.log("delete item......"))
-      .then((res) => {
-        console.log(res);
-        history.go(0);
-      });
-    handleCloseDeleteAlert();
-  };
-
-  const handleClickDeleteAlert = () => {
-    setDeleteAlert(true);
-  };
-  const handleCloseDeleteAlert = () => {
-    setDeleteAlert(false);
-  };
 
   return (
     <React.Fragment>
-      <Dialog
-        open={openDeleteAlert}
-        onClose={handleCloseDeleteAlert}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          Are you trying to delete this item?
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Once you agree, you cant make it back!
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDeleteAlert} color="primary">
-            Disagree
-          </Button>
-          <Button
-            // onClick={(e) => {
-            //   handleDelete(row._id);
-            // }}
-            color="primary"
-            autoFocus
-          >
-            Agree
-          </Button>
-        </DialogActions>
-      </Dialog>
 
       <TableRow className={classes.root}>
         <TableCell>
@@ -161,26 +121,8 @@ function Row(props) {
             </CardActionArea>
           </Card>
         </TableCell>
-        <TableCell align="right">
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.button}
-            startIcon={<DeleteIcon />}
-            onClick={handleClickDeleteAlert}
-          >
-            Delete
-          </Button>
-        </TableCell>
-        <TableCell align="right">
-          {/* {row.Options}  */}
-          <Dialogs
-            mode={"Edit"}
-            variant="contained"
-            color="primary"
-            item={row}
-          ></Dialogs>
-        </TableCell>
+
+
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -193,7 +135,7 @@ function Row(props) {
                 <TableHead>
                   <TableRow>
                     <TableCell>Name</TableCell>
-                    <TableCell align="right">Description</TableCell>
+                    <TableCell align="right">Options</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -203,10 +145,18 @@ function Row(props) {
                       <TableCell component="th" scope="row">
                         {sub}
                       </TableCell>
+                      <TableCell align="right">
+                        {/* {row.Options}  */}
+                        <Dialogs
+                          mode={"Edit"}
+                          variant="contained"
+                          color="primary"
+                          category={row.name}
+                          subcategory={sub}
+                        ></Dialogs>
+                      </TableCell>
                     </TableRow>
                   ))}
-
-                  <TableCell align="right">{row.description}</TableCell>
 
                 </TableBody>
               </Table>
@@ -214,25 +164,27 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+      
     </React.Fragment>
+    
   );
 }
 
 export default function Store() {
-  const [items, setItems] = useState([]);
+  const [gallery, setGallery] = useState([]);
 
   useEffect(() => {
     // Read the mutable latest value
     console.log(`Getting files...`);
 
     axios
-      .get("http://localhost:8000/api/store/")
+      .get("http://localhost:8000/api/gallery/")
       .then((res) => {
-        setItems(res.data.item);
-        console.log(res.data.item);
+        setGallery(res.data.artworks);
+        console.log(res.data.artworks);
       })
       .catch((err) => {
-        console.log("Error from ShowBookList");
+        console.log("Error from getting all gallery informations");
       });
   }, []);
 
@@ -242,27 +194,10 @@ export default function Store() {
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
-              <TableCell>
-                <Dialogs
-                  mode={"New"}
-                  variant="contained"
-                  color="Secondary"
-                  item={{
-                    itemname: "",
-                    stock: 0,
-                    price: 0,
-                    views: 0,
-                    imagename: "",
-                    description: "",
-                  }}
-                ></Dialogs>
-              </TableCell>
+              <TableCell></TableCell>
               <TableCell>Category </TableCell>
               <TableCell>Cover Image</TableCell>
-              <TableCell>Description?</TableCell>
-              <TableCell align="center" colSpan={2}>
-                Options?
-              </TableCell>
+
             </TableRow>
           </TableHead>
           <TableBody>
@@ -272,6 +207,7 @@ export default function Store() {
           </TableBody>
         </Table>
       </TableContainer>
+
     </div>
   );
 }

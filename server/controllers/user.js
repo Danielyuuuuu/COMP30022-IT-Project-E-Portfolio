@@ -18,30 +18,22 @@ const postUserRegister = async (req, res) => {
       return res.status(400).json({ msg: "Please enter the same password" });
     }
 
-    User.findOne({ email: email }).then((user) => {
-      // Email address already exist
-      if (user) {
-        return res.status(400).json({ msg: "User Already Exists" });
-      }
+    const user = await User.findOne({ email: email }).exec();
+    if (user !== null) {
+      return res.status(400).json({ msg: "User Already Exists" });
+    }
 
-      // Hash the password
-      bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(password1, salt, (err, hash) => {
-          if (err) throw err;
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password1, salt);
 
-          // Store the hashed password
-          const newUser = new User({
-            name,
-            email,
-            password: hash,
-          });
-
-          // Save the user
-          const savedUser = newUser.save();
-          res.json(savedUser);
-        })
-      );
+    const newUser = new User({
+      name,
+      email,
+      password: hash,
     });
+
+    await newUser.save();
+    res.status(200).json({ msg: "Successfully registered" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -56,7 +48,7 @@ const postUserLogin = async (req, res) => {
     if (!email || !password)
       return res.status(400).json({ msg: "Not all fields have been entered." });
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email: email }).exec();
     if (!user)
       return res
         .status(400)
@@ -65,14 +57,10 @@ const postUserLogin = async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: "Invalid credentials." });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = await jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
     res.json({
       token,
-      user: {
-        name: user.name,
-        id: user._id,
-      },
     });
   } catch (err) {
     res.status(501).json({ error: err.message });
@@ -113,10 +101,72 @@ const postTokenIsValid = async (req, res) => {
   }
 };
 
+const postFindEmailUsingToken = async (req, res) => {
+  try {
+    const token = req.body.token;
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    console.log("From back end: " + token);
+
+    if (!token) return res.status(400).json({msg: "Need to send user token"});
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.status(400).json({msg: "Token not verified"});
+
+    const user = await User.findById(verified.id);
+    if (!user) return res.status(400).json({msg: "No such user"});
+
+    return res.status(200).json({email: user.email});
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
+// Change user password
+const postChangePassword = async (req, res) => {
+  try {
+    let { token, email, newPassword, repeatNewPassword } = req.body;
+
+    if (!token) return res.status(400).json({msg: "Need to send user token"});
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.status(400).json({msg: "Token not verified"});
+
+    const user = await User.findById(verified.id);
+    if (!user) return res.status(400).json({msg: "No such user"});
+
+    if (!email || !newPassword || !repeatNewPassword) {
+      return res.status(400).json({ msg: "Not all fields have been entered." });
+    }
+    if (user.email != email){
+      return res.status(400).json({ msg: "The email address is not correct." });
+    }
+    if (newPassword != repeatNewPassword) {
+      return res.status(400).json({ msg: "Please enter the same password" });
+    }
+
+    // Hash the password
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(newPassword, salt);
+
+    const savedPassword = await User.findOneAndUpdate(
+      {
+        email: email,
+      },
+      { password: passwordHash }
+    );
+
+    return res.status(200).json({msg: "Password changed successfully."});
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   postUserRegister,
   postUserLogin,
   getUserLogout,
   getUserLoginRegister,
   postTokenIsValid,
+  postChangePassword,
+  postFindEmailUsingToken,
 };

@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
 
-export default function DropZone() {
+export default function DropZone(props) {
   const [open, setOpen] = useState(false);
   const [files, setFiles] = useState([]);
 
@@ -29,8 +29,11 @@ export default function DropZone() {
       );
     }
 
+    // trigger parent compoenent to re-render the media
+    props.callBack();
+
     console.log("successful................");
-    history.go(0);
+    // history.go(0);
   };
 
   const handleOpen = async () => {

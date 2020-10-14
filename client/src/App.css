@@ -189,7 +189,7 @@ p {
 .posts {
   margin-top: 70px;
   height: 70%;
-  max-width: 700px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -216,6 +216,8 @@ p {
   width: 400px;
   margin-left: auto;
   margin-right: auto;
+  min-height: calc(100vh - 61.64px - 47.64px - 2rem - 2rem);
+  margin-top: 2rem;
 }
 
 .contactMeInfo {
@@ -314,21 +316,21 @@ body {
 .errorNotice {
   margin: 1rem 0;
   padding: 0.5rem;
-  border: 1px solid #e07c7c;
+  /* border: 1px solid white; */
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f8d6d6;
+  /* background-color: white; */
 }
 .errorNotice button {
-  background-color: #f8d6d6;
+  /* background-color: white; */
   color: black;
-  border: 1px solid #f8d6d6;
+  border: 0px solid;
 }
 
 .postContent {
-  max-width: 700px;
+  max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -366,4 +368,9 @@ body {
 
 .likeButton {
   cursor: pointer;
+}
+
+.floatRight {
+  float: right;
+  margin-top: 3px;
 }

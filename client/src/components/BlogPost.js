@@ -10,6 +10,7 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Badge,
 } from "reactstrap";
 
 class BlogPost extends Component {
@@ -51,9 +52,20 @@ class BlogPost extends Component {
                     </a>
                   </CardTitle>
                   <CardText>
-                    {blogPost.content.split(" ").splice(0, 90).join(" ") +
+                    {blogPost.content.split(" ").splice(0, 100).join(" ") +
                       "..."}
                   </CardText>
+                  <div className="flexDisplay">
+                    {blogPost.hashtags.map((hashtag) => {
+                      return (
+                        <div style={{ marginRight: 3 }}>
+                          <h3>
+                            <Badge color="primary">{hashtag}</Badge>
+                          </h3>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </CardBody>
               </Card>
             </CardGroup>
