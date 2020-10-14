@@ -164,7 +164,9 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+      
     </React.Fragment>
+    
   );
 }
 
@@ -205,6 +207,7 @@ export default function Store() {
           </TableBody>
         </Table>
       </TableContainer>
+
     </div>
   );
 }
