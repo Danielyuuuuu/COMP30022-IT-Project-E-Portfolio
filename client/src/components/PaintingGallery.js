@@ -56,17 +56,60 @@ class PaintNavBar extends Component {
           }}
         >
           <NavItem>
-            <NavLink href="/paintinggallery">ALL</NavLink>
+            <Button
+              color="info"
+              style={{ margin: "10px" }}
+              onClick={() => this.props.switchToCatGallery()}
+            >
+              ALL
+            </Button>
           </NavItem>
 
           <NavItem>
             <Button
+              color="warning"
+              style={{ margin: "10px" }}
               onClick={() => this.props.switchToSubCatGallery("Oil painting")}
             >
               Oil painting
             </Button>
           </NavItem>
 
+          <NavItem>
+            <Button
+              color="success"
+              style={{ margin: "10px" }}
+              onClick={() => this.props.switchToSubCatGallery("Sand painting")}
+            >
+              Sand painting
+            </Button>
+          </NavItem>
+
+          <NavItem>
+            <Button
+              color="primary"
+              style={{ margin: "10px" }}
+              onClick={() => this.props.switchToSubCatGallery("Pencil Sketch")}
+            >
+              Pencil Sketch
+            </Button>
+          </NavItem>
+
+          <NavItem>
+            <Button
+              color="danger"
+              style={{ margin: "10px" }}
+              onClick={() =>
+                this.props.switchToSubCatGallery("Digital painting")
+              }
+            >
+              Digital painting
+            </Button>
+          </NavItem>
+
+          {/* <NavItem>
+            <NavLink href="/paintinggallery">ALL</NavLink>
+          </NavItem>
           <NavItem>
             <NavLink href="/paintinggallery">Sand painting</NavLink>
           </NavItem>
@@ -75,7 +118,7 @@ class PaintNavBar extends Component {
           </NavItem>
           <NavItem>
             <NavLink href="/paintinggallery">Digital painting</NavLink>
-          </NavItem>
+          </NavItem> */}
         </Nav>
       </div>
     );
@@ -89,6 +132,7 @@ class PaintingGallery extends Component {
       data: [],
     };
     this.switchToSubCatGallery = this.switchToSubCatGallery.bind(this);
+    this.switchToCatGallery = this.switchToCatGallery.bind(this);
   }
 
   componentDidMount() {
@@ -112,6 +156,20 @@ class PaintingGallery extends Component {
     let unique = [...new Set(emptyArr)];
 
     this.setState({ data: unique });
+  }
+
+  switchToCatGallery() {
+    const req = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        category: "Painting",
+      }),
+    };
+    fetch("http://localhost:8000/api/gallery/category", req)
+      .then((res) => res.json())
+      //   .then((data) => (a = data));
+      .then((data) => this.returnUniqueImage(data));
   }
 
   switchToSubCatGallery(subcat) {
@@ -141,7 +199,10 @@ class PaintingGallery extends Component {
             justifyContent: "center",
           }}
         >
-          <PaintNavBar switchToSubCatGallery={this.switchToSubCatGallery} />
+          <PaintNavBar
+            switchToSubCatGallery={this.switchToSubCatGallery}
+            switchToCatGallery={this.switchToCatGallery}
+          />
         </div>
         {this.state.data !== null && <Paintings data={this.state.data} />}
       </div>
