@@ -57,8 +57,8 @@ class PaintNavBar extends Component {
         >
           <NavItem>
             <Button
-              color="info"
-              style={{ margin: "10px" }}
+              color="light"
+              style={{ marginBottom: "1px", marginRight: "10px" }}
               onClick={() => this.props.switchToCatGallery()}
             >
               ALL
@@ -67,8 +67,8 @@ class PaintNavBar extends Component {
 
           <NavItem>
             <Button
-              color="warning"
-              style={{ margin: "10px" }}
+              color="light"
+              style={{ marginBottom: "1px", marginRight: "10px" }}
               onClick={() => this.props.switchToSubCatGallery("Oil painting")}
             >
               Oil painting
@@ -77,8 +77,8 @@ class PaintNavBar extends Component {
 
           <NavItem>
             <Button
-              color="success"
-              style={{ margin: "10px" }}
+              color="light"
+              style={{ marginBottom: "1px", marginRight: "10px" }}
               onClick={() => this.props.switchToSubCatGallery("Sand painting")}
             >
               Sand painting
@@ -87,8 +87,8 @@ class PaintNavBar extends Component {
 
           <NavItem>
             <Button
-              color="primary"
-              style={{ margin: "10px" }}
+              color="light"
+              style={{ marginBottom: "1px", marginRight: "10px" }}
               onClick={() => this.props.switchToSubCatGallery("Pencil Sketch")}
             >
               Pencil Sketch
@@ -97,8 +97,8 @@ class PaintNavBar extends Component {
 
           <NavItem>
             <Button
-              color="danger"
-              style={{ margin: "10px" }}
+              color="light"
+              style={{ marginBottom: "1px", marginRight: "10px" }}
               onClick={() =>
                 this.props.switchToSubCatGallery("Digital painting")
               }
