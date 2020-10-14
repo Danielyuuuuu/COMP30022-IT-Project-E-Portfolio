@@ -30,6 +30,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import { SnackbarProvider, useSnackbar } from "notistack"
 
 // import Joke from "../../components/Joke"
 const useRowStyles = makeStyles({
@@ -44,7 +45,9 @@ const useRowStyles = makeStyles({
   },
 });
 
+
 function Row(props) {
+  
   const history = useHistory();
   const { row } = props;
   const [open, setOpen] = React.useState(false);
@@ -52,7 +55,14 @@ function Row(props) {
 
   const [openDeleteAlert, setDeleteAlert] = React.useState(false);
 
+  const { enqueueSnackbar } = useSnackbar();
+  const notification = (message, variant) =>{
+    enqueueSnackbar(message, {variant});
+  }
+
   const handleDelete = (id) => {
+
+    notification(`You have delete the item !`, "warning")
     axios
       .delete("http://localhost:8000/api/store/delete/" + id)
       .then(console.log("delete item......"))
@@ -140,6 +150,7 @@ function Row(props) {
             variant="contained"
             color="primary"
             item={row}
+            sendNotification={notification}
             callBackRefresh={callBack}
           ></Dialogs>
         </TableCell>
@@ -185,9 +196,13 @@ function Row(props) {
   );
 }
 
-export default function Store() {
+function Store() {
   const [items, setItems] = useState([]);
-
+  
+  const { enqueueSnackbar } = useSnackbar();
+  const notification = (message, variant) =>{
+    enqueueSnackbar(message, {variant});
+  }
   const getItems = () =>{
     console.log(`Getting files...`);
 
@@ -219,6 +234,7 @@ export default function Store() {
                   variant="contained"
                   color="secondary"
                   callBackRefresh={getItems}
+                  sendNotification={notification}
                   item={{
                     itemname: "",
                     stock: 0,
@@ -249,3 +265,12 @@ export default function Store() {
     </div>
   );
 }
+
+export default function StoreWithSnackBar() {
+
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <Store />
+    </SnackbarProvider>
+    );
+  }

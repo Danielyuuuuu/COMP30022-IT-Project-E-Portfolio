@@ -170,7 +170,7 @@ function Row(props) {
   );
 }
 
-export default function Store() {
+export default function Gallery() {
   const [gallery, setGallery] = useState([]);
 
   useEffect(() => {

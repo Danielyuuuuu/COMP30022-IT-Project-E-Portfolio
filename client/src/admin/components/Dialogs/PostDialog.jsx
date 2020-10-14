@@ -20,6 +20,8 @@ import Axios from "axios";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Paper from '@material-ui/core/Paper';
 import { useHistory } from 'react-router-dom';
+import { SnackbarProvider, useSnackbar } from "notistack";
+
 let marked = require("marked");
 
 const options = ["Tag 1", "Tag 2", "Tag 3", "Tag 4"];
@@ -100,7 +102,10 @@ const Markdown = (props) => {
     return content;
 }
 
-export default function DialogsOfStore(props) {
+function PostDialog(propss) {
+    const props = propss.props;
+    const { enqueueSnackbar } = useSnackbar();
+
     const [open, setOpen] = React.useState(false);
     const [openJ, setOpenJ] = React.useState(false);
     const classes = imgStyles();
@@ -110,6 +115,8 @@ export default function DialogsOfStore(props) {
     const [title, setTitle] = React.useState(props.blog.title);
     const [imageUrl, setImageUrl] = React.useState(props.blog.thumbnails.imagename);
 
+
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -117,7 +124,7 @@ export default function DialogsOfStore(props) {
         setOpen(false);
     };
 
-    const cleanData = ()=>{
+    const cleanData = () => {
         setMarkDown("");
         setTags([]);
         setTitle("");
@@ -139,28 +146,37 @@ export default function DialogsOfStore(props) {
             postBody: markdown,
             hashTags: tag,
         }
-        if (props.mode == "New") {
-            Axios.post("http://localhost:8000/api/blog/uploadblog", data)
-                .then(console.log("adding new post......"))
-                .then((res) => {
-                    console.log(res);
-                    cleanData();
-                    props.callBackRefresh();
-                });
+
+        var variant = "success";
+
+        if (!title || !imageUrl || !markdown || !tag) {
+            variant = 'warning'
+            enqueueSnackbar(`Need to fill in all fields!`, { variant });
         } else {
-            Axios.post(
-                "http://localhost:8000/api/blog/editBlog",
-                editData
-            )
-                .then(console.log("edit item......"))
-                .then((res) => {
-                    console.log(res);
-                    props.callBackRefresh();
-                });
+            if (props.mode == "New") {
+                enqueueSnackbar(`You successfully create a new post: << ${title} >>!`, { variant });
+                Axios.post("http://localhost:8000/api/blog/uploadblog", data)
+                    .then(console.log("adding new post......"))
+                    .then((res) => {
+                        console.log(res);
+                        cleanData();
+                        props.callBackRefresh();
+                    });
+            } else {
+                enqueueSnackbar(`You successfully edit post: << ${title} >>!`, { variant });
+                Axios.post(
+                    "http://localhost:8000/api/blog/editBlog",
+                    editData
+                )
+                    .then(console.log("edit item......"))
+                    .then((res) => {
+                        console.log(res);
+                        props.callBackRefresh();
+                    });
+            }
+
+            setOpen(false);
         }
-
-        setOpen(false);
-
         // history.go(0);
     };
 
@@ -282,5 +298,12 @@ export default function DialogsOfStore(props) {
             </Dialog>
 
         </div>
+    );
+}
+export default function PostDialogWithnotification(props) {
+    return (
+        <SnackbarProvider maxSnack={3}>
+            <PostDialog props={props} />
+        </SnackbarProvider>
     );
 }

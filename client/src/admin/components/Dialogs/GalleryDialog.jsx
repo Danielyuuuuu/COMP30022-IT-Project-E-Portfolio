@@ -84,6 +84,9 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+
+
+
 function GalleryDialog(propss) {
   const props = propss.props;
   const { enqueueSnackbar } = useSnackbar();
