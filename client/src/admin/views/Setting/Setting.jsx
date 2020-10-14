@@ -28,6 +28,7 @@ export default function Setting(){
 
     const [open, setOpen] = React.useState(false);
     const [email, setEmail] = React.useState("");
+    const [currentPassword, setCurrentPassword] = React.useState("");
     const [newPassword, setNewPassword] = React.useState("");
     const [confirmNewPassword, setConfirmNewPassword] = React.useState("");
 
@@ -48,7 +49,7 @@ export default function Setting(){
         const token = localStorage.getItem("auth-token");
         console.log("Token: " + token)
         axios
-        .post("http://localhost:8000/api/user/changePassword", { "token": token, "email": email, "newPassword": newPassword, "repeatNewPassword": confirmNewPassword } )
+        .post("http://localhost:8000/api/user/changePassword", { "token": token, "email": email, "currentPassword": currentPassword, "newPassword": newPassword, "repeatNewPassword": confirmNewPassword } )
         .then((res) => {
             console.log("In axios: ");
             console.log(res.data.msg);
@@ -68,6 +69,7 @@ export default function Setting(){
             <DialogTitle id="form-dialog-title">Edit Password</DialogTitle>
             <DialogContent>
               <TextField
+                required
                 autoFocus
                 margin="dense"
                 id="name"
@@ -77,6 +79,17 @@ export default function Setting(){
                 onChange={(e) => setEmail(e.target.value)}
               />
               <TextField
+                required
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Current Password"
+                type="text"
+                fullWidth
+                onChange={(e) => setCurrentPassword(e.target.value)}
+              />
+              <TextField
+                required
                 autoFocus
                 margin="dense"
                 id="name"
@@ -86,6 +99,7 @@ export default function Setting(){
                 onChange={(e) => setNewPassword(e.target.value)}
               />
               <TextField
+                required
                 autoFocus
                 margin="dense"
                 id="name"
