@@ -46,7 +46,7 @@ const Example = (props) => {
       </Card>
 
       <Card body>
-        <CardLink href="https://en.wikipedia.org/wiki/Painting">
+        <CardLink href="/paintinggallery">
           <CardImg
             width="100%"
             src="https://wallpaperaccess.com/full/764272.jpg"
