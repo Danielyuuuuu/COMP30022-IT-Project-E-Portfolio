@@ -6,6 +6,8 @@ import ShoppingCart from "./ShoppingCart";
 import "../App.css";
 import { CustomInput, Form, FormGroup, Label, Input } from "reactstrap";
 
+import ProgressButton from "react-progress-button";
+
 import {
   Card,
   Button,
@@ -15,6 +17,34 @@ import {
   Row,
   Col,
 } from "reactstrap";
+
+// class AddToCartButton extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = { buttonState: "" };
+//   }
+
+//   handleClick() {
+//     this.setState({ buttonState: "loading" });
+//     // make asynchronous call
+//     setTimeout(() => {
+//       this.setState({ buttonState: "success" });
+//     }, 3000);
+//   }
+
+//   render() {
+//     return (
+//       <div>
+//         <ProgressButton
+//           onClick={this.handleClick}
+//           state={this.state.buttonState}
+//         >
+//           Go!
+//         </ProgressButton>
+//       </div>
+//     );
+//   }
+// }
 
 //const url = "http://localhost:8000/api/store/image/";
 const url = "http://localhost:8000/api/uploadManage/image/";
@@ -40,14 +70,12 @@ class Store extends Component {
     // }
     let selectedItems = this.state.cart.filter((item) => item.name == itemName);
     if (selectedItems.length == 0) {
-
       this.state.cart.push({
         name: itemName,
         price: itemPrice,
         filename: imageName,
-        quantity: 1
+        quantity: 1,
       });
-
     }
     this.setState({ cart: this.state.cart });
     console.log(this.state.cart);
@@ -152,6 +180,7 @@ class Store extends Component {
           cart={this.state.cart}
           removeCartItem={this.removeCartItem}
         />
+        {/* <AddToCartButton /> */}
         <div className="store">
           <div className="store-menu">
             <Form>
