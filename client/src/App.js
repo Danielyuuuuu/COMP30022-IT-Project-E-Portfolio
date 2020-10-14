@@ -21,6 +21,7 @@ import ArtWorkGallery2 from "./components/ArtWorkGallery2";
 import ArtWorkGallery3 from "./components/ArtWorkGallery3";
 
 import PaintingGallery from "./components/PaintingGallery";
+import PhotographyGallery from "./components/PhotographyGallery";
 
 import Admin from "./admin/layouts/Admin";
 
@@ -85,6 +86,7 @@ export default function App() {
         <Route path="/artworkgallery3" component={ArtWorkGallery3} />
 
         <Route path="/paintinggallery" component={PaintingGallery} />
+        <Route path="/photographygallery" component={PhotographyGallery} />
 
         <Route path="/checkout" component={CheckOut} />
       </div>
