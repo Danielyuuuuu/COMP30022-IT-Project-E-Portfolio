@@ -116,7 +116,6 @@ class PaintingGallery extends Component {
     };
     fetch("http://localhost:8000/api/gallery/category", req)
       .then((res) => res.json())
-      //   .then((data) => (a = data));
       .then((data) => this.returnUniqueImage(data));
   }
 

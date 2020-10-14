@@ -27,13 +27,6 @@ const Example = (props) => {
         </CardLink>
       </Card>
 
-      {/* <Card body>
-        <CardLink href="/artworkgallery">
-          <CardImg width="100%" src="https://static.dezeen.com/uploads/2019/12/logo-house-adidas-karina-wiciak_dezeen_2364_col_2.jpg" alt="Card image cap" />
-          <CardFooter className="text-center">Architecture</CardFooter>
-        </CardLink>
-      </Card> */}
-
       <Card body>
         <CardLink href="https://en.wikipedia.org/wiki/Art">
           <CardImg
@@ -55,13 +48,6 @@ const Example = (props) => {
           <CardFooter className="text-center">Painting</CardFooter>
         </CardLink>
       </Card>
-
-      {/* <Card body>
-        <CardLink href="https://en.wikipedia.org/wiki/Film">
-          <CardImg width="100%" src="https://sofy.tv/blog/wp-content/uploads/2020/01/filmmaking-production.jpg" alt="Card image cap" />
-          <CardFooter className="text-center">Films</CardFooter>
-        </CardLink> 
-      </Card> */}
 
       <Card body>
         <CardLink href="https://en.wikipedia.org/wiki/Graphic">

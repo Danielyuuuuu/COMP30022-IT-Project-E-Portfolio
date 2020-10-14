@@ -27,14 +27,13 @@ class PhotoNavBar extends Component {
     return (
       <div>
         <br />
-        <h1 style={descriptionStyle}>Painting</h1>
+        <h1 style={descriptionStyle}>Photography</h1>
 
         <p style={{ margin: "30px 400px 10px 400px" }}>
-          Painters apply products like paint, wallpaper, and other finishes on
-          walls located both indoors and outdoors. Painter tasks include
-          discussing job requirements with clients, preparing the job site,
-          applying pre-coating agents, leveling surfaces, removing old paint,
-          matching colors, filling holes, and cleaning tools.
+          Hi, it’s nice to meet you! My name is Amy Touchette. I’m a fine-art
+          photographer based in Brooklyn, and I’ve been photographing for almost
+          20 years. I specialize in making portraits of strangers on the street
+          both digitally and with film.
         </p>
 
         <br />
@@ -43,9 +42,9 @@ class PhotoNavBar extends Component {
             <Button
               color="light"
               style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Oil painting")}
+              onClick={() => this.props.switchToSubCatGallery("Architecture")}
             >
-              Oil painting
+              Architecture
             </Button>
           </NavItem>
 
@@ -53,9 +52,9 @@ class PhotoNavBar extends Component {
             <Button
               color="light"
               style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Sand painting")}
+              onClick={() => this.props.switchToSubCatGallery("Landscape")}
             >
-              Sand painting
+              Landscape
             </Button>
           </NavItem>
 
@@ -63,9 +62,9 @@ class PhotoNavBar extends Component {
             <Button
               color="light"
               style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Pencil Sketch")}
+              onClick={() => this.props.switchToSubCatGallery("Street")}
             >
-              Pencil Sketch
+              Street
             </Button>
           </NavItem>
 
@@ -73,11 +72,19 @@ class PhotoNavBar extends Component {
             <Button
               color="light"
               style={navButtonStyle}
-              onClick={() =>
-                this.props.switchToSubCatGallery("Digital painting")
-              }
+              onClick={() => this.props.switchToSubCatGallery("Events")}
             >
-              Digital painting
+              Events
+            </Button>
+          </NavItem>
+
+          <NavItem>
+            <Button
+              color="light"
+              style={navButtonStyle}
+              onClick={() => this.props.switchToSubCatGallery("Portrait")}
+            >
+              Portrait
             </Button>
           </NavItem>
 
@@ -111,12 +118,11 @@ class PhotographyGallery extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category: "Painting",
+        category: "Photography",
       }),
     };
     fetch("http://localhost:8000/api/gallery/category", req)
       .then((res) => res.json())
-      //   .then((data) => (a = data));
       .then((data) => this.returnUniqueImage(data));
   }
 
@@ -134,7 +140,7 @@ class PhotographyGallery extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category: "Painting",
+        category: "Photography",
       }),
     };
     fetch("http://localhost:8000/api/gallery/category", req)
@@ -147,7 +153,7 @@ class PhotographyGallery extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category: "Painting",
+        category: "Photography",
         subcategory: subcat,
       }),
     };
