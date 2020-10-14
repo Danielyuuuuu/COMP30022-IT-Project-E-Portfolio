@@ -28,7 +28,7 @@ const Example = (props) => {
       </Card>
 
       <Card body>
-        <CardLink href="https://en.wikipedia.org/wiki/Art">
+        <CardLink href="/artcraftsgallery">
           <CardImg
             width="100%"
             src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg"
