@@ -30,6 +30,7 @@ export default class BlogComments extends Component {
         "https://react.semantic-ui.com/images/avatar/small/christian.jpg",
       ],
       error: "",
+      severity: "error",
     };
   }
 
@@ -91,11 +92,13 @@ export default class BlogComments extends Component {
         this.setState({
           content: "",
           publisher: "",
+          error: "Submit Successful",
+          severity: "success",
         });
         this.getAllComments();
       })
       .catch((err) => {
-        this.setState({ error: err.response.data.msg });
+        this.setState({ error: err.response.data.msg, severity: "error" });
       });
   }
 
@@ -144,6 +147,7 @@ export default class BlogComments extends Component {
             {this.state.error && (
               <ErrorNotice
                 message={this.state.error}
+                severity={this.state.severity}
                 clearError={() => this.setError(undefined)}
               />
             )}
