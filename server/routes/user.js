@@ -29,6 +29,11 @@ userRouter.get("/", auth, userController.getUserLoginRegister);
 // @access Public
 userRouter.post("/tokenIsValid", userController.postTokenIsValid);
 
+// @route POST user/getUserEmail
+// @description Check if the user token is valid
+// @access Public
+userRouter.post("/getUserEmail", userController.postFindEmailUsingToken);
+
 // @route POST user/changePassword
 // @description Check if the user token is valid
 // @access Public

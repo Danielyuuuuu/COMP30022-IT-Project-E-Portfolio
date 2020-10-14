@@ -21,10 +21,10 @@ const getAllArtworks = async (req, res) => {
 //   "subcategory": "subcat1",
 //   "images": ["pic1","pic2"]
 // }
-const addArtwork = async (req, res) => {
+const updateArtwork = async (req, res) => {
   console.log(req.body);
   const query = { 'category': req.body.category, 'subcategory': req.body.subcategory };
-  const update = { '$addToSet': { 'imagenames': { '$each': req.body.images } }};
+  const update = {'imagenames':  req.body.images  };
   try{
     // upsert is true, so if the category or subcat is not found, it will
     // automatically create a new entry.
@@ -106,26 +106,26 @@ const getArtworksUnderSubcat = async (req, res) => {
 //   "images": ["pic1","pic2"]
 // }
 // The above will remove pic1, pic2 from cat1/subcat1.
-const deleteArtwork = async (req, res) => {
-  console.log(req.body);
-  const query = { 'category': req.body.category, 'subcategory': req.body.subcategory };
-  const update = { '$pull': { 'imagenames': { '$in': req.body.images } } };
-  try{
-    // upsert is true, so if the category or subcat is not found, it will
-    // automatically create a new entry.
-    Artwork.findOneAndUpdate(query, update, (err, doc) => {
-      if (err) return res.status(400).json(err);
-      res.send("Removed successfully");
-    })
-  } catch (error) {
-    res.status(400).json(error);
-  }
-}
+// const deleteArtwork = async (req, res) => {
+//   console.log(req.body);
+//   const query = { 'category': req.body.category, 'subcategory': req.body.subcategory };
+//   const update = { '$pull': { 'imagenames': { '$in': req.body.images } } };
+//   try{
+//     // upsert is true, so if the category or subcat is not found, it will
+//     // automatically create a new entry.
+//     Artwork.findOneAndUpdate(query, update, (err, doc) => {
+//       if (err) return res.status(400).json(err);
+//       res.send("Removed successfully");
+//     })
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// }
 
 module.exports = {
   getAllArtworks,
-  addArtwork,
+  updateArtwork,
   getArtworksUnderCat,
   getArtworksUnderSubcat,
-  deleteArtwork,
+  // deleteArtwork,
 };
