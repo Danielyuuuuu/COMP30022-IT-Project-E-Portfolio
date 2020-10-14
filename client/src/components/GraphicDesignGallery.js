@@ -26,7 +26,7 @@ class GraphicDesignNavBar extends Component {
     return (
       <div>
         <br />
-        <h1 style={descriptionStyle}>Art Crafts</h1>
+        <h1 style={descriptionStyle}>Graphic Design</h1>
 
         <p style={{ margin: "30px 400px 10px 400px" }}>
           Craft artists create handmade objects, such as pottery, glassware,
@@ -42,9 +42,9 @@ class GraphicDesignNavBar extends Component {
             <Button
               color="light"
               style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Carpentry")}
+              onClick={() => this.props.switchToSubCatGallery("1")}
             >
-              Carpentry
+              subCat1
             </Button>
           </NavItem>
 
@@ -52,9 +52,19 @@ class GraphicDesignNavBar extends Component {
             <Button
               color="light"
               style={navButtonStyle}
-              onClick={() => this.props.switchToSubCatGallery("Ceramics")}
+              onClick={() => this.props.switchToSubCatGallery("2")}
             >
-              Ceramics
+              subCat2
+            </Button>
+          </NavItem>
+
+          <NavItem>
+            <Button
+              color="light"
+              style={navButtonStyle}
+              onClick={() => this.props.switchToSubCatGallery("3")}
+            >
+              subCat3
             </Button>
           </NavItem>
 
@@ -88,7 +98,7 @@ class GraphicDesignGallery extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category: "Art Crafts",
+        category: "Graphic Design",
       }),
     };
     fetch("http://localhost:8000/api/gallery/category", req)
@@ -110,7 +120,7 @@ class GraphicDesignGallery extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category: "Art Crafts",
+        category: "Graphic Design",
       }),
     };
     fetch("http://localhost:8000/api/gallery/category", req)
@@ -123,7 +133,7 @@ class GraphicDesignGallery extends Component {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        category: "Art Crafts",
+        category: "Graphic Design",
         subcategory: subcat,
       }),
     };
