@@ -43,6 +43,8 @@ const Example = (props) => {
           <CardImg
             width="100%"
             src="https://wallpaperaccess.com/full/764272.jpg"
+            //src="https://www.pixel4k.com/wp-content/uploads/2018/10/rainy-night-artistic-painting-4k_1540748496.jpg"
+
             alt="Card image cap"
           />
           <CardFooter className="text-center">Painting</CardFooter>
