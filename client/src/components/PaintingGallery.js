@@ -3,7 +3,7 @@ import NavbarTop from "./NavbarTop";
 import "../App.css";
 
 import { useState } from "react";
-import { Nav, NavItem, NavLink } from "reactstrap";
+import { Nav, NavItem, NavLink, Button } from "reactstrap";
 
 const url = "http://localhost:8000/api/uploadManage/image/";
 
@@ -19,61 +19,68 @@ const url = "http://localhost:8000/api/uploadManage/image/";
 //   "7b3c802ea99be25d56eb36fe2619fd37.png",
 // ];
 
-const PaintNavBar = (props) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+class PaintNavBar extends Component {
+  //   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen(!dropdownOpen);
+  //   const toggle = () => setDropdownOpen(!dropdownOpen);
+  render() {
+    return (
+      <div>
+        <br />
+        <h1
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "25px 400px 15px 400px",
+          }}
+        >
+          Painting
+        </h1>
 
-  return (
-    <div>
-      <br />
-      <h1
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: "25px 400px 15px 400px",
-        }}
-      >
-        Painting
-      </h1>
+        <p style={{ margin: "30px 400px 10px 400px" }}>
+          Painters apply products like paint, wallpaper, and other finishes on
+          walls located both indoors and outdoors. Painter tasks include
+          discussing job requirements with clients, preparing the job site,
+          applying pre-coating agents, leveling surfaces, removing old paint,
+          matching colors, filling holes, and cleaning tools.
+        </p>
 
-      <p style={{ margin: "30px 400px 10px 400px" }}>
-        Painters apply products like paint, wallpaper, and other finishes on
-        walls located both indoors and outdoors. Painter tasks include
-        discussing job requirements with clients, preparing the job site,
-        applying pre-coating agents, leveling surfaces, removing old paint,
-        matching colors, filling holes, and cleaning tools.
-      </p>
+        <br />
+        <Nav
+          tabs
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <NavItem>
+            <NavLink href="/paintinggallery">ALL</NavLink>
+          </NavItem>
 
-      <br />
-      <Nav
-        tabs
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <NavItem>
-          <NavLink href="/paintinggallery">ALL</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/paintinggallery">Oil painting</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/paintinggallery">Sand painting</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/paintinggallery">Pencil Sketch</NavLink>
-        </NavItem>
-        <NavItem>
-          <NavLink href="/paintinggallery">Digital painting</NavLink>
-        </NavItem>
-      </Nav>
-    </div>
-  );
-};
+          <NavItem>
+            <Button
+              onClick={() => this.props.switchToSubCatGallery("Oil painting")}
+            >
+              Oil painting
+            </Button>
+          </NavItem>
+
+          <NavItem>
+            <NavLink href="/paintinggallery">Sand painting</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/paintinggallery">Pencil Sketch</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/paintinggallery">Digital painting</NavLink>
+          </NavItem>
+        </Nav>
+      </div>
+    );
+  }
+}
 
 class PaintingGallery extends Component {
   constructor(props) {
@@ -81,6 +88,7 @@ class PaintingGallery extends Component {
     this.state = {
       data: [],
     };
+    this.switchToSubCatGallery = this.switchToSubCatGallery.bind(this);
   }
 
   componentDidMount() {
@@ -106,6 +114,20 @@ class PaintingGallery extends Component {
     this.setState({ data: unique });
   }
 
+  switchToSubCatGallery(subcat) {
+    const req = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        category: "Painting",
+        subcategory: subcat,
+      }),
+    };
+    fetch("http://localhost:8000/api/gallery/subcategory", req)
+      .then((res) => res.json())
+      .then((data) => this.returnUniqueImage(data));
+  }
+
   render() {
     return (
       <div>
@@ -119,7 +141,7 @@ class PaintingGallery extends Component {
             justifyContent: "center",
           }}
         >
-          <PaintNavBar />
+          <PaintNavBar switchToSubCatGallery={this.switchToSubCatGallery} />
         </div>
         {this.state.data !== null && <Paintings data={this.state.data} />}
       </div>
