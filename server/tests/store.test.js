@@ -7,6 +7,7 @@ const Item = require("../models/item");
 const storeController = require("../controllers/store");
 
 beforeAll(async () => {
+  await mongoose.disconnect();
   await mongoose.connect(global.__MONGO_URI__, {
     useNewUrlParser: true,
     useCreateIndex: true,

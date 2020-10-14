@@ -7,6 +7,7 @@ const User = require("../models/User");
 const userController = require("../controllers/user");
 
 beforeAll(async () => {
+  await mongoose.disconnect();
   await mongoose.connect(global.__MONGO_URI__, {
     useNewUrlParser: true,
     useCreateIndex: true,
