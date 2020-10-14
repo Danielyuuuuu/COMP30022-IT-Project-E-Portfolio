@@ -12,7 +12,8 @@ const uploadController = require("../controllers/upload");
 
 
 beforeAll(async () => {
-  await mongoose.createConnection(global.__MONGO_URI__, {
+  await mongoose.disconnect();
+  await mongoose.connect(global.__MONGO_URI__, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
