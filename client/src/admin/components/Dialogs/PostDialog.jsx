@@ -102,9 +102,7 @@ const Markdown = (props) => {
     return content;
 }
 
-function PostDialog(propss) {
-    const props = propss.props;
-    const { enqueueSnackbar } = useSnackbar();
+export default function PostDialog(props) {
 
     const [open, setOpen] = React.useState(false);
     const [openJ, setOpenJ] = React.useState(false);
@@ -151,10 +149,10 @@ function PostDialog(propss) {
 
         if (!title || !imageUrl || !markdown || !tag) {
             variant = 'warning'
-            enqueueSnackbar(`Need to fill in all fields!`, { variant });
+            props.sendNotification(`Need to fill in all fields!`, variant );
         } else {
             if (props.mode == "New") {
-                enqueueSnackbar(`You successfully create a new post: << ${title} >>!`, { variant });
+                props.sendNotification(`You successfully create a new post: << ${title} >>!`, variant);
                 Axios.post("http://localhost:8000/api/blog/uploadblog", data)
                     .then(console.log("adding new post......"))
                     .then((res) => {
@@ -163,7 +161,7 @@ function PostDialog(propss) {
                         props.callBackRefresh();
                     });
             } else {
-                enqueueSnackbar(`You successfully edit post: << ${title} >>!`, { variant });
+                props.sendNotification(`You successfully edit post: << ${title} >>!`, variant);
                 Axios.post(
                     "http://localhost:8000/api/blog/editBlog",
                     editData
@@ -298,12 +296,5 @@ function PostDialog(propss) {
             </Dialog>
 
         </div>
-    );
-}
-export default function PostDialogWithnotification(props) {
-    return (
-        <SnackbarProvider maxSnack={3}>
-            <PostDialog props={props} />
-        </SnackbarProvider>
     );
 }

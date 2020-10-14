@@ -198,7 +198,7 @@ function Row(props) {
 
 function Store() {
   const [items, setItems] = useState([]);
-  
+
   const { enqueueSnackbar } = useSnackbar();
   const notification = (message, variant) =>{
     enqueueSnackbar(message, {variant});
@@ -237,8 +237,8 @@ function Store() {
                   sendNotification={notification}
                   item={{
                     itemname: "",
-                    stock: 0,
-                    price: 0,
+                    stock: 1,
+                    price: 1,
                     views: 0,
                     imagename: "",
                     description: "",

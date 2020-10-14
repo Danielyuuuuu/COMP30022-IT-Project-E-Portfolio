@@ -46,8 +46,11 @@ const useRowStyles = makeStyles({
 });
 
 function Row(props) {
+  
   const { enqueueSnackbar } = useSnackbar();
-
+  const notification = (message, variant) =>{
+    enqueueSnackbar(message, {variant});
+  }
   const history = useHistory();
   const { row } = props;
   const [open, setOpen] = React.useState(false);
@@ -56,8 +59,7 @@ function Row(props) {
   const [openDeleteAlert, setDeleteAlert] = React.useState(false);
 
   const handleDelete = (id) => {
-    var variant = 'warning';
-    enqueueSnackbar(`You have delete the item !`, {variant})
+    notification(`You have delete the item !`, "warning");
     axios
       .delete("http://localhost:8000/api/blog/deleteBlog/" + id)
       .then(console.log("delete item......"))
@@ -137,6 +139,7 @@ function Row(props) {
             color="primary"
             blog={row}
             callBackRefresh={callBack}
+            sendNotification={notification}
           ></Dialogs>
         </TableCell>
         <TableCell align="right">
@@ -192,7 +195,10 @@ function Row(props) {
 
 function Post() {
   const [items, setItems] = useState([]);
-
+  const { enqueueSnackbar } = useSnackbar();
+  const notification = (message, variant) =>{
+    enqueueSnackbar(message, {variant});
+  }
   const getPost= async ()=>{
     console.log(`Getting Posts...`);
     axios
@@ -222,6 +228,7 @@ function Post() {
                   variant="contained"
                   color="secondary"
                   callBackRefresh={getPost}
+                  sendNotification={notification}
                   blog={{
                     title: "",
                     hashtags: [],
