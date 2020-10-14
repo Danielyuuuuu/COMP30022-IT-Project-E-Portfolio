@@ -40,14 +40,12 @@ class Store extends Component {
     // }
     let selectedItems = this.state.cart.filter((item) => item.name == itemName);
     if (selectedItems.length == 0) {
-
       this.state.cart.push({
         name: itemName,
         price: itemPrice,
         filename: imageName,
-        quantity: 1
+        quantity: 1,
       });
-
     }
     this.setState({ cart: this.state.cart });
     console.log(this.state.cart);
@@ -341,7 +339,7 @@ class Item extends Component {
         <br />
         <CardTitle>{this.props.data.itemname} </CardTitle>
         <CardText>{this.props.data.description}</CardText>
-        <CardTitle>${this.props.data.price}.00</CardTitle>
+        <CardTitle>${this.props.data.price}</CardTitle>
         <Button
           onClick={() =>
             this.props.updateCart(
