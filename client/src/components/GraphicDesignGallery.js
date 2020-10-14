@@ -29,11 +29,11 @@ class GraphicDesignNavBar extends Component {
         <h1 style={descriptionStyle}>Graphic Design</h1>
 
         <p style={{ margin: "30px 400px 10px 400px" }}>
-          Craft artists create handmade objects, such as pottery, glassware,
-          textiles, and other objects that are designed to be functional. Fine
-          artists, including painters, sculptors, and illustrators, create
-          original works of art for their aesthetic value, rather than for a
-          functional one.
+          Graphic designers create visual concepts, using computer software or
+          by hand, to communicate ideas that inspire, inform, and captivate
+          consumers. They develop the overall layout and production design for
+          applications such as advertisements, brochures, magazines, and
+          reports.
         </p>
 
         <br />
