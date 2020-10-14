@@ -23,6 +23,7 @@ class ContactMeForm extends React.Component {
         "https://react.semantic-ui.com/images/avatar/small/christian.jpg",
       ],
       error: "",
+      severity: "error",
     };
   }
 
@@ -46,10 +47,11 @@ class ContactMeForm extends React.Component {
           subject: "",
           message: "",
           error: "Submit successful",
+          severity: "success",
         });
       });
     } catch (err) {
-      this.setState({ error: err.response.data.msg });
+      this.setState({ error: err.response.data.msg, severity: "error" });
     }
   };
 
@@ -59,6 +61,7 @@ class ContactMeForm extends React.Component {
         {this.state.error && (
           <ErrorNotice
             message={this.state.error}
+            severity={this.state.severity}
             clearError={() => this.setState({ error: "" })}
           />
         )}
