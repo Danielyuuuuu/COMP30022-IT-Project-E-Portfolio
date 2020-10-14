@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "concurrently --kill-others \"nodemon server.js\" \"cd ../client && npm start\"",
     "server": "node_modules/.bin/nodemon server.js",
-    "test": "jest --verbose",
+    "test": "jest --verbose --detectOpenHandles",
     "test:watch": "jest tests --watch"
   },
   "repository": {
@@ -46,6 +46,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
+    "@jest/globals": "^26.5.3",
     "@shelf/jest-mongodb": "^1.2.3",
     "concurrently": "^5.3.0",
     "jest": "^26.5.0",
