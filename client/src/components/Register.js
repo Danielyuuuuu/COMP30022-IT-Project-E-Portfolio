@@ -10,6 +10,7 @@ export default function Register() {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [error, setError] = useState();
+  const [severity, setSeverity] = useState("error");
 
   const history = useHistory();
 
@@ -57,7 +58,7 @@ export default function Register() {
         E-Portfolio Register
       </h2>
       {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
+        <ErrorNotice message={error} severity={severity} clearError={() => setError(undefined)} />
       )}
       <FormGroup>
         <Label for="email">Email</Label>
