@@ -7,36 +7,27 @@ import { Nav, NavItem, NavLink, Button } from "reactstrap";
 
 const url = "http://localhost:8000/api/uploadManage/image/";
 
-// const data = [
-//   "cff15ed84dad8a582143ce1ada541820.png",
-//   "8ab345134aebe787a4b15a70a92ccba8.jpg",
-//   "4e170759f6ca7d91dee0140cd50297ff.jpg",
-//   "30b77e8b3a1a982ddb80ff44c2b44f07.jpg",
-//   "6653fe015a1e76145807967919eff9e1.jpg",
-//   "12e2e7680ce28e875985ae91af5b0458.png",
-//   "checkname.jpg",
-//   "下载.jpg",
-//   "7b3c802ea99be25d56eb36fe2619fd37.png",
-// ];
+const descriptionStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  margin: "25px 400px 15px 400px",
+};
+
+const navStyle = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+};
+
+const navButtonStyle = { marginBottom: "1px", marginRight: "10px" };
 
 class PaintNavBar extends Component {
-  //   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  //   const toggle = () => setDropdownOpen(!dropdownOpen);
   render() {
     return (
       <div>
         <br />
-        <h1
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "25px 400px 15px 400px",
-          }}
-        >
-          Painting
-        </h1>
+        <h1 style={descriptionStyle}>Painting</h1>
 
         <p style={{ margin: "30px 400px 10px 400px" }}>
           Painters apply products like paint, wallpaper, and other finishes on
@@ -47,28 +38,11 @@ class PaintNavBar extends Component {
         </p>
 
         <br />
-        <Nav
-          tabs
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <Nav tabs style={navStyle}>
           <NavItem>
             <Button
               color="light"
-              style={{ marginBottom: "1px", marginRight: "10px" }}
-              onClick={() => this.props.switchToCatGallery()}
-            >
-              ALL
-            </Button>
-          </NavItem>
-
-          <NavItem>
-            <Button
-              color="light"
-              style={{ marginBottom: "1px", marginRight: "10px" }}
+              style={navButtonStyle}
               onClick={() => this.props.switchToSubCatGallery("Oil painting")}
             >
               Oil painting
@@ -78,7 +52,7 @@ class PaintNavBar extends Component {
           <NavItem>
             <Button
               color="light"
-              style={{ marginBottom: "1px", marginRight: "10px" }}
+              style={navButtonStyle}
               onClick={() => this.props.switchToSubCatGallery("Sand painting")}
             >
               Sand painting
@@ -88,7 +62,7 @@ class PaintNavBar extends Component {
           <NavItem>
             <Button
               color="light"
-              style={{ marginBottom: "1px", marginRight: "10px" }}
+              style={navButtonStyle}
               onClick={() => this.props.switchToSubCatGallery("Pencil Sketch")}
             >
               Pencil Sketch
@@ -98,7 +72,7 @@ class PaintNavBar extends Component {
           <NavItem>
             <Button
               color="light"
-              style={{ marginBottom: "1px", marginRight: "10px" }}
+              style={navButtonStyle}
               onClick={() =>
                 this.props.switchToSubCatGallery("Digital painting")
               }
@@ -107,18 +81,15 @@ class PaintNavBar extends Component {
             </Button>
           </NavItem>
 
-          {/* <NavItem>
-            <NavLink href="/paintinggallery">ALL</NavLink>
-          </NavItem>
           <NavItem>
-            <NavLink href="/paintinggallery">Sand painting</NavLink>
+            <Button
+              color="light"
+              style={navButtonStyle}
+              onClick={() => this.props.switchToCatGallery()}
+            >
+              ALL
+            </Button>
           </NavItem>
-          <NavItem>
-            <NavLink href="/paintinggallery">Pencil Sketch</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="/paintinggallery">Digital painting</NavLink>
-          </NavItem> */}
         </Nav>
       </div>
     );
@@ -168,7 +139,6 @@ class PaintingGallery extends Component {
     };
     fetch("http://localhost:8000/api/gallery/category", req)
       .then((res) => res.json())
-      //   .then((data) => (a = data));
       .then((data) => this.returnUniqueImage(data));
   }
 
@@ -228,7 +198,6 @@ class Tiles extends React.Component {
       <div className="tiles">
         {this.props.data.map((data) => {
           return <Tile data={data} />;
-          //   return <Tile data={data} key={data.id} />;
         })}
       </div>
     );
@@ -286,16 +255,6 @@ class Tile extends React.Component {
     // When tile clicked
     if (this.state.open) {
       tileStyle = {
-        // maxWidth: '62vw',
-        // maxHeight: '62vw',
-        // position: 'fixed',
-        // top: '50%',
-        // left: '50%',
-        // margin: '0',
-        // marginTop: '-31vw',
-        // marginLeft: '-31vw',
-        // boxShadow: '0 0 40px 5px rgba(0, 0, 0, 0.3)',
-        // transform: 'none'
         width: "100vw",
         height: "100vh",
         position: "fixed",
