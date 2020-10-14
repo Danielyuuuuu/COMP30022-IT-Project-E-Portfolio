@@ -23,6 +23,7 @@ import ArtWorkGallery3 from "./components/ArtWorkGallery3";
 import PaintingGallery from "./components/PaintingGallery";
 import PhotographyGallery from "./components/PhotographyGallery";
 import ArtGraftsGallery from "./components/ArtCraftsGallery";
+import GraphicDesignGallery from "./components/GraphicDesignGallery";
 
 import Admin from "./admin/layouts/Admin";
 
@@ -89,6 +90,7 @@ export default function App() {
         <Route path="/paintinggallery" component={PaintingGallery} />
         <Route path="/photographygallery" component={PhotographyGallery} />
         <Route path="/artcraftsgallery" component={ArtGraftsGallery} />
+        <Route path="/graphicdesigngallery" component={GraphicDesignGallery} />
 
         <Route path="/checkout" component={CheckOut} />
       </div>

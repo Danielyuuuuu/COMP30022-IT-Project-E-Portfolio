@@ -50,7 +50,7 @@ const Example = (props) => {
       </Card>
 
       <Card body>
-        <CardLink href="https://en.wikipedia.org/wiki/Graphic">
+        <CardLink href="/graphicdesigngallery">
           <CardImg
             width="100%"
             src="https://www.thecreativeissue.com.au/wp-content/uploads/2017/07/Beastman-3-TCI.jpg"
