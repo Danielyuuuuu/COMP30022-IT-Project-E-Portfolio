@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from '@material-ui/core/Button';
+import { SnackbarProvider, useSnackbar } from "notistack"
 import Grid from "@material-ui/core/Grid";
 
 import Paper from "@material-ui/core/Paper";
@@ -52,45 +54,54 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SpacingGrid() {
-  const [spacing, setSpacing] = React.useState(2);
+
+// function MyApp() {
+//   const { enqueueSnackbar } = useSnackbar();
+
+//   const handleClick = () => {
+//     enqueueSnackbar('I love snacks.');
+//   };
+
+//   const handleClickVariant = (variant) => () => {
+//     // variant could be success, error, warning, info, or default
+//     enqueueSnackbar('This is a success message!', { variant });
+//   };
+
+//   return (
+//     <React.Fragment>
+//       <Button onClick={handleClick}>Show snackbar</Button>
+//       <Button onClick={handleClickVariant('success')}>Show success snackbar</Button>
+//     </React.Fragment>
+//   );
+// }
+
+
+function Media() {
   const classes = useStyles();
-
-  const handleChange = (event) => {
-    setSpacing(Number(event.target.value));
-  };
-
   const [copyOpen, setCopyOpen] = React.useState(false);
   const [deleteOpen, setDeleteOpen] = React.useState(false);
 
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = ( message, variant) => {
+    enqueueSnackbar(message, {variant})
+  }
+
   const handleCopyClick = () => {
-    setCopyOpen(true);
-  };
-
-  const handleCopyClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setCopyOpen(false);
-  };
-
-  const handleDeleteClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setDeleteOpen(false);
+    handleClickVariant("You have copy the url of image", "success");
+    // setCopyOpen(true);
   };
 
   const [images, setImages] = useState([]);
 
   const handleRemoveItem = (filename) => {
     setDeleteOpen(true);
+    handleClickVariant(`You have delete the image: ${filename} !`, 'warning');
     axios
       .delete(`http://localhost:8000/api/uploadManage/files/${filename}`)
       .then((res) => {
         console.log(res);
         setImages(images.filter(image => image.filename !== filename));
-
+        
       });
   };
 
@@ -105,28 +116,9 @@ export default function SpacingGrid() {
     fetchAllImages();
   })
 
-  // useEffect(() => {
-  //     // Read the mutable latest value
-  //     console.log(`Getting files...`);
-  //
-  //     axios
-  //     .get("http://localhost:8000/api/uploadManage/files")
-  //     .then((res) => {
-  //         setImages(res.data);
-  //     })
-  //     .catch((err) => {
-  //         console.log("Error from ShowBookList");
-  //     });
-  //   },[]);
-
-  //   const images = [
-  //       {
-  //           author: "abc"
-  //       }
-  //   ]
   const history = useHistory();
   return (
-    <div>
+    <React.Fragment>
       <Grid container spacing={2} direction="row" justify="space-around" alignItems="stretch">
 
         <Grid item xs={8} className={classes.root}>
@@ -165,19 +157,15 @@ export default function SpacingGrid() {
         </Grid>
 
       </Grid>
+    </ React.Fragment>
+  )
+}
 
+export default function MediaWithSnackBar() {
 
-      {/* Notifications */}
-      <Snackbar open={copyOpen} autoHideDuration={2000} onClose={handleCopyClose}>
-        <Alert onClose={handleCopyClose} severity="success">
-          You have already copy the url of image.
-        </Alert>
-      </Snackbar>
-      <Snackbar open={deleteOpen} autoHideDuration={2000} onClose={handleDeleteClose}>
-        <Alert onClose={handleDeleteClose} severity="success">
-          You have already delete the image.
-        </Alert>
-      </Snackbar>
-    </div>
+return (
+  <SnackbarProvider maxSnack={3}>
+    <Media />
+  </SnackbarProvider>
   );
 }
