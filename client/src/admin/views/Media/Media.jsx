@@ -61,6 +61,7 @@ export default function SpacingGrid() {
   };
 
   const [copyOpen, setCopyOpen] = React.useState(false);
+  const [deleteOpen, setDeleteOpen] = React.useState(false);
 
   const handleCopyClick = () => {
     setCopyOpen(true);
@@ -73,14 +74,23 @@ export default function SpacingGrid() {
     setCopyOpen(false);
   };
 
+  const handleDeleteClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setDeleteOpen(false);
+  };
+
   const [images, setImages] = useState([]);
 
   const handleRemoveItem = (filename) => {
+    setDeleteOpen(true);
     axios
       .delete(`http://localhost:8000/api/uploadManage/files/${filename}`)
       .then((res) => {
         console.log(res);
         setImages(images.filter(image => image.filename !== filename));
+
       });
   };
 
@@ -117,47 +127,55 @@ export default function SpacingGrid() {
   const history = useHistory();
   return (
     <div>
-        <Grid container spacing={2} direction="row" justify="space-around" alignItems="stretch">
+      <Grid container spacing={2} direction="row" justify="space-around" alignItems="stretch">
 
-            <Grid item xs={8} className={classes.root}>
-                <Paper elevation={0} className={classes.paper}>
-                    <h3>Media</h3>
-                    <GridList cellHeight={180} className={classes.gridList} cols={3}>
-                        {images.map((tile) => (
-                        <GridListTile>
-                            <img src={"http://localhost:8000/api/uploadManage/image/"+tile.filename} />
-                            <GridListTileBar
-                                actionIcon={
-                                    <div>
-                                    <IconButton className={classes.icon} onClick={() => {navigator.clipboard.writeText("http://localhost:8000/api/uploadManage/image/"+tile.filename)}}>
-                                        <FileCopyOutlinedIcon onClick={handleCopyClick}/>
-                                    </IconButton>
-                                    <IconButton className={classes.icon} onClick={()=>handleRemoveItem(tile.filename)}>
-                                        <HighlightOffOutlinedIcon/>
-                                    </IconButton>
-                                    </div>
-                                }
-                                />
-                        </GridListTile>
-                        ))}
-                    </GridList>
-                </Paper>
-            </Grid>
-
-            <Grid item xs={4} className={classes.root}>
-                <Paper elevation={0} className={classes.paper}>
-                    <h3>Informations</h3>
-                    <p>File Name:</p>
-                    <p>Describe:</p>
-                    <p>URL:</p>
-                    <DropzoneArea callBack={fetchAllImages}/>
-                </Paper>
-            </Grid>
-
+        <Grid item xs={8} className={classes.root}>
+          <Paper elevation={0} className={classes.paper}>
+            <h3>Media</h3>
+            <GridList cellHeight={180} className={classes.gridList} cols={3}>
+              {images.map((tile) => (
+                <GridListTile>
+                  <img src={"http://localhost:8000/api/uploadManage/image/" + tile.filename} />
+                  <GridListTileBar
+                    actionIcon={
+                      <div>
+                        <IconButton className={classes.icon} onClick={() => { navigator.clipboard.writeText("http://localhost:8000/api/uploadManage/image/" + tile.filename) }}>
+                          <FileCopyOutlinedIcon onClick={handleCopyClick} />
+                        </IconButton>
+                        <IconButton className={classes.icon} onClick={() => handleRemoveItem(tile.filename)}>
+                          <HighlightOffOutlinedIcon />
+                        </IconButton>
+                      </div>
+                    }
+                  />
+                </GridListTile>
+              ))}
+            </GridList>
+          </Paper>
         </Grid>
-        <Snackbar open={copyOpen} autoHideDuration={2000} onClose={handleCopyClose}>
+
+        <Grid item xs={4} className={classes.root}>
+          <Paper elevation={0} className={classes.paper}>
+            <h3>Informations</h3>
+            <p>File Name:</p>
+            <p>Describe:</p>
+            <p>URL:</p>
+            <DropzoneArea callBack={fetchAllImages} />
+          </Paper>
+        </Grid>
+
+      </Grid>
+
+
+      {/* Notifications */}
+      <Snackbar open={copyOpen} autoHideDuration={2000} onClose={handleCopyClose}>
         <Alert onClose={handleCopyClose} severity="success">
           You have already copy the url of image.
+        </Alert>
+      </Snackbar>
+      <Snackbar open={deleteOpen} autoHideDuration={2000} onClose={handleDeleteClose}>
+        <Alert onClose={handleDeleteClose} severity="success">
+          You have already delete the image.
         </Alert>
       </Snackbar>
     </div>
