@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "concurrently --kill-others \"nodemon server.js\" \"cd ../client && npm start\"",
     "server": "node_modules/.bin/nodemon server.js",
-    "test": "jest --verbose --forceExit",
+    "test": "jest --verbose --coverage[=true] --forceExit",
     "test:watch": "jest tests --watch"
   },
   "repository": {
