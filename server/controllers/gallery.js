@@ -29,7 +29,7 @@ const updateArtwork = async (req, res) => {
     // automatically create a new entry.
     await Artwork.findOneAndUpdate(query, update, {upsert:true}, (err, doc) => {
       if (err) return res.status(400).json(err);
-      res.send("Added successfully");
+      return res.status(200).send("Added successfully");
     })
   } catch (error) {
     res.status(400).json(error);
