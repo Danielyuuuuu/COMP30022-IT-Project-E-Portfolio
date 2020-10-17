@@ -33,29 +33,6 @@ export default class ContactMe extends Component {
     this.setState({expanded: !this.state.expanded});
   }
 
-  // classes = makeStyles((theme) => ({
-  //   root: {
-  //     maxWidth: 200,
-  //   },
-  //   media: {
-  //     height: 0,
-  //     paddingTop: '56.25%', // 16:9
-  //   },
-  //   expand: {
-  //     transform: 'rotate(0deg)',
-  //     marginLeft: 'auto',
-  //     transition: theme.transitions.create('transform', {
-  //       duration: theme.transitions.duration.shortest,
-  //     }),
-  //   },
-  //   expandOpen: {
-  //     transform: 'rotate(180deg)',
-  //   },
-  //   avatar: {
-  //     backgroundColor: red[500],
-  //   },
-  // }));
-
   componentDidMount() {
     this.fetchAllTheContactMeMessages();
   }
@@ -83,17 +60,16 @@ export default class ContactMe extends Component {
   render() {
     return (
       <div>
-        <Comment.Group size="massive">
+        {/* <Comment.Group size="massive"> */}
           {this.state.contactMes.map((contactMe) => {
             return (
-              <div className="flexDisplay">
-                <Comment>
+              <div>
+                {/* <Comment>
                   <Comment.Avatar as="a" src={contactMe.profilePhoto} />
                   <Comment.Content>
                     <Comment.Author as="a">{contactMe.name}</Comment.Author>
                     <Comment.Metadata className="floatRight">
                       <div>
-                        {/* <p>&nbsp; &nbsp;</p> */}
                         <button
                           className="deleteButton"
                           onClick={() => this.handleDelete(contactMe._id)}
@@ -111,45 +87,85 @@ export default class ContactMe extends Component {
                       <div>Message: {contactMe.message}</div>
                     </Comment.Text>
                   </Comment.Content>
-                </Comment>
+                </Comment> */}
+                <ContactMeBlock profilePhoto={contactMe.profilePhoto} name={contactMe.name} date={contactMe.date.slice(0, 10)} email={contactMe.email} subject={contactMe.subject} message={contactMe.message} id={contactMe._id} callBack={this.fetchAllTheContactMeMessages}/>
               </div>
             );
           })}
-        </Comment.Group>
+        {/* </Comment.Group> */}
+        {/* <ContactMeBlock />
+        <ContactMeBlock /> */}
+      </div>
+    );
+  }
+}
+
+class ContactMeBlock extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expanded: "false",
+    };
+  }
+
+  handleExpandClick = async () =>{
+    this.setState({expanded: !this.state.expanded});
+  }
+
+  handleDelete = (e) => {
+    console.log("ContactMe deleted: " + e);
+    Axios.delete("http://localhost:8000/api/contactMe/deleteContactMe/" + e)
+      .then((res) => {
+        this.props.callBack();
+        console.log("fetchAllTheContactMeMessages");
+      })
+      .catch((err) => {
+        console.log(Error);
+      });
+  };
+
+  render(){
+    return(
+      <div>
         <Card className="displayContactMe">
           <CardHeader
             avatar={
-              <Avatar aria-label="recipe">
-                R
-              </Avatar>
+              <Avatar as="a" src={this.props.profilePhoto} />
             }
             action={
-              <CardActions disableSpacing className="expandArrow">
-              <IconButton
-                onClick={this.handleExpandClick}
-                aria-expanded={this.state.expanded}
-                aria-label="show more"
+              <div>
+              <button
+                className="deleteButton"
+                onClick={() => this.handleDelete(this.props.id)}
               >
-                <ExpandMoreIcon />
-              </IconButton>
-              </CardActions>
+                <i className="fas fa-times"></i>
+              </button>{" "}
+            </div>
             }
-            title="Shrimp and Chorizo Paella"
-            subheader="September 14, 2016"
+            title={this.props.name}
+            subheader={this.props.date}
           />
+          <CardActions disableSpacing className="expandArrow">
+            <IconButton
+              onClick={this.handleExpandClick}
+              aria-expanded={this.state.expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
           <CardContent>
             <Typography variant="body2" color="textSecondary" component="p">
-              This impressive paella is a perfect party dish and a fun meal to cook together with your
-              guests. Add 1 cup of frozen peas along with the mussels, if you like.
+            {this.props.subject}
             </Typography>
           </CardContent>
           <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
-              <Typography paragraph>text!!!!!!!!!!!!!!!!!!</Typography>
+              <Typography paragraph>{this.props.message}</Typography>
             </CardContent>
           </Collapse>
         </Card>
       </div>
-    );
+    )
   }
 }
