@@ -82,6 +82,7 @@ class ContactMeBlock extends Component {
 
   handleExpandClick = async () =>{
     this.setState({expanded: !this.state.expanded});
+    console.log("In handleExpandClick..." + this.state.expanded)
   }
 
   handleDelete = (e) => {
@@ -131,7 +132,7 @@ class ContactMeBlock extends Component {
             {this.props.subject}
             </Typography>
           </CardContent>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+          <Collapse in={!this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <Typography paragraph>{this.props.message}</Typography>
             </CardContent>

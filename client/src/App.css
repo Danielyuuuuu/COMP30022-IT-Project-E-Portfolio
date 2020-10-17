@@ -349,8 +349,8 @@ body {
   background-color: white;
   color: black;
   border: 1px solid white;
-  /* height: 40px;
-  width: 40px; */
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
 .deleteButton:hover {
@@ -377,12 +377,12 @@ body {
 
 .expandArrow {
   float: right;
-  transform: rotate(180deg);
+  transform: rotate(0deg);
   margin-left: "auto";
 }
 
 .expandedArrow {
   float: right;
-  transform: rotate(0deg);
+  transform: rotate(180deg);
   margin-left: "auto";
 }
