@@ -74,6 +74,7 @@ require("./User");
 require("./artwork");
 require("./blog");
 require("./comments");
+require("./statistic")
 
 // exports the var
 exports.upload = upload;
