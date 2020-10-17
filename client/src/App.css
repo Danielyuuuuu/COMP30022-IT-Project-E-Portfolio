@@ -377,4 +377,12 @@ body {
 
 .expandArrow {
   float: right;
+  transform: rotate(180deg);
+  margin-left: "auto";
+}
+
+.expandedArrow {
+  float: right;
+  transform: rotate(0deg);
+  margin-left: "auto";
 }

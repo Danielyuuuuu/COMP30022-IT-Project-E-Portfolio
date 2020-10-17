@@ -60,41 +60,13 @@ export default class ContactMe extends Component {
   render() {
     return (
       <div>
-        {/* <Comment.Group size="massive"> */}
           {this.state.contactMes.map((contactMe) => {
             return (
               <div>
-                {/* <Comment>
-                  <Comment.Avatar as="a" src={contactMe.profilePhoto} />
-                  <Comment.Content>
-                    <Comment.Author as="a">{contactMe.name}</Comment.Author>
-                    <Comment.Metadata className="floatRight">
-                      <div>
-                        <button
-                          className="deleteButton"
-                          onClick={() => this.handleDelete(contactMe._id)}
-                        >
-                          <i className="fas fa-times"></i>
-                        </button>{" "}
-                      </div>
-                    </Comment.Metadata>
-                    <Comment.Metadata>
-                      <div>{contactMe.date.slice(0, 10)}</div>
-                    </Comment.Metadata>
-                    <Comment.Text>
-                      <div>Email: {contactMe.email}</div>
-                      <div>Subject: {contactMe.subject}</div>
-                      <div>Message: {contactMe.message}</div>
-                    </Comment.Text>
-                  </Comment.Content>
-                </Comment> */}
                 <ContactMeBlock profilePhoto={contactMe.profilePhoto} name={contactMe.name} date={contactMe.date.slice(0, 10)} email={contactMe.email} subject={contactMe.subject} message={contactMe.message} id={contactMe._id} callBack={this.fetchAllTheContactMeMessages}/>
               </div>
             );
           })}
-        {/* </Comment.Group> */}
-        {/* <ContactMeBlock />
-        <ContactMeBlock /> */}
       </div>
     );
   }
@@ -145,7 +117,7 @@ class ContactMeBlock extends Component {
             title={this.props.name}
             subheader={this.props.date}
           />
-          <CardActions disableSpacing className="expandArrow">
+          <CardActions disableSpacing className={this.state.expanded ? ("expandArrow") : ("expandedArrow")}>
             <IconButton
               onClick={this.handleExpandClick}
               aria-expanded={this.state.expanded}
