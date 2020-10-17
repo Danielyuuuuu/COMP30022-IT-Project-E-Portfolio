@@ -13,8 +13,8 @@ const upload = require("../models/db").upload;
 // @access      Public
 statisticRouter.get("/", statisticController.getStatistic);
 
-statisticRouter.get("/update", statisticController.updateStatistic);
+statisticRouter.post("/update", statisticController.updateStatistic);
 
-statisticRouter.get("/addView", statisticController.updateViews);
+statisticRouter.post("/addView", statisticController.updateViews);
 
 module.exports = statisticRouter;
