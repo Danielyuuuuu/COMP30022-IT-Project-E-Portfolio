@@ -213,7 +213,7 @@ p {
 }
 
 .ContactMeForm {
-  width: 400px;
+  width: 600px;
   margin-left: auto;
   margin-right: auto;
   min-height: calc(100vh - 61.64px - 47.64px - 2rem - 2rem);
