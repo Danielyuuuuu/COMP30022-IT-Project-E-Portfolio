@@ -5,6 +5,15 @@ import { Button } from "reactstrap";
 const Example = () => {
   return (
     <div className="aboutMe">
+      <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginTop: 15,
+          marginBottom: 5
+        }}>
+        <h3>About Me</h3>
+      </div>
       <div>
         <img
           src="https://static.im-a-puzzle.com/gallery/Animals/Dogs/Will_you_take_me_home.jpg"
@@ -15,7 +24,7 @@ const Example = () => {
         />
       </div>
       <div>
-        <Media heading><h3>About Me</h3></Media>Ought these are balls place mrs their
+        <Media heading></Media>Ought these are balls place mrs their
         times add she. Taken no great widow spoke of it small. Genius use except
         son esteem merely her limits. Sons park by do make on. It do oh cottage
         offered cottage in written. Especially of dissimilar up attachment
@@ -66,20 +75,17 @@ const Example = () => {
           CV
         </Button> */}
       </div>
-      <div
-        style={{
+      <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
           marginTop: 30,
-        }}
-      >
-        <Media
-          heading
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <h3>Experience</h3>
+          marginBottom: 5
+        }}>
+        <h3>Experience</h3>
+      </div>
+      <div>
+        <Media heading>
         </Media>
         Ought these are balls place mrs their times add she. Taken no great
         widow spoke of it small. Genius use except son esteem merely her limits.
