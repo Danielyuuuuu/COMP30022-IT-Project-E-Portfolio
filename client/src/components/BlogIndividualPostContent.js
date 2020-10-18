@@ -11,10 +11,8 @@ import {
   FormGroup,
   Input,
 } from "reactstrap";
-import { Header } from "semantic-ui-react";
 import BlogComments from "./BlogComments";
 import axios from "axios";
-import ErrorNotice from "../misc/ErrorNotice";
 
 export default class PostContent extends Component {
   constructor(props) {
@@ -128,20 +126,7 @@ export default class PostContent extends Component {
             })}
           </div>
         </CardBody>
-        <div className="commentSection">
-          <Header
-            as="h3"
-            dividing
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            Comment Section
-          </Header>
-          <BlogComments blogId={this.props.blogId} />
-        </div>
+        <BlogComments blogId={this.props.blogId}/>
       </div>
     );
   }

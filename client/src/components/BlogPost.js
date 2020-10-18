@@ -45,7 +45,7 @@ class BlogPost extends Component {
               </Card>
               <Card>
                 <CardBody>
-                  <EllipsisButton />
+                  {/* <EllipsisButton /> */}
                   <CardTitle>
                     <a href={"/individualpost/" + blogPost._id}>
                       <h3>{blogPost.title}</h3>
