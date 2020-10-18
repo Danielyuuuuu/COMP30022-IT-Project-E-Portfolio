@@ -10,6 +10,7 @@ export default function Register() {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [error, setError] = useState();
+  const [severity, setSeverity] = useState("error");
 
   const history = useHistory();
 
@@ -25,6 +26,26 @@ export default function Register() {
     }
   };
 
+  const setEmailAddress = async (e) => {
+    setEmail(e.target.value);
+    setError("");
+  };
+
+  const setUserName = async (e) => {
+    setName(e.target.value);
+    setError("");
+  };
+
+  const setUserPassword1 = async (e) => {
+    setPassword1(e.target.value);
+    setError("");
+  };
+
+  const setUserPassword2 = async (e) => {
+    setPassword2(e.target.value);
+    setError("");
+  };
+
   return (
     <Form className="loginRegisterPage" onSubmit={submit}>
       <h2
@@ -37,7 +58,7 @@ export default function Register() {
         E-Portfolio Register
       </h2>
       {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
+        <ErrorNotice message={error} severity={severity} clearError={() => setError(undefined)} />
       )}
       <FormGroup>
         <Label for="email">Email</Label>
@@ -46,7 +67,7 @@ export default function Register() {
           name="email"
           id="email"
           placeholder="Enter Email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={setEmailAddress}
         />
       </FormGroup>
       <FormGroup>
@@ -56,7 +77,7 @@ export default function Register() {
           name="names"
           id="names"
           placeholder="Enter Name"
-          onChange={(e) => setName(e.target.value)}
+          onChange={setUserName}
         />
       </FormGroup>
       <FormGroup>
@@ -66,7 +87,7 @@ export default function Register() {
           name="password1"
           id="password1"
           placeholder="Enter Password"
-          onChange={(e) => setPassword1(e.target.value)}
+          onChange={setUserPassword1}
         />
       </FormGroup>
       <FormGroup>
@@ -76,7 +97,7 @@ export default function Register() {
           name="password2"
           id="password2"
           placeholder="Confirm Password"
-          onChange={(e) => setPassword2(e.target.value)}
+          onChange={setUserPassword2}
         />
       </FormGroup>
       <Button color="primary" block>

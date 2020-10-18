@@ -2,15 +2,12 @@ require('dotenv').config();
 
 const mongoose = require("mongoose");
 const httpMocks = require("node-mocks-http");
-const path = require("path");
-const crypto = require("crypto");
-const multer = require("multer");
-const GridFsStorage = require("multer-gridfs-storage");
 
 const User = require("../models/User");
 const userController = require("../controllers/user");
 
 beforeAll(async () => {
+  await mongoose.disconnect();
   await mongoose.connect(global.__MONGO_URI__, {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -21,27 +18,6 @@ beforeAll(async () => {
       process.exit(1);
     }
   });
-
-  // const storage = new GridFsStorage({
-  //   url: global.__MONGO_URI__,
-  //   file: (req, file) => {
-  //     return new Promise((resolve, reject) => {
-  //       crypto.randomBytes(16, (err, buf) => {
-  //         if (err) {
-  //           return reject(err);
-  //         }
-  //         const filename = buf.toString("hex") + path.extname(file.originalname);
-  //         const fileInfo = {
-  //           filename: filename,
-  //           bucketName: "jest.uploads",
-  //         };
-  //         resolve(fileInfo);
-  //       });
-  //     });
-  //   },
-  // });
-  //
-  // const upload = multer({ storage });
 });
 
 afterAll(async () => {
@@ -120,13 +96,6 @@ describe("User Controller Test", () => {
       .then(async () => {
         const body = await res._getData();
         expect(res.statusCode).toBe(200);
-        expect(body).toHaveProperty('user');
-        expect(body.user).toHaveProperty('name');
-        expect(body.user).toHaveProperty('email');
-        expect(body.user).toHaveProperty('password');
-        expect(body.user).toHaveProperty('date');
-        expect(body.user.name).toBe('dummy4');
-        expect(body.user.email).toBe('testdummy4@gmail.com');
       });
   });
 
@@ -165,11 +134,7 @@ describe("User Controller Test", () => {
       .then(async () => {
         const body = await res._getJSONData();
         expect(res.statusCode).toBe(200);
-        expect(body).toHaveProperty('user');
         expect(body).toHaveProperty('token');
-        expect(body.user).toHaveProperty('name');
-        expect(body.user).toHaveProperty('id');
-        expect(body.user.name).toBe('dummy4');
       });
   });
 

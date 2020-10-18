@@ -8,6 +8,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [severity, setSeverity] = useState("error");
 
   const history = useHistory();
 
@@ -23,6 +24,16 @@ export default function Login() {
     }
   };
 
+  const setEmailAddress = async (e) => {
+    setEmail(e.target.value);
+    setError("");
+  };
+
+  const setUserPassword = async (e) => {
+    setPassword(e.target.value);
+    setError("");
+  };
+
   return (
     <Form className="loginRegisterPage" onSubmit={submit}>
       <h2
@@ -35,7 +46,7 @@ export default function Login() {
         E-Portfolio Login
       </h2>
       {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
+        <ErrorNotice message={error} severity={severity} clearError={() => setError(undefined)} />
       )}
       <FormGroup>
         <Label for="email">Email</Label>
@@ -43,7 +54,7 @@ export default function Login() {
           type="email"
           name="email"
           id="email"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={setEmailAddress}
         />
       </FormGroup>
       <FormGroup>
@@ -52,7 +63,7 @@ export default function Login() {
           type="password"
           name="password"
           id="password"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={setUserPassword}
         />
       </FormGroup>
       <Button onClick={submit} color="primary" block>

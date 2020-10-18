@@ -13,6 +13,7 @@ const galleryRouter = require("./gallery");
 const commentRouter = require("./comments");
 const blogRouter = require("./blog");
 const contactMeRouter = require("./contactMe");
+const statisticRouter = require("./statistic")
 
 // User login route
 router.use("/user", userRouter);
@@ -33,5 +34,8 @@ router.use("/blog", blogRouter);
 
 // Contact Me route
 router.use("/contactMe", contactMeRouter);
+
+// the statistic information route
+router.use("/statistic", statisticRouter);
 
 module.exports = router;

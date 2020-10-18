@@ -1,12 +1,13 @@
 import React from "react";
+import Alert from "@material-ui/lab/Alert";
+import BackspaceIcon from '@material-ui/icons/Backspace';
 
 export default function ErrorNotice(props) {
   return (
     <div className="errorNotice">
-      <span>{props.message}</span>
-      <button onClick={props.clearError}>
-        <i class="fas fa-times"></i>
-      </button>
+        <Alert severity={props.severity}>
+          {props.message}        
+        </Alert>
     </div>
   );
 }

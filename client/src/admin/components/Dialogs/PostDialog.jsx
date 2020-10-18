@@ -20,6 +20,8 @@ import Axios from "axios";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Paper from '@material-ui/core/Paper';
 import { useHistory } from 'react-router-dom';
+import { SnackbarProvider, useSnackbar } from "notistack";
+
 let marked = require("marked");
 
 const options = ["Tag 1", "Tag 2", "Tag 3", "Tag 4"];
@@ -100,24 +102,18 @@ const Markdown = (props) => {
     return content;
 }
 
-export default function DialogsOfStore(props) {
+export default function PostDialog(props) {
+
     const [open, setOpen] = React.useState(false);
     const [openJ, setOpenJ] = React.useState(false);
     const classes = imgStyles();
 
-    const [itemname, setItemName] = React.useState(1);
-    const [category, setCategory] = React.useState(1);
-    const [categoryInput, setCategoryInput] = React.useState(1);
-    const [stocks, setStocks] = React.useState(1);
-    const [price, setPrice] = React.useState(1);
-    const [views, setViews] = React.useState(1);
-    const [imagename, setImageName] = React.useState(1);
-    const [description, setDescription] = React.useState(1);
+    const [markdown, setMarkDown] = React.useState(props.blog.content);
+    const [tag, setTags] = React.useState(props.blog.hashtags);
+    const [title, setTitle] = React.useState(props.blog.title);
+    const [imageUrl, setImageUrl] = React.useState(props.blog.thumbnails.imagename);
 
-    const [markdown, setMarkDown] = React.useState("");
-    const [tag, setTags] = React.useState([]);
-    const [title, setTitle] = React.useState("");
-    const [imageUrl, setImageUrl] = React.useState("");
+
 
     const handleClickOpen = () => {
         setOpen(true);
@@ -126,7 +122,12 @@ export default function DialogsOfStore(props) {
         setOpen(false);
     };
 
-    const history = useHistory();
+    const cleanData = () => {
+        setMarkDown("");
+        setTags([]);
+        setTitle("");
+        setImageUrl("");
+    }
 
     const handleSubmit = () => {
         console.log("before post......");
@@ -136,25 +137,45 @@ export default function DialogsOfStore(props) {
             postBody: markdown,
             hashTags: tag,
         };
-        if (props.mode == "New") {
-            Axios.post("http://localhost:8000/api/blog/uploadblog", data)
-                .then(console.log("adding new post......"))
-                .then((res) => {
-                    console.log(res);
-                });
-        } else {
-            Axios.put(
-                "http://localhost:8000/api/store/update/" + props.item._id,
-                data
-            )
-                .then(console.log("edit item......"))
-                .then((res) => {
-                    console.log(res);
-                });
+        const editData = {
+            postID: props.blog._id,
+            postTitle: title,
+            imageUrl: imageUrl,
+            postBody: markdown,
+            hashTags: tag,
         }
 
-        setOpen(false);
-        history.go(0);
+        var variant = "success";
+
+        if (!title || !imageUrl || !markdown || !tag) {
+            variant = 'warning'
+            props.sendNotification(`Need to fill in all fields!`, variant );
+        } else {
+            if (props.mode == "New") {
+                props.sendNotification(`You successfully create a new post: << ${title} >>!`, variant);
+                Axios.post("http://localhost:8000/api/blog/uploadblog", data)
+                    .then(console.log("adding new post......"))
+                    .then((res) => {
+                        console.log(res);
+                        cleanData();
+                        props.callBackRefresh();
+                    });
+            } else {
+                props.sendNotification(`You successfully edit post: << ${title} >>!`, variant);
+                Axios.post(
+                    "http://localhost:8000/api/blog/editBlog",
+                    editData
+                )
+                    .then(console.log("edit item......"))
+                    .then((res) => {
+                        console.log(res);
+                        props.callBackRefresh();
+                    });
+            }
+
+            setOpen(false);
+        }
+        // history.go(0);
     };
 
 
@@ -198,6 +219,7 @@ export default function DialogsOfStore(props) {
                     {props.mode + " Post"}
                 </DialogTitle>
                 <DialogContent dividers>
+                    {/* <div>{props.blog.title}</div> */}
                     {/* <Paper elevation={1} classes={classes.background}> */}
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
@@ -205,6 +227,7 @@ export default function DialogsOfStore(props) {
                                 id="Post Title"
                                 name="Post Title"
                                 label="Post Title"
+                                value={title}
                                 onChange={(e) => setTitle(e.target.value)}
                                 fullWidth
                             />
@@ -214,6 +237,7 @@ export default function DialogsOfStore(props) {
                                 id="Image Url"
                                 name="Image Url"
                                 label="Image Url"
+                                value={imageUrl}
                                 onChange={(e) => setImageUrl(e.target.value)}
                                 fullWidth
                             />
@@ -229,7 +253,6 @@ export default function DialogsOfStore(props) {
                         }}
                         id="controllable-states-demo"
                         options={options}
-                        defaultValue={[options[0]]}
                         renderInput={(params) => (
                             <TextField {...params} label="Tags" variant="outlined" />
                         )}

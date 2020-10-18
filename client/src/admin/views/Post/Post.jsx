@@ -30,6 +30,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import { SnackbarProvider, useSnackbar } from "notistack"
 
 // import Joke from "../../components/Joke"
 const useRowStyles = makeStyles({
@@ -45,6 +46,11 @@ const useRowStyles = makeStyles({
 });
 
 function Row(props) {
+  
+  const { enqueueSnackbar } = useSnackbar();
+  const notification = (message, variant) =>{
+    enqueueSnackbar(message, {variant});
+  }
   const history = useHistory();
   const { row } = props;
   const [open, setOpen] = React.useState(false);
@@ -53,12 +59,13 @@ function Row(props) {
   const [openDeleteAlert, setDeleteAlert] = React.useState(false);
 
   const handleDelete = (id) => {
+    notification(`You have delete the item !`, "warning");
     axios
       .delete("http://localhost:8000/api/blog/deleteBlog/" + id)
       .then(console.log("delete item......"))
       .then((res) => {
         console.log(res);
-        history.go(0);
+        props.callBackRefresh();
       });
     handleCloseDeleteAlert();
   };
@@ -68,6 +75,9 @@ function Row(props) {
   const handleCloseDeleteAlert = () => {
     setDeleteAlert(false);
   };
+  const callBack=()=>{
+    props.callBackRefresh();
+  }
 
   return (
     <React.Fragment>
@@ -127,7 +137,9 @@ function Row(props) {
             mode={"Edit"}
             variant="contained"
             color="primary"
-            item={row}
+            blog={row}
+            callBackRefresh={callBack}
+            sendNotification={notification}
           ></Dialogs>
         </TableCell>
         <TableCell align="right">
@@ -181,13 +193,14 @@ function Row(props) {
   );
 }
 
-export default function Store() {
+function Post() {
   const [items, setItems] = useState([]);
-
-  useEffect(() => {
-    // Read the mutable latest value
+  const { enqueueSnackbar } = useSnackbar();
+  const notification = (message, variant) =>{
+    enqueueSnackbar(message, {variant});
+  }
+  const getPost= async ()=>{
     console.log(`Getting Posts...`);
-
     axios
       .get("http://localhost:8000/api/blog/getAllBlogs")
       .then((res) => {
@@ -197,6 +210,10 @@ export default function Store() {
       .catch((err) => {
         console.log("Error from get all post");
       });
+  }
+
+  useEffect(() => {
+    getPost();
   }, []);
 
   return (
@@ -209,14 +226,16 @@ export default function Store() {
                 <Dialogs
                   mode={"New"}
                   variant="contained"
-                  color="Secondary"
-                  item={{
-                    itemname: "",
-                    stock: 0,
-                    price: 0,
-                    views: 0,
-                    imagename: "",
-                    description: "",
+                  color="secondary"
+                  callBackRefresh={getPost}
+                  sendNotification={notification}
+                  blog={{
+                    title: "",
+                    hashtags: [],
+                    thumbnails:{
+                      imagename: "",
+                    },
+                    content:"",
                   }}
                 ></Dialogs>
               </TableCell>
@@ -228,7 +247,7 @@ export default function Store() {
           </TableHead>
           <TableBody>
             {items.map((row) => (
-              <Row key={row.title} row={row} />
+              <Row key={row.title} row={row} callBackRefresh={getPost}/>
             ))}
           </TableBody>
         </Table>
@@ -236,3 +255,12 @@ export default function Store() {
     </div>
   );
 }
+
+export default function PostWithSnackBar() {
+
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <Post />
+    </SnackbarProvider>
+    );
+  }

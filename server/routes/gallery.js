@@ -8,34 +8,34 @@ const galleryController = require("../controllers/gallery");
 galleryRouter.get("/", galleryController.getAllArtworks);
 
 // @route       POST gallery/
-// @description add a new gallery artwork
+// @description add one or more artwork(s) in the subcategory
 // @access      Private
-galleryRouter.post("/", galleryController.addArtwork);
+galleryRouter.post("/", galleryController.updateArtwork);
 
 // @route       PUT gallery/:id
 // @description given the artwork._id,
 //              update the artwork information,
 //              mainly moving the artwork from one category to another category
 // @access      Private
-galleryRouter.put("/:id", galleryController.updateArtwork);
+// galleryRouter.put("/:id", galleryController.updateArtwork);
 
-// @route       get gallery/:category
+// @route       POST gallery/category
 // @description given the category passed in url
 //              get all artworks under the same category
 // @access      Public
-galleryRouter.get("/:category", galleryController.getArtworksUnderCat);
+galleryRouter.post("/category", galleryController.getArtworksUnderCat);
 
-// @route       POST gallery/:subcategory
+// @route       POST gallery/subcategory
 // @description given the subcategory and category passed in frondend http request body
 //              get all artworks under the same sub-category and category
 // @access      Public
-// galleryRouter.post("/:subcategory", galleryController.getArtworksUnderSubcat);
+galleryRouter.post("/subcategory", galleryController.getArtworksUnderSubcat);
 
-// @route       Delete gallery/:id
+// @route       DELETE gallery/subcategory
 // @description given the artwork._id,
 //              delete an artwork entry in gallery (the image remains in Media)
 // @access      Private
-galleryRouter.delete("/:id", galleryController.deleteArtwork);
+// galleryRouter.delete("/subcategory", galleryController.deleteArtwork);
 
 
 module.exports = galleryRouter;

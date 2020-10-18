@@ -1,4 +1,3 @@
-const express = require("express");
 const mongoose = require("mongoose");
 const Item = require("../models/item");
 // const mongo_url = require("../models/db").mongo_url;
@@ -18,7 +17,7 @@ const Item = require("../models/item");
 // });
 
 const getItems = async (req, res) => {
-  Item.find()
+  await Item.find()
     .then((wares) => {
       res.status(200).json({
         success: true,
@@ -59,7 +58,6 @@ const getSpecificItems = async (req, res) => {
 };
 
 const addItem = async (req, res) => {
-  console.log(req.body);
   try {
     const ware = new Item({
       itemname: req.body.name,
@@ -69,7 +67,7 @@ const addItem = async (req, res) => {
       price: req.body.price,
       tag: req.body.tag,
     });
-    ware
+    await ware
       .save()
       .then((ware) => {
         res.status(200).json({
@@ -84,10 +82,10 @@ const addItem = async (req, res) => {
 };
 
 const deleteItem = async (req, res) => {
-  Item.findOne({ _id: req.params.id })
-    .then((item) => {
+  await Item.findOne({ _id: req.params.id })
+    .then(async (item) => {
       if (item) {
-        Item.deleteOne({ _id: req.params.id })
+        await Item.deleteOne({ _id: req.params.id })
           .then(() => {
             return res.status(200).json({
               success: true,
@@ -98,7 +96,7 @@ const deleteItem = async (req, res) => {
             return res.status(400).json(err);
           });
       } else {
-        res.status(400).json({
+        return res.status(400).json({
           success: false,
           message: "Item not found",
         });
@@ -137,14 +135,13 @@ const deleteItem = async (req, res) => {
 // rather than form-data like post new item.
 // maybe solved when implement react side, not sure ...
 const updateItem = async (req, res) => {
-  console.log(req.body);
-  Item.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
+  await Item.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true })
     .then((item) => res.json({ msg: "Updated successfully" }))
     .catch((err) => res.status(400).json(err));
 };
 
 const updateViews = async (req, res) => {
-  Item.findByIdAndUpdate(req.params.id, { $inc: { views: 1 } })
+  await Item.findByIdAndUpdate(req.params.id, { $inc: { views: 1 } })
     .then(() => res.json({ msg: "Increment viewer count by 1" }))
     .catch((err) => res.status(400).json(err));
 };

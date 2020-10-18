@@ -20,6 +20,11 @@ import ArtWorkGallery1 from "./components/ArtWorkGallery1";
 import ArtWorkGallery2 from "./components/ArtWorkGallery2";
 import ArtWorkGallery3 from "./components/ArtWorkGallery3";
 
+import PaintingGallery from "./components/PaintingGallery";
+import PhotographyGallery from "./components/PhotographyGallery";
+import ArtGraftsGallery from "./components/ArtCraftsGallery";
+import GraphicDesignGallery from "./components/GraphicDesignGallery";
+
 import Admin from "./admin/layouts/Admin";
 
 import Login from "./components/Login";
@@ -45,12 +50,11 @@ export default function App() {
         token = "";
       }
       const tokenRes = await Axios.post(
-        "http://localhost:8000/user/tokenIsValid",
-        null,
+        "http://localhost:8000/api/user/tokenIsValid",
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:8000/user/", {
+        const userRes = await Axios.get("http://localhost:8000/api/user/", {
           headers: { "x-auth-token": token },
         });
       }
@@ -82,6 +86,11 @@ export default function App() {
         <Route path="/artworkgallery1" component={ArtWorkGallery1} />
         <Route path="/artworkgallery2" component={ArtWorkGallery2} />
         <Route path="/artworkgallery3" component={ArtWorkGallery3} />
+
+        <Route path="/paintinggallery" component={PaintingGallery} />
+        <Route path="/photographygallery" component={PhotographyGallery} />
+        <Route path="/artcraftsgallery" component={ArtGraftsGallery} />
+        <Route path="/graphicdesigngallery" component={GraphicDesignGallery} />
 
         <Route path="/checkout" component={CheckOut} />
       </div>
