@@ -6,10 +6,6 @@ import {
   CardText,
   CardBody,
   Badge,
-  Button,
-  Form,
-  FormGroup,
-  Input,
 } from "reactstrap";
 import BlogComments from "./BlogComments";
 import axios from "axios";
@@ -27,7 +23,6 @@ export default class PostContent extends Component {
       content: "",
       image: "",
       hashtags: [],
-      content: "",
       publisher: "",
       blogId: this.props.blogId,
       profilePhotos: [

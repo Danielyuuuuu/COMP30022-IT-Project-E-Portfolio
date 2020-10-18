@@ -1,6 +1,5 @@
 import React from "react";
 import { Media } from "reactstrap";
-import { Button } from "reactstrap";
 
 const Example = () => {
   return (
