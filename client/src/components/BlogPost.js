@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-  Card,
+  // Card,
   CardImg,
   CardTitle,
   CardText,
@@ -8,6 +8,7 @@ import {
   CardBody,
   Badge,
 } from "reactstrap";
+import Card from "@material-ui/core/Card";
 
 class BlogPost extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class BlogPost extends Component {
         {this.state.blogPosts.map((blogPost) => {
           return (
             <CardGroup className="individualPost">
-              <Card>
+              <Card className="testNewCard">
                 <CardImg
                   top
                   width="100%"
@@ -39,7 +40,7 @@ class BlogPost extends Component {
                   alt="Thumbnails"
                 />
               </Card>
-              <Card>
+              <Card className="testNewCard">
                 <CardBody>
                   {/* <EllipsisButton /> */}
                   <CardTitle>
@@ -48,7 +49,7 @@ class BlogPost extends Component {
                     </a>
                   </CardTitle>
                   <CardText>
-                    {blogPost.content.split(" ").splice(0, 100).join(" ") +
+                    {blogPost.content.split(" ").splice(0, 80).join(" ") +
                       "..."}
                   </CardText>
                   <div className="flexDisplay">
