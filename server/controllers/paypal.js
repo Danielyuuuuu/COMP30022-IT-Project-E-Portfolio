@@ -23,8 +23,6 @@ const getPay = async(req,res) => {
         item["sku"] = "item";
         item["currency"] = "AUD";
         totalAmount += parseFloat(item["price"])*parseFloat(item["quantity"]);
-        console.log("in back end")
-        console.log(item);
     })
 
 
@@ -71,17 +69,24 @@ const getSuccessPage = async(req,res) => {
     const execute_payment_json = {
         "payer_id": payerId,
     };
+   
+   
 
     paypal.payment.execute(paymentId, execute_payment_json, function (error, payment) {
         if (error) {
             console.log(error.response);
             throw error;
         } else {
-            console.log("Get Payment Response");
-            //console.log(JSON.stringify(payment));
-            res.send('Success');
+            console.log("Get Payment Response")
+            console.log(res.body);
+            
+            res.send(res.body);
+            
+            //res.redirect('http://localhost:3000/');
         }
     });
+
+    
 }
 
 const getCancelPage = async(req,res) => {

@@ -31,6 +31,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 
 import CheckOut from "./components/ShoppingCheckOut";
+import PurchaseSucceed from "./components/ShoppingSuccess";
 
 import Axios from "axios";
 
@@ -93,6 +94,7 @@ export default function App() {
         <Route path="/graphicdesigngallery" component={GraphicDesignGallery} />
 
         <Route path="/checkout" component={CheckOut} />
+        <Route path="/success" component={PurchaseSucceed} />
       </div>
     </Router>
   );

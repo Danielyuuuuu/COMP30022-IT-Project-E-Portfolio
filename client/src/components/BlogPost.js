@@ -34,7 +34,7 @@ class BlogPost extends Component {
               <Card>
                 <CardImg
                   top
-                  width="100%"
+                  width={150}
                   src={blogPost.thumbnails.imagename}
                   alt="Thumbnails"
                 />
