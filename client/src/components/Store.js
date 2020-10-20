@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import ShoppingCart from "./ShoppingCart";
 import "../App.css";
 import { CustomInput, Form, FormGroup, Label, Input } from "reactstrap";
+import ErrorNotice from "../misc/ErrorNotice";
 
 import {
   Card,
@@ -14,10 +15,40 @@ import {
   CardImg,
   Row,
   Col,
+  Modal,
+  Spinner,
 } from "reactstrap";
+
+import Button_UI from "@material-ui/core/Button";
+import { SnackbarProvider, useSnackbar } from "notistack";
 
 //const url = "http://localhost:8000/api/store/image/";
 const url = "http://localhost:8000/api/uploadManage/image/";
+
+function MyApp() {
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleClickVariant = (variant) => () => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar("Added to the cart!", { variant });
+  };
+
+  return (
+    <React.Fragment>
+      <Button_UI onClick={handleClickVariant("success")}>
+        Add to the cart
+      </Button_UI>
+    </React.Fragment>
+  );
+}
+
+// export function IntegrationNotistack() {
+//   return (
+//     <SnackbarProvider maxSnack={3}>
+//       <MyApp />
+//     </SnackbarProvider>
+//   );
+// }
 
 class Store extends Component {
   constructor(props) {
@@ -258,6 +289,7 @@ class Item extends Component {
     this.state = {
       open: false,
       mouseOver: false,
+      inCart: "",
     };
     this._clickHandler = this._clickHandler.bind(this);
     this._mouseEnter = this._mouseEnter.bind(this);
@@ -303,6 +335,10 @@ class Item extends Component {
     }
   }
 
+  setInCart = (e) => {
+    this.setState({ inCart: e });
+  };
+
   render() {
     let itemStyle = {};
     if (this.state.open) {
@@ -346,6 +382,7 @@ class Item extends Component {
         <CardTitle>{this.props.data.itemname} </CardTitle>
         <CardText>{this.props.data.description}</CardText>
         <CardTitle>${this.props.data.price}</CardTitle>
+
         <Button
           onClick={() =>
             this.props.updateCart(
@@ -357,6 +394,40 @@ class Item extends Component {
         >
           Add to the cart
         </Button>
+
+        <SnackbarProvider maxSnack={3}>
+          <MyApp />
+        </SnackbarProvider>
+
+        {/* {this.state.inCart ? (
+          <ErrorNotice message={"Added to the cart!"} severity={"success"} />
+        ) : (
+          <Button
+            onClick={() =>
+              this.props.updateCart(
+                this.props.data.itemname,
+                this.props.data.price,
+                this.props.data.imagename
+              )
+            }
+            // onClick={() => this.setInCart("hi")}
+          >
+            Add to the cart
+          </Button>
+        )} */}
+
+        {/* {this.state.error && (
+          <div>
+            <Spinner color="primary" />
+            <ErrorNotice message={"Added to the cart!"} severity={"success"} />
+          </div>
+        )} */}
+
+        {/* <ErrorNotice
+          message={"Added to the cart!"}
+          severity={"success"}
+          // clearError={() => this.setState(undefined)}
+        /> */}
       </Card>
     );
   }
