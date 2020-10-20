@@ -10,6 +10,9 @@ import {
 import BlogComments from "./BlogComments";
 import axios from "axios";
 
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import Chip from '@material-ui/core/Chip';
+
 export default class PostContent extends Component {
   constructor(props) {
     super(props);
@@ -113,9 +116,13 @@ export default class PostContent extends Component {
             {this.state.hashtags.map((hashtag) => {
               return (
                 <div style={{ marginRight: 3 }}>
-                  <h3>
+                  <Chip
+                    icon={<LocalOfferIcon />} 
+                    label={hashtag} 
+                  />
+                  {/* <h3>
                     <Badge color="primary">{hashtag}</Badge>
-                  </h3>
+                  </h3> */}
                 </div>
               );
             })}

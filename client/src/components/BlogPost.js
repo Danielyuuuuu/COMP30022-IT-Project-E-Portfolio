@@ -10,6 +10,9 @@ import {
 } from "reactstrap";
 import Card from "@material-ui/core/Card";
 
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import Chip from '@material-ui/core/Chip';
+
 class BlogPost extends Component {
   constructor(props) {
     super(props);
@@ -56,9 +59,10 @@ class BlogPost extends Component {
                     {blogPost.hashtags.map((hashtag) => {
                       return (
                         <div style={{ marginRight: 3 }}>
-                          <h3>
-                            <Badge color="primary">{hashtag}</Badge>
-                          </h3>
+                          <Chip
+                            icon={<LocalOfferIcon />} 
+                            label={hashtag} 
+                          />
                         </div>
                       );
                     })}
@@ -68,6 +72,10 @@ class BlogPost extends Component {
             </CardGroup>
           );
         })}
+        {/* <Chip
+          icon={<LocalOfferIcon />} 
+          label="Lifestyle" 
+        /> */}
       </div>
     );
   }
