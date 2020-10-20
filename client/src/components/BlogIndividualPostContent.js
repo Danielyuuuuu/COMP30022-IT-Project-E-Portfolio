@@ -13,6 +13,8 @@ import axios from "axios";
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import Chip from '@material-ui/core/Chip';
 
+let marked = require("marked");
+
 export default class PostContent extends Component {
   constructor(props) {
     super(props);
@@ -111,7 +113,8 @@ export default class PostContent extends Component {
         </CardTitle>
         <CardImg top width="100%" src={this.state.image} alt="Image" />
         <CardBody>
-          <CardText>{this.state.content}</CardText>
+          <CardText><div dangerouslySetInnerHTML={{ __html: marked(this.state.content) }}></div></CardText>
+          {/* <CardText>{this.state.content}</CardText> */}
           <div className="flexDisplay ">
             {this.state.hashtags.map((hashtag) => {
               return (
