@@ -321,9 +321,13 @@ class Item extends Component {
       };
     } else {
       itemStyle = {
-        maxWidth: "18vw",
-        maxHeight: "18vw",
+        // maxWidth: "18vw",
+        // maxHeight: "18vw",
+        // width: "15vw",
+        // height: "9vw",
         cursor: "zoom-in",
+        width: 285,
+        height: 220,
       };
     }
     return (
