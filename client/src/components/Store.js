@@ -86,7 +86,7 @@ class Store extends Component {
 
     let tagsArray = this.state.tags;
     if (tagsArray.length < 1) {
-      tagsArray = ["photography", "painting", "art product"];
+      tagsArray = ["Photography", "Painting", "Art Product"];
     }
     const req = {
       method: "POST",
@@ -123,7 +123,7 @@ class Store extends Component {
     e.preventDefault();
     let tagsArray = this.state.tags;
     if (tagsArray.length < 1) {
-      tagsArray = ["photography", "painting", "art product"];
+      tagsArray = ["Photography", "Painting", "Art Product"];
     }
     const req = {
       method: "POST",
@@ -168,20 +168,20 @@ class Store extends Component {
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox11"
-                    label="painting"
-                    onClick={() => this.updateTags("painting")}
+                    label="Painting"
+                    onClick={() => this.updateTags("Painting")}
                   />
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox12"
-                    label="photography"
-                    onClick={() => this.updateTags("photography")}
+                    label="Photography"
+                    onClick={() => this.updateTags("Photography")}
                   />
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox121"
-                    label="art product"
-                    onClick={() => this.updateTags("art product")}
+                    label="Art Product"
+                    onClick={() => this.updateTags("Art Product")}
                   />
                 </div>
               </FormGroup>
