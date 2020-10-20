@@ -62,6 +62,7 @@ class BlogPost extends Component {
                           <Chip
                             icon={<LocalOfferIcon />} 
                             label={hashtag} 
+                            // style = {{backgroundColor: "#5792ff"}}
                           />
                         </div>
                       );
