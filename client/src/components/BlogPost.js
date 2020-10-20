@@ -13,6 +13,11 @@ import Card from "@material-ui/core/Card";
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import Chip from '@material-ui/core/Chip';
 
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+
+let marked = require("marked");
+
 class BlogPost extends Component {
   constructor(props) {
     super(props);
@@ -52,8 +57,13 @@ class BlogPost extends Component {
                     </a>
                   </CardTitle>
                   <CardText>
-                    {blogPost.content.split(" ").splice(0, 80).join(" ") +
-                      "..."}
+                  {blogPost.content.replaceAll("#","").split(" ").splice(0, 80).join(" ") + "..."}
+                  {/* {blogPost.content.replaceAll("#","")} */}
+                  {/* <Grid container wrap="nowrap" spacing={2}>
+                    <Grid item xs zeroMinWidth>
+                      <Typography noWrap>{blogPost.content.replaceAll("#","")}</Typography>
+                    </Grid>
+                  </Grid> */}
                   </CardText>
                   <div className="flexDisplay">
                     {blogPost.hashtags.map((hashtag) => {

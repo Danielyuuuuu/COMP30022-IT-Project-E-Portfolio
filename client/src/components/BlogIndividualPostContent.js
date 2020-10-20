@@ -113,7 +113,8 @@ export default class PostContent extends Component {
         </CardTitle>
         <CardImg top width="100%" src={this.state.image} alt="Image" />
         <CardBody>
-          <CardText><div dangerouslySetInnerHTML={{ __html: marked(this.state.content) }}></div></CardText>
+          <CardText><div dangerouslySetInnerHTML={{ __html: marked(this.state.content) }}/></CardText>
+          {/* <CardText dangerouslySetInnerHTML={{ __html: marked(this.state.content) }}></CardText> */}
           {/* <CardText>{this.state.content}</CardText> */}
           <div className="flexDisplay ">
             {this.state.hashtags.map((hashtag) => {
