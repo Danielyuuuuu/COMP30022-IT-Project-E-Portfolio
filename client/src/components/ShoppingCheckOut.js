@@ -23,6 +23,10 @@ import { useState } from "react";
 import axios from "axios";
 import NavbarTop from "./NavbarTop";
 
+
+
+
+
 const url = "http://localhost:8000/api/uploadManage/image/";
 
 export default class CheckOutList extends Component {
@@ -39,7 +43,19 @@ export default class CheckOutList extends Component {
     e.preventDefault();
 
     console.log("require to buy ");
-    axios.post("http://localhost:8000/api/paypal/pay", this.state.myCart).then((res) => {
+    
+    //remove filename to avoid error
+    var validation = JSON.parse(JSON.stringify(this.state.myCart));
+    validation.map((item) => {
+      delete item["filename"];
+      console.log(item);
+    })
+
+    
+
+
+
+    axios.post("http://localhost:8000/api/paypal/pay", validation).then((res) => {
       window.location.href = res.data.link;
     });
   }
@@ -50,14 +66,22 @@ export default class CheckOutList extends Component {
         <NavbarTop />
         <br />
         <br />
-        <h1>CHECKOUTLIST</h1>
+        <br />
+        <br />
+        <font  
+          size={7}> CHECKOUTLIST 
+        </font>
         <br />
         <br />
         <br />
         <br />
+        
         <div>
+          <Col>
           <ItemsTable body = {this.state.myCart}/>
+          </Col>
         </div>
+
         <div>
           <Button size="lg" color="primary" onClick={this.sendPayment} >
             Check and Pay
@@ -88,7 +112,7 @@ class ItemsTable extends Component {
   updateTotal(){
     
     var total = 0;
-    this.state.cart.map((item) => {
+    JSON.parse(localStorage.getItem("cart")).map((item) => {
         total += item.quantity * item.price
     })
     this.setState({totalPrice: total})
@@ -99,12 +123,16 @@ class ItemsTable extends Component {
 
 
     let leftItems = this.state.cart.filter((item) => item.name != itemName);
+    
 
     this.setState({ cart : leftItems });
     
-    localStorage.setItem("cart", JSON.stringify(leftItems));
 
+    localStorage.setItem("cart", JSON.stringify(leftItems));
+    
     this.updateTotal();
+
+    window.location.href = "http://localhost:3000/checkout";
 
   }
   
@@ -120,18 +148,17 @@ class ItemsTable extends Component {
     this.setState({ cart : this.state.cart });
 
     localStorage.setItem("cart", JSON.stringify(this.state.cart));
+
     
     this.updateTotal();
-
-
+    
 
   }
   
   reduceQuantity(itemName) {
-    console.log(this.state.cart);
     
     this.state.cart.map((item) => {
-        if (item.name == itemName && item.quantity >= 1){
+        if (item.name == itemName && item.quantity >= 2){
             {item.quantity --}
         }
     })
@@ -142,7 +169,6 @@ class ItemsTable extends Component {
     this.updateTotal();
 
     console.log("Click at ReduceQuantity");
-    console.log(this.state.cart);
   }
 
 
@@ -152,58 +178,57 @@ class ItemsTable extends Component {
       return this.state.cart.map( (good) =>{
         //const {name,price,quantity} = good
 
+       
+        
         return (
-            <tr>
-                <td>{index++}</td>
-                <td>
-                    <img
-                    height="20%"
-                    width="20%"
-                    src={"http://localhost:8000/api/uploadManage/image/"+good.filename}
-                    />
-                </td>
-                <td>{good.name}</td>
-                <td>
-                    <Form >
-                        <Input 
-                            vertical-align = "top"
-                            size = "1"
-                            type ="text"
-                            placeholder={good.quantity}
+          <tr>
+              <td className="text-center">{index++}</td>
+              <td>
+                  <img
+                  width={200}
+                  className=" img-fluid rounded shadow "
+                  src={"http://localhost:8000/api/uploadManage/image/"+good.filename}
+                  />
+              </td>
+              <td className=" td-name" >
+                <a href="/store-frontend" onClick={(e) => e.preventDefault()}>
+                <h1>{good.name}</h1>
+                </a>
+              </td>
+              <td>
+        <big>{good.quantity + "  "}</big>
+                  <Button onClick={() => this.addQuantity(good.name)}  color="info" size="sm">
+                      +
+                  </Button>
 
-                        />
-                    </Form>
-                    <Button onClick={() => this.addQuantity(good.name)} color="primary" size="sm">
-                        +
-                    </Button>
-                    <Button onClick={() => this.reduceQuantity(good.name)} color="primary" size="sm">
-                        -
-                    </Button>
-                </td>
-                <td>{good.price}</td>
-                <td>{good.price*good.quantity} </td>
-                <td>
-                    <Button size="sm" color="danger" onClick={() => this.removeCartItem(good.name)}>
-                    {" "}
-                    Remove
-                    </Button>
-                </td>
-            </tr> 
-        )
+                  <Button onClick={() => this.reduceQuantity(good.name)} color="info" size="sm">
+                      -
+                  </Button>
+              </td>
+              <td> $ {good.price}</td>
+              <td> $ {good.price*good.quantity} </td>
+              <td>
+                  <Button size="sm" color="danger" onClick={() => this.removeCartItem(good.name)}>
+                  
+                  Remove
+                  </Button>
+              </td>
+          </tr> 
+      )
       })
   }  
 
   render() {
       return (
-          <Table >
+          <Table className=" table-shopping" responsive>
               <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Amount</th>
-                    <th>Price</th>
-                    <th>Total</th>
+                    <th className="text-center"> </th>
+                    <th >PRODUCT</th>
+                    <th>NAME</th>
+                    <th>QTY</th>
+                    <th>PRICE (AUD)</th>
+                    <th>AMOUNT</th>
                     <th></th>
                 </tr>
               </thead>
@@ -215,11 +240,122 @@ class ItemsTable extends Component {
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>{this.state.totalPrice}</td>
+                    <td>Subtotals: $ {this.state.totalPrice}</td>
                 </tr>
               </tbody>
           </Table>
       )
   }
+
+}
+
+
+class AddressTable extends Component {
+
+  constructor(props){
+    super(props);
+    
+    this.getAPrint = this.getAPrint.bind(this);
+
+    this.state = {
+      contacterName: "",
+      phoneNumber: "",
+      emailAddress: "",
+      postcode:"",
+      country:"",
+      address:""
+    }
+
+  }
+
+  getAPrint(){
+    localStorage.setItem("address",JSON.stringify(this.state));
+  }
+
+
+  render() {
+    return (
+      <div>
+        <Form>
+          <Row form md="6">
+            <Col>
+              <FormGroup>
+                <Label>
+                  Contacter's Name
+                </Label>
+                <Input
+                  required
+                  type="text"
+                  placeholder="enter your name"
+                  onChange={(e) => this.setState({contacterName:e.target.value})}
+                />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label>
+                  Phone Number
+                </Label>
+                <Input
+                  required
+                  type="text"
+                  placeholder="enter your phone number"
+                  onChange={(e) => this.setState({phoneNumber:e.target.value})}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row md="6">
+            <Col>
+              <FormGroup>
+                <Label>
+                  Postcode
+                </Label>
+                <Input
+                  required
+                  type="text"
+                  placeholder="Postcode"
+                  onChange={(e) => this.setState({postcode:e.target.value})}
+                />
+              </FormGroup>
+            </Col>
+            <Col>
+              <FormGroup>
+                <Label>
+                  Country
+                </Label>
+                <Input
+                  required
+                  type="text"
+                  placeholder="Country"
+                  onChange={(e) => this.setState({country:e.target.value})}
+                />
+              </FormGroup>
+            </Col>
+          </Row>
+          <Row form md="5">
+            <FormGroup>
+              <Label>
+                  Address
+              </Label>
+              <Input
+                  required
+                  type="text"
+                  placeholder="Please enter your address"
+                  onChange={(e) => this.setState({address:e.target.value})}
+              />
+            </FormGroup>
+          </Row>
+        </Form>
+
+        <Button onClick={()=> this.getAPrint()}> 
+          Click on me 
+        </Button>
+         
+
+      </div>
+    )
+  }
+
 
 }
