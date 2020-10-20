@@ -101,16 +101,55 @@ const postTokenIsValid = async (req, res) => {
   }
 };
 
+const postFindEmailUsingToken = async (req, res) => {
+  try {
+    const token = req.body.token;
+    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    console.log("From back end: " + token);
+
+    if (!token) return res.status(400).json({msg: "Need to send user token"});
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.status(400).json({msg: "Token not verified"});
+
+    const user = await User.findById(verified.id);
+    if (!user) return res.status(400).json({msg: "No such user"});
+
+    return res.status(200).json({email: user.email});
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}
+
 // Change user password
 const postChangePassword = async (req, res) => {
   try {
-    let { email, newPassword, repeatNewPassword } = req.body;
-    if (!email || !newPassword || !repeatNewPassword) {
+    let { token, email, currentPassword, newPassword, repeatNewPassword } = req.body;
+
+    if (!email || !currentPassword || !newPassword || !repeatNewPassword) {
       return res.status(400).json({ msg: "Not all fields have been entered." });
+    }
+
+    if (!token) return res.status(400).json({msg: "Need to send user token"});
+
+    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    if (!verified) return res.status(400).json({msg: "Token not verified"});
+
+    const user = await User.findById(verified.id);
+    if (!user) return res.status(400).json({msg: "No such user"});
+
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) return res.status(400).json({ msg: "Current password is not valid" });
+
+    if (user.email != email){
+      return res.status(400).json({ msg: "The email address is not correct." });
     }
     if (newPassword != repeatNewPassword) {
       return res.status(400).json({ msg: "Please enter the same password" });
     }
+
+    const newAndOldPasswordIsMatch = await bcrypt.compare(newPassword, user.password);
+    if (newAndOldPasswordIsMatch) return res.status(400).json({ msg: "The new password is the same as the current password" });
 
     // Hash the password
     const salt = await bcrypt.genSalt();
@@ -123,7 +162,7 @@ const postChangePassword = async (req, res) => {
       { password: passwordHash }
     );
 
-    return res.json(savedPassword);
+    return res.status(200).json({msg: "Password changed successfully."});
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -136,4 +175,5 @@ module.exports = {
   getUserLoginRegister,
   postTokenIsValid,
   postChangePassword,
+  postFindEmailUsingToken,
 };

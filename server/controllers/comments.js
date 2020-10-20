@@ -69,7 +69,21 @@ const postAddLike = async (req, res) => {
       if (err) {
         return res.send(err);
       } else {
-        return res.status(200);
+        return res.status(200).json({msg: "Success"});
+      }
+    }
+  );
+};
+
+const postUnLike = async (req, res) => {
+  Comments.findByIdAndUpdate(
+    { _id: req.body.id },
+    { favours: req.body.likes - 1 },
+    function (err, result) {
+      if (err) {
+        return res.send(err);
+      } else {
+        return res.status(200).json({msg: "Success"});
       }
     }
   );
@@ -82,4 +96,5 @@ module.exports = {
   addComment,
   deleteComment,
   postAddLike,
+  postUnLike,
 };

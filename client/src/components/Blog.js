@@ -3,7 +3,6 @@ import NavbarTop from "./NavbarTop";
 import "../App.css";
 import Footer from "./Footer";
 import BlogPost from "./BlogPost";
-import SearchBar from "./SearchBar";
 
 class Blog extends Component {
   render() {
@@ -13,7 +12,6 @@ class Blog extends Component {
         <br />
         <br />
         <br />
-        <SearchBar />
         <BlogPost />
         <Footer />
       </div>

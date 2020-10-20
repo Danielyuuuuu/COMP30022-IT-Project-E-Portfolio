@@ -28,7 +28,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import Axios from "axios";
 
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-
+import { SnackbarProvider, useSnackbar } from "notistack";
 import { useHistory } from 'react-router-dom';
 
 
@@ -86,15 +86,18 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function DialogsOfStore(props) {
+function StoreDialog(propss) {
   const [open, setOpen] = React.useState(false);
   const [openJ, setOpenJ] = React.useState(false);
   const classes = imgStyles();
 
+  const props = propss.props;
+  const { enqueueSnackbar } = useSnackbar();
+
   const [itemname, setItemName] = React.useState(props.item.itemname);
   const [category, setCategory] = React.useState(props.item.tag);
   const [categoryInput, setCategoryInput] = React.useState(props.item.tag);
-  const [stocks, setStocks] = React.useState(props.item.stocks);
+  const [stocks, setStocks] = React.useState(props.item.stock);
   const [price, setPrice] = React.useState(props.item.price);
   const [views, setViews] = React.useState(props.item.views);
   const [imagename, setImageName] = React.useState(props.item.imagename);
@@ -128,27 +131,37 @@ export default function DialogsOfStore(props) {
       tag: category,
       views: views,
     };
-    if (props.mode == "New") {
-      Axios.post("http://localhost:8000/api/store/", data)
-        .then(console.log("add new......"))
-        .then((res) => {
-          console.log(res);
-          props.callBackRefresh();
-        });
-    } else {
-      Axios.put(
-        "http://localhost:8000/api/store/update/" + props.item._id,
-        data
-      )
-        .then(console.log("edit item......"))
-        .then((res) => {
-          console.log(res);
-          props.callBackRefresh();
-        });
+
+    if (!itemname || !description || !imagename) {
+      // variant = 'warning'
+      props.sendNotification(`Need to fill in all fields!`,"warning");
+      // enqueueSnackbar(`Need to fill in all fields!`, { variant });
+    }else{
+      if (props.mode == "New") {
+        props.sendNotification(`You successfully create a new item: << ${itemname} >>!`, "success");
+        // enqueueSnackbar(`You successfully create a new item: << ${itemname} >>!`, { variant });
+        Axios.post("http://localhost:8000/api/store/", data)
+          .then(console.log("add new......"))
+          .then((res) => {
+            console.log(res);
+            props.callBackRefresh();
+          });
+      } else {
+        props.sendNotification(`You successfully edit the post: << ${itemname} >>`, "success");
+        // enqueueSnackbar(`You successfully edit the post: << ${itemname} >>`, { variant});
+        Axios.put(
+          "http://localhost:8000/api/store/update/" + props.item._id,
+          data
+        )
+          .then(console.log("edit item......"))
+          .then((res) => {
+            console.log(res);
+            props.callBackRefresh();
+            
+          });
+      }
+      setOpen(false);
     }
-    
-    setOpen(false);
-    
   };
 
 
@@ -189,6 +202,7 @@ export default function DialogsOfStore(props) {
                     required
                     id="standard-required"
                     label="Stock"
+                    type="number"
                     onChange={(event) => setStocks(event.target.value)}
                     // defaultValue={props.item.price}
                     value={stocks}
@@ -200,6 +214,7 @@ export default function DialogsOfStore(props) {
                     id="standard-required"
                     label="Price"
                     value={price}
+                    type="number"
                     onChange={(event) => setPrice(event.target.value)}
                     // defaultValue={props.item.price}
                   />
@@ -210,6 +225,7 @@ export default function DialogsOfStore(props) {
                     id="standard-required"
                     label="Views"
                     value={views}
+                    type="number"
                     onChange={(event) => setViews(event.target.value)}
                     // defaultValue={props.item.views}
                     onClick={handleClickOpenJ}
@@ -317,5 +333,13 @@ export default function DialogsOfStore(props) {
         </DialogActions>
       </Dialog>
     </div>
+  );
+}
+
+export default function StoreDialogWithNotification(props){
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <StoreDialog props={props}/>
+    </SnackbarProvider>
   );
 }

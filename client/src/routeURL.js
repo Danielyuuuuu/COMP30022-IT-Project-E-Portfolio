@@ -1,0 +1,1 @@
+export const getFiles = "http://localhost:8000/api/uploadManage/files";

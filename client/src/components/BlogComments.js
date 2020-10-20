@@ -4,7 +4,7 @@ import { Comment } from "semantic-ui-react";
 import Axios from "axios";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import ErrorNotice from "../misc/ErrorNotice";
-
+import { Header } from "semantic-ui-react";
 export default class BlogComments extends Component {
   constructor(props) {
     super(props);
@@ -30,6 +30,7 @@ export default class BlogComments extends Component {
         "https://react.semantic-ui.com/images/avatar/small/christian.jpg",
       ],
       error: "",
+      severity: "error",
     };
   }
 
@@ -46,7 +47,6 @@ export default class BlogComments extends Component {
   };
 
   handleDelete = (e) => {
-    console.log("Comment deleted: " + e);
     Axios.delete("http://localhost:8000/api/comments/" + e)
       .then((res) => {
         this.setState({
@@ -92,11 +92,13 @@ export default class BlogComments extends Component {
         this.setState({
           content: "",
           publisher: "",
+          error: "Submit Successful",
+          severity: "success",
         });
         this.getAllComments();
       })
       .catch((err) => {
-        this.setState({ error: err.response.data.msg });
+        this.setState({ error: err.response.data.msg, severity: "error" });
       });
   }
 
@@ -106,73 +108,87 @@ export default class BlogComments extends Component {
 
   render() {
     return (
-      <div style={{ marginLeft: 150 }}>
-        <Comment.Group>
-          {this.state.comments.map((comment) => {
-            return (
-              <div>
-                <Comment>
-                  <Comment.Avatar as="a" src={comment.profilePhoto} />
-                  <Comment.Content>
-                    <Comment.Author>{comment.publisher}</Comment.Author>
-                    <Comment.Metadata>
-                      <div>{comment.date.slice(0, 10)}</div>
-                      <div>
-                        <LikeButton id={comment._id} likes={comment.favours} />
-                      </div>
-                      <div>{comment.favours} Faves</div>
-                      {this.state.token ? (
+      <div className="commentSection">
+          <Header
+            as="h3"
+            dividing
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            Comment Section
+          </Header>
+        <div className="commentGroup">
+          <Comment.Group>
+            {this.state.comments.map((comment) => {
+              return (
+                <div className="individualComment">
+                  <Comment>
+                    <Comment.Avatar as="a" src={comment.profilePhoto} />
+                    <Comment.Content>
+                      <Comment.Author>{comment.publisher}</Comment.Author>
+                      <Comment.Metadata>
+                        <div>{comment.date.slice(0, 10)}</div>
                         <div>
-                          {/* <p>&nbsp; &nbsp;</p> */}
-                          <button
-                            className="deleteButton"
-                            onClick={() => this.handleDelete(comment._id)}
-                          >
-                            <i className="fas fa-times"></i>
-                          </button>{" "}
+                          <LikeButton id={comment._id} likes={comment.favours} callBack={this.getAllComments} />
                         </div>
-                      ) : (
-                        <div></div>
-                      )}
-                    </Comment.Metadata>
-                    <Comment.Text>{comment.content}</Comment.Text>
-                  </Comment.Content>
-                </Comment>
-              </div>
-            );
-          })}
-          <div>
-            {this.state.error && (
-              <ErrorNotice
-                message={this.state.error}
-                clearError={() => this.setError(undefined)}
-              />
-            )}
-            <Form style={{ marginTop: 20 }}>
-              <FormGroup rows="3">
-                <Input
-                  required
-                  value={this.state.publisher}
-                  type="text"
-                  placeholder="Enter your name..."
-                  onChange={this.writingPublisher}
+                        <div>{comment.favours} Faves</div>
+                        {this.state.token ? (
+                          <div>
+                            {/* <p>&nbsp; &nbsp;</p> */}
+                            <button
+                              className="deleteButton"
+                              onClick={() => this.handleDelete(comment._id)}
+                            >
+                              <i className="fas fa-times"></i>
+                            </button>{" "}
+                          </div>
+                        ) : (
+                            <div></div>
+                          )}
+                      </Comment.Metadata>
+                      <Comment.Text>{comment.content}</Comment.Text>
+                    </Comment.Content>
+                  </Comment>
+                </div>
+              );
+            })}
+            <div>
+              {this.state.error && (
+                <ErrorNotice
+                  message={this.state.error}
+                  severity={this.state.severity}
+                  clearError={() => this.setError(undefined)}
                 />
-              </FormGroup>
-              <FormGroup>
-                <Input
-                  required
-                  value={this.state.content}
-                  type="textarea"
-                  placeholder="Leave a Comment..."
-                  onChange={this.writingComment}
-                />
-              </FormGroup>
-              <Button size="sm" onClick={this.submitComment}>
-                Submit Comment
-              </Button>
-            </Form>
-          </div>
-        </Comment.Group>
+              )}
+              <Form style={{ marginTop: 20 }}>
+                <FormGroup rows="3">
+                  <Input
+                    required
+                    value={this.state.publisher}
+                    type="text"
+                    placeholder="Enter your name..."
+                    onChange={this.writingPublisher}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    required
+                    value={this.state.content}
+                    type="textarea"
+                    placeholder="Leave a Comment..."
+                    onChange={this.writingComment}
+                  />
+                </FormGroup>
+                <Button size="sm" onClick={this.submitComment}>
+                  Submit Comment
+                </Button>
+              </Form>
+            </div>
+          </Comment.Group>
+        </div>
       </div>
     );
   }
@@ -188,25 +204,29 @@ class LikeButton extends Component {
   }
 
   handleClick = () => {
+    const commentReq = {
+      id: this.props.id,
+      likes: this.props.likes,
+    };
+
     if (this.state.clicked) {
-      console.log("un-liked");
-      console.log(this.props.id);
-      console.log(this.props.likes);
+      Axios.post(
+        "http://localhost:8000/api/comments/unLike",
+        commentReq
+      ).then((res) => {
+        this.props.callBack();
+      }).catch((err) => {
+        console.log(err);
+      });
     } else {
-      console.log("liked");
-      console.log(this.props.id);
-      console.log(this.props.likes);
-      const commentReq = {
-        id: this.props.id,
-        likes: this.props.likes,
-      };
       Axios.post(
         "http://localhost:8000/api/comments/addLike",
         commentReq
-      ).catch((err) => {
+      ).then((res) => {
+        this.props.callBack();
+      }).catch((err) => {
         console.log(err);
       });
-      window.location.reload(false);
     }
     this.setState({ clicked: !this.state.clicked });
   };

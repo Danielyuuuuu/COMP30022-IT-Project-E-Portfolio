@@ -47,7 +47,12 @@ const dropDownMenuStyle = {
 };
 
 const checkOutButtonStyle = {
-  margin: "3% 20% 3% 20%",
+  margin: "3% 27% 3% 27%",
+};
+
+const removeButtonStyle = {
+  float: "right",
+  bottom: "10px",
 };
 
 class ShoppingCart extends React.Component {
@@ -73,6 +78,7 @@ class ShoppingCart extends React.Component {
                 <ListGroupItem style={dropDownButtonStyle}>
                   {item.name}
                   <IconButton
+                    style={removeButtonStyle}
                     // aria-label="delete"
                     onClick={() => this.props.removeCartItem(item.name)}
                   >

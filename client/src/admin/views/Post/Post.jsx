@@ -30,6 +30,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
+import { SnackbarProvider, useSnackbar } from "notistack"
 
 // import Joke from "../../components/Joke"
 const useRowStyles = makeStyles({
@@ -45,6 +46,11 @@ const useRowStyles = makeStyles({
 });
 
 function Row(props) {
+  
+  const { enqueueSnackbar } = useSnackbar();
+  const notification = (message, variant) =>{
+    enqueueSnackbar(message, {variant});
+  }
   const history = useHistory();
   const { row } = props;
   const [open, setOpen] = React.useState(false);
@@ -53,6 +59,7 @@ function Row(props) {
   const [openDeleteAlert, setDeleteAlert] = React.useState(false);
 
   const handleDelete = (id) => {
+    notification(`You have delete the item !`, "warning");
     axios
       .delete("http://localhost:8000/api/blog/deleteBlog/" + id)
       .then(console.log("delete item......"))
@@ -132,6 +139,7 @@ function Row(props) {
             color="primary"
             blog={row}
             callBackRefresh={callBack}
+            sendNotification={notification}
           ></Dialogs>
         </TableCell>
         <TableCell align="right">
@@ -185,9 +193,12 @@ function Row(props) {
   );
 }
 
-export default function Store() {
+function Post() {
   const [items, setItems] = useState([]);
-
+  const { enqueueSnackbar } = useSnackbar();
+  const notification = (message, variant) =>{
+    enqueueSnackbar(message, {variant});
+  }
   const getPost= async ()=>{
     console.log(`Getting Posts...`);
     axios
@@ -217,6 +228,7 @@ export default function Store() {
                   variant="contained"
                   color="secondary"
                   callBackRefresh={getPost}
+                  sendNotification={notification}
                   blog={{
                     title: "",
                     hashtags: [],
@@ -243,3 +255,12 @@ export default function Store() {
     </div>
   );
 }
+
+export default function PostWithSnackBar() {
+
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <Post />
+    </SnackbarProvider>
+    );
+  }

@@ -4,7 +4,7 @@ const Artwork = require("../models/artwork");
 const mongo_url = require("../models/db").mongo_url;
 
 const getAllArtworks = async (req, res) => {
-  Artwork.find()
+  await Artwork.find()
     .then((artworks) => {
       res.status(200).json({
         artworks: artworks
@@ -21,16 +21,15 @@ const getAllArtworks = async (req, res) => {
 //   "subcategory": "subcat1",
 //   "images": ["pic1","pic2"]
 // }
-const addArtwork = async (req, res) => {
-  console.log(req.body);
+const updateArtwork = async (req, res) => {
   const query = { 'category': req.body.category, 'subcategory': req.body.subcategory };
-  const update = { '$addToSet': { 'imagenames': { '$each': req.body.images } }};
+  const update = {'imagenames':  req.body.images  };
   try{
     // upsert is true, so if the category or subcat is not found, it will
     // automatically create a new entry.
-    Artwork.findOneAndUpdate(query, update, {upsert:true}, (err, doc) => {
+    await Artwork.findOneAndUpdate(query, update, {upsert:true}, (err, doc) => {
       if (err) return res.status(400).json(err);
-      res.send("Added successfully");
+      return res.status(200).send("Added successfully");
     })
   } catch (error) {
     res.status(400).json(error);
@@ -47,7 +46,7 @@ const addArtwork = async (req, res) => {
 
 const getArtworksUnderCat = async (req, res) => {
   const target_category = req.body.category;
-  Artwork.find({ category: target_category })
+  await Artwork.find({ category: target_category })
     .then((artworks) => {
       res.status(200).json({
         success: true,
@@ -60,7 +59,7 @@ const getArtworksUnderCat = async (req, res) => {
 const getArtworksUnderSubcat = async (req, res) => {
   const current_category = req.body.category;
   const target_subcategory = req.body.subcategory;
-  Artwork.find({ category: current_category, subcategory: target_subcategory })
+  await Artwork.find({ category: current_category, subcategory: target_subcategory })
     .then((artworks) => {
       res.status(200).json({
         success: true,
@@ -106,26 +105,26 @@ const getArtworksUnderSubcat = async (req, res) => {
 //   "images": ["pic1","pic2"]
 // }
 // The above will remove pic1, pic2 from cat1/subcat1.
-const deleteArtwork = async (req, res) => {
-  console.log(req.body);
-  const query = { 'category': req.body.category, 'subcategory': req.body.subcategory };
-  const update = { '$pull': { 'imagenames': { '$in': req.body.images } } };
-  try{
-    // upsert is true, so if the category or subcat is not found, it will
-    // automatically create a new entry.
-    Artwork.findOneAndUpdate(query, update, (err, doc) => {
-      if (err) return res.status(400).json(err);
-      res.send("Removed successfully");
-    })
-  } catch (error) {
-    res.status(400).json(error);
-  }
-}
+// const deleteArtwork = async (req, res) => {
+//   console.log(req.body);
+//   const query = { 'category': req.body.category, 'subcategory': req.body.subcategory };
+//   const update = { '$pull': { 'imagenames': { '$in': req.body.images } } };
+//   try{
+//     // upsert is true, so if the category or subcat is not found, it will
+//     // automatically create a new entry.
+//     Artwork.findOneAndUpdate(query, update, (err, doc) => {
+//       if (err) return res.status(400).json(err);
+//       res.send("Removed successfully");
+//     })
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// }
 
 module.exports = {
   getAllArtworks,
-  addArtwork,
+  updateArtwork,
   getArtworksUnderCat,
   getArtworksUnderSubcat,
-  deleteArtwork,
+  // deleteArtwork,
 };

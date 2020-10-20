@@ -64,15 +64,20 @@ const categories = [
   {
     name: "Photography",
     coverImage: "http://localhost:8000/api/uploadManage/image/890c444028e88bc04522cdee2e9be0bd.jpg",
-    subCategories: ["Nature", "people", "city"],
+    subCategories: ["Architecture", "Landscape", "Street","Events", "Portrait"],
   },
   {
-    name: "Art Products",
+    name: "Art Crafts",
     coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
-    subCategories: ["Sub 1", "Sub 2"],
+    subCategories: ["Carpentry", "Ceramics"],
   },
   {
     name: "Painting",
+    coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    subCategories: ["Oil painting", "Sand painting", "Pencil Sketch", "Digital painting"],
+  },
+  {
+    name: "Graphic Design",
     coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
     subCategories: ["1", "2", "3"],
   },
@@ -160,10 +165,11 @@ function Row(props) {
         </TableCell>
       </TableRow>
     </React.Fragment>
+    
   );
 }
 
-export default function Store() {
+export default function Gallery() {
   const [gallery, setGallery] = useState([]);
 
   useEffect(() => {
@@ -200,6 +206,7 @@ export default function Store() {
           </TableBody>
         </Table>
       </TableContainer>
+
     </div>
   );
 }

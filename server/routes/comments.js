@@ -15,4 +15,6 @@ commentRouter.delete("/:id", commentController.deleteComment);
 
 commentRouter.post("/addLike", commentController.postAddLike);
 
+commentRouter.post("/unLike", commentController.postUnLike);
+
 module.exports = commentRouter;

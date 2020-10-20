@@ -64,3 +64,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting\#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+### Testing with JEST
+
+A good documentation of how to match expected and received in different scenarios.  
+[https://codewithhugo.com/jest-array-object-match-contain/](https://codewithhugo.com/jest-array-object-match-contain/)

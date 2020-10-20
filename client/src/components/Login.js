@@ -8,6 +8,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [severity, setSeverity] = useState("error");
 
   const history = useHistory();
 
@@ -45,7 +46,7 @@ export default function Login() {
         E-Portfolio Login
       </h2>
       {error && (
-        <ErrorNotice message={error} clearError={() => setError(undefined)} />
+        <ErrorNotice message={error} severity={severity} clearError={() => setError(undefined)} />
       )}
       <FormGroup>
         <Label for="email">Email</Label>

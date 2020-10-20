@@ -129,7 +129,7 @@ p {
 }
 
 .categories > .card {
-  max-width: 300px;
+  max-width: 400px;
   margin-bottom: 3rem;
 }
 
@@ -213,9 +213,11 @@ p {
 }
 
 .ContactMeForm {
-  width: 400px;
+  width: 600px;
   margin-left: auto;
   margin-right: auto;
+  min-height: calc(100vh - 61.64px - 47.64px - 2rem - 2rem);
+  margin-top: 2rem;
 }
 
 .contactMeInfo {
@@ -313,18 +315,13 @@ body {
 
 .errorNotice {
   margin: 1rem 0;
-  padding: 0.5rem;
-  border: 1px solid #e07c7c;
-  border-radius: 8px;
+  /* padding: 0.5rem; */
+  /* border: 1px solid white; */
+  /* border-radius: 8px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  background-color: #f8d6d6;
-}
-.errorNotice button {
-  background-color: #f8d6d6;
-  color: black;
-  border: 1px solid #f8d6d6;
+  align-items: center; */
+  /* background-color: white; */
 }
 
 .postContent {
@@ -336,12 +333,21 @@ body {
 .commentSection {
   border: 1px solid #2c3e50;
   padding: 20px;
+  /* margin-left: 120px;
+  margin-right: 120px; */
 }
 
 .individualComment {
-  border: 1px solid #2c3e50;
-  padding: 10px;
-  margin-top: 10px;
+  /* border: 1px solid #2c3e50; */
+  /* padding: 10px; */
+  /* border-style: none none solid none; */
+  border-left: 4px solid #818aff;
+  padding-left: 4px;
+  margin-top: 15px;
+}
+
+.commentGroup {
+  margin-left: 150px;
 }
 
 .flexDisplay {
@@ -352,8 +358,8 @@ body {
   background-color: white;
   color: black;
   border: 1px solid white;
-  /* height: 40px;
-  width: 40px; */
+  margin-top: 10px;
+  margin-right: 10px;
 }
 
 .deleteButton:hover {
@@ -371,5 +377,30 @@ body {
 .floatRight {
   float: right;
   margin-top: 3px;
+}
+
+
+.displayContactMe {
+  max-width: 800px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.expandArrow {
+  float: right;
+  transform: rotate(0deg);
+  margin-left: "auto";
+}
+
+.expandedArrow {
+  float: right;
+  transform: rotate(180deg);
+  margin-left: "auto";
+}
+
+.centerComponent {
+  margin-left: auto;
+  margin-right: auto;
 }
 

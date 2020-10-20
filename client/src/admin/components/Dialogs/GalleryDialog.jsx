@@ -9,8 +9,6 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
-import { makeStyles } from "@material-ui/core/styles";
-
 import axios from "axios";
 
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
@@ -18,6 +16,7 @@ import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import { useHistory } from 'react-router-dom';
 import { SelectedPictures } from "../../components/MediaOptionBar/SharedVar";
 import MediaOptionBar from "../../components/MediaOptionBar/MediaOptionBar";
+import { SnackbarProvider, useSnackbar } from "notistack";
 
 const testData = [
   {
@@ -54,6 +53,7 @@ const styles = (theme) => ({
 
 
 const DialogTitle = withStyles(styles)((props) => {
+  
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
@@ -84,10 +84,15 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function DialogsOfStore(props) {
+
+
+
+function GalleryDialog(propss) {
+  const props = propss.props;
+  const { enqueueSnackbar } = useSnackbar();
+
   const [open, setOpen] = React.useState(false);
   const [selectedPictures, setPictures] = React.useState([]);
-
   const [defaultImages,setDefaultImages] = React.useState([]);
 
   const handleClickOpen = () => {
@@ -114,6 +119,8 @@ export default function DialogsOfStore(props) {
         console.log(res);
       });
 
+    var variant = "success";
+    enqueueSnackbar("You have change the content of sub category!", { variant});
     setOpen(false);
 
   };
@@ -175,5 +182,14 @@ export default function DialogsOfStore(props) {
       </Dialog>
 
     </div>
+  );
+}
+
+
+export default function GalleryDialogWith(props){
+  return (
+    <SnackbarProvider maxSnack={3}>
+      <GalleryDialog props={props}/>
+    </SnackbarProvider>
   );
 }
