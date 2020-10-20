@@ -153,7 +153,9 @@ class Store extends Component {
         <div className="store">
           <div className="store-menu">
             <Form>
-              <FormGroup>
+              <br />
+              <br />
+              {/* <FormGroup>
                 <Label for="exampleSearch">Search</Label>
                 <Input
                   type="search"
@@ -161,7 +163,7 @@ class Store extends Component {
                   id="exampleSearch"
                   placeholder="search placeholder"
                 />
-              </FormGroup>
+              </FormGroup> */}
               <FormGroup>
                 <Label for="exampleCheckbox">Category</Label>
                 <div>
