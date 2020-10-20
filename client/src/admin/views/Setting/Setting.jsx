@@ -94,7 +94,7 @@ function Setting(){
                 margin="dense"
                 id="name"
                 label="Current Password"
-                type="text"
+                type="password"
                 fullWidth
                 onChange={(e) => setCurrentPassword(e.target.value)}
               />
@@ -104,7 +104,7 @@ function Setting(){
                 margin="dense"
                 id="name"
                 label="New Password"
-                type="text"
+                type="password"
                 fullWidth
                 onChange={(e) => setNewPassword(e.target.value)}
               />
@@ -114,7 +114,7 @@ function Setting(){
                 margin="dense"
                 id="name"
                 label="Confirm New Password"
-                type="text"
+                type="password"
                 fullWidth
                 onChange={(e) => setConfirmNewPassword(e.target.value)}
               />
