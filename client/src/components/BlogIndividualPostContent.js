@@ -120,9 +120,6 @@ export default class PostContent extends Component {
                     icon={<LocalOfferIcon />} 
                     label={hashtag} 
                   />
-                  {/* <h3>
-                    <Badge color="primary">{hashtag}</Badge>
-                  </h3> */}
                 </div>
               );
             })}
