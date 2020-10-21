@@ -85,10 +85,20 @@ const postEditBlog = async (req, res) => {
   }
 };
 
+const getAboutMe = async (req, res) => {
+  BlogModel.findOne({ title: "About Me" }).then((blogFile) => {
+    if (!blogFile) {
+      return res.status(400).json({ msg: "No about me blog" });
+    }
+    return res.json(blogFile);
+  });
+}
+
 module.exports = {
   postBlog,
   getSingleBlog,
   getAllBlogs,
   postDeleteBlog,
   postEditBlog,
+  getAboutMe,
 };

@@ -125,6 +125,7 @@ class ContactMeBlock extends Component {
           <Collapse in={!this.state.expanded} timeout="auto" unmountOnExit>
             <CardContent>
               <Typography paragraph>{this.props.message}</Typography>
+              <Typography paragraph>My email address is: {this.props.email}</Typography>
             </CardContent>
           </Collapse>
         </Card>
