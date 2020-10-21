@@ -12,6 +12,7 @@ const descriptionStyle = {
   alignItems: "center",
   justifyContent: "center",
   margin: "25px 400px 15px 400px",
+  fontSize: "4rem",
 };
 
 const navStyle = {
