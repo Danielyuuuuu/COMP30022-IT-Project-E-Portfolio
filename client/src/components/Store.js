@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import ShoppingCart from "./ShoppingCart";
 import "../App.css";
 import { CustomInput, Form, FormGroup, Label, Input } from "reactstrap";
+import ErrorNotice from "../misc/ErrorNotice";
 
 import {
   Card,
@@ -14,7 +15,12 @@ import {
   CardImg,
   Row,
   Col,
+  Modal,
+  Spinner,
 } from "reactstrap";
+
+import Button_UI from "@material-ui/core/Button";
+import { SnackbarProvider, useSnackbar } from "notistack";
 
 //const url = "http://localhost:8000/api/store/image/";
 const url = "http://localhost:8000/api/uploadManage/image/";
@@ -86,7 +92,7 @@ class Store extends Component {
 
     let tagsArray = this.state.tags;
     if (tagsArray.length < 1) {
-      tagsArray = ["photography", "painting", "art product"];
+      tagsArray = ["Photography", "Painting", "Art Product"];
     }
     const req = {
       method: "POST",
@@ -123,7 +129,7 @@ class Store extends Component {
     e.preventDefault();
     let tagsArray = this.state.tags;
     if (tagsArray.length < 1) {
-      tagsArray = ["photography", "painting", "art product"];
+      tagsArray = ["Photography", "Painting", "Art Product"];
     }
     const req = {
       method: "POST",
@@ -153,7 +159,9 @@ class Store extends Component {
         <div className="store">
           <div className="store-menu">
             <Form>
-              <FormGroup>
+              <br />
+              <br />
+              {/* <FormGroup>
                 <Label for="exampleSearch">Search</Label>
                 <Input
                   type="search"
@@ -161,27 +169,27 @@ class Store extends Component {
                   id="exampleSearch"
                   placeholder="search placeholder"
                 />
-              </FormGroup>
+              </FormGroup> */}
               <FormGroup>
                 <Label for="exampleCheckbox">Category</Label>
                 <div>
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox11"
-                    label="painting"
-                    onClick={() => this.updateTags("painting")}
+                    label="Painting"
+                    onClick={() => this.updateTags("Painting")}
                   />
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox12"
-                    label="photography"
-                    onClick={() => this.updateTags("photography")}
+                    label="Photography"
+                    onClick={() => this.updateTags("Photography")}
                   />
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox121"
-                    label="art product"
-                    onClick={() => this.updateTags("art product")}
+                    label="Art Product"
+                    onClick={() => this.updateTags("Art Product")}
                   />
                 </div>
               </FormGroup>
@@ -256,6 +264,7 @@ class Item extends Component {
     this.state = {
       open: false,
       mouseOver: false,
+      inCart: "",
     };
     this._clickHandler = this._clickHandler.bind(this);
     this._mouseEnter = this._mouseEnter.bind(this);
@@ -301,6 +310,10 @@ class Item extends Component {
     }
   }
 
+  setInCart = (e) => {
+    this.setState({ inCart: e });
+  };
+
   render() {
     let itemStyle = {};
     if (this.state.open) {
@@ -344,7 +357,8 @@ class Item extends Component {
         <CardTitle>{this.props.data.itemname} </CardTitle>
         <CardText>{this.props.data.description}</CardText>
         <CardTitle>${this.props.data.price}</CardTitle>
-        <Button
+
+        {/* <Button
           onClick={() =>
             this.props.updateCart(
               this.props.data.itemname,
@@ -354,10 +368,63 @@ class Item extends Component {
           }
         >
           Add to the cart
-        </Button>
+        </Button> */}
+
+        <SnackbarProvider maxSnack={3}>
+          <MyApp updateCart={this.props.updateCart} data={this.props.data} />
+          {/* <MyApp /> */}
+        </SnackbarProvider>
+
+        {/* {this.state.error && (
+          <div>
+            <Spinner color="primary" />
+            <ErrorNotice message={"Added to the cart!"} severity={"success"} />
+          </div>
+        )} */}
+
+        {/* <ErrorNotice
+          message={"Added to the cart!"}
+          severity={"success"}
+          // clearError={() => this.setState(undefined)}
+        /> */}
       </Card>
     );
   }
 }
+
+function MyApp(props) {
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleClickVariant = (variant) => () => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar("Added to the cart!", { variant });
+  };
+
+  return (
+    <React.Fragment>
+      {/* <Button_UI onClick={handleClickVariant("success")}> */}
+      <Button
+        onClick={() => {
+          handleClickVariant("success")();
+          props.updateCart(
+            props.data.itemname,
+            props.data.price,
+            props.data.imagename
+          );
+        }}
+      >
+        Add to the cart
+      </Button>
+    </React.Fragment>
+  );
+}
+
+// export function IntegrationNotistack() {
+//   return (
+//     <SnackbarProvider maxSnack={3}>
+//       <MyApp />
+//     </SnackbarProvider>
+//   );
+// }
 
 export default Store;
