@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import "../App.css";
-
-import { useState } from "react";
 import { Nav, NavItem, NavLink, Button } from "reactstrap";
+
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 
 const url = "http://localhost:8000/api/uploadManage/image/";
 
@@ -23,6 +26,55 @@ const navStyle = {
 
 const navButtonStyle = { marginBottom: "1px", marginRight: "10px" };
 
+const useStyles = makeStyles({
+  root: {
+    flexGrow: 1,
+  },
+});
+
+function CenteredTabs(props) {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  return (
+    <Paper className={classes.root}>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
+      >
+        <Tab
+          label="Architecture"
+          onClick={() => props.switchToSubCatGallery("Architecture")}
+        />
+        <Tab
+          label="Landscape"
+          onClick={() => props.switchToSubCatGallery("Landscape")}
+        />
+        <Tab
+          label="Street"
+          onClick={() => props.switchToSubCatGallery("Street")}
+        />
+        <Tab
+          label="Events"
+          onClick={() => props.switchToSubCatGallery("Events")}
+        />
+        <Tab
+          label="Portrait"
+          onClick={() => props.switchToSubCatGallery("Portrait")}
+        />
+        <Tab label="ALL" onClick={() => props.switchToCatGallery()} />
+      </Tabs>
+    </Paper>
+  );
+}
+
 class PhotoNavBar extends Component {
   render() {
     return (
@@ -38,7 +90,13 @@ class PhotoNavBar extends Component {
         </p>
 
         <br />
-        <Nav tabs style={navStyle}>
+
+        <CenteredTabs
+          switchToSubCatGallery={this.props.switchToSubCatGallery}
+          switchToCatGallery={this.props.switchToCatGallery}
+        />
+
+        {/* <Nav tabs style={navStyle}>
           <NavItem>
             <Button
               color="light"
@@ -98,7 +156,7 @@ class PhotoNavBar extends Component {
               ALL
             </Button>
           </NavItem>
-        </Nav>
+        </Nav> */}
       </div>
     );
   }
