@@ -25,31 +25,6 @@ import { SnackbarProvider, useSnackbar } from "notistack";
 //const url = "http://localhost:8000/api/store/image/";
 const url = "http://localhost:8000/api/uploadManage/image/";
 
-function MyApp() {
-  const { enqueueSnackbar } = useSnackbar();
-
-  const handleClickVariant = (variant) => () => {
-    // variant could be success, error, warning, info, or default
-    enqueueSnackbar("Added to the cart!", { variant });
-  };
-
-  return (
-    <React.Fragment>
-      <Button_UI onClick={handleClickVariant("success")}>
-        Add to the cart
-      </Button_UI>
-    </React.Fragment>
-  );
-}
-
-// export function IntegrationNotistack() {
-//   return (
-//     <SnackbarProvider maxSnack={3}>
-//       <MyApp />
-//     </SnackbarProvider>
-//   );
-// }
-
 class Store extends Component {
   constructor(props) {
     super(props);
@@ -383,7 +358,7 @@ class Item extends Component {
         <CardText>{this.props.data.description}</CardText>
         <CardTitle>${this.props.data.price}</CardTitle>
 
-        <Button
+        {/* <Button
           onClick={() =>
             this.props.updateCart(
               this.props.data.itemname,
@@ -393,28 +368,12 @@ class Item extends Component {
           }
         >
           Add to the cart
-        </Button>
+        </Button> */}
 
         <SnackbarProvider maxSnack={3}>
-          <MyApp />
+          <MyApp updateCart={this.props.updateCart} data={this.props.data} />
+          {/* <MyApp /> */}
         </SnackbarProvider>
-
-        {/* {this.state.inCart ? (
-          <ErrorNotice message={"Added to the cart!"} severity={"success"} />
-        ) : (
-          <Button
-            onClick={() =>
-              this.props.updateCart(
-                this.props.data.itemname,
-                this.props.data.price,
-                this.props.data.imagename
-              )
-            }
-            // onClick={() => this.setInCart("hi")}
-          >
-            Add to the cart
-          </Button>
-        )} */}
 
         {/* {this.state.error && (
           <div>
@@ -432,5 +391,40 @@ class Item extends Component {
     );
   }
 }
+
+function MyApp(props) {
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleClickVariant = (variant) => () => {
+    // variant could be success, error, warning, info, or default
+    enqueueSnackbar("Added to the cart!", { variant });
+  };
+
+  return (
+    <React.Fragment>
+      {/* <Button_UI onClick={handleClickVariant("success")}> */}
+      <Button
+        onClick={() => {
+          handleClickVariant("success")();
+          props.updateCart(
+            props.data.itemname,
+            props.data.price,
+            props.data.imagename
+          );
+        }}
+      >
+        Add to the cart
+      </Button>
+    </React.Fragment>
+  );
+}
+
+// export function IntegrationNotistack() {
+//   return (
+//     <SnackbarProvider maxSnack={3}>
+//       <MyApp />
+//     </SnackbarProvider>
+//   );
+// }
 
 export default Store;
