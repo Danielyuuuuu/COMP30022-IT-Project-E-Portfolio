@@ -78,11 +78,12 @@ const getSuccessPage = async(req,res) => {
             throw error;
         } else {
             console.log("Get Payment Response")
-            console.log(res.body);
             
-            res.send(res.body);
             
-            //res.redirect('http://localhost:3000/');
+            
+            res.redirect('http://localhost:3000/success')
+            
+    
         }
     });
 
@@ -90,7 +91,7 @@ const getSuccessPage = async(req,res) => {
 }
 
 const getCancelPage = async(req,res) => {
-    res.send('Cancelled');
+    res.redirect('http://localhost:3000/cancel')
 }
 
 
