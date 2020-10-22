@@ -32,6 +32,7 @@ import Register from "./components/Register";
 
 import CheckOut from "./components/ShoppingCheckOut";
 import PurchaseSucceed from "./components/ShoppingSuccess";
+import PurchaseCancel from "./components/ShoppingCancel";
 
 import Axios from "axios";
 
@@ -95,6 +96,7 @@ export default function App() {
 
         <Route path="/checkout" component={CheckOut} />
         <Route path="/success" component={PurchaseSucceed} />
+        <Route path="/cancel" component={PurchaseCancel} />
       </div>
     </Router>
   );

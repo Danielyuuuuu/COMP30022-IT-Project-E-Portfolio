@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import {
+    Alert,
     Card,
     CardImg,
     CardTitle,
@@ -12,7 +13,12 @@ import {
     DropdownItem,
     Badge,
   } from "reactstrap";
+  import ErrorNotice from "../misc/ErrorNotice";
 
+  import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+
+  
+  
   export default class ShoppingSuccess extends Component{
     constructor(props){
         super(props);
@@ -20,20 +26,37 @@ import {
             myCart: JSON.parse(localStorage.getItem("cart")),
         };
     }
+    
+    componentDidMount(){
+        // Start counting when the page is loaded
+        this.timeoutHandle = setTimeout(()=>{
+            window.location.href= "http://localhost:3000";
+        }, 5000);
+   }
+
+   componentWillUnmount(){
+        clearTimeout(this.timeoutHandle); 
+   }
+
 
     render() {
+
+
       return (
         <div>
           <br />
           <br />
-          <h1> Your Payment have been Approval !</h1>
+          <Alert color="success" >
+            <span >
+            
+            <font size={5} ><CheckCircleOutlineIcon style={{ fontSize: 25 }}/> Success!</font> 
+            <font size={5}>Your Payment have been Approval !</font>
+            <font size = {3}> This page will redirect to home page in 5 seconds...</font>
+            </span>
+          </Alert>
+          
           <br />
           <br />
-          <div>
-              <ItemList body = {this.state.myCart}/>
-          </div>
-
-
         </div>  
       )
     }
@@ -49,11 +72,12 @@ class ItemList extends Component {
     }
 
     render () {
+
+
         let itemstyle = {
-            width: "18vw",
-            top : "",
-            left:"30"
-            //height:"18vw"
+            maxWidth: "18vw",
+            
+            maxHeight:"18vw"
         };
         return (
             <div className=" card-deck">
@@ -61,6 +85,8 @@ class ItemList extends Component {
                     return (
                        <Card>
                            <CardImg 
+                            
+                              object-fit="contain"
                               top
                               style={itemstyle}
                               src={"http://localhost:8000/api/uploadManage/image/"+item.filename} 
