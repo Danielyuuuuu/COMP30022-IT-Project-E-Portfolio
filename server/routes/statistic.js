@@ -3,7 +3,7 @@ const statisticRouter = express.Router();
 const statisticController = require("../controllers/statistic");
 
 
-setInterval(statisticController.updateStatistic, 1000);
+setInterval(statisticController.updateStatistic, 1000*60*60);
 
 // upload middleware
 const upload = require("../models/db").upload;
