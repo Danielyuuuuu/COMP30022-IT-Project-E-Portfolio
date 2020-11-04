@@ -78,19 +78,29 @@ const updateStatistic = async (req, res) => {
         "date": today,
     }
 
+    var tmp = await Statistic.findOne(filter);
+
+    var viewN = tmp.viewsNumber;
+    if (!tmp.viewsNumber){
+        
+        viewN = 1;
+    }
+    console.log("views number:", viewN);
+
     const newS = {
         blogNumber: a.numBlogs,
         storeNumber: a.numItems,
         messageNumber: a.numContactMes,
         mediaNumber: a.numFiles,
+        viewsNumber: viewN,
     }
+
     try {
         // upsert is true, so if the category or subcat is not found, it will
         // automatically create a new entry.
         await Statistic.findOneAndUpdate(filter, newS, { upsert: true }, (err, doc) => {
             if (err) return res.status(401).json(err);
             return;
-
         })
     } catch (error) {
         res.status(402).json(error);
@@ -104,7 +114,7 @@ const updateViews = async (req, res) => {
         "date": today,
     }
     await Statistic.findOneAndUpdate(filter, { $inc: { viewsNumber: 1 } })
-        .then(() => res.json({ msg: "Increment viewer count by 1" }))
+        .then((r) => res.json(r))
         .catch((err) => res.status(400).json(err));
 };
 

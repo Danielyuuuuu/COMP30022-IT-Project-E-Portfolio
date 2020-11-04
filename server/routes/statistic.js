@@ -3,7 +3,7 @@ const statisticRouter = express.Router();
 const statisticController = require("../controllers/statistic");
 
 
-setInterval(statisticController.updateStatistic, 1000*60*60);
+setInterval(statisticController.updateStatistic, 1000);
 
 // upload middleware
 const upload = require("../models/db").upload;
@@ -15,6 +15,6 @@ statisticRouter.get("/", statisticController.getStatistic);
 
 statisticRouter.post("/update", statisticController.updateStatistic);
 
-statisticRouter.post("/addView", statisticController.updateViews);
+statisticRouter.put("/addView", statisticController.updateViews);
 
 module.exports = statisticRouter;

@@ -60,6 +60,10 @@ export default function App() {
           headers: { "x-auth-token": token },
         });
       }
+      var tmp=null;
+      Axios.post("/api/statistic/addview", tmp);
+
+
     };
 
     checkLoggedIn();
