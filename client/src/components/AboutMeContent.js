@@ -11,7 +11,7 @@ export default class AboutMe extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8000/api/blog/getAboutMe")
+    fetch("/api/blog/getAboutMe")
       .then((response) => response.json())
       .then((res) => {
         this.setState({ content: res.content,

@@ -56,7 +56,7 @@ function Setting(){
         const token = localStorage.getItem("auth-token");
         console.log("Token: " + token)
         axios
-        .post("http://localhost:8000/api/user/changePassword", { "token": token, "email": email, "currentPassword": currentPassword, "newPassword": newPassword, "repeatNewPassword": confirmNewPassword } )
+        .post("/api/user/changePassword", { "token": token, "email": email, "currentPassword": currentPassword, "newPassword": newPassword, "repeatNewPassword": confirmNewPassword } )
         .then((res) => {
             console.log("In axios: ");
             console.log(res.data.msg);

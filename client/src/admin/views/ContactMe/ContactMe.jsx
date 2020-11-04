@@ -30,7 +30,7 @@ export default class ContactMe extends Component {
   }
 
   fetchAllTheContactMeMessages = async () => {
-    fetch("http://localhost:8000/api/contactMe/getContactMe")
+    fetch("/api/contactMe/getContactMe")
       .then((response) => response.json())
       .then((res) => {
         this.setState({ contactMes: res });
@@ -39,7 +39,7 @@ export default class ContactMe extends Component {
 
   handleDelete = (e) => {
     console.log("ContactMe deleted: " + e);
-    Axios.delete("http://localhost:8000/api/contactMe/deleteContactMe/" + e)
+    Axios.delete("/api/contactMe/deleteContactMe/" + e)
       .then((res) => {
         this.fetchAllTheContactMeMessages();
         console.log("fetchAllTheContactMeMessages");
@@ -78,7 +78,7 @@ class ContactMeBlock extends Component {
 
   handleDelete = (e) => {
     console.log("ContactMe deleted: " + e);
-    Axios.delete("http://localhost:8000/api/contactMe/deleteContactMe/" + e)
+    Axios.delete("/api/contactMe/deleteContactMe/" + e)
       .then((res) => {
         this.props.callBack();
       })

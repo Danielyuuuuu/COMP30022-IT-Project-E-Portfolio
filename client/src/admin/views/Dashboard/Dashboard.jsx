@@ -18,7 +18,7 @@ export default function Dashboard() {
     const getStatistic = async () => {
         // console.log(`Getting Posts...`);
         axios
-            .get("http://localhost:8000/api/statistic/")
+            .get("/api/statistic/")
             .then((res) => {
                 setStatistic(res.data.statistic);
                 console.log(res.data.statistic);

@@ -5,7 +5,7 @@ import "../App.css";
 import { useState } from "react";
 import { Nav, NavItem, NavLink, Button } from "reactstrap";
 
-const url = "http://localhost:8000/api/uploadManage/image/";
+const url = "/api/uploadManage/image/";
 
 const descriptionStyle = {
   display: "flex",
@@ -115,7 +115,7 @@ class PaintingGallery extends Component {
         category: "Painting",
       }),
     };
-    fetch("http://localhost:8000/api/gallery/category", req)
+    fetch("/api/gallery/category", req)
       .then((res) => res.json())
       .then((data) => this.returnUniqueImage(data));
   }
@@ -137,7 +137,7 @@ class PaintingGallery extends Component {
         category: "Painting",
       }),
     };
-    fetch("http://localhost:8000/api/gallery/category", req)
+    fetch("/api/gallery/category", req)
       .then((res) => res.json())
       .then((data) => this.returnUniqueImage(data));
   }
@@ -151,7 +151,7 @@ class PaintingGallery extends Component {
         subcategory: subcat,
       }),
     };
-    fetch("http://localhost:8000/api/gallery/subcategory", req)
+    fetch("/api/gallery/subcategory", req)
       .then((res) => res.json())
       .then((data) => this.returnUniqueImage(data));
   }

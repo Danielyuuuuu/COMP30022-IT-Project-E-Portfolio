@@ -39,7 +39,7 @@ export default class BlogComments extends Component {
   }
 
   getAllComments = async () => {
-    fetch("http://localhost:8000/api/comments/blog/" + this.props.blogId)
+    fetch("/api/comments/blog/" + this.props.blogId)
       .then((response) => response.json())
       .then((res) => {
         this.setState({ comments: res.item, success: res.success });
@@ -47,7 +47,7 @@ export default class BlogComments extends Component {
   };
 
   handleDelete = (e) => {
-    Axios.delete("http://localhost:8000/api/comments/" + e)
+    Axios.delete("/api/comments/" + e)
       .then((res) => {
         this.setState({
           comments: this.state.comments.filter((comment) => comment._id !== e),
@@ -87,7 +87,7 @@ export default class BlogComments extends Component {
     });
 
     console.log("Submit success ");
-    Axios.post("http://localhost:8000/api/comments/add", comment)
+    Axios.post("/api/comments/add", comment)
       .then((res) => {
         this.setState({
           content: "",
@@ -211,7 +211,7 @@ class LikeButton extends Component {
 
     if (this.state.clicked) {
       Axios.post(
-        "http://localhost:8000/api/comments/unLike",
+        "/api/comments/unLike",
         commentReq
       ).then((res) => {
         this.props.callBack();
@@ -220,7 +220,7 @@ class LikeButton extends Component {
       });
     } else {
       Axios.post(
-        "http://localhost:8000/api/comments/addLike",
+        "/api/comments/addLike",
         commentReq
       ).then((res) => {
         this.props.callBack();

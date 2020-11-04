@@ -113,7 +113,7 @@ function GalleryDialog(propss) {
       images:selectedPictures,
     };
 
-    axios.post("http://localhost:8000/api/gallery/", data)
+    axios.post("/api/gallery/", data)
       .then(console.log("add/change galley......"))
       .then((res) => {
         console.log(res);
@@ -135,7 +135,7 @@ function GalleryDialog(propss) {
       subcategory: props.subcategory,
     }
     axios
-      .post("http://localhost:8000/api/gallery/subcategory", body)
+      .post("/api/gallery/subcategory", body)
       .then((res) => {
         setPictures(res.data.artworks[0].imagenames);
         setDefaultImages(res.data.artworks[0].imagenames)

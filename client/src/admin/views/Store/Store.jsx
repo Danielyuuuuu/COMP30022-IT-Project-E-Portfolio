@@ -64,7 +64,7 @@ function Row(props) {
 
     notification(`You have delete the item !`, "warning")
     axios
-      .delete("http://localhost:8000/api/store/delete/" + id)
+      .delete("/api/store/delete/" + id)
       .then(console.log("delete item......"))
       .then((res) => {
         console.log(res);
@@ -177,7 +177,7 @@ function Row(props) {
                           <CardMedia
                             className={classes.img}
                             image={
-                              "http://localhost:8000/api/uploadManage/image/" +
+                              "/api/uploadManage/image/" +
                               row.imagename
                             }
                           />
@@ -207,7 +207,7 @@ function Store() {
     console.log(`Getting files...`);
 
     axios
-      .get("http://localhost:8000/api/store/")
+      .get("/api/store/")
       .then((res) => {
         setItems(res.data.item);
         console.log(res.data.item);

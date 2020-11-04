@@ -89,7 +89,7 @@ class ItemList extends Component {
                               object-fit="contain"
                               top
                               style={itemstyle}
-                              src={"http://localhost:8000/api/uploadManage/image/"+item.filename} 
+                              src={"/api/uploadManage/image/"+item.filename} 
                               alt="Card image cap" 
                                 
                             />

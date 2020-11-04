@@ -153,7 +153,7 @@ export default function PostDialog(props) {
         } else {
             if (props.mode == "New") {
                 props.sendNotification(`You successfully create a new post: << ${title} >>!`, variant);
-                Axios.post("http://localhost:8000/api/blog/uploadblog", data)
+                Axios.post("/api/blog/uploadblog", data)
                     .then(console.log("adding new post......"))
                     .then((res) => {
                         console.log(res);
@@ -163,7 +163,7 @@ export default function PostDialog(props) {
             } else {
                 props.sendNotification(`You successfully edit post: << ${title} >>!`, variant);
                 Axios.post(
-                    "http://localhost:8000/api/blog/editBlog",
+                    "/api/blog/editBlog",
                     editData
                 )
                     .then(console.log("edit item......"))
@@ -191,7 +191,7 @@ export default function PostDialog(props) {
     //       hashTags: tag,
     //     };
     //     const postRes = await Axios.post(
-    //       "http://localhost:8000/api/blog/uploadblog",
+    //       "/api/blog/uploadblog",
     //       newPost
     //     );
     //     console.log("successful................");

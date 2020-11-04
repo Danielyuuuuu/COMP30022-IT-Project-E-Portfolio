@@ -22,8 +22,8 @@ import {
 import Button_UI from "@material-ui/core/Button";
 import { SnackbarProvider, useSnackbar } from "notistack";
 
-//const url = "http://localhost:8000/api/store/image/";
-const url = "http://localhost:8000/api/uploadManage/image/";
+//const url = "/api/store/image/";
+const url = "/api/uploadManage/image/";
 
 class Store extends Component {
   constructor(props) {
@@ -103,7 +103,7 @@ class Store extends Component {
         filter: this.state.filter,
       }),
     };
-    fetch("http://localhost:8000/api/store/filter", req)
+    fetch("/api/store/filter", req)
       .then((res) => res.json())
       .then((data) => this.setState({ data: data.specific_items }));
   }
@@ -120,7 +120,7 @@ class Store extends Component {
       this.setState({ cart: JSON.parse(localStorage.getItem("cart")) });
     }
 
-    fetch("http://localhost:8000/api/store/")
+    fetch("/api/store/")
       .then((response) => response.json())
       .then((data) => this.setState({ data: data.item }));
   }
@@ -140,7 +140,7 @@ class Store extends Component {
         filter: this.state.filter,
       }),
     };
-    fetch("http://localhost:8000/api/store/filter", req)
+    fetch("/api/store/filter", req)
       .then((res) => res.json())
       .then((data) => this.setState({ data: data.specific_items }));
   }
@@ -279,7 +279,7 @@ class Item extends Component {
         open: true,
       });
 
-      const url_prefix = "http://localhost:8000/api/store/update/";
+      const url_prefix = "/api/store/update/";
       const url_suffix = "/views";
       const url_view = url_prefix + itemId + url_suffix;
       console.log(url_view);

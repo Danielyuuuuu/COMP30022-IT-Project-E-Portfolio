@@ -66,7 +66,7 @@ export default function MediaOptionBar(props) {
     // if (!isMount){
       console.log(`Getting files...`);
       axios
-        .get("http://localhost:8000/api/uploadManage/files")
+        .get("/api/uploadManage/files")
         .then((res) => {
           handleSetImages(res.data);
           console.log("res data: ",res.data);
@@ -131,7 +131,7 @@ export default function MediaOptionBar(props) {
                 <CardMedia
                   className={classes.img}
                   image={
-                    "http://localhost:8000/api/uploadManage/image/" +
+                    "/api/uploadManage/image/" +
                     option
                   }
                 />

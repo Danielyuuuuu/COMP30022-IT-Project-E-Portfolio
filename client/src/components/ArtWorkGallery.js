@@ -3,7 +3,7 @@ import NavbarTop from "./NavbarTop";
 import "../App.css";
 import AwgNavbar from "./AwgNavbar";
 
-const url = "http://localhost:8000/api/uploadManage/image/";
+const url = "/api/uploadManage/image/";
 
 //const app = document.getElementById('app');
 const data = [
@@ -127,7 +127,7 @@ class ArtWorkGallery extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8000/api/uploadManage/files/")
+    fetch("/api/uploadManage/files/")
       .then((response) => response.json())
       .then((data) => this.setState({ data: data }));
   }

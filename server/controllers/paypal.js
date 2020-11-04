@@ -32,8 +32,8 @@ const getPay = async(req,res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "http://localhost:8000/api/paypal/success",
-            "cancel_url": "http://localhost:8000/api/paypal/cancel"
+            "return_url": "/api/paypal/success",
+            "cancel_url": "/api/paypal/cancel"
         },
         "transactions": [{
             "item_list": {

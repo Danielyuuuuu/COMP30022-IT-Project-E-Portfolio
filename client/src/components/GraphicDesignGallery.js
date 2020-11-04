@@ -4,7 +4,7 @@ import "../App.css";
 
 import { Nav, NavItem, NavLink, Button } from "reactstrap";
 
-const url = "http://localhost:8000/api/uploadManage/image/";
+const url = "/api/uploadManage/image/";
 
 const descriptionStyle = {
   display: "flex",
@@ -102,7 +102,7 @@ class GraphicDesignGallery extends Component {
         category: "Graphic Design",
       }),
     };
-    fetch("http://localhost:8000/api/gallery/category", req)
+    fetch("/api/gallery/category", req)
       .then((res) => res.json())
       .then((data) => this.returnUniqueImage(data));
   }
@@ -124,7 +124,7 @@ class GraphicDesignGallery extends Component {
         category: "Graphic Design",
       }),
     };
-    fetch("http://localhost:8000/api/gallery/category", req)
+    fetch("/api/gallery/category", req)
       .then((res) => res.json())
       .then((data) => this.returnUniqueImage(data));
   }
@@ -138,7 +138,7 @@ class GraphicDesignGallery extends Component {
         subcategory: subcat,
       }),
     };
-    fetch("http://localhost:8000/api/gallery/subcategory", req)
+    fetch("/api/gallery/subcategory", req)
       .then((res) => res.json())
       .then((data) => this.returnUniqueImage(data));
   }

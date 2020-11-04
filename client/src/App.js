@@ -52,11 +52,11 @@ export default function App() {
         token = "";
       }
       const tokenRes = await Axios.post(
-        "http://localhost:8000/api/user/tokenIsValid",
+        "/api/user/tokenIsValid",
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        const userRes = await Axios.get("http://localhost:8000/api/user/", {
+        const userRes = await Axios.get("/api/user/", {
           headers: { "x-auth-token": token },
         });
       }

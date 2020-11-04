@@ -61,7 +61,7 @@ function Row(props) {
   const handleDelete = (id) => {
     notification(`You have delete the item !`, "warning");
     axios
-      .delete("http://localhost:8000/api/blog/deleteBlog/" + id)
+      .delete("/api/blog/deleteBlog/" + id)
       .then(console.log("delete item......"))
       .then((res) => {
         console.log(res);
@@ -202,7 +202,7 @@ function Post() {
   const getPost= async ()=>{
     console.log(`Getting Posts...`);
     axios
-      .get("http://localhost:8000/api/blog/getAllBlogs")
+      .get("/api/blog/getAllBlogs")
       .then((res) => {
         setItems(res.data);
         console.log(res.data);

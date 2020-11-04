@@ -44,7 +44,7 @@ export default class PostContent extends Component {
   }
 
   fetchIndividualPostContent = async () => {
-    fetch("http://localhost:8000/api/blog/getSingleBlog/" + this.props.blogId)
+    fetch("/api/blog/getSingleBlog/" + this.props.blogId)
       .then((response) => response.json())
       .then((res) => {
         this.setState({
@@ -83,7 +83,7 @@ export default class PostContent extends Component {
     };
     console.log("Submit success ");
     axios
-      .post("http://localhost:8000/api/comments/add", comment)
+      .post("/api/comments/add", comment)
       .then((res) => {
         this.setState({
           content: "",

@@ -27,7 +27,7 @@ import NavbarTop from "./NavbarTop";
 
 
 
-const url = "http://localhost:8000/api/uploadManage/image/";
+const url = "/api/uploadManage/image/";
 
 export default class CheckOutList extends Component {
 
@@ -55,7 +55,7 @@ export default class CheckOutList extends Component {
 
 
 
-    axios.post("http://localhost:8000/api/paypal/pay", validation).then((res) => {
+    axios.post("/api/paypal/pay", validation).then((res) => {
       window.location.href = res.data.link;
     });
   }
@@ -187,7 +187,7 @@ class ItemsTable extends Component {
                   <img
                   width={200}
                   className=" img-fluid rounded shadow "
-                  src={"http://localhost:8000/api/uploadManage/image/"+good.filename}
+                  src={"/api/uploadManage/image/"+good.filename}
                   />
               </td>
               <td className=" td-name" >

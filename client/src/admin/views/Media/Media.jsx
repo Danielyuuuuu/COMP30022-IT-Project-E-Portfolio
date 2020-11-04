@@ -97,7 +97,7 @@ function Media() {
     setDeleteOpen(true);
     handleClickVariant(`You have delete the image: ${filename} !`, 'warning');
     axios
-      .delete(`http://localhost:8000/api/uploadManage/files/${filename}`)
+      .delete(`/api/uploadManage/files/${filename}`)
       .then((res) => {
         console.log(res);
         setImages(images.filter(image => image.filename !== filename));
@@ -107,7 +107,7 @@ function Media() {
 
   const fetchAllImages = async () => {
     axios
-      .get("http://localhost:8000/api/uploadManage/files")
+      .get("/api/uploadManage/files")
       .then((res) => setImages(res.data))
       .catch((err) => console.log(err))
   }
@@ -132,13 +132,13 @@ function Media() {
             <GridList cellHeight={180} className={classes.gridList} cols={5}>
               {images.map((tile) => (
                 <GridListTile>
-                  <img src={"http://localhost:8000/api/uploadManage/image/" + tile.filename} />
+                  <img src={"/api/uploadManage/image/" + tile.filename} />
                   <GridListTileBar
                     title={tile.filename}
                     actionIcon={
                       <Grid container direction="row" justify="space-around" alignItems="stretch">
                         <Grid item xs={6}>
-                          <IconButton className={classes.icon} onClick={() => { navigator.clipboard.writeText("http://localhost:8000/api/uploadManage/image/" + tile.filename) }}>
+                          <IconButton className={classes.icon} onClick={() => { navigator.clipboard.writeText("/api/uploadManage/image/" + tile.filename) }}>
                             <FileCopyOutlinedIcon onClick={handleCopyClick} />
                           </IconButton>
                         </Grid>

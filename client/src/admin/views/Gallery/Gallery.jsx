@@ -63,22 +63,22 @@ const useRowStyles = makeStyles({
 const categories = [
   {
     name: "Photography",
-    coverImage: "http://localhost:8000/api/uploadManage/image/890c444028e88bc04522cdee2e9be0bd.jpg",
+    coverImage: "/api/uploadManage/image/890c444028e88bc04522cdee2e9be0bd.jpg",
     subCategories: ["Architecture", "Landscape", "Street","Events", "Portrait"],
   },
   {
     name: "Art Crafts",
-    coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    coverImage: "/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
     subCategories: ["Carpentry", "Ceramics"],
   },
   {
     name: "Painting",
-    coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    coverImage: "/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
     subCategories: ["Oil painting", "Sand painting", "Pencil Sketch", "Digital painting"],
   },
   {
     name: "Graphic Design",
-    coverImage: "http://localhost:8000/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    coverImage: "/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
     subCategories: ["1", "2", "3"],
   },
 ]
@@ -177,7 +177,7 @@ export default function Gallery() {
     console.log(`Getting files...`);
 
     axios
-      .get("http://localhost:8000/api/gallery/")
+      .get("/api/gallery/")
       .then((res) => {
         setGallery(res.data.artworks);
         console.log(res.data.artworks);

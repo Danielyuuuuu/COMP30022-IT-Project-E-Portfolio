@@ -140,7 +140,7 @@ function StoreDialog(propss) {
       if (props.mode == "New") {
         props.sendNotification(`You successfully create a new item: << ${itemname} >>!`, "success");
         // enqueueSnackbar(`You successfully create a new item: << ${itemname} >>!`, { variant });
-        Axios.post("http://localhost:8000/api/store/", data)
+        Axios.post("/api/store/", data)
           .then(console.log("add new......"))
           .then((res) => {
             console.log(res);
@@ -150,7 +150,7 @@ function StoreDialog(propss) {
         props.sendNotification(`You successfully edit the post: << ${itemname} >>`, "success");
         // enqueueSnackbar(`You successfully edit the post: << ${itemname} >>`, { variant});
         Axios.put(
-          "http://localhost:8000/api/store/update/" + props.item._id,
+          "/api/store/update/" + props.item._id,
           data
         )
           .then(console.log("edit item......"))
@@ -253,7 +253,7 @@ function StoreDialog(propss) {
                     <CardMedia
                       className={classes.img}
                       image={
-                        "http://localhost:8000/api/uploadManage/image/" +
+                        "/api/uploadManage/image/" +
                         imagename
                       }
                     />
@@ -320,7 +320,7 @@ function StoreDialog(propss) {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <h1>???????????</h1>
-            <img src={"http://localhost:8000/api/uploadManage/image/7b3c802ea99be25d56eb36fe2619fd37.png"}></img>
+            <img src={"/api/uploadManage/image/7b3c802ea99be25d56eb36fe2619fd37.png"}></img>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

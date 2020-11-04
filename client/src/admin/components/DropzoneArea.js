@@ -24,7 +24,7 @@ export default function DropZone(props) {
       imageFile.append("file", files[i]);
 
       const postRes = await Axios.post(
-        "http://localhost:8000/api/uploadManage/upload",
+        "/api/uploadManage/upload",
         imageFile
       );
     }

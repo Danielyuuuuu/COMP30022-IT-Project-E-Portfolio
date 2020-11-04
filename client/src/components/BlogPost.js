@@ -27,7 +27,7 @@ class BlogPost extends Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:8000/api/blog/getAllBlogs")
+    fetch("/api/blog/getAllBlogs")
       .then((response) => response.json())
       .then((res) => {
         this.setState({ blogPosts: res });

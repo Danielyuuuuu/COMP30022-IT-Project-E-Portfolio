@@ -1,1 +1,1 @@
-export const getFiles = "http://localhost:8000/api/uploadManage/files";
+export const getFiles = "/api/uploadManage/files";

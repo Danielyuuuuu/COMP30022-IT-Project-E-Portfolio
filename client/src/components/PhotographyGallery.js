@@ -8,7 +8,7 @@ import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-const url = "http://localhost:8000/api/uploadManage/image/";
+const url = "/api/uploadManage/image/";
 
 const descriptionStyle = {
   display: "flex",
@@ -180,7 +180,7 @@ class PhotographyGallery extends Component {
         category: "Photography",
       }),
     };
-    fetch("http://localhost:8000/api/gallery/category", req)
+    fetch("/api/gallery/category", req)
       .then((res) => res.json())
       .then((data) => this.returnUniqueImage(data));
   }
@@ -202,7 +202,7 @@ class PhotographyGallery extends Component {
         category: "Photography",
       }),
     };
-    fetch("http://localhost:8000/api/gallery/category", req)
+    fetch("/api/gallery/category", req)
       .then((res) => res.json())
       .then((data) => this.returnUniqueImage(data));
   }
@@ -216,7 +216,7 @@ class PhotographyGallery extends Component {
         subcategory: subcat,
       }),
     };
-    fetch("http://localhost:8000/api/gallery/subcategory", req)
+    fetch("/api/gallery/subcategory", req)
       .then((res) => res.json())
       .then((data) => this.returnUniqueImage(data));
   }
