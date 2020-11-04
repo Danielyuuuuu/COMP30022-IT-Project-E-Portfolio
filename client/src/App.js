@@ -61,7 +61,7 @@ export default function App() {
         });
       }
       var tmp=null;
-      Axios.post("/api/statistic/addview", tmp);
+      Axios.put("/api/statistic/addview", tmp);
 
 
     };
