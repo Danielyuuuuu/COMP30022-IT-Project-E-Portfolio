@@ -91,7 +91,7 @@ const getSuccessPage = async(req,res) => {
 }
 
 const getCancelPage = async(req,res) => {
-    res.redirect('http://localhost:3000/cancel')
+    res.redirect('http://localhost:3000/cancel');
 }
 
 
