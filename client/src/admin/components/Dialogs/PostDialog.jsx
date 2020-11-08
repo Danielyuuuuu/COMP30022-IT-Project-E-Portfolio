@@ -24,7 +24,7 @@ import { SnackbarProvider, useSnackbar } from "notistack";
 
 let marked = require("marked");
 
-const options = ["Tag 1", "Tag 2", "Tag 3", "Tag 4"];
+const options = ["People", "Scenery", "Animal", "Lifestyle", "Travel", "Music", "Sports", "Food", "DIY", "Entertainment", "Cars", "Games", "Fashion", "Politics"];
 
 const styles = (theme) => ({
     root: {
