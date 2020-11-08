@@ -68,24 +68,31 @@ export default class CheckOutList extends Component {
         <br />
         <br />
         <br />
-        <font  
-          size={7}> CHECKOUTLIST 
-        </font>
+        <Row>
+          <Col md={{size:10, offset:5}}>
+            <font  
+              size={7}> CHECKOUTLIST 
+            </font>
+          </Col>
+        </Row>
         <br />
         <br />
         <br />
         <br />
         
-        <div>
-          <Col>
+        <div  >
+        <Row>
+          <Col md={{size:10, offset:1}}>
           <ItemsTable body = {this.state.myCart}/>
           </Col>
+        </Row>
         </div>
-
-        <div>
-          <Button size="lg" color="primary" onClick={this.sendPayment} >
+        <br />
+        <div align="center" >
+          <Button size="lg" color="primary" r onClick={this.sendPayment} >
             Check and Pay
           </Button>{" "}
+
         </div>
       </div>
     );
@@ -196,7 +203,7 @@ class ItemsTable extends Component {
                 </a>
               </td>
               <td>
-        <big>{good.quantity + "  "}</big>
+        <big>{good.quantity + " "}</big>
                   <Button onClick={() => this.addQuantity(good.name)}  color="info" size="sm">
                       +
                   </Button>
@@ -205,8 +212,16 @@ class ItemsTable extends Component {
                       -
                   </Button>
               </td>
-              <td> $ {good.price}</td>
-              <td> $ {good.price*good.quantity} </td>
+              <td>
+                <h3>
+                 $ {good.price}
+                </h3>
+              </td>
+              <td> 
+                <h3>
+                $ {good.price*good.quantity} 
+                </h3>
+              </td>
               <td>
                   <Button size="sm" color="danger" onClick={() => this.removeCartItem(good.name)}>
                   
@@ -220,7 +235,8 @@ class ItemsTable extends Component {
 
   render() {
       return (
-          <Table className=" table-shopping" responsive>
+        <div>
+          <Table  className=" table-shopping" responsive >
               <thead>
                 <tr>
                     <th className="text-center"> </th>
@@ -240,10 +256,17 @@ class ItemsTable extends Component {
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td>Subtotals: $ {this.state.totalPrice}</td>
+                    <td></td>
+                    <td></td>
                 </tr>
               </tbody>
           </Table>
+          <Row>
+            <Col md={{size:10,offset:5}}>
+      <h1>Your Totals: $ {"   "+ this.state.totalPrice}</h1>
+            </Col>
+          </Row>
+        </div>
       )
   }
 
