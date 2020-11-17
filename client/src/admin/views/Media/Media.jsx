@@ -1,27 +1,23 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from '@material-ui/core/Button';
-import { SnackbarProvider, useSnackbar } from "notistack"
 import Grid from "@material-ui/core/Grid";
-
-import Paper from "@material-ui/core/Paper";
-import Snackbar from "@material-ui/core/Snackbar";
-import Alert from "@material-ui/lab/Alert";
-
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
 // import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from "@material-ui/core/IconButton";
-import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
-
+import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 import FileCopyOutlinedIcon from "@material-ui/icons/FileCopyOutlined";
-
+import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
+import axios from "axios";
+import { SnackbarProvider, useSnackbar } from "notistack";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import DropzoneArea from "../../components/DropzoneArea";
 
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+
+
+
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
