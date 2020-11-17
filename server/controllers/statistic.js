@@ -80,10 +80,12 @@ const updateStatistic = async (req, res) => {
 
     var tmp = await Statistic.findOne(filter);
 
-    var viewN = tmp.viewsNumber;
-    if (!tmp.viewsNumber){
+    var viewN;
+    if (!tmp){
         
         viewN = 1;
+    }else{
+        viewN = tmp.viewsNumber;
     }
     console.log("views number:", viewN);
 
