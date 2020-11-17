@@ -171,7 +171,13 @@ class Store extends Component {
                 />
               </FormGroup> */}
               <FormGroup>
-                <Label for="exampleCheckbox">Category</Label>
+                <Label
+                  className="josefinFont"
+                  style={{ fontSize: "1.5rem" }}
+                  for="exampleCheckbox"
+                >
+                  Category
+                </Label>
                 <div>
                   <CustomInput
                     type="checkbox"
@@ -193,8 +199,15 @@ class Store extends Component {
                   />
                 </div>
               </FormGroup>
+              <br />
               <FormGroup>
-                <Label for="exampleCheckbox">Sorted by</Label>
+                <Label
+                  className="josefinFont"
+                  style={{ fontSize: "1.5rem" }}
+                  for="exampleCheckbox"
+                >
+                  Sorted by
+                </Label>
                 <div>
                   <CustomInput
                     type="radio"
