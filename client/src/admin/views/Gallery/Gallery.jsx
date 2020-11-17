@@ -68,17 +68,17 @@ const categories = [
   },
   {
     name: "Art Crafts",
-    coverImage: "/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    coverImage: "https://kottke.org/plus/misc/images/art-institute-chi-01.jpg",
     subCategories: ["Carpentry", "Ceramics"],
   },
   {
     name: "Painting",
-    coverImage: "/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    coverImage: "https://wallpaperaccess.com/full/764272.jpg",
     subCategories: ["Oil painting", "Sand painting", "Pencil Sketch", "Digital painting"],
   },
   {
     name: "Graphic Design",
-    coverImage: "/api/uploadManage/image/8ab345134aebe787a4b15a70a92ccba8.jpg",
+    coverImage: "https://www.thecreativeissue.com.au/wp-content/uploads/2017/07/Beastman-3-TCI.jpg",
     subCategories: ["1", "2", "3"],
   },
 ]
