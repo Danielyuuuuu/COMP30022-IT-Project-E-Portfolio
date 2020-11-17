@@ -61,5 +61,5 @@
       "version": "4.2.3"
     }
   },
-  "proxy": "https://e-portfolio-website.herokuapp.com:8000"
+  "proxy": "http://e-portfolio-website.herokuapp.com:8000"
 }
