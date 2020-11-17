@@ -367,7 +367,11 @@ class Item extends Component {
       };
     }
     return (
-      <Card body className="store-itemCard">
+      <Card
+        body
+        className="store-itemCard"
+        style={{ backgroundColor: "floralwhite" }}
+      >
         <CardImg
           style={itemStyle}
           onMouseEnter={this._mouseEnter}
