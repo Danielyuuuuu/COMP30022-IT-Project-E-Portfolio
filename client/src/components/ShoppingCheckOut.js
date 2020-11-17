@@ -139,7 +139,7 @@ class ItemsTable extends Component {
     
     this.updateTotal();
 
-    window.location.href = "http://localhost:3000/checkout";
+    window.location.href = "http://e-portfolio-website.herokuapp.com/checkout";
 
   }
   
