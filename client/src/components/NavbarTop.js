@@ -30,25 +30,34 @@ class NavbarTop extends Component {
 
           <Nav className="m-auto" navbar>
             <NavItem>
-              <NavLink style={{ marginRight: "20px" }} href="/">
+              <NavLink
+                style={{ marginRight: "20px", color: "#5f543f" }}
+                href="/"
+              >
                 Portfolio
               </NavLink>
             </NavItem>
             &nbsp;
             <NavItem>
-              <NavLink style={{ marginRight: "20px" }} href="/blog">
+              <NavLink
+                style={{ marginRight: "20px", color: "#5f543f" }}
+                href="/blog"
+              >
                 Blog
               </NavLink>
             </NavItem>
             &nbsp;
             <NavItem>
-              <NavLink style={{ marginRight: "20px" }} href="/store-frontend">
+              <NavLink
+                style={{ marginRight: "20px", color: "#5f543f" }}
+                href="/store-frontend"
+              >
                 Store
               </NavLink>
             </NavItem>
             &nbsp;
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
+              <DropdownToggle nav caret style={{ color: "#5f543f" }}>
                 About
               </DropdownToggle>
               <DropdownMenu right>
