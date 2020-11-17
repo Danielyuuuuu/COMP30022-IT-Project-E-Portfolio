@@ -59,7 +59,7 @@ const getSpecificItems = async (req, res) => {
 
 const addItem = async (req, res) => {
   try {
-    const ware = req.body;
+    const ware = new Item(req.body);
     await ware
       .save()
       .then((ware) => {
