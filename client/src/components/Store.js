@@ -171,36 +171,53 @@ class Store extends Component {
                 />
               </FormGroup> */}
               <FormGroup>
-                <Label for="exampleCheckbox">Category</Label>
+                <Label
+                  className="josefinFont"
+                  style={{ fontSize: "1.5rem" }}
+                  for="exampleCheckbox"
+                >
+                  Category
+                </Label>
                 <div>
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox11"
                     label="Painting"
+                    className="josefinFont"
                     onClick={() => this.updateTags("Painting")}
                   />
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox12"
                     label="Photography"
+                    className="josefinFont"
                     onClick={() => this.updateTags("Photography")}
                   />
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox121"
                     label="Art Product"
+                    className="josefinFont"
                     onClick={() => this.updateTags("Art Product")}
                   />
                 </div>
               </FormGroup>
+              <br />
               <FormGroup>
-                <Label for="exampleCheckbox">Sorted by</Label>
+                <Label
+                  className="josefinFont"
+                  style={{ fontSize: "1.5rem" }}
+                  for="exampleCheckbox"
+                >
+                  Sorted by
+                </Label>
                 <div>
                   <CustomInput
                     type="radio"
                     id="exampleCustomRadio"
                     name="customRadio"
                     label="Most Popular"
+                    className="josefinFont"
                     onClick={() => this.updateSortFilter("popular")}
                   />
                   <CustomInput
@@ -208,11 +225,17 @@ class Store extends Component {
                     id="exampleCustomRadio2"
                     name="customRadio"
                     label="Latest"
+                    className="josefinFont"
                     onClick={() => this.updateSortFilter("latest")}
                   />
                 </div>
               </FormGroup>
-              <Button onClick={(e) => this.filterStoreItems(e)}>Sort Me</Button>
+              <Button
+                style={{ backgroundColor: "#c19575", borderColor: "white" }}
+                onClick={(e) => this.filterStoreItems(e)}
+              >
+                Sort Me
+              </Button>
             </Form>
             {/* <StoreCategoryList /> */}
           </div>
@@ -344,7 +367,11 @@ class Item extends Component {
       };
     }
     return (
-      <Card body className="store-itemCard">
+      <Card
+        body
+        className="store-itemCard"
+        style={{ backgroundColor: "floralwhite" }}
+      >
         <CardImg
           style={itemStyle}
           onMouseEnter={this._mouseEnter}
@@ -354,9 +381,18 @@ class Item extends Component {
           alt={this.props.data.name}
         />
         <br />
-        <CardTitle>{this.props.data.itemname} </CardTitle>
-        <CardText>{this.props.data.description}</CardText>
-        <CardTitle>${this.props.data.price}</CardTitle>
+        <CardTitle
+          className="josefinFont"
+          style={{ fontSize: "1.3rem", fontWeight: "bold" }}
+        >
+          {this.props.data.itemname}{" "}
+        </CardTitle>
+        <CardText className="josefinFont">
+          {this.props.data.description}
+        </CardText>
+        <CardTitle style={{ fontWeight: "bold" }}>
+          ${this.props.data.price}
+        </CardTitle>
 
         {/* <Button
           onClick={() =>

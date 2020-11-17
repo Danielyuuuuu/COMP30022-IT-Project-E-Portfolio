@@ -8,8 +8,15 @@ import {
 } from "reactstrap";
 import Card from "@material-ui/core/Card";
 
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import Chip from '@material-ui/core/Chip';
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import Chip from "@material-ui/core/Chip";
+
+
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+
+let marked = require("marked");
+
 
 class BlogPost extends Component {
   constructor(props) {
@@ -48,19 +55,25 @@ class BlogPost extends Component {
                 <CardBody>
                   <CardTitle>
                     <a href={"/individualpost/" + blogPost._id}>
-                      <h3>{blogPost.title}</h3>
+                      <h3 className="josefinFont" style={{ fontSize: "2rem" }}>
+                        {blogPost.title}
+                      </h3>
                     </a>
                   </CardTitle>
                   <CardText>
+
                   {blogPost.content.replaceAll("#","").split(" ").splice(0, 80).join(" ") + "..."}
+
                   </CardText>
                   <div className="flexDisplay">
                     {blogPost.hashtags.map((hashtag) => {
                       return (
                         <div style={{ marginRight: 3 }}>
                           <Chip
+
                             icon={<LocalOfferIcon />} 
                             label={hashtag} 
+
                           />
                         </div>
                       );

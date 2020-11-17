@@ -17,6 +17,8 @@ class NavbarTop extends Component {
     return (
       <div>
         <Navbar
+          className="josefinFont"
+          style={{ fontSize: "1.8rem", height: "55px" }}
           className="header"
           fixed="top"
           expand="lg"
@@ -28,17 +30,34 @@ class NavbarTop extends Component {
 
           <Nav className="m-auto" navbar>
             <NavItem>
-              <NavLink href="/">Portfolio</NavLink>
+              <NavLink
+                style={{ marginRight: "20px", color: "#5f543f" }}
+                href="/"
+              >
+                Portfolio
+              </NavLink>
             </NavItem>
+            &nbsp;
             <NavItem>
-              <NavLink href="/blog">Blog</NavLink>
+              <NavLink
+                style={{ marginRight: "20px", color: "#5f543f" }}
+                href="/blog"
+              >
+                Blog
+              </NavLink>
             </NavItem>
+            &nbsp;
             <NavItem>
-              <NavLink href="/store-frontend">Store</NavLink>
+              <NavLink
+                style={{ marginRight: "20px", color: "#5f543f" }}
+                href="/store-frontend"
+              >
+                Store
+              </NavLink>
             </NavItem>
-
+            &nbsp;
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
+              <DropdownToggle nav caret style={{ color: "#5f543f" }}>
                 About
               </DropdownToggle>
               <DropdownMenu right>
