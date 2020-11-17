@@ -354,9 +354,16 @@ class Item extends Component {
           alt={this.props.data.name}
         />
         <br />
-        <CardTitle>{this.props.data.itemname} </CardTitle>
+        <CardTitle
+          className="josefinFont"
+          style={{ fontSize: "1.3rem", fontWeight: "bold" }}
+        >
+          {this.props.data.itemname}{" "}
+        </CardTitle>
         <CardText>{this.props.data.description}</CardText>
-        <CardTitle>${this.props.data.price}</CardTitle>
+        <CardTitle style={{ fontWeight: "bold" }}>
+          ${this.props.data.price}
+        </CardTitle>
 
         {/* <Button
           onClick={() =>
