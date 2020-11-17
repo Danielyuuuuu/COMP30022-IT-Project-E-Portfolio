@@ -10,11 +10,11 @@ import {
 } from "reactstrap";
 import Card from "@material-ui/core/Card";
 
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import Chip from '@material-ui/core/Chip';
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import Chip from "@material-ui/core/Chip";
 
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 let marked = require("marked");
 
@@ -53,13 +53,19 @@ class BlogPost extends Component {
                   {/* <EllipsisButton /> */}
                   <CardTitle>
                     <a href={"/individualpost/" + blogPost._id}>
-                      <h3>{blogPost.title}</h3>
+                      <h3 className="josefinFont" style={{ fontSize: "2rem" }}>
+                        {blogPost.title}
+                      </h3>
                     </a>
                   </CardTitle>
                   <CardText>
-                  {blogPost.content.replaceAll("#","").split(" ").splice(0, 80).join(" ") + "..."}
-                  {/* {blogPost.content.replaceAll("#","")} */}
-                  {/* <Grid container wrap="nowrap" spacing={2}>
+                    {blogPost.content
+                      .replaceAll("#", "")
+                      .split(" ")
+                      .splice(0, 80)
+                      .join(" ") + "..."}
+                    {/* {blogPost.content.replaceAll("#","")} */}
+                    {/* <Grid container wrap="nowrap" spacing={2}>
                     <Grid item xs zeroMinWidth>
                       <Typography noWrap>{blogPost.content.replaceAll("#","")}</Typography>
                     </Grid>
@@ -70,8 +76,8 @@ class BlogPost extends Component {
                       return (
                         <div style={{ marginRight: 3 }}>
                           <Chip
-                            icon={<LocalOfferIcon />} 
-                            label={hashtag} 
+                            icon={<LocalOfferIcon />}
+                            label={hashtag}
                             // style = {{backgroundColor: "#5792ff"}}
                           />
                         </div>
