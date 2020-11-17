@@ -28,8 +28,8 @@ const getPay = async(req,res) => {
             "payment_method": "paypal"
         },
         "redirect_urls": {
-            "return_url": "/api/paypal/success",
-            "cancel_url": "/api/paypal/cancel"
+            "return_url": "http://e-portfolio-website.herokuapp.com/api/paypal/success",
+            "cancel_url": "http://e-portfolio-website.herokuapp.com/api/paypal/cancel"
         },
         "transactions": [{
             "item_list": {
