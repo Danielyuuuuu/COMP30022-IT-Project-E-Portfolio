@@ -1,35 +1,32 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
 import Dialog from "@material-ui/core/Dialog";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import MuiDialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from '@material-ui/core/DialogContentText';
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
-
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
+// import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
+// import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
-
-import Autocomplete from "@material-ui/lab/Autocomplete";
-
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import Axios from "axios";
-
+import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import { SnackbarProvider, useSnackbar } from "notistack";
-import { useHistory } from 'react-router-dom';
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import Axios from "axios";
+import { SnackbarProvider } from "notistack";
+import React from "react";
+
+
+
+
 
 
 const categories = ["Art Product", "Photography", "Painting"];
@@ -92,8 +89,6 @@ function StoreDialog(propss) {
   const classes = imgStyles();
 
   const props = propss.props;
-  const { enqueueSnackbar } = useSnackbar();
-
   const [itemname, setItemName] = React.useState(props.item.itemname);
   const [category, setCategory] = React.useState(props.item.tag);
   const [categoryInput, setCategoryInput] = React.useState(props.item.tag);
@@ -116,16 +111,13 @@ function StoreDialog(propss) {
   const handleCloseJ = () => {
     setOpenJ(false);
   };
-
- 
-  const history = useHistory();
   
   const handleSubmit = () => {
     console.log("before post......");
     const data = {
-      name: itemname,
+      itemname: itemname,
       description: description,
-      filename: imagename,
+      imagename: imagename,
       stocks: stocks,
       price: price,
       tag: category,
@@ -153,7 +145,7 @@ function StoreDialog(propss) {
           "/api/store/update/" + props.item._id,
           data
         )
-          .then(console.log("edit item......"))
+          .then(console.log("edit item......", data))
           .then((res) => {
             console.log(res);
             props.callBackRefresh();
@@ -203,6 +195,9 @@ function StoreDialog(propss) {
                     id="standard-required"
                     label="Stock"
                     type="number"
+                    onInput = {(e) =>{
+                      e.target.value = Math.max(0, parseInt(e.target.value))
+                    }}
                     onChange={(event) => setStocks(event.target.value)}
                     // defaultValue={props.item.price}
                     value={stocks}
@@ -214,6 +209,9 @@ function StoreDialog(propss) {
                     id="standard-required"
                     label="Price"
                     value={price}
+                    onInput = {(e) =>{
+                      e.target.value = Math.max(0, parseInt(e.target.value))
+                    }}
                     type="number"
                     onChange={(event) => setPrice(event.target.value)}
                     // defaultValue={props.item.price}
@@ -226,6 +224,9 @@ function StoreDialog(propss) {
                     label="Views"
                     value={views}
                     type="number"
+                    onInput = {(e) =>{
+                      e.target.value = Math.max(0, parseInt(e.target.value))
+                    }}
                     onChange={(event) => setViews(event.target.value)}
                     // defaultValue={props.item.views}
                     onClick={handleClickOpenJ}

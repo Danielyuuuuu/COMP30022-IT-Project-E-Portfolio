@@ -27,11 +27,6 @@ const blogSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Comment",
   },
-  // template for comments block
-  // comments: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Comment',
-  // }],
   hashtags: [
     {
       type: String,

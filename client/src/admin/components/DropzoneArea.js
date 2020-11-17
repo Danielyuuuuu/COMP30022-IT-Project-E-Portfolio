@@ -1,9 +1,9 @@
-import React, { Component, useState } from "react";
-import { DropzoneDialog } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
-
-import { useHistory } from "react-router-dom";
 import Axios from "axios";
+import { DropzoneDialog } from "material-ui-dropzone";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
 
 export default function DropZone(props) {
   const [open, setOpen] = useState(false);
@@ -52,6 +52,7 @@ export default function DropZone(props) {
         onSave={(e) => handleSave(e)}
         acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
         showPreviews={true}
+        filesLimit={10}
         maxFileSize={5000000}
         onClose={() => handleClose()}
       />

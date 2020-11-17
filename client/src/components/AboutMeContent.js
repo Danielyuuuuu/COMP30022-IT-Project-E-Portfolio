@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import { Media } from "reactstrap";
 
+let marked = require("marked");
+
 export default class AboutMe extends Component {
   constructor(props){
     super(props);
@@ -33,7 +35,7 @@ export default class AboutMe extends Component {
             marginTop: 15,
             marginBottom: 5
           }}>
-          <h3>About Me</h3>
+          <h1>About Me</h1>
         </div>
         <div>
           <img
@@ -44,9 +46,10 @@ export default class AboutMe extends Component {
             style={{ float: "left", margin: 8 }}
           />
         </div>
-        <div>
+        {/* <div>
           {this.state.content}
-        </div>
+        </div> */}
+        <div dangerouslySetInnerHTML={{ __html: marked(this.state.content) }}/>
       </div>
     );
   }

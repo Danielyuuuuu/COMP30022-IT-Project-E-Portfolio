@@ -30,8 +30,11 @@ import {
     componentDidMount(){
         // Start counting when the page is loaded
         this.timeoutHandle = setTimeout(()=>{
-            window.location.href= "http://localhost:3000";
+            localStorage.removeItem("cart");
+            window.location.href= "http://e-portfolio-website.herokuapp.com";
         }, 5000);
+
+      
    }
 
    componentWillUnmount(){

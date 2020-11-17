@@ -1,22 +1,21 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
+import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-
-import axios from "axios";
-
+import CloseIcon from "@material-ui/icons/Close";
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-
-import { useHistory } from 'react-router-dom';
-import { SelectedPictures } from "../../components/MediaOptionBar/SharedVar";
-import MediaOptionBar from "../../components/MediaOptionBar/MediaOptionBar";
+import axios from "axios";
 import { SnackbarProvider, useSnackbar } from "notistack";
+import React from "react";
+import MediaOptionBar from "../../components/MediaOptionBar/MediaOptionBar";
+import { SelectedPictures } from "../../components/MediaOptionBar/SharedVar";
+
+
+
 
 const testData = [
   {
@@ -102,9 +101,6 @@ function GalleryDialog(propss) {
     setPictures(defaultImages);
     setOpen(false);
   };
-
-  const history = useHistory();
-
   const handleSubmit = () => {
     console.log("before post......");
     const data = {

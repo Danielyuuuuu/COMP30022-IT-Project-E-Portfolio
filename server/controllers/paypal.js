@@ -11,10 +11,6 @@ paypal.configure({
 
 
 
-const getPayPage = async(req,res) =>{
-    res.render('paypalPage');
-}
-
 const getPay = async(req,res) => {
 
     var totalAmount = 0;
@@ -79,9 +75,7 @@ const getSuccessPage = async(req,res) => {
         } else {
             console.log("Get Payment Response")
             
-            
-            
-            res.redirect('http://localhost:3000/success')
+            res.redirect('http://e-portfolio-website.herokuapp.com/success')
             
     
         }
@@ -91,12 +85,11 @@ const getSuccessPage = async(req,res) => {
 }
 
 const getCancelPage = async(req,res) => {
-    res.redirect('http://localhost:3000/cancel');
+    res.redirect('http://e-portfolio-website.herokuapp.com/cancel');
 }
 
 
 module.exports = {
-    getPayPage,
     getPay,
     getSuccessPage,
     getCancelPage,
