@@ -31,6 +31,9 @@ class BlogPost extends Component {
       .then((response) => response.json())
       .then((res) => {
         this.setState({ blogPosts: res });
+        this.setState({
+          blogPosts: this.state.blogPosts.filter((blogPost) => blogPost.title !== "About Me"),
+        })
       });
   }
 
