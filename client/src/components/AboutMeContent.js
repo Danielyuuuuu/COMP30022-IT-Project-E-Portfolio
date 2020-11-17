@@ -35,7 +35,7 @@ export default class AboutMe extends Component {
             marginTop: 15,
             marginBottom: 5
           }}>
-          <h3>About Me</h3>
+          <h1>About Me</h1>
         </div>
         <div>
           <img
