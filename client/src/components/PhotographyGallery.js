@@ -49,6 +49,7 @@ function CenteredTabs(props) {
         textColor="primary"
         centered
       >
+        <Tab label="ALL" onClick={() => props.switchToCatGallery()} />
         <Tab
           label="Architecture"
           onClick={() => props.switchToSubCatGallery("Architecture")}
@@ -69,7 +70,6 @@ function CenteredTabs(props) {
           label="Portrait"
           onClick={() => props.switchToSubCatGallery("Portrait")}
         />
-        <Tab label="ALL" onClick={() => props.switchToCatGallery()} />
       </Tabs>
     </Paper>
   );
