@@ -48,7 +48,7 @@ const dropDownMenuStyle = {
 
 const checkOutButtonStyle = {
   margin: "3% 27% 3% 27%",
-  backgroundColor: "#21c4b6",
+  backgroundColor: "#5f543f",
   borderColor: "white",
 };
 
@@ -70,7 +70,7 @@ class ShoppingCart extends React.Component {
     return (
       <UncontrolledDropdown direction="down" style={shoppingCartStyle}>
         <DropdownToggle
-          style={{ backgroundColor: "#21c4b6", borderColor: "white" }}
+          style={{ backgroundColor: "#c19575", borderColor: "white" }}
         >
           Shopping
           <ShoppingCartIcon />

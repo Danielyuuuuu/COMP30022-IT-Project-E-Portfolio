@@ -231,7 +231,7 @@ class Store extends Component {
                 </div>
               </FormGroup>
               <Button
-                style={{ backgroundColor: "#21c4b6", borderColor: "white" }}
+                style={{ backgroundColor: "#c19575", borderColor: "white" }}
                 onClick={(e) => this.filterStoreItems(e)}
               >
                 Sort Me
