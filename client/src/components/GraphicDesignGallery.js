@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import "../App.css";
+import Footer from "./Footer";
 
 import { Nav, NavItem, NavLink, Button } from "reactstrap";
 
@@ -27,9 +28,14 @@ class GraphicDesignNavBar extends Component {
     return (
       <div>
         <br />
-        <h1 style={descriptionStyle}>Graphic Design</h1>
+        <h1 className="josefinFont" style={descriptionStyle}>
+          Graphic Design
+        </h1>
 
-        <p style={{ margin: "30px 400px 10px 400px" }}>
+        <p
+          className="yanoneFont"
+          style={{ margin: "30px 430px 10px 430px", textAlign: "center" }}
+        >
           Graphic designers create visual concepts, using computer software or
           by hand, to communicate ideas that inspire, inform, and captivate
           consumers. They develop the overall layout and production design for
@@ -162,6 +168,7 @@ class GraphicDesignGallery extends Component {
           />
         </div>
         {this.state.data !== null && <GraphicDesign data={this.state.data} />}
+        <Footer />
       </div>
     );
   }

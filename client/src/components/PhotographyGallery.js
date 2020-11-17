@@ -7,6 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import Footer from "./Footer";
 
 const url = "/api/uploadManage/image/";
 
@@ -49,6 +50,7 @@ function CenteredTabs(props) {
         textColor="primary"
         centered
       >
+        <Tab label="ALL" onClick={() => props.switchToCatGallery()} />
         <Tab
           label="Architecture"
           onClick={() => props.switchToSubCatGallery("Architecture")}
@@ -69,7 +71,6 @@ function CenteredTabs(props) {
           label="Portrait"
           onClick={() => props.switchToSubCatGallery("Portrait")}
         />
-        <Tab label="ALL" onClick={() => props.switchToCatGallery()} />
       </Tabs>
     </Paper>
   );
@@ -80,9 +81,14 @@ class PhotoNavBar extends Component {
     return (
       <div>
         <br />
-        <h1 style={descriptionStyle}>Photography</h1>
+        <h1 className="josefinFont" style={descriptionStyle}>
+          Photography
+        </h1>
 
-        <p style={{ margin: "30px 400px 10px 400px" }}>
+        <p
+          className="yanoneFont"
+          style={{ margin: "30px 430px 10px 430px", textAlign: "center" }}
+        >
           Hi, it’s nice to meet you! My name is Amy Touchette. I’m a fine-art
           photographer based in Brooklyn, and I’ve been photographing for almost
           20 years. I specialize in making portraits of strangers on the street
@@ -240,6 +246,7 @@ class PhotographyGallery extends Component {
           />
         </div>
         {this.state.data !== null && <Photography data={this.state.data} />}
+        <Footer />
       </div>
     );
   }
