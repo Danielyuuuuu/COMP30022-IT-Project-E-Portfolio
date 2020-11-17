@@ -90,11 +90,23 @@ class ShoppingCart extends React.Component {
             ))}
           </ListGroup>
 
-          <CheckOutModal
+          <div>
+            {this.props.cart.length !== 0 ? (
+              <CheckOutModal
+                buttonLabel="Check Out"
+                className=""
+                cart={this.props.cart}
+              />
+            ) : (
+              <Alert>Please add items into the cart.</Alert>
+            )}
+          </div>
+
+          {/* <CheckOutModal
             buttonLabel="Check Out"
             className=""
             cart={this.props.cart}
-          />
+          /> */}
         </DropdownMenu>
       </UncontrolledDropdown>
     );
