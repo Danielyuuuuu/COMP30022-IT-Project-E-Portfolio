@@ -90,7 +90,6 @@ const getCancelPage = async(req,res) => {
 
 
 module.exports = {
-    getPayPage,
     getPay,
     getSuccessPage,
     getCancelPage,
