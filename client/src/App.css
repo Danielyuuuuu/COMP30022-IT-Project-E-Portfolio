@@ -4,16 +4,19 @@
     url("/BlackberryJamPersonalUse-rXOB.tff") format("truetype");
 }
 
+/* for logo */
 .blackberryFont {
   font-family: "Blackberry" !important;
   font-size: large;
 }
 
+/* for title */
 .josefinFont {
   font-family: "Josefin Sans", sans-serif;
-  font-size: xx-large;
+  /* font-size: large; */
 }
 
+/* for paragraph */
 .yanoneFont {
   font-family: "Yanone Kaffeesatz", sans-serif;
   font-size: xx-large;
