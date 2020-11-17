@@ -84,7 +84,10 @@ class PhotoNavBar extends Component {
           Photography
         </h1>
 
-        <p className="yanoneFont" style={{ margin: "30px 400px 10px 400px" }}>
+        <p
+          className="yanoneFont"
+          style={{ margin: "30px 430px 10px 430px", textAlign: "center" }}
+        >
           Hi, it’s nice to meet you! My name is Amy Touchette. I’m a fine-art
           photographer based in Brooklyn, and I’ve been photographing for almost
           20 years. I specialize in making portraits of strangers on the street
