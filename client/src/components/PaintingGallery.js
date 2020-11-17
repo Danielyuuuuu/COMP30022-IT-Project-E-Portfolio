@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import "../App.css";
+import Footer from "./Footer";
 
 import { useState } from "react";
 import { Nav, NavItem, NavLink, Button } from "reactstrap";
@@ -28,9 +29,14 @@ class PaintNavBar extends Component {
     return (
       <div>
         <br />
-        <h1 style={descriptionStyle}>Painting</h1>
+        <h1 className="josefinFont" style={descriptionStyle}>
+          Painting
+        </h1>
 
-        <p style={{ margin: "30px 400px 10px 400px" }}>
+        <p
+          className="yanoneFont"
+          style={{ margin: "30px 430px 10px 430px", textAlign: "center" }}
+        >
           Painters apply products like paint, wallpaper, and other finishes on
           walls located both indoors and outdoors. Painter tasks include
           discussing job requirements with clients, preparing the job site,
@@ -175,6 +181,7 @@ class PaintingGallery extends Component {
           />
         </div>
         {this.state.data !== null && <Paintings data={this.state.data} />}
+        <Footer />
       </div>
     );
   }
