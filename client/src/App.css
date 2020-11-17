@@ -1,3 +1,24 @@
+@font-face {
+  font-family: "Blackberry";
+  src: local("Blackberry"),
+    url("/BlackberryJamPersonalUse-rXOB.tff") format("truetype");
+}
+
+.blackberryFont {
+  font-family: "Blackberry" !important;
+  font-size: large;
+}
+
+.josefinFont {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: xx-large;
+}
+
+.yanoneFont {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-size: xx-large;
+}
+
 body {
   background-color: #f8f8f8;
   color: #5c6e85;
@@ -119,6 +140,7 @@ p {
 
 .header {
   opacity: 0.8;
+  font-family: Blackberry;
 }
 
 .categories {
