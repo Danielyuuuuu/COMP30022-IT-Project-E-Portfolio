@@ -183,18 +183,21 @@ class Store extends Component {
                     type="checkbox"
                     id="exampleCustomCheckbox11"
                     label="Painting"
+                    className="josefinFont"
                     onClick={() => this.updateTags("Painting")}
                   />
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox12"
                     label="Photography"
+                    className="josefinFont"
                     onClick={() => this.updateTags("Photography")}
                   />
                   <CustomInput
                     type="checkbox"
                     id="exampleCustomCheckbox121"
                     label="Art Product"
+                    className="josefinFont"
                     onClick={() => this.updateTags("Art Product")}
                   />
                 </div>
@@ -214,6 +217,7 @@ class Store extends Component {
                     id="exampleCustomRadio"
                     name="customRadio"
                     label="Most Popular"
+                    className="josefinFont"
                     onClick={() => this.updateSortFilter("popular")}
                   />
                   <CustomInput
@@ -221,11 +225,17 @@ class Store extends Component {
                     id="exampleCustomRadio2"
                     name="customRadio"
                     label="Latest"
+                    className="josefinFont"
                     onClick={() => this.updateSortFilter("latest")}
                   />
                 </div>
               </FormGroup>
-              <Button onClick={(e) => this.filterStoreItems(e)}>Sort Me</Button>
+              <Button
+                style={{ backgroundColor: "#21c4b6", borderColor: "white" }}
+                onClick={(e) => this.filterStoreItems(e)}
+              >
+                Sort Me
+              </Button>
             </Form>
             {/* <StoreCategoryList /> */}
           </div>
@@ -373,7 +383,9 @@ class Item extends Component {
         >
           {this.props.data.itemname}{" "}
         </CardTitle>
-        <CardText>{this.props.data.description}</CardText>
+        <CardText className="josefinFont">
+          {this.props.data.description}
+        </CardText>
         <CardTitle style={{ fontWeight: "bold" }}>
           ${this.props.data.price}
         </CardTitle>
