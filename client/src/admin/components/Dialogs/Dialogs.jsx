@@ -121,9 +121,9 @@ function StoreDialog(propss) {
   const handleSubmit = () => {
     console.log("before post......");
     const data = {
-      name: itemname,
+      itemname: itemname,
       description: description,
-      filename: imagename,
+      imagename: imagename,
       stocks: stocks,
       price: price,
       tag: category,
@@ -151,7 +151,7 @@ function StoreDialog(propss) {
           "/api/store/update/" + props.item._id,
           data
         )
-          .then(console.log("edit item......"))
+          .then(console.log("edit item......", data))
           .then((res) => {
             console.log(res);
             props.callBackRefresh();
