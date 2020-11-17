@@ -1,7 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
@@ -16,8 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { Button, Container } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core";
 import Dialogs from "../../components/Dialogs/Dialogs";
 
 import Card from "@material-ui/core/Card";
@@ -48,7 +46,6 @@ const useRowStyles = makeStyles({
 
 function Row(props) {
   
-  const history = useHistory();
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
@@ -133,6 +130,18 @@ function Row(props) {
         <TableCell align="right">{row.price}</TableCell>
         <TableCell align="right">{row.views}</TableCell>
         <TableCell align="right">
+        <Dialogs
+            mode={"Edit"}
+            variant="contained"
+            color="primary"
+            item={row}
+            sendNotification={notification}
+            callBackRefresh={callBack}
+          ></Dialogs>
+          
+        </TableCell>
+        <TableCell align="right">
+          {/* {row.Options}  */}
           <Button
             variant="contained"
             color="secondary"
@@ -142,17 +151,6 @@ function Row(props) {
           >
             Delete
           </Button>
-        </TableCell>
-        <TableCell align="right">
-          {/* {row.Options}  */}
-          <Dialogs
-            mode={"Edit"}
-            variant="contained"
-            color="primary"
-            item={row}
-            sendNotification={notification}
-            callBackRefresh={callBack}
-          ></Dialogs>
         </TableCell>
       </TableRow>
       <TableRow>
