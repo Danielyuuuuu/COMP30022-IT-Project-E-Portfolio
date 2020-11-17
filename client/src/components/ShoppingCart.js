@@ -98,7 +98,7 @@ class ShoppingCart extends React.Component {
                 cart={this.props.cart}
               />
             ) : (
-              <Alert>Empty</Alert>
+              <Alert>Please add items into the cart.</Alert>
             )}
           </div>
 
