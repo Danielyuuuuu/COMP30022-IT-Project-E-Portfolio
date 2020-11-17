@@ -50,5 +50,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://e-portfolio-website.herokuapp.com"
+  "proxy": "http://e-portfolio-website.herokuapp.com:8000"
 }
