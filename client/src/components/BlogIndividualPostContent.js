@@ -5,7 +5,6 @@ import {
   CardTitle,
   CardText,
   CardBody,
-  Badge,
 } from "reactstrap";
 import BlogComments from "./BlogComments";
 import axios from "axios";
@@ -114,8 +113,6 @@ export default class PostContent extends Component {
         <CardImg top width="100%" src={this.state.image} alt="Image" />
         <CardBody>
           <CardText><div dangerouslySetInnerHTML={{ __html: marked(this.state.content) }}/></CardText>
-          {/* <CardText dangerouslySetInnerHTML={{ __html: marked(this.state.content) }}></CardText> */}
-          {/* <CardText>{this.state.content}</CardText> */}
           <div className="flexDisplay ">
             {this.state.hashtags.map((hashtag) => {
               return (

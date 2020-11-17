@@ -5,6 +5,7 @@ import Axios from "axios";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import ErrorNotice from "../misc/ErrorNotice";
 import { Header } from "semantic-ui-react";
+
 export default class BlogComments extends Component {
   constructor(props) {
     super(props);
@@ -137,7 +138,6 @@ export default class BlogComments extends Component {
                         <div>{comment.favours} Faves</div>
                         {this.state.token ? (
                           <div>
-                            {/* <p>&nbsp; &nbsp;</p> */}
                             <button
                               className="deleteButton"
                               onClick={() => this.handleDelete(comment._id)}
