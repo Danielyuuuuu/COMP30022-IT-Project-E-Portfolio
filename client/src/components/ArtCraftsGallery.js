@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NavbarTop from "./NavbarTop";
 import "../App.css";
+import Footer from "./Footer";
 
 import { Nav, NavItem, NavLink, Button } from "reactstrap";
 
@@ -27,9 +28,14 @@ class ArtGraftNavBar extends Component {
     return (
       <div>
         <br />
-        <h1 style={descriptionStyle}>Art Crafts</h1>
+        <h1 className="josefinFont" style={descriptionStyle}>
+          Art Crafts
+        </h1>
 
-        <p style={{ margin: "30px 400px 10px 400px" }}>
+        <p
+          className="yanoneFont"
+          style={{ margin: "30px 430px 10px 430px", textAlign: "center" }}
+        >
           Craft artists create handmade objects, such as pottery, glassware,
           textiles, and other objects that are designed to be functional. Fine
           artists, including painters, sculptors, and illustrators, create
@@ -152,6 +158,7 @@ class ArtGraftsGallery extends Component {
           />
         </div>
         {this.state.data !== null && <ArtGrafts data={this.state.data} />}
+        <Footer />
       </div>
     );
   }

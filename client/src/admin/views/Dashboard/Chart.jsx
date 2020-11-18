@@ -1,8 +1,6 @@
 /* eslint-disable react/no-multi-comp */
 import React, { PureComponent } from 'react';
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-} from 'recharts';
+import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 
 class CustomizedLabel extends PureComponent {
   render() {

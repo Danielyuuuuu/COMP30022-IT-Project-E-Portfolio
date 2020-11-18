@@ -23,7 +23,13 @@ const Example = (props) => {
             src="https://www.business.com/images/content/5ca/3d01e5a215e8a458b690f/0-800-"
             alt="Card image cap"
           />
-          <CardFooter className="text-center">Photography</CardFooter>
+          <CardFooter
+            className="josefinFont"
+            style={{ fontSize: "1.3rem", fontWeight: "bold" }}
+            className="text-center"
+          >
+            Photography
+          </CardFooter>
         </CardLink>
       </Card>
 
@@ -34,7 +40,13 @@ const Example = (props) => {
             src="https://kottke.org/plus/misc/images/art-institute-chi-01.jpg"
             alt="Card image cap"
           />
-          <CardFooter className="text-center">Art Crafts</CardFooter>
+          <CardFooter
+            className="josefinFont"
+            style={{ fontSize: "1.3rem", fontWeight: "bold" }}
+            className="text-center"
+          >
+            Art Crafts
+          </CardFooter>
         </CardLink>
       </Card>
 
@@ -47,7 +59,13 @@ const Example = (props) => {
 
             alt="Card image cap"
           />
-          <CardFooter className="text-center">Painting</CardFooter>
+          <CardFooter
+            className="josefinFont"
+            style={{ fontSize: "1.3rem", fontWeight: "bold" }}
+            className="text-center"
+          >
+            Painting
+          </CardFooter>
         </CardLink>
       </Card>
 
@@ -58,7 +76,13 @@ const Example = (props) => {
             src="https://www.thecreativeissue.com.au/wp-content/uploads/2017/07/Beastman-3-TCI.jpg"
             alt="Card image cap"
           />
-          <CardFooter className="text-center">Graphic Design</CardFooter>
+          <CardFooter
+            className="josefinFont"
+            style={{ fontSize: "1.3rem", fontWeight: "bold" }}
+            className="text-center"
+          >
+            Graphic Design
+          </CardFooter>
         </CardLink>
       </Card>
     </div>

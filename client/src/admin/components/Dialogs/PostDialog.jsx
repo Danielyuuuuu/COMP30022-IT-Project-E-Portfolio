@@ -1,26 +1,21 @@
-import React from "react";
-import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import DialogContentText from '@material-ui/core/DialogContentText';
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
-
+import IconButton from "@material-ui/core/IconButton";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-import { makeStyles } from "@material-ui/core/styles";
-
+import Typography from "@material-ui/core/Typography";
+import CloseIcon from "@material-ui/icons/Close";
+import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Axios from "axios";
+import React from "react";
 
-import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
-import Paper from '@material-ui/core/Paper';
-import { useHistory } from 'react-router-dom';
-import { SnackbarProvider, useSnackbar } from "notistack";
+
+
 
 let marked = require("marked");
 
@@ -105,7 +100,6 @@ const Markdown = (props) => {
 export default function PostDialog(props) {
 
     const [open, setOpen] = React.useState(false);
-    const [openJ, setOpenJ] = React.useState(false);
     const classes = imgStyles();
 
     const [markdown, setMarkDown] = React.useState(props.blog.content);

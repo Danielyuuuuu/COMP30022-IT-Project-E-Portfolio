@@ -131,9 +131,9 @@ describe("Store Controller Test", () => {
 
   it('Should successfully create an new item entry', async () => {
     const item = {
-      name: "item4",
+      itemname: "item4",
       description: "for testing",
-      filename: "item4.jpg",
+      imagename: "item4.jpg",
       stocks: 5,
       price: 10,
       tag: "drawing",
@@ -151,10 +151,10 @@ describe("Store Controller Test", () => {
         expect(body.success).toBe(true);
         expect(body).toHaveProperty('ware');
         // rename some of the key fields in JSON passed from res to allow easy comparing
-        body.ware.name =  body.ware.itemname;
-        delete body.ware.itemname;
-        body.ware.filename = body.ware.imagename;
-        delete body.ware.imagename;
+        // body.ware.name =  body.ware.itemname;
+        // delete body.ware.itemname;
+        // body.ware.filename = body.ware.imagename;
+        // delete body.ware.imagename;
         expect(body.ware).toMatchObject(item);
       });
   });

@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import "../App.css";
+
 import {
   CardImg,
   CardTitle,
   CardText,
   CardBody,
 } from "reactstrap";
+
 import BlogComments from "./BlogComments";
 import axios from "axios";
 
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import Chip from '@material-ui/core/Chip';
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import Chip from "@material-ui/core/Chip";
 
 let marked = require("marked");
 
@@ -108,25 +110,26 @@ export default class PostContent extends Component {
             alignItems: "center",
           }}
         >
-          <h3>{this.state.title}</h3>
+          <h3 className="josefinFont" style={{ fontSize: "3rem" }}>
+            {this.state.title}
+          </h3>
         </CardTitle>
         <CardImg top width="100%" src={this.state.image} alt="Image" />
         <CardBody>
+
           <CardText><div dangerouslySetInnerHTML={{ __html: marked(this.state.content) }}/></CardText>
+
           <div className="flexDisplay ">
             {this.state.hashtags.map((hashtag) => {
               return (
                 <div style={{ marginRight: 3 }}>
-                  <Chip
-                    icon={<LocalOfferIcon />} 
-                    label={hashtag} 
-                  />
+                  <Chip icon={<LocalOfferIcon />} label={hashtag} />
                 </div>
               );
             })}
           </div>
         </CardBody>
-        <BlogComments blogId={this.props.blogId}/>
+        <BlogComments blogId={this.props.blogId} />
       </div>
     );
   }

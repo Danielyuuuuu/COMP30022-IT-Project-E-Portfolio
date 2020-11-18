@@ -19,14 +19,14 @@
 // }
 
 
-import React from "react";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
 import Collapse from "@material-ui/core/Collapse";
 import IconButton from "@material-ui/core/IconButton";
+import Paper from "@material-ui/core/Paper";
+import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -34,16 +34,12 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import { Button, Container } from "@material-ui/core";
+import React from "react";
 import { useHistory } from "react-router-dom";
 import Dialogs from "../../components/Dialogs/GalleryDialog";
 
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from "@material-ui/core/CardActionArea";
 
 
 
@@ -170,22 +166,22 @@ function Row(props) {
 }
 
 export default function Gallery() {
-  const [gallery, setGallery] = useState([]);
+  // const [gallery, setGallery] = useState([]);
 
-  useEffect(() => {
-    // Read the mutable latest value
-    console.log(`Getting files...`);
+  // useEffect(() => {
+  //   // Read the mutable latest value
+  //   console.log(`Getting files...`);
 
-    axios
-      .get("/api/gallery/")
-      .then((res) => {
-        setGallery(res.data.artworks);
-        console.log(res.data.artworks);
-      })
-      .catch((err) => {
-        console.log("Error from getting all gallery informations");
-      });
-  }, []);
+  //   axios
+  //     .get("/api/gallery/")
+  //     .then((res) => {
+  //       setGallery(res.data.artworks);
+  //       console.log(res.data.artworks);
+  //     })
+  //     .catch((err) => {
+  //       console.log("Error from getting all gallery informations");
+  //     });
+  // }, []);
 
   return (
     <div>
