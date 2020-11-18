@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
 import "../App.css";
+import NavbarTop from "./NavbarTop";
 
 class AboutRuntimeTerror extends Component{
     render(){

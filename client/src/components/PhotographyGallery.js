@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
-import "../App.css";
-import { Nav, NavItem, NavLink, Button } from "reactstrap";
-
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
-import Tabs from "@material-ui/core/Tabs";
+import { makeStyles } from "@material-ui/core/styles";
 import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
+import React, { Component } from "react";
+import "../App.css";
 import Footer from "./Footer";
+import NavbarTop from "./NavbarTop";
+
 
 const url = "/api/uploadManage/image/";
 
@@ -19,13 +18,13 @@ const descriptionStyle = {
   fontSize: "4rem",
 };
 
-const navStyle = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-};
+// const navStyle = {
+//   display: "flex",
+//   alignItems: "center",
+//   justifyContent: "center",
+// };
 
-const navButtonStyle = { marginBottom: "1px", marginRight: "10px" };
+// const navButtonStyle = { marginBottom: "1px", marginRight: "10px" };
 
 const useStyles = makeStyles({
   root: {
@@ -322,8 +321,8 @@ class Tile extends React.Component {
   render() {
     // Modify styles based on state values
     let tileStyle = {};
-    let headerStyle = {};
-    let zoom = {};
+    // let headerStyle = {};
+    // let zoom = {};
     // When tile clicked
     if (this.state.open) {
       tileStyle = {

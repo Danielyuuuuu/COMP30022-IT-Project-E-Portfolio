@@ -1,17 +1,11 @@
 import React, { Component } from "react";
-import "../App.css";
-
 import {
   Card,
-  Button,
-  CardTitle,
-  CardText,
-  CardImg,
-  Row,
-  Col,
-  CardFooter,
-  CardLink,
+  CardFooter, CardImg,
+  CardLink
 } from "reactstrap";
+import "../App.css";
+
 
 const Example = (props) => {
   return (
@@ -24,9 +18,8 @@ const Example = (props) => {
             alt="Card image cap"
           />
           <CardFooter
-            className="josefinFont"
+            className={`josefinFont text-center`}
             style={{ fontSize: "1.3rem", fontWeight: "bold" }}
-            className="text-center"
           >
             Photography
           </CardFooter>
@@ -41,9 +34,8 @@ const Example = (props) => {
             alt="Card image cap"
           />
           <CardFooter
-            className="josefinFont"
+            className={`josefinFont text-center`}
             style={{ fontSize: "1.3rem", fontWeight: "bold" }}
-            className="text-center"
           >
             Art Crafts
           </CardFooter>
@@ -60,9 +52,8 @@ const Example = (props) => {
             alt="Card image cap"
           />
           <CardFooter
-            className="josefinFont"
+            className={`josefinFont text-center`}
             style={{ fontSize: "1.3rem", fontWeight: "bold" }}
-            className="text-center"
           >
             Painting
           </CardFooter>
@@ -77,9 +68,8 @@ const Example = (props) => {
             alt="Card image cap"
           />
           <CardFooter
-            className="josefinFont"
+            className={`josefinFont text-center`}
             style={{ fontSize: "1.3rem", fontWeight: "bold" }}
-            className="text-center"
           >
             Graphic Design
           </CardFooter>

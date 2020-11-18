@@ -1,26 +1,18 @@
-import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
-import StoreCategoryList from "./StoreCategoryList";
-import Footer from "./Footer";
-import ShoppingCart from "./ShoppingCart";
-import "../App.css";
-import { CustomInput, Form, FormGroup, Label, Input } from "reactstrap";
-import ErrorNotice from "../misc/ErrorNotice";
-
-import {
-  Card,
-  Button,
-  CardTitle,
-  CardText,
-  CardImg,
-  Row,
-  Col,
-  Modal,
-  Spinner,
-} from "reactstrap";
-
-import Button_UI from "@material-ui/core/Button";
 import { SnackbarProvider, useSnackbar } from "notistack";
+import React, { Component } from "react";
+import {
+  Button, Card,
+
+
+
+  CardImg, CardText, CardTitle, CustomInput, Form, FormGroup, Label
+} from "reactstrap";
+import "../App.css";
+import Footer from "./Footer";
+import NavbarTop from "./NavbarTop";
+import ShoppingCart from "./ShoppingCart";
+
+
 
 //const url = "/api/store/image/";
 const url = "/api/uploadManage/image/";
@@ -44,8 +36,8 @@ class Store extends Component {
     // if (index < 0) {
     //   this.state.cart.push(itemName);
     // }
-    let selectedItems = this.state.cart.filter((item) => item.name == itemName);
-    if (selectedItems.length == 0) {
+    let selectedItems = this.state.cart.filter((item) => item.name === itemName);
+    if (selectedItems.length === 0) {
       this.state.cart.push({
         name: itemName,
         price: itemPrice,
@@ -67,7 +59,7 @@ class Store extends Component {
     //   this.state.cart.splice(index, 1);
     // }
 
-    let leftItems = this.state.cart.filter((item) => item.name != itemName);
+    let leftItems = this.state.cart.filter((item) => item.name !== itemName);
     this.setState({ cart: leftItems });
 
     console.log(this.state.cart);

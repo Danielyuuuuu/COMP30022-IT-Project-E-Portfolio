@@ -129,7 +129,7 @@ function StoreDialog(propss) {
       props.sendNotification(`Need to fill in all fields!`,"warning");
       // enqueueSnackbar(`Need to fill in all fields!`, { variant });
     }else{
-      if (props.mode == "New") {
+      if (props.mode === "New") {
         props.sendNotification(`You successfully create a new item: << ${itemname} >>!`, "success");
         // enqueueSnackbar(`You successfully create a new item: << ${itemname} >>!`, { variant });
         Axios.post("/api/store/", data)
@@ -321,7 +321,7 @@ function StoreDialog(propss) {
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             <h1>???????????</h1>
-            <img src={"/api/uploadManage/image/7b3c802ea99be25d56eb36fe2619fd37.png"}></img>
+            <img src={"/api/uploadManage/image/7b3c802ea99be25d56eb36fe2619fd37.png"} alt={""}></img>
           </DialogContentText>
         </DialogContent>
         <DialogActions>

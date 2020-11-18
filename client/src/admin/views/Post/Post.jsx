@@ -25,7 +25,6 @@ import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import axios from "axios";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import Dialogs from "../../components/Dialogs/PostDialog";
 
 
@@ -49,7 +48,7 @@ function Row(props) {
   const notification = (message, variant) =>{
     enqueueSnackbar(message, {variant});
   }
-  const history = useHistory();
+
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();

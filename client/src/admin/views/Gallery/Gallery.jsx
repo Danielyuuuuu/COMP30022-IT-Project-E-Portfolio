@@ -37,7 +37,6 @@ import Typography from "@material-ui/core/Typography";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
 import React from "react";
-import { useHistory } from "react-router-dom";
 import Dialogs from "../../components/Dialogs/GalleryDialog";
 
 
@@ -59,7 +58,7 @@ const useRowStyles = makeStyles({
 const categories = [
   {
     name: "Photography",
-    coverImage: "/api/uploadManage/image/890c444028e88bc04522cdee2e9be0bd.jpg",
+    coverImage: "https://www.business.com/images/content/5ca/3d01e5a215e8a458b690f/0-800-",
     subCategories: ["Architecture", "Landscape", "Street","Events", "Portrait"],
   },
   {
@@ -82,7 +81,6 @@ const categories = [
 
 
 function Row(props) {
-  const history = useHistory();
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();

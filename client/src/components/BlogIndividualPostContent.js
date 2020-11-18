@@ -1,18 +1,17 @@
-import React, { Component } from "react";
-import "../App.css";
-
-import {
-  CardImg,
-  CardTitle,
-  CardText,
-  CardBody,
-} from "reactstrap";
-
-import BlogComments from "./BlogComments";
-import axios from "axios";
-
-import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import Chip from "@material-ui/core/Chip";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import axios from "axios";
+import React, { Component } from "react";
+import {
+  CardBody, CardImg,
+
+  CardText, CardTitle
+} from "reactstrap";
+import "../App.css";
+import BlogComments from "./BlogComments";
+
+
+
 
 let marked = require("marked");
 

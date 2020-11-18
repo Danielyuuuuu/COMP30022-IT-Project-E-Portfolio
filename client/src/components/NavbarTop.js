@@ -1,32 +1,27 @@
-import React, { Component, useState } from "react";
-import "../App.css";
+import React, { Component } from "react";
 import {
-  Navbar,
+  DropdownItem, DropdownMenu, DropdownToggle, Nav, Navbar,
   NavbarBrand,
-  Nav,
+
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  UncontrolledDropdown
 } from "reactstrap";
+import "../App.css";
 
 class NavbarTop extends Component {
   render() {
     return (
       <div>
         <Navbar
-          className="josefinFont"
+          className={`josefinFont header`}
           style={{ fontSize: "1.8rem", height: "55px" }}
-          className="header"
           fixed="top"
-          expand="lg"
           color="light"
           light
           expand="md"
         >
-          <NavbarBrand className="navbarBand">Runtime Terror</NavbarBrand>
+          <NavbarBrand className="navbarBand" style={{fontSize:"1.8rem"}}>Runtime Terror</NavbarBrand>
 
           <Nav className="m-auto" navbar>
             <NavItem>

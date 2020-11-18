@@ -1,8 +1,8 @@
 
-import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
+import React from "react";
 import "../App.css";
 import AwgNavbar from "./AwgNavbar";
+import NavbarTop from "./NavbarTop";
 
 
 //const app = document.getElementById('app');
@@ -162,8 +162,8 @@ class Tile extends React.Component {
 	render() {
 		// Modify styles based on state values
 		let tileStyle = {};
-		let headerStyle = {};
-		let zoom = {};
+		// let headerStyle = {};
+		// let zoom = {};
 		// When tile clicked
 		if (this.state.open) {
 			tileStyle = {
@@ -201,7 +201,7 @@ class Tile extends React.Component {
 }
 
 export default ArtWorkGallery1;
-export {App, Tiles, Tile};
+export { App, Tiles, Tile };
 
 /*
 ReactDOM.render(

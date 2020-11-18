@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Axios from "axios";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import ErrorNotice from "../misc/ErrorNotice";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [severity, setSeverity] = useState("error");
+  const severity="error";
 
   const history = useHistory();
 

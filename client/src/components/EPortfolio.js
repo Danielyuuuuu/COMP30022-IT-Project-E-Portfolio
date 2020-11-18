@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
-import Category from "./Category";
-import HomeSlide from "./HomeSlide";
 import "../App.css";
+import Category from "./Category";
 import Footer from "./Footer";
+import HomeSlide from "./HomeSlide";
+import NavbarTop from "./NavbarTop";
 
 
 class EPortfolio extends Component {
@@ -26,6 +26,6 @@ class EPortfolio extends Component {
                 <Footer />
             </div>
         );
-    };
+    }
 }
 export default EPortfolio;

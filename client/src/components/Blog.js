@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
 import "../App.css";
-import Footer from "./Footer";
 import BlogPost from "./BlogPost";
+import Footer from "./Footer";
+import NavbarTop from "./NavbarTop";
 
 class Blog extends Component {
   render() {

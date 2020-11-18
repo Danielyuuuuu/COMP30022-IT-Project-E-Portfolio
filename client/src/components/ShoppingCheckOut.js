@@ -1,27 +1,14 @@
-import React, { Component } from "react";
-import "../App.css";
-import Footer from "./Footer";
-import {
-  Card,
-  Button,
-  Table,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  CardTitle,
-  CardText,
-  CardImg,
-  Row,
-  Col,
-} from "reactstrap";
-
-import { useState } from "react";
 import axios from "axios";
-import NavbarTop from "./NavbarTop";
+import React, { Component } from "react";
+import {
+  Button,
+  Col,
 
-const url = "/api/uploadManage/image/";
+
+  Row, Table
+} from "reactstrap";
+import "../App.css";
+import NavbarTop from "./NavbarTop";
 
 export default class CheckOutList extends Component {
   constructor(props) {
@@ -42,6 +29,7 @@ export default class CheckOutList extends Component {
     validation.map((item) => {
       delete item["filename"];
       console.log(item);
+      return 0;
     });
 
     axios.post("/api/paypal/pay", validation).then((res) => {
@@ -110,12 +98,13 @@ class ItemsTable extends Component {
     var total = 0;
     JSON.parse(localStorage.getItem("cart")).map((item) => {
       total += item.quantity * item.price;
+      return null;
     });
     this.setState({ totalPrice: total });
   }
 
   removeCartItem(itemName) {
-    let leftItems = this.state.cart.filter((item) => item.name != itemName);
+    let leftItems = this.state.cart.filter((item) => item.name !== itemName);
 
     this.setState({ cart: leftItems });
 
@@ -132,11 +121,10 @@ class ItemsTable extends Component {
     console.log("Click at AddQuantity");
 
     this.state.cart.map((item) => {
-      if (item.name == itemName) {
-        {
+      if (item.name === itemName) {
           item.quantity++;
-        }
       }
+      return null;
     });
     this.setState({ cart: this.state.cart });
 
@@ -147,11 +135,10 @@ class ItemsTable extends Component {
 
   reduceQuantity(itemName) {
     this.state.cart.map((item) => {
-      if (item.name == itemName && item.quantity >= 2) {
-        {
+      if (item.name === itemName && item.quantity >= 2) {
           item.quantity--;
-        }
       }
+      return null;
     });
     this.setState({ cart: this.state.cart });
 
@@ -175,6 +162,7 @@ class ItemsTable extends Component {
               width={200}
               className=" img-fluid rounded shadow "
               src={"/api/uploadManage/image/" + good.filename}
+              alt={""}
             />
           </td>
           <td className=" td-name">
@@ -258,97 +246,97 @@ class ItemsTable extends Component {
   }
 }
 
-class AddressTable extends Component {
-  constructor(props) {
-    super(props);
+// class AddressTable extends Component {
+//   constructor(props) {
+//     super(props);
 
-    this.getAPrint = this.getAPrint.bind(this);
+//     this.getAPrint = this.getAPrint.bind(this);
 
-    this.state = {
-      contacterName: "",
-      phoneNumber: "",
-      emailAddress: "",
-      postcode: "",
-      country: "",
-      address: "",
-    };
-  }
+//     this.state = {
+//       contacterName: "",
+//       phoneNumber: "",
+//       emailAddress: "",
+//       postcode: "",
+//       country: "",
+//       address: "",
+//     };
+//   }
 
-  getAPrint() {
-    localStorage.setItem("address", JSON.stringify(this.state));
-  }
+//   getAPrint() {
+//     localStorage.setItem("address", JSON.stringify(this.state));
+//   }
 
-  render() {
-    return (
-      <div>
-        <Form>
-          <Row form md="6">
-            <Col>
-              <FormGroup>
-                <Label>Contacter's Name</Label>
-                <Input
-                  required
-                  type="text"
-                  placeholder="enter your name"
-                  onChange={(e) =>
-                    this.setState({ contacterName: e.target.value })
-                  }
-                />
-              </FormGroup>
-            </Col>
-            <Col>
-              <FormGroup>
-                <Label>Phone Number</Label>
-                <Input
-                  required
-                  type="text"
-                  placeholder="enter your phone number"
-                  onChange={(e) =>
-                    this.setState({ phoneNumber: e.target.value })
-                  }
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row md="6">
-            <Col>
-              <FormGroup>
-                <Label>Postcode</Label>
-                <Input
-                  required
-                  type="text"
-                  placeholder="Postcode"
-                  onChange={(e) => this.setState({ postcode: e.target.value })}
-                />
-              </FormGroup>
-            </Col>
-            <Col>
-              <FormGroup>
-                <Label>Country</Label>
-                <Input
-                  required
-                  type="text"
-                  placeholder="Country"
-                  onChange={(e) => this.setState({ country: e.target.value })}
-                />
-              </FormGroup>
-            </Col>
-          </Row>
-          <Row form md="5">
-            <FormGroup>
-              <Label>Address</Label>
-              <Input
-                required
-                type="text"
-                placeholder="Please enter your address"
-                onChange={(e) => this.setState({ address: e.target.value })}
-              />
-            </FormGroup>
-          </Row>
-        </Form>
+//   render() {
+//     return (
+//       <div>
+//         <Form>
+//           <Row form md="6">
+//             <Col>
+//               <FormGroup>
+//                 <Label>Contacter's Name</Label>
+//                 <Input
+//                   required
+//                   type="text"
+//                   placeholder="enter your name"
+//                   onChange={(e) =>
+//                     this.setState({ contacterName: e.target.value })
+//                   }
+//                 />
+//               </FormGroup>
+//             </Col>
+//             <Col>
+//               <FormGroup>
+//                 <Label>Phone Number</Label>
+//                 <Input
+//                   required
+//                   type="text"
+//                   placeholder="enter your phone number"
+//                   onChange={(e) =>
+//                     this.setState({ phoneNumber: e.target.value })
+//                   }
+//                 />
+//               </FormGroup>
+//             </Col>
+//           </Row>
+//           <Row md="6">
+//             <Col>
+//               <FormGroup>
+//                 <Label>Postcode</Label>
+//                 <Input
+//                   required
+//                   type="text"
+//                   placeholder="Postcode"
+//                   onChange={(e) => this.setState({ postcode: e.target.value })}
+//                 />
+//               </FormGroup>
+//             </Col>
+//             <Col>
+//               <FormGroup>
+//                 <Label>Country</Label>
+//                 <Input
+//                   required
+//                   type="text"
+//                   placeholder="Country"
+//                   onChange={(e) => this.setState({ country: e.target.value })}
+//                 />
+//               </FormGroup>
+//             </Col>
+//           </Row>
+//           <Row form md="5">
+//             <FormGroup>
+//               <Label>Address</Label>
+//               <Input
+//                 required
+//                 type="text"
+//                 placeholder="Please enter your address"
+//                 onChange={(e) => this.setState({ address: e.target.value })}
+//               />
+//             </FormGroup>
+//           </Row>
+//         </Form>
 
-        <Button onClick={() => this.getAPrint()}>Click on me</Button>
-      </div>
-    );
-  }
-}
+//         <Button onClick={() => this.getAPrint()}>Click on me</Button>
+//       </div>
+//     );
+//   }
+// }
