@@ -387,6 +387,14 @@ body {
   margin-right: 10px;
 }
 
+.deleteButtonAdmin {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
 .deleteButton:hover {
   color: red;
 }
