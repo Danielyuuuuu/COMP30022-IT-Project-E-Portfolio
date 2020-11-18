@@ -35,7 +35,7 @@ describe("blog Model Test", () => {
         commentblock: "5f740ebbbbab65422c7a853a",
         hashtags: ["Test", "Hello"]
       };
-    const validBlogData = new User(blogData);
+    const validBlogData = new BlogModel(blogData);
     const savedBlog = await validBlogData.save();
     // Object Id should be defined when successfully saved to MongoDB.
     expect(savedBlog._id).toBeDefined();
