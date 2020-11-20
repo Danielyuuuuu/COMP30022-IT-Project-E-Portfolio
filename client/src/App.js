@@ -1,48 +1,47 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import "./App.css";
+import Axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import CreateBook from "./components/CreateBook";
-import ShowBookList from "./components/ShowBookList";
-import ShowBookDetails from "./components/ShowBookDetails";
-import UpdateBookInfo from "./components/UpdateBookInfo";
-import EPortfolio from "./components/EPortfolio";
-import Store from "./components/Store";
-import Blog from "./components/Blog";
-import IndividualPost from "./components/BlogIndividualPost";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
+import Admin from "./admin/layouts/Admin";
+import "./App.css";
 import AboutMe from "./components/AboutMe";
 import AboutRuntimeTerror from "./components/AboutRuntimeTerror";
-import ContactMe from "./components/ContactMe";
-
+import ArtGraftsGallery from "./components/ArtCraftsGallery";
 import ArtWorkGallery from "./components/ArtWorkGallery";
 import ArtWorkGallery1 from "./components/ArtWorkGallery1";
 import ArtWorkGallery2 from "./components/ArtWorkGallery2";
 import ArtWorkGallery3 from "./components/ArtWorkGallery3";
-
+import Blog from "./components/Blog";
+import IndividualPost from "./components/BlogIndividualPost";
+import ContactMe from "./components/ContactMe";
+import CreateBook from "./components/CreateBook";
+import EPortfolio from "./components/EPortfolio";
+import GraphicDesignGallery from "./components/GraphicDesignGallery";
+import Login from "./components/Login";
 import PaintingGallery from "./components/PaintingGallery";
 import PhotographyGallery from "./components/PhotographyGallery";
-import ArtGraftsGallery from "./components/ArtCraftsGallery";
-import GraphicDesignGallery from "./components/GraphicDesignGallery";
-
-import Admin from "./admin/layouts/Admin";
-
-import Login from "./components/Login";
 import Register from "./components/Register";
-
+import PurchaseCancel from "./components/ShoppingCancel";
 import CheckOut from "./components/ShoppingCheckOut";
 import PurchaseSucceed from "./components/ShoppingSuccess";
-import PurchaseCancel from "./components/ShoppingCancel";
+import ShowBookDetails from "./components/ShowBookDetails";
+import Store from "./components/Store";
+import UpdateBookInfo from "./components/UpdateBookInfo";
 
-import Axios from "axios";
 
-import "semantic-ui-css/semantic.min.css";
+
+
+
+
+
+
 
 export default function App() {
-  const [userData, setUserData] = useState({
-    token: undefined,
-    user: undefined,
-  });
+  // const [userData, setUserData] = useState({
+  //   token: undefined,
+  //   user: undefined,
+  // });
 
   useEffect(() => {
     const checkLoggedIn = async () => {
@@ -56,7 +55,7 @@ export default function App() {
         { headers: { "x-auth-token": token } }
       );
       if (tokenRes.data) {
-        const userRes = await Axios.get("/api/user/", {
+        await Axios.get("/api/user/", {
           headers: { "x-auth-token": token },
         });
       }

@@ -3,18 +3,11 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from "axios";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import React from 'react';
 
-
-const useStyles = makeStyles({
-    root: {
-      maxWidth: 345,
-    },
-  });
 
 function Setting(){
 
@@ -22,9 +15,6 @@ function Setting(){
   const handleClickVariant = ( message, variant) => {
     enqueueSnackbar(message, {variant})
   }
-
-
-    const classes = useStyles();
 
     const [open, setOpen] = React.useState(false);
     const [email, setEmail] = React.useState("");

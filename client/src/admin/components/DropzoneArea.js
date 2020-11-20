@@ -2,12 +2,10 @@ import Button from "@material-ui/core/Button";
 import Axios from "axios";
 import { DropzoneDialog } from "material-ui-dropzone";
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 
 
 export default function DropZone(props) {
   const [open, setOpen] = useState(false);
-  const [files, setFiles] = useState([]);
 
   const handleClose = async () => {
     setOpen(false);
@@ -15,7 +13,6 @@ export default function DropZone(props) {
 
   const handleSave = async (files) => {
     //Saving files to state for further use and closing Modal.
-    setFiles(files);
     setOpen(false);
     console.log("Before Axios................");
 
@@ -23,7 +20,7 @@ export default function DropZone(props) {
       let imageFile = new FormData();
       imageFile.append("file", files[i]);
 
-      const postRes = await Axios.post(
+      await Axios.post(
         "/api/uploadManage/upload",
         imageFile
       );
@@ -40,7 +37,6 @@ export default function DropZone(props) {
     setOpen(true);
   };
 
-  const history = useHistory();
 
   return (
     <div>

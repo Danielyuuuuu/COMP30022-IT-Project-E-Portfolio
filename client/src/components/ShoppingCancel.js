@@ -1,10 +1,9 @@
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import React, { Component } from "react";
-
 import {
-    Alert,
-  } from "reactstrap";
-  import ErrorNotice from "../misc/ErrorNotice";
-  import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+  Alert
+} from "reactstrap";
+
 
   export default class ShoppingSuccess extends Component{
     constructor(props){

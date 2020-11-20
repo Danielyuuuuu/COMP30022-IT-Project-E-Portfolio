@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import "../App.css";
-import { Comment } from "semantic-ui-react";
 import Axios from "axios";
+import React, { Component } from "react";
 import { Button, Form, FormGroup, Input } from "reactstrap";
+import { Comment, Header } from "semantic-ui-react";
+import "../App.css";
 import ErrorNotice from "../misc/ErrorNotice";
-import { Header } from "semantic-ui-react";
 
 export default class BlogComments extends Component {
   constructor(props) {

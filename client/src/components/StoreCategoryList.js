@@ -1,5 +1,5 @@
 import React from "react";
-import { CustomInput, Form, FormGroup, Label, Input } from "reactstrap";
+import { CustomInput, Form, FormGroup, Input, Label } from "reactstrap";
 
 const StoreCategoryList = (props) => {
   return (

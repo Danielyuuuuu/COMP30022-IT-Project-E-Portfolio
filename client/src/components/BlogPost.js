@@ -1,21 +1,13 @@
+import Card from "@material-ui/core/Card";
+import Chip from "@material-ui/core/Chip";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import React, { Component } from "react";
 import {
-  CardImg,
-  CardTitle,
-  CardText,
-  CardGroup,
-  CardBody,
+  CardBody, CardGroup, CardImg,
+
+  CardText, CardTitle
 } from "reactstrap";
-import Card from "@material-ui/core/Card";
 
-import LocalOfferIcon from "@material-ui/icons/LocalOffer";
-import Chip from "@material-ui/core/Chip";
-
-
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-
-let marked = require("marked");
 
 
 class BlogPost extends Component {

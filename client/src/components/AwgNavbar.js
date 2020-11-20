@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
 const Example = (props) => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+  // const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen(!dropdownOpen);
+  // const toggle = () => setDropdownOpen(!dropdownOpen);
 
   return (
     <div>

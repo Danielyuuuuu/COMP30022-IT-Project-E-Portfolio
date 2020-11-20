@@ -11,7 +11,6 @@ import HighlightOffOutlinedIcon from "@material-ui/icons/HighlightOffOutlined";
 import axios from "axios";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
 import DropzoneArea from "../../components/DropzoneArea";
 
 
@@ -20,10 +19,6 @@ import DropzoneArea from "../../components/DropzoneArea";
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-
   root: {
     display: "flex",
     flexWrap: "wrap",
@@ -74,8 +69,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Media() {
   const classes = useStyles();
-  const [copyOpen, setCopyOpen] = React.useState(false);
-  const [deleteOpen, setDeleteOpen] = React.useState(false);
 
   const { enqueueSnackbar } = useSnackbar();
   const handleClickVariant = (message, variant) => {
@@ -90,7 +83,6 @@ function Media() {
   const [images, setImages] = useState([]);
 
   const handleRemoveItem = (filename) => {
-    setDeleteOpen(true);
     handleClickVariant(`You have delete the image: ${filename} !`, 'warning');
     axios
       .delete(`/api/uploadManage/files/${filename}`)
@@ -112,7 +104,6 @@ function Media() {
     fetchAllImages();
   })
 
-  const history = useHistory();
   return (
     <React.Fragment>
 
@@ -128,7 +119,7 @@ function Media() {
             <GridList cellHeight={180} className={classes.gridList} cols={5}>
               {images.map((tile) => (
                 <GridListTile>
-                  <img src={"/api/uploadManage/image/" + tile.filename} />
+                  <img src={"/api/uploadManage/image/" + tile.filename} alt={""} />
                   <GridListTileBar
                     title={tile.filename}
                     actionIcon={

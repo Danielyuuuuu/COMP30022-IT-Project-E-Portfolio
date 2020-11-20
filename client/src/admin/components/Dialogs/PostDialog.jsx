@@ -92,10 +92,10 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 
-const Markdown = (props) => {
-    const content = marked(props.markdown)
-    return content;
-}
+// const Markdown = (props) => {
+//     const content = marked(props.markdown)
+//     return content;
+// }
 
 export default function PostDialog(props) {
 
@@ -145,7 +145,7 @@ export default function PostDialog(props) {
             variant = 'warning'
             props.sendNotification(`Need to fill in all fields!`, variant );
         } else {
-            if (props.mode == "New") {
+            if (props.mode === "New") {
                 props.sendNotification(`You successfully create a new post: << ${title} >>!`, variant);
                 Axios.post("/api/blog/uploadblog", data)
                     .then(console.log("adding new post......"))

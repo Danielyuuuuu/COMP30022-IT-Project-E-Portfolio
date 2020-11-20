@@ -1,36 +1,27 @@
-import React from "react";
+import IconButton from "@material-ui/core/IconButton";
+import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import React, { useState } from "react";
 import {
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  CustomInput,
-  Form,
-  FormGroup,
-  Label,
-  Button,
+  Alert, Button, DropdownMenu, DropdownToggle,
+
+
+
+
+
+
+
   ListGroup,
-  ListGroupItem,
-  Badge,
+  ListGroupItem, Modal,
+
+  ModalBody,
+  ModalFooter, ModalHeader,
+
+
+  Table, UncontrolledDropdown
 } from "reactstrap";
 
-import { useState } from "react";
-import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Table,
-  Alert,
-} from "reactstrap";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import PaymentIcon from "@material-ui/icons/Payment";
-import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
-import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
-import StorefrontIcon from "@material-ui/icons/Storefront";
-import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import IconButton from "@material-ui/core/IconButton";
-import { List } from "@material-ui/core";
 
 const shoppingCartStyle = {
   position: "absolute",

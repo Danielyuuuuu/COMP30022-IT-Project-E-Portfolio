@@ -1,5 +1,4 @@
-import React, {Component} from "react";
-import { Media } from "reactstrap";
+import React, { Component } from "react";
 
 let marked = require("marked");
 
@@ -53,5 +52,5 @@ export default class AboutMe extends Component {
       </div>
     );
   }
-};
+}
 

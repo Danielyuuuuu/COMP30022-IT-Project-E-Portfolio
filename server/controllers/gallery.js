@@ -28,7 +28,7 @@ const updateArtwork = async (req, res) => {
     // upsert is true, so if the category or subcat is not found, it will
     // automatically create a new entry.
     await Artwork.findOneAndUpdate(query, update, {upsert:true}, (err, doc) => {
-      if (err) return res.status(400).json(err);
+      // if (err) return res.status(400).json(err);
       return res.status(200).send("Added successfully");
     })
   } catch (error) {

@@ -4,7 +4,6 @@ const Item = require("../models/item");
 
 // Blog Model
 const BlogModel = require("../models/blog");
-const User = require("../models/User");
 
 const postBlog = async (req, res) => {
   try {

@@ -15,28 +15,6 @@ import MediaOptionBar from "../../components/MediaOptionBar/MediaOptionBar";
 import { SelectedPictures } from "../../components/MediaOptionBar/SharedVar";
 
 
-
-
-const testData = [
-  {
-    chunkSize: 261120,
-    contentType: "image/jpeg",
-    filename: "cc33d33dc1c350d8a8e19d05bf8b4918.jpg",
-    length: 69725,
-    md5: "acb69f673e0874cefe8fd80f4ff284fa",
-    uploadDate: "2020-09-23T08:07:06.010Z",
-    _id: "5f6b022967817e238476fad6",
-  },
-  {
-    chunkSize: 261120,
-    contentType: "image/png",
-    filename: "6b19db93e5940aa1bce15d564047c868.png",
-    length: 138841,
-    md5: "2d874793cea5e7825e34c26c30a98ecb",
-    uploadDate: "2020-09-27T12:36:08.109Z",
-    _id: "5f708737f697517cf02d4bc3",
-  },
-];
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -140,7 +118,7 @@ function GalleryDialog(propss) {
       .catch((err) => {
         console.log("Error from getting all gallery informations");
       });
-  }, []);
+  },[]);
 
 
   return (

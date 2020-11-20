@@ -98,7 +98,7 @@ class ContactMeBlock extends Component {
             action={
               <div>
               <button
-                className="deleteButton"
+                className="deleteButtonAdmin"
                 onClick={() => this.handleDelete(this.props.id)}
               >
                 <i className="fas fa-times"></i>

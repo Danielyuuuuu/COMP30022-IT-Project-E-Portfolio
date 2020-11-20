@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import NavbarTop from "./NavbarTop";
+import React from "react";
 import "../App.css";
 import AwgNavbar from "./AwgNavbar";
+import NavbarTop from "./NavbarTop";
 
 const url = "/api/uploadManage/image/";
 
@@ -129,7 +129,7 @@ class ArtWorkGallery extends React.Component {
   componentDidMount() {
     fetch("/api/uploadManage/files/")
       .then((response) => response.json())
-      .then((data) => this.setState({ data: data }));
+      .then(() => this.setState({ data }));
   }
 
   render() {
@@ -224,8 +224,8 @@ class Tile extends React.Component {
   render() {
     // Modify styles based on state values
     let tileStyle = {};
-    let headerStyle = {};
-    let zoom = {};
+    // let headerStyle = {};
+    // let zoom = {};
     // When tile clicked
     if (this.state.open) {
       tileStyle = {

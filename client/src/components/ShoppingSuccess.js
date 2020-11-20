@@ -1,21 +1,9 @@
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import React, { Component } from "react";
 import {
-    Alert,
-    Card,
-    CardImg,
-    CardTitle,
-    CardText,
-    CardGroup,
-    CardBody,
-    Dropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    Badge,
-  } from "reactstrap";
-  import ErrorNotice from "../misc/ErrorNotice";
+  Alert
+} from "reactstrap";
 
-  import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
   
   
@@ -66,45 +54,44 @@ import {
   }
 
 
-class ItemList extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            items: this.props.body
-        };
-    }
+// class ItemList extends Component {
+//     constructor(props){
+//         super(props);
+//         this.state = {
+//             items: this.props.body
+//         };
+//     }
 
-    render () {
+//     render () {
 
 
-        let itemstyle = {
-            maxWidth: "18vw",
-            
-            maxHeight:"18vw"
-        };
-        return (
-            <div className=" card-deck">
-                {this.state.items.map((item) => {
-                    return (
-                       <Card>
-                           <CardImg 
+//         let itemstyle = {
+//             maxWidth: "18vw",
+//             maxHeight:"18vw"
+//         };
+//         return (
+//             <div className=" card-deck">
+//                 {this.state.items.map((item) => {
+//                     return (
+//                        <Card>
+//                            <CardImg 
                             
-                              object-fit="contain"
-                              top
-                              style={itemstyle}
-                              src={"/api/uploadManage/image/"+item.filename} 
-                              alt="Card image cap" 
+//                               object-fit="contain"
+//                               top
+//                               style={itemstyle}
+//                               src={"/api/uploadManage/image/"+item.filename} 
+//                               alt="Card image cap" 
                                 
-                            />
-                           <CardBody>
-                              <CardTitle>{item.name}</CardTitle>
-                              <CardText> {item.quantity}</CardText>
-                              <CardText>{item.price*item.quantity}({item.price + "for each"})</CardText>
-                            </CardBody>
-                       </Card> 
-                    )
-                })}
-            </div>
-        )
-    }
-}
+//                             />
+//                            <CardBody>
+//                               <CardTitle>{item.name}</CardTitle>
+//                               <CardText> {item.quantity}</CardText>
+//                               <CardText>{item.price*item.quantity}({item.price + "for each"})</CardText>
+//                             </CardBody>
+//                        </Card> 
+//                     )
+//                 })}
+//             </div>
+//         )
+//     }
+// }

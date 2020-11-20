@@ -1,27 +1,14 @@
-import React, { Component } from "react";
-import "../App.css";
-import Footer from "./Footer";
-import {
-  Card,
-  Button,
-  Table,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  FormText,
-  CardTitle,
-  CardText,
-  CardImg,
-  Row,
-  Col,
-} from "reactstrap";
-
-import { useState } from "react";
 import axios from "axios";
-import NavbarTop from "./NavbarTop";
+import React, { Component } from "react";
+import {
+  Button,
+  Col,
 
-const url = "/api/uploadManage/image/";
+
+  Row, Table
+} from "reactstrap";
+import "../App.css";
+import NavbarTop from "./NavbarTop";
 
 export default class CheckOutList extends Component {
   constructor(props) {
@@ -42,6 +29,7 @@ export default class CheckOutList extends Component {
     validation.map((item) => {
       delete item["filename"];
       console.log(item);
+      return 0;
     });
 
     axios.post("/api/paypal/pay", validation).then((res) => {
@@ -110,12 +98,13 @@ class ItemsTable extends Component {
     var total = 0;
     JSON.parse(localStorage.getItem("cart")).map((item) => {
       total += item.quantity * item.price;
+      return null;
     });
     this.setState({ totalPrice: total });
   }
 
   removeCartItem(itemName) {
-    let leftItems = this.state.cart.filter((item) => item.name != itemName);
+    let leftItems = this.state.cart.filter((item) => item.name !== itemName);
 
     this.setState({ cart: leftItems });
 
@@ -132,11 +121,10 @@ class ItemsTable extends Component {
     console.log("Click at AddQuantity");
 
     this.state.cart.map((item) => {
-      if (item.name == itemName) {
-        {
+      if (item.name === itemName) {
           item.quantity++;
-        }
       }
+      return null;
     });
     this.setState({ cart: this.state.cart });
 
@@ -147,11 +135,10 @@ class ItemsTable extends Component {
 
   reduceQuantity(itemName) {
     this.state.cart.map((item) => {
-      if (item.name == itemName && item.quantity >= 2) {
-        {
+      if (item.name === itemName && item.quantity >= 2) {
           item.quantity--;
-        }
       }
+      return null;
     });
     this.setState({ cart: this.state.cart });
 
@@ -175,6 +162,7 @@ class ItemsTable extends Component {
               width={200}
               className=" img-fluid rounded shadow "
               src={"/api/uploadManage/image/" + good.filename}
+              alt={""}
             />
           </td>
           <td className=" td-name">
@@ -257,4 +245,3 @@ class ItemsTable extends Component {
     );
   }
 }
-
