@@ -14,7 +14,7 @@ This eportfolio is built using the MERN stack, consisting of a React frontend se
 
 ## Run the website locally
 1. Copy the git repository to your local machine.
-2. In the root directory, run `npm build` to install all the dependencies and packages.
+2. In the root directory, run `npm run build` to install all the dependencies and packages.
 3. Then run `npm run dev` to start the express server and react client simultaneously.
 4. The server listens on port 8000 and the react client is running on port 3000. The web page can now be visited and run normally in your local machine browser by going to `localhost:3000`.
 
